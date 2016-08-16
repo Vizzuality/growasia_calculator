@@ -1,24 +1,30 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Grow Asia Carbon Emissions Calculator
 
-Things you may want to cover:
+This tool is built together with [Winrock](https://www.winrock.org/)
+for the [Grow Asia](http://growasia.org/) partnership.
 
-* Ruby version
+It will allow farmers in South East Asia to run an analysis on their farming
+practices and practices changes in terms of their carbon emissions.
 
-* System dependencies
 
-* Configuration
+## Dependencies
 
-* Database creation
+* Ruby 2.3.1
+* Rails 5.0.0.1
+* Postgresql 9.4
 
-* Database initialization
+## Project setup
 
-* How to run the test suite
+* Make sure you have the correct ruby version installed
+* Install the project gems: `bundle install`
+* Create database: `rake db:create`
+* Run migrations: `rake db:migrate`
+* Import Geo Locations: `rake import:geo_locations`
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+## Running the project
 
-* ...
+* Start the rails server `rails server`
+* Point your browser to `http://localhost:3000`
