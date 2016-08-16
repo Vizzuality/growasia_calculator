@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20160816143642) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "geo_locations", force: :cascade do |t|
     t.string   "country"
     t.string   "state"
