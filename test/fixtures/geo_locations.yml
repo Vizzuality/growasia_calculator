@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  country: MyString
+  state: MyString
+  soc_ref: 
+  soc_ref_unit: MyString
+  flu: MyString
+  fmg_full: 
+  fmg_reduced: 
+  fmg_no_till: 
+  fl_low: 
+  fl_high_without_manure: 
+  fl_high_with_manure: 
+
+two:
+  country: MyString
+  state: MyString
+  soc_ref: 
+  soc_ref_unit: MyString
+  flu: MyString
+  fmg_full: 
+  fmg_reduced: 
+  fmg_no_till: 
+  fl_low: 
+  fl_high_without_manure: 
+  fl_high_with_manure: 
