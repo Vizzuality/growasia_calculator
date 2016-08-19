@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :analyses
+  get 'analysis/new'
+
   get 'home/index'
 
   root 'home#index'
