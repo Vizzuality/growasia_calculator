@@ -1,0 +1,10 @@
+<h1>Describe your agricultural activity</h1>
+<section>
+  I'm growing
+  <%= select_tag :crop, options_for_select(["Rice", "Corn"]) %>
+  in an area of
+  <%= text_field_tag :area %>
+  with an expected yield of
+  <%= text_field_tag :yield %>
+  <%= select_tag :yield_unit, options_for_select(["kg/ha", "t/ha"]) %>
+</section>

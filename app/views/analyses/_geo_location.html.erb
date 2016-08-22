@@ -1,0 +1,14 @@
+<h1>Select Geography</h1>
+<section>
+  <%= label_tag :country, "Select your country" %>
+  Start typing or select your country in the map.<br />
+  <%= select_tag :country,
+    options_for_select(GeoLocation.order(:country).select(:country).
+                       distinct.map(&:country)) %>
+
+  <%= label_tag :state, "Select your region" %>
+  Start typing or select your region in the map.<br />
+  <%= select_tag :state,
+    options_for_select(GeoLocation.order(:state).select(:state).
+                       distinct.map(&:state)) %>
+</section>

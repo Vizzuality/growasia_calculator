@@ -1,17 +1,12 @@
 <%= form_for(analysis) do |f| %>
-  <% if analysis.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(analysis.errors.count, "error") %> prohibited this analysis from being saved:</h2>
-
-      <ul>
-      <% analysis.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
+  <div id="wizard">
+    <%= render partial: 'geo_location', f: f %>
+    <%= render partial: 'basic_info', f: f %>
+    <h1>Done</h1>
+    <section>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    </section>
   </div>
 <% end %>
