@@ -1,0 +1,15 @@
+<h1>Type of Rice and Irrigiation Regime</h1>
+<section>
+  I grow
+  <%= select_tag :rice_type,
+    options_for_select(["paddy",
+                        "upland"]) %>
+  rice and the irrigation regime can be described as
+  <%= select_tag :irrigiation_regime,
+    options_for_select(["Continuous flooding",
+                        "Intermittent flooding (1 aeration)",
+                        "Intermittent flooding (multiple aerations)",
+                        "Rainfed: Regular",
+                        "Rainfed: Drought-prone",
+                        "Rainfed: Deep water potential"]) %>.
+</section>

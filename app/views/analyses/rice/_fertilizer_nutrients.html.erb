@@ -1,0 +1,27 @@
+<h1>Fertilizer and Nutrient Management</h1>
+<section>
+  We apply
+  <%= text_field_tag :fertilizer_amount %> kg. ha<sup>-1</sup> yr<sup>-1</sup> of
+  <%= select_tag :fertilizer_type,
+    options_for_select(["Urea",
+                        "Ammonia",
+                        "Ammonium sulphate",
+                        "Monammonium sulphate (MAP)",
+                        "Diammonium sulphate (DAP)",
+                        "Ammonium nitrate",
+                        "Calcium ammonium nitrate"]) %> and
+  <%= text_field_tag :manure_amount %> kg. ha<sup>-1</sup> yr<sup>-1</sup> of
+  <%= select_tag :manure_type,
+    options_for_select(["Poultry litter, liquid",
+                        "Poultry litter, dry",
+                        "Other Manure, liquid",
+                        "Other Manure, dry"]) %>.
+  Additionally, we incorporate
+  <%= text_field_tag :nutrient_management_amount %> kg. ha<sup>-1</sup> yr<sup>-1</sup> of
+  <%= select_tag :rice_nutrient_management_type,
+    options_for_select(["Straw <30 days before cultivation",
+                        "Straw >30 days after cultivation",
+                        "Compost",
+                        "Farm yard manure",
+                        "Green manure"]) %>.
+</section>

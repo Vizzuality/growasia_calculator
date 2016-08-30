@@ -1,0 +1,19 @@
+<h1>Fuel and purposes</h1>
+<section>
+  Each year, we use an estimated
+  <%= text_field_tag :transportation_fuel_volume %>
+  <%= select_tag :transportation_fuel_unit,
+    options_for_select(["liters", "galons"]) %>
+  <%= select_tag :transportation_fuel_type,
+    options_for_select(["Diesel", "Petroleum"]) %> for transportation,
+  <%= text_field_tag :irrigation_fuel_volume %>
+  <%= select_tag :irrigation_fuel_unit,
+    options_for_select(["liters", "galons"]) %>
+  <%= select_tag :irrigation_fuel_type,
+    options_for_select(["Diesel", "Petroleum"]) %> for irrigation, and
+  <%= text_field_tag :other_fuel_volume %>
+  <%= select_tag :other_fuel_unit,
+    options_for_select(["liters", "galons"]) %>
+  <%= select_tag :other_fuel_type,
+    options_for_select(["Diesel", "Petroleum"]) %> for other practices.
+</section>

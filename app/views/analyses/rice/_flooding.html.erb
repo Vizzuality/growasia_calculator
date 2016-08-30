@@ -1,0 +1,10 @@
+<h1>Flooding before cultivation</h1>
+<section>
+  Before cultivation starts, cropland is
+  <%= select_tag :irrigiation_regime,
+    options_for_select(["Not flooded more than 6 months before cultivation",
+                        "Not flooded less than 6 months before cultivation",
+                        "Flooded for more than 30 days before cultivation"]) %>
+  and cultivation takes
+  <%= text_field_tag :cultivation_time, value: 120 %> days.
+</section>
