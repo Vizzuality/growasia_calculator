@@ -5,7 +5,6 @@ function initializeWizard() {
   $('#wizard').steps({
     headerTag: 'h1',
     bodyTag: 'section',
-    transitionEffect: 'slideLeft',
     autoFocus: true
   });
 }
