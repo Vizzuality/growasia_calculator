@@ -1,0 +1,15 @@
+en:
+  enumerations:
+    item_category:
+      tillage: "Tillage"
+      fertilizer_type: "Fertilizer_type"
+      manure_type: "Manure_type"
+      crop: "Crop"
+      crop_unit: "Crop_unit"
+      nutrient_management: "Nutrient_management"
+      rice_nutrient_management: "Rice_nutrient_management"
+      fuel_type: "Fuel_type"
+      fuel_unit: "Fuel_unit"
+      type_of_rice: "Type_of_rice"
+      irrigation_regime: "Irrigation_regime"
+      flooding: "Flooding"
