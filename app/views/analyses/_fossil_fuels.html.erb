@@ -1,0 +1,7 @@
+<h1>Fossil fuels</h1>
+<section>
+  Each year, we use an estimated
+  <%= text_field_tag :fossil_fuel_volume %>
+  <%= select_tag :fossil_fuel_unit, options_for_select(["liters", "galons"]) %>
+  <%= select_tag :fossil_fuel_type, options_for_select(["Diesel", "Petroleum"]) %>.
+</section>

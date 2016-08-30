@@ -1,0 +1,10 @@
+<h1>Additional crop management</h1>
+<section>
+  Additional crop management practices include (check all that apply):
+  <% ["Nitrogen fixing crop", "Cover crop", "Green manure", "Improved fallow",
+      "Crop rotation", "Crop residue burning"].each do |practice| %>
+    <label><%= practice %>
+      <%= check_box_tag :additional_crop_management, practice %>
+    </label>
+  <% end %>
+</section>
