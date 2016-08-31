@@ -1,7 +1,7 @@
 <h1>Shade trees</h1>
 <section>
   The cropland
-  <%= select_tag :shade_trees, options_for_select(["Does", "Does not"]) %>
+  <%= f.select:is_shaded, options_for_select([["Does", true], ["Does not", false]]) %>
   currently include shade trees, windbreaks, alley cropping, or any type of
   additional silviculture?
 </section>

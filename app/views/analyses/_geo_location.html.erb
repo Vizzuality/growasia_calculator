@@ -6,9 +6,9 @@
     options_for_select(GeoLocation.order(:country).select(:country).
                        distinct.map(&:country)) %>
 
-  <%= label_tag :state, "Select your region" %>
+  <%= f.label :geo_location_id, "Select your region" %>
   Start typing or select your region in the map.<br />
-  <%= select_tag :state,
+  <%= f.select :geo_location_id,
     options_for_select(GeoLocation.order(:state).select(:state).
                        distinct.map(&:state)) %>
 </section>
