@@ -2,6 +2,7 @@
 <section>
   Each year, we use an estimated
   <%= text_field_tag :fossil_fuel_volume %>
-  <%= select_tag :fossil_fuel_unit, options_for_select(["liters", "galons"]) %>
-  <%= select_tag :fossil_fuel_type, options_for_select(["Diesel", "Petroleum"]) %>.
+  <%= select_tag :fossil_fuel_unit, options_for_select(Analysis::FUEL_UNITS) %>
+  of
+  <%= select_tag :fossil_fuel_type, options_for_select(Analysis::FUEL_TYPES) %>.
 </section>

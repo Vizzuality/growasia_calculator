@@ -1,13 +1,7 @@
 <h1>Describe your agricultural activity</h1>
 <section>
   Currently, I’m growing
-  <%= select_tag :crop, options_for_select(["Cocoa",
-                                            "Coffee",
-                                            "Tea",
-                                            "Corn",
-                                            "Potatoes",
-                                            "Vegetables/horticulture",
-                                            "Rice"]) %>
+  <%= select_tag :crop, options_for_select(Analysis::CROPS) %>
   on <%= f.text_field :area %> hectares and expect a yield of
   <%= f.text_field :yield %> kg. ha<sup>-1</sup> yr<sup>-1</sup>.
 </section>

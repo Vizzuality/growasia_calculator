@@ -1,24 +1,11 @@
 <h1>Tillage</h1>
 <section>
   Crop management includes
-  <%= select_tag :tillage,
-    options_for_select(["No Tillage",
-                        "Minimal/shallow tillage",
-                        "Full tillage (major soil disturbance and/or multiple annual tillage operations)"]) %>
+  <%= select_tag :tillage, options_for_select(Analysis::TILLAGES) %>
   and the application of
   <%= text_field_tag :synthetic_fertilizer_amount %> kg. ha<sup>-1</sup> yr<sup>-1</sup> of
   <%= select_tag :synthetic_fertilizer_type,
-    options_for_select(["Urea",
-                        "Ammonia",
-                        "Ammonium sulphate",
-                        "Monammonium sulphate (MAP)",
-                        "Diammonium sulphate (DAP)",
-                        "Ammonium nitrate",
-                        "Calcium ammonium nitrate"]) %>
-                      and <%= text_field_tag :manure_amount %> kg. ha<sup>-1</sup> yr<sup>-1</sup>
-  <%= select_tag :manure_type,
-    options_for_select(["Poultry litter, liquid",
-                        "Poultry litter, dry",
-                        "Other Manure, liquid",
-                        "Other Manure, dry"]) %>
+    options_for_select(Analysis::FERTILIZER_TYPES) %>
+  and <%= text_field_tag :manure_amount %> kg. ha<sup>-1</sup> yr<sup>-1</sup>
+  <%= select_tag :manure_type, options_for_select(Analysis::MANURE_TYPES) %>
 </section>
