@@ -1,7 +1,7 @@
 <h1>Tillage</h1>
 <section>
   Crop management includes
-  <%= select_tag :tillage, options_for_select(Analysis::TILLAGES) %>
+  <%= f.select:tillage, options_for_select(Analysis::TILLAGES) %>
   and the application of
   <%= text_field_tag :synthetic_fertilizer_amount %> kg. ha<sup>-1</sup> yr<sup>-1</sup> of
   <%= select_tag :synthetic_fertilizer_type,

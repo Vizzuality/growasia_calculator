@@ -13,11 +13,11 @@
 
     <%# RICE only Section %>
 
-    <%= render partial: 'analyses/rice/irrigation_regime', f: f %>
-    <%= render partial: 'analyses/rice/flooding', f: f %>
-    <%= render partial: 'analyses/rice/fertilizer_nutrients', f: f %>
+    <%= render 'analyses/rice/irrigation_regime', f: f %>
+    <%= render 'analyses/rice/flooding', f: f %>
+    <%= render 'analyses/rice/fertilizer_nutrients', f: f %>
     <%= render 'agrochemicals', f: f %>
-    <%= render partial: 'analyses/rice/fuel', f: f %>
+    <%= render 'analyses/rice/fuel', f: f %>
 
     <h1>Done</h1>
     <section>

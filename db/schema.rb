@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160830222238) do
+ActiveRecord::Schema.define(version: 20160831170217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,8 +20,15 @@ ActiveRecord::Schema.define(version: 20160830222238) do
     t.decimal  "area"
     t.decimal  "yield"
     t.boolean  "is_shaded"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "crop"
+    t.string   "tillage"
+    t.string   "agrochemical_amount"
+    t.string   "rice_type"
+    t.string   "irrigation_regime"
+    t.string   "flooding"
+    t.integer  "cultivation_time"
   end
 
   create_table "geo_locations", force: :cascade do |t|

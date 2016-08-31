@@ -1,10 +1,10 @@
 <h1>Type of Rice and Irrigiation Regime</h1>
 <section>
   I grow
-  <%= select_tag :rice_type,
+  <%= f.select :rice_type,
     options_for_select(["paddy",
                         "upland"]) %>
   rice and the irrigation regime can be described as
-  <%= select_tag :irrigiation_regime,
+  <%= f.select :irrigation_regime,
     options_for_select(Analysis::IRRIGATION_REGIMES) %>.
 </section>
