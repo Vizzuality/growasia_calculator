@@ -1,5 +1,6 @@
 class Analysis < ApplicationRecord
   belongs_to :geo_location
+  has_many :additions
 
   CROPS = [
     "Cocoa",
