@@ -20,9 +20,10 @@ ActiveRecord::Schema.define(version: 20160831190845) do
     t.string   "category"
     t.string   "unit"
     t.string   "analysis_id"
+    t.string   "addition_type"
     t.decimal  "area"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "analyses", force: :cascade do |t|

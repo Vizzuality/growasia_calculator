@@ -5,6 +5,7 @@ class CreateAdditions < ActiveRecord::Migration[5.0]
       t.string :category
       t.string :unit
       t.string :analysis_id
+      t.string :addition_type
       t.decimal :area
 
       t.timestamps

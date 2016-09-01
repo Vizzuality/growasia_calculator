@@ -1,19 +1,25 @@
 <h1>Fuel and purposes</h1>
 <section>
   Each year, we use an estimated
-  <%= text_field_tag :transportation_fuel_volume %>
-  <%= select_tag :transportation_fuel_unit,
-    options_for_select(Analysis::FUEL_UNITS) %>
-  <%= select_tag :transportation_fuel_type,
-    options_for_select(Analysis::FUEL_TYPES) %> for transportation,
-  <%= text_field_tag :irrigation_fuel_volume %>
-  <%= select_tag :irrigation_fuel_unit,
-    options_for_select(Analysis::FUEL_UNITS) %>
-  <%= select_tag :irrigation_fuel_type,
-    options_for_select(Analysis::FUEL_TYPES) %> for irrigation, and
-  <%= text_field_tag :other_fuel_volume %>
-  <%= select_tag :other_fuel_unit,
-    options_for_select(Analysis::FUEL_UNITS) %>
-  <%= select_tag :other_fuel_type,
-    options_for_select(Analysis::FUEL_TYPES) %> for other practices.
+  <%= f.fields_for :transportation_fuels do |builder| %>
+    <%= builder.hidden_field :category, value: Category::TRANSPORTATION_FUEL %>
+    <%= builder.text_field :amount %>
+    <%= builder.select :unit, options_for_select(Analysis::FUEL_UNITS) %>
+    <%= builder.select :addition_type,
+      options_for_select(Analysis::FUEL_TYPES) %> for transportation,
+  <% end %>
+  <%= f.fields_for :irrigation_fuels do |builder| %>
+    <%= builder.hidden_field :category, value: Category::IRRIGATION_FUEL %>
+    <%= builder.text_field :amount %>
+    <%= builder.select :unit, options_for_select(Analysis::FUEL_UNITS) %>
+    <%= builder.select :addition_type,
+      options_for_select(Analysis::FUEL_TYPES) %> for irrigation, and
+  <% end %>
+  <%= f.fields_for :other_fuels do |builder| %>
+    <%= builder.hidden_field :category, value: Category::OTHER_FUEL %>
+    <%= builder.text_field :amount %>
+    <%= builder.select :unit, options_for_select(Analysis::FUEL_UNITS) %>
+    <%= builder.select :addition_type,
+      options_for_select(Analysis::FUEL_TYPES) %> for other practices.
+  <% end %>
 </section>

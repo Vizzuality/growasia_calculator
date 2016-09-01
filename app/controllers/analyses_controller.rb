@@ -1,9 +1,16 @@
 class AnalysesController < ApplicationController
-  before_action :set_analysis, only: [:edit, :update, :destroy]
+  before_action :set_analysis, only: [:show, :edit, :update, :destroy]
 
   # GET /analyses/new
   def new
     @analysis = Analysis.new
+    @analysis.fertilizers.build
+    @analysis.manures.build
+    @analysis.fuels.build
+    @analysis.nutrient_managements.build
+    @analysis.transportation_fuels.build
+    @analysis.irrigation_fuels.build
+    @analysis.other_fuels.build
   end
 
   # GET /analyses/1/edit
@@ -50,6 +57,11 @@ class AnalysesController < ApplicationController
     end
   end
 
+  # GET /analyses/1
+  # GET /analyses/1.json
+  def show
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_analysis
@@ -62,6 +74,34 @@ class AnalysesController < ApplicationController
                                        :is_shaded, :crop, :tillage,
                                        :agrochemical_amount, :rice_type,
                                        :irrigation_regime, :flooding,
-                                       :cultivation_time )
+                                       :cultivation_time, {
+                                         fertilizer_attributes: [
+                                           :amount, :category, :addition_type,
+                                           :area
+                                         ],
+                                       manure_attributes: [
+                                         :amount, :category, :addition_type,
+                                         :area
+                                         ],
+                                       fuel_attributes: [
+                                         :amount, :category, :addition_type,
+                                         :area, :unit
+                                         ],
+                                       nutrient_management_attributes: [
+                                         :amount, :category, :addition_type,
+                                         :area
+                                         ],
+                                       transportation_fuel_attributes: [
+                                         :amount, :category, :addition_type,
+                                         :area
+                                         ],
+                                       irrigation_fuel_attributes: [
+                                         :amount, :category, :addition_type,
+                                         :area
+                                         ],
+                                       other_fuel_attributes: [
+                                         :amount, :category, :addition_type,
+                                         :area
+                                         ]})
     end
 end

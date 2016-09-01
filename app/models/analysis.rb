@@ -1,6 +1,34 @@
 class Analysis < ApplicationRecord
   belongs_to :geo_location
-  has_many :additions
+
+  has_many :fertilizers, -> { where category: Category::FERTILIZER },
+    class_name: 'Addition'
+  accepts_nested_attributes_for :fertilizers, allow_destroy: true
+
+  has_many :manures, -> { where category: Category::MANURE },
+    class_name: 'Addition'
+  accepts_nested_attributes_for :manures, allow_destroy: true
+
+  has_many :fuels, -> { where category: Category::FUEL },
+    class_name: 'Addition'
+  accepts_nested_attributes_for :fuels, allow_destroy: true
+
+  has_many :nutrient_managements, -> { where category: Category::NUTRIENT_MANAGEMENT },
+    class_name: 'Addition'
+  accepts_nested_attributes_for :nutrient_managements, allow_destroy: true
+
+  has_many :transportation_fuels, -> { where category: Category::TRANSPORTATION_FUEL },
+    class_name: 'Addition'
+  accepts_nested_attributes_for :transportation_fuels, allow_destroy: true
+
+  has_many :irrigation_fuels, -> { where category: Category::IRRIGATION_FUEL },
+    class_name: 'Addition'
+  accepts_nested_attributes_for :irrigation_fuels, allow_destroy: true
+
+  has_many :other_fuels, -> { where category: Category::OTHER_FUEL },
+    class_name: 'Addition'
+  accepts_nested_attributes_for :other_fuels, allow_destroy: true
+
 
   CROPS = [
     "Cocoa",
