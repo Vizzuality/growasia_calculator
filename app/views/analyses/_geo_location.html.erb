@@ -3,12 +3,13 @@
   <%= label_tag :country, "Select your country" %>
   Start typing or select your country in the map.<br />
   <%= select_tag :country,
-    options_for_select(GeoLocation.order(:country).select(:country).
-                       distinct.map(&:country)) %>
+    options_from_collection_for_select(@geo_locations, :country, :country),
+    include_blank: true %>
+</section>
 
+<h1>Select Geography</h1>
+<section>
   <%= f.label :geo_location_id, "Select your region" %>
   Start typing or select your region in the map.<br />
-  <%= f.select :geo_location_id,
-    options_for_select(GeoLocation.order(:state).select(:state).
-                       distinct.map(&:state)) %>
+  <%= f.select :geo_location_id, [] %>
 </section>

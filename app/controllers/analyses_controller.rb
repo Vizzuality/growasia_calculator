@@ -3,6 +3,7 @@ class AnalysesController < ApplicationController
 
   # GET /analyses/new
   def new
+    @geo_locations = GeoLocation.select(:country).distinct.order(:country)
     @analysis = Analysis.new
     @analysis.fertilizers.build
     @analysis.manures.build
