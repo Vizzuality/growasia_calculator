@@ -1,23 +1,30 @@
 <%= form_for(analysis) do |f| %>
   <div id="wizard">
-    <%= render 'geo_location', f: f %>
-    <%= render 'basic_info', f: f %>
+    <h1>Select Geography</h1>
+    <section>
+      <%= label_tag :country, "Select your country" %>
+      Start typing or select your country in the map.<br />
+      <%= select_tag :country,
+        options_from_collection_for_select(@geo_locations, :country, :country),
+        include_blank: true %>
+    </section>
+    <h1>Select Geography</h1>
+    <section>
+      <%= f.label :geo_location_id, "Select your region" %>
+      Start typing or select your region in the map.<br />
+      <%= f.select :geo_location_id, [] %>
+    </section>
+    <h1>Describe your agricultural activity</h1>
+    <section>
+      Currently, I’m growing
+      <%= f.select :crop, options_for_select(Analysis::CROPS) %>
+      on <%= f.text_field :area %> hectares and expect a yield of
+      <%= f.text_field :yield %> kg. ha<sup>-1</sup> yr<sup>-1</sup>.
+    </section>
 
-    <%# Not RICE %>
+    <%= render 'not_rice', f: f %>
 
-    <%= render 'tillage', f: f %>
-    <%= render 'additional_crop_management', f: f %>
-    <%= render 'shade_trees', f: f %>
-    <%= render 'agrochemicals', f: f %>
-    <%= render 'fossil_fuels', f: f %>
-
-    <%# RICE only Section %>
-
-    <%= render 'analyses/rice/irrigation_regime', f: f %>
-    <%= render 'analyses/rice/flooding', f: f %>
-    <%= render 'analyses/rice/fertilizer_nutrients', f: f %>
-    <%= render 'agrochemicals', f: f %>
-    <%= render 'analyses/rice/fuel', f: f %>
+    <%= render 'rice', f: f %>
 
     <h1>Done</h1>
     <section>

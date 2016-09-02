@@ -1,8 +1,0 @@
-<h1>Flooding before cultivation</h1>
-<section>
-  Before cultivation starts, cropland is
-  <%= f.select :flooding,
-    options_for_select(Analysis::FLOODING_PRACTICES) %>
-  and cultivation takes
-  <%= f.text_field :cultivation_time, value: 120 %> days.
-</section>

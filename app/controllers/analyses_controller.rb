@@ -76,31 +76,31 @@ class AnalysesController < ApplicationController
                                        :agrochemical_amount, :rice_type,
                                        :irrigation_regime, :flooding,
                                        :cultivation_time, {
-                                         fertilizer_attributes: [
+                                         fertilizers_attributes: [
                                            :amount, :category, :addition_type,
                                            :area
                                          ],
-                                       manure_attributes: [
+                                       manures_attributes: [
                                          :amount, :category, :addition_type,
                                          :area
                                          ],
-                                       fuel_attributes: [
+                                       fuels_attributes: [
                                          :amount, :category, :addition_type,
                                          :area, :unit
                                          ],
-                                       nutrient_management_attributes: [
+                                       nutrient_managements_attributes: [
                                          :amount, :category, :addition_type,
                                          :area
                                          ],
-                                       transportation_fuel_attributes: [
+                                       transportation_fuels_attributes: [
                                          :amount, :category, :addition_type,
                                          :area
                                          ],
-                                       irrigation_fuel_attributes: [
+                                       irrigation_fuels_attributes: [
                                          :amount, :category, :addition_type,
                                          :area
                                          ],
-                                       other_fuel_attributes: [
+                                       other_fuels_attributes: [
                                          :amount, :category, :addition_type,
                                          :area
                                          ]})
