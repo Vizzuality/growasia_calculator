@@ -7,12 +7,12 @@
       <%= select_tag :country,
         options_from_collection_for_select(@geo_locations, :country, :country),
         include_blank: true %>
-    </section>
-    <h1>Select Geography</h1>
-    <section>
-      <%= f.label :geo_location_id, "Select your region" %>
-      Start typing or select your region in the map.<br />
-      <%= f.select :geo_location_id, [] %>
+
+      <div id="state-selection" class="hidden">
+        <%= f.label :geo_location_id, "Select your region" %>
+        Start typing or select your region in the map.<br />
+        <%= f.select :geo_location_id, [] %>
+      </div>
     </section>
     <h1>Describe your agricultural activity</h1>
     <section>

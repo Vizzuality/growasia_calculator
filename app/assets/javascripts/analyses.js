@@ -9,7 +9,11 @@ function initializeAnalysisFunctions() {
   });
 
   $('#country').change(function() {
-    $.get('/geo_locations/states_for/'+$(this).val());
+    if($(this).val() !== '') {
+      $.get('/geo_locations/states_for/'+$(this).val());
+    } else {
+      $("#state-selection").addClass("hidden");
+    }
   });
 }
 
