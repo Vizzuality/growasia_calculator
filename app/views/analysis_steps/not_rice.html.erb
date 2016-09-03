@@ -25,7 +25,8 @@
       Additional crop management practices include (check all that apply):
       <% Analysis::CROP_MANAGEMENT_PRACTICES.each do |practice| %>
         <label><%= practice %>
-          <%= check_box_tag :additional_crop_management, practice %>
+        <%= f.check_box :crop_management_practices, { multiple: true },
+          practice %>
         </label>
       <% end %>
     </section>
