@@ -1,4 +1,4 @@
-<%= form_for(analysis) do |f| %>
+<%= form_for(@analysis, url: wizard_path, method: :put) do |f| %>
   <div id="wizard">
     <h1>Select Geography</h1>
     <section>
@@ -20,10 +20,6 @@
       <%= f.select :crop, options_for_select(Analysis::CROPS) %>
       on <%= f.text_field :area %> hectares and expect a yield of
       <%= f.text_field :yield %> kg. ha<sup>-1</sup> yr<sup>-1</sup>.
-    </section>
-
-    <h1>Done</h1>
-    <section>
       <div class="actions">
         <%= f.submit %>
       </div>
