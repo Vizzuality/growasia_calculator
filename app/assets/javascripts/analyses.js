@@ -5,7 +5,8 @@ function initializeAnalysisFunctions() {
   $('#wizard').steps({
     headerTag: 'h1',
     bodyTag: 'section',
-    autoFocus: true
+    autoFocus: true,
+    enableFinishButton: false
   });
 
   $('#country').change(function() {

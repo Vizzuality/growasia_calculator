@@ -20,6 +20,7 @@
         <%= builder.select :addition_type,
           options_for_select(Analysis::MANURE_TYPES.map{|t| [t[:title],t[:slug]]}) %>
       <% end %>
+      <%= link_to "Previous (real)", wizard_path(:basic) %>
     </section>
 
     <h1>Additional crop management</h1>

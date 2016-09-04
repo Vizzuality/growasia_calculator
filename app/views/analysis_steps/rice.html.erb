@@ -9,6 +9,8 @@
       rice and the irrigation regime can be described as
       <%= f.select :irrigation_regime,
         options_for_select(Analysis::IRRIGATION_REGIMES.map{|t| [t[:title],t[:slug]]}) %>.
+
+      <%= link_to "Previous (real)", wizard_path(:basic) %>
     </section>
 
     <h1>Flooding before cultivation</h1>
