@@ -31,7 +31,7 @@ class AnalysisStepsController < ApplicationController
     when :basic
       @analysis = Analysis.new(analysis_params)
       session[:analysis] = @analysis.attributes
-      if @analysis.crop == 'Rice'
+      if @analysis.crop == "rice"
         redirect_to wizard_path(:rice)
       else
         redirect_to wizard_path(:not_rice)
