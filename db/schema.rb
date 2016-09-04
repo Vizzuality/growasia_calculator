@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160831190845) do
+ActiveRecord::Schema.define(version: 20160903173059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(version: 20160831190845) do
     t.decimal  "area"
     t.decimal  "yield"
     t.boolean  "is_shaded"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.string   "crop"
     t.string   "tillage"
     t.string   "agrochemical_amount"
@@ -40,21 +40,22 @@ ActiveRecord::Schema.define(version: 20160831190845) do
     t.string   "irrigation_regime"
     t.string   "flooding"
     t.integer  "cultivation_time"
+    t.string   "crop_management_practices",              array: true
   end
 
   create_table "geo_locations", force: :cascade do |t|
     t.string   "country"
     t.string   "state"
     t.decimal  "soc_ref"
-    t.string   "flu"
+    t.decimal  "flu"
     t.decimal  "fmg_full"
     t.decimal  "fmg_reduced"
     t.decimal  "fmg_no_till"
-    t.decimal  "fl_low"
-    t.decimal  "fl_high_without_manure"
-    t.decimal  "fl_high_with_manure"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.decimal  "fi_low"
+    t.decimal  "fi_high_wo_manure"
+    t.decimal  "fi_high_w_manure"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
 end

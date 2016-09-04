@@ -29,7 +29,6 @@ class Analysis < ApplicationRecord
     class_name: 'Addition'
   accepts_nested_attributes_for :other_fuels, allow_destroy: true
 
-
   CROPS = [
     "Cocoa",
     "Coffee",
@@ -50,8 +49,8 @@ class Analysis < ApplicationRecord
     "Urea",
     "Ammonia",
     "Ammonium sulphate",
-    "Monammonium sulphate (MAP)",
-    "Diammonium sulphate (DAP)",
+    "Monammonium phosphate (MAP)",
+    "Diammonium phosphate (DAP)",
     "Ammonium nitrate",
     "Calcium ammonium nitrate"
   ]
@@ -64,8 +63,12 @@ class Analysis < ApplicationRecord
   ]
 
   CROP_MANAGEMENT_PRACTICES = [
-    "Nitrogen fixing crop", "Cover crop", "Green manure", "Improved fallow",
-    "Crop rotation", "Crop residue burning"
+    "Nitrogen fixing crop",
+    "Cover crop",
+    "Green manure",
+    "Improved fallow",
+    "Crop rotation",
+    "Crop residue burning"
   ]
 
   FUEL_UNITS = [
@@ -100,4 +103,55 @@ class Analysis < ApplicationRecord
     "Farm yard manure",
     "Green manure"
   ]
+
+  # Emissions Equations
+  def stable_soil_carbon_content
+    #Stable soil carbon content (t CO2e) =
+    # (Area * Cropland_SOCref*FLU*FMG*FI) /20 * 44/12
+    fmg = case tillage
+            when TILLAGES[0]
+              geo_location.fmg_no_till
+            when TILLAGES[1]
+              geo_location.fmg_reduced
+            when TILLAGES[2]
+              geo_location.fmg_full
+          end
+    fi = correct_fi_value
+    [(area * geo_location.soc_ref * geo_location.flu * fmg * fi) / 20 * 44/12,
+     "t CO<sub>2</sub>e"]
+  end
+
+  def correct_fi_value
+    # FI high with manure = Manure
+    return geo_location.fi_high_w_manure if crop_management_practices.empty? &&
+      !fertilizers.any? && manures.any?
+
+    # FI medium = None OR synthetic OR crop rot OR n-fixing AND No Burning AND
+    # NO cover crop / Green Manure / Improved Fallow
+    return 1.00 if none_nutrient_management_practices? ||
+      synthetic_or_crop_rot_or_n_fixing? &&
+      !crop_management_practices.include?("Crop residue burning") &&
+      (["Cover crop", "Green manure", "Improved fallow"]-crop_management_practices).size == 3
+
+    # FI Low: None OR synthetic fert OR crop rot OR (n-fixing AND Crop residue Burning)
+    return geo_location.fi_low if none_nutrient_management_practices? ||
+      synthetic_or_crop_rot_or_n_fixing? &&
+      crop_management_practices.include?("Crop residue burning")
+
+    # FI high without manure = synthetic or crop rotation or n-fixing AND
+    # NO burning of residues AND WITH cover crop/green manure/improved fallow
+    return geo_location.fi_high_wo_manure if synthetic_or_crop_rot_or_n_fixing? &&
+      !crop_management_practices.include?("Crop residue burning") &&
+      (["Cover crop", "Green manure", "Improved fallow"]-crop_management_practices).size < 3
+  end
+
+  def none_nutrient_management_practices?
+    !fertilizers.any? && !manures.any? && crop_management_practices.empty?
+  end
+
+  def synthetic_or_crop_rot_or_n_fixing?
+    fertilizers.any? ||
+      crop_management_practices.include?("Crop rotation") ||
+      crop_management_practices.include?("Nitrogen fixing crop")
+  end
 end

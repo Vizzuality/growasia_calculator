@@ -1,1 +1,7 @@
-<h1>My Analysis</h1>
+<h1><%= @analysis.geo_location.country %> - <%= @analysis.geo_location.state %></h1>
+<p><%= @analysis.crop %></p>
+<p><%= @analysis.area %>ha, <%= @analysis.yield %>kg. ha<sup>-1</sup> yr<sup>-1</sup>.</p>
+
+<h1>Analysis</h1>
+<h2>Stable soil carbon content</h2>
+<%= @analysis.stable_soil_carbon_content.join(" ") %>
