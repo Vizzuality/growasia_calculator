@@ -28,25 +28,25 @@ class Analysis < ApplicationRecord
   CROPS = [
     {slug: "coccoa", title: "Cocoa", residue_amount: 25_000, rpr: nil,
       moisture_content: nil, final_default_residue_amount: 25_000,
-      n_ag: nil, r_bg: nil, n_bg: nil},
+      n_ag: nil, r_bg: nil, n_bg: nil, c_monoculture: 11, c_agroforestry: 6},
     {slug: "coffee", title: "Coffee", residue_amount: nil, rpr: 21,
       moisture_content: 0.15, final_default_residue_amount: nil,
-      n_ag: nil, r_bg: nil, n_bg: nil},
+      n_ag: nil, r_bg: nil, n_bg: nil, c_monoculture: 18, c_agroforestry: 6},
     {slug: "tea", title: "Tea", residue_amount: nil, rpr: nil,
       moisture_content: nil, final_default_residue_amount: nil,
-      n_ag: nil, r_bg: nil, n_bg: nil},
+      n_ag: nil, r_bg: nil, n_bg: nil, c_monoculture: 50.9, c_agroforestry: 2.6},
     {slug: "corn", title: "Corn", residue_amount: nil, rpr: 2,
       moisture_content: 0.15, final_default_residue_amount: nil,
-      n_ag: 0.006, r_bg: 0.22, n_bg: 0.007},
+      n_ag: 0.006, r_bg: 0.22, n_bg: 0.007, c_monoculture: 5.0, c_agroforestry: 2.6},
     {slug: "potatoes", title: "Potatoes", residue_amount: nil, rpr: 0.3,
       moisture_content: 0.15, final_default_residue_amount: nil,
-      n_ag: 0.019, r_bg: 0.20, n_bg: 0.014},
+      n_ag: 0.019, r_bg: 0.20, n_bg: 0.014, c_monoculture: 5.0, c_agroforestry: 2.6},
     {slug: "vegetables", title: "Vegetables/horticulture", residue_amount: nil, rpr: 1.53,
       moisture_content: 0.15, final_default_residue_amount: nil,
-      n_ag: 0.008, r_bg: 0.19, n_bg: 0.008},
+      n_ag: 0.008, r_bg: 0.19, n_bg: 0.008, c_monoculture: 5.0, c_agroforestry: 2.6},
     {slug: "rice", title: "Rice", residue_amount: nil, rpr: 1.757,
       moisture_content: 0.127, final_default_residue_amount: nil,
-      n_ag: 0.007, r_bg: 0.16, n_bg: nil}
+      n_ag: 0.007, r_bg: 0.16, n_bg: nil, c_monoculture: nil, c_agroforestry: nil}
   ]
 
   TILLAGES = [
@@ -131,6 +131,10 @@ class Analysis < ApplicationRecord
     {slug: "farm-yard", title: "Farm yard manure"},
     {slug: "green-manure", title: "Green manure"}
   ]
+
+  def rice?
+    crop == "rice"
+  end
 
   # Emissions Equations
   def stable_soil_carbon_content
@@ -229,7 +233,7 @@ class Analysis < ApplicationRecord
     r = CROPS.select{|t| t[:slug] == crop}.first
     crop_residue = r[:final_default_residue_amount] ||
       self.yield*r[:rpr]*(1-r[:moisture_content])
-    ef = crop == "rice" ? 1.5 : 1.6
+    ef = rice? ? 1.5 : 1.6
     area * crop_residue * ef
   end
 
@@ -288,5 +292,13 @@ class Analysis < ApplicationRecord
       results << result
     end
     results
+  end
+
+  def changes_in_carbon_content
+    return nil if rice?
+    #(Area (ha) * Ccrop type Monoculture (t C ha-1)) + (Area (ha) *
+    # Ccrop type Agroforestry (t C ha-1 yr-1)) *44/12
+    r = CROPS.select{|t| t[:slug] == crop}.first
+    ((area * r[:c_monoculture]) + (area * r[:c_agroforestry])) * 44/12
   end
 end
