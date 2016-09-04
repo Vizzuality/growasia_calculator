@@ -1,6 +1,6 @@
 class AnalysisStepsController < ApplicationController
   include Wicked::Wizard
-  steps :basic, :rice, :not_rice
+  steps :basic, :rice, :crops
 
   def show
     case step
@@ -17,7 +17,7 @@ class AnalysisStepsController < ApplicationController
       @analysis.transportation_fuels.build
       @analysis.irrigation_fuels.build
       @analysis.fuels.build
-    when :not_rice
+    when :crops
       @analysis = Analysis.new(session[:analysis])
       @analysis.fertilizers.build
       @analysis.manures.build
@@ -34,9 +34,9 @@ class AnalysisStepsController < ApplicationController
       if @analysis.crop == "rice"
         redirect_to wizard_path(:rice)
       else
-        redirect_to wizard_path(:not_rice)
+        redirect_to wizard_path(:crops)
       end
-    when :rice, :not_rice
+    when :rice, :crops
       session[:analysis] = session[:analysis].merge(analysis_params.to_h)
       @analysis = Analysis.new(session[:analysis])
       @analysis.save
