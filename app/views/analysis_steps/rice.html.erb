@@ -65,8 +65,8 @@
         <%= builder.select :addition_type,
           options_for_select(Analysis::FUEL_TYPES.map{|t| [t[:title],t[:slug]]}) %> for irrigation, and
       <% end %>
-      <%= f.fields_for :other_fuels do |builder| %>
-        <%= builder.hidden_field :category, value: Category::OTHER_FUEL %>
+      <%= f.fields_for :fuels do |builder| %>
+        <%= builder.hidden_field :category, value: Category::FUEL %>
         <%= builder.text_field :amount %>
         <%= builder.select :unit, options_for_select(Analysis::FUEL_UNITS) %>
         <%= builder.select :addition_type,

@@ -25,10 +25,6 @@ class Analysis < ApplicationRecord
     class_name: 'Addition'
   accepts_nested_attributes_for :irrigation_fuels, allow_destroy: true
 
-  has_many :other_fuels, -> { where category: Category::OTHER_FUEL },
-    class_name: 'Addition'
-  accepts_nested_attributes_for :other_fuels, allow_destroy: true
-
   CROPS = [
     {slug: "coccoa", title: "Cocoa", residue_amount: 25_000, rpr: nil,
       moisture_content: nil, final_default_residue_amount: 25_000,
@@ -104,8 +100,10 @@ class Analysis < ApplicationRecord
   ]
 
   FUEL_TYPES = [
-    {slug: "diesel", title: "Diesel"},
-    {slug: "petroleum", title: "Petroleum"}
+    {slug: "diesel", title: "Diesel", ef_per_gallon: 10.15,
+      ef_per_liter: 2.68},
+    {slug: "petroleum", title: "Petroleum", ef_per_gallon: 8.91,
+      ef_per_liter: 2.35}
   ]
 
   IRRIGATION_REGIMES = [
@@ -258,5 +256,37 @@ class Analysis < ApplicationRecord
     return nil unless agrochemical_amount && agrochemical_amount > 0.0
     #(Area (ha) * amount of agrochemicals applied (kg. ha-1. yr-1) * 19.4 kg CO2/ha) / 1000
     (area * agrochemical_amount * 19.4) / 1_000
+  end
+
+  def emissions_from_fossil_fuel_use
+    results = []
+    fuels.each do |fuel|
+      fuel_type = FUEL_TYPES.select{|t| t[:slug] == fuel.addition_type}.first
+      result = {type: fuel.addition_type,
+                category: fuel.category,
+                type_title: fuel_type[:title]}
+      ef_to_use = fuel.unit == "liters" ? fuel_type[:ef_per_liter] : fuel_type[:ef_per_gallon]
+      result[:value] = fuel.amount * ef_to_use
+      results << result
+    end
+    transportation_fuels.each do |fuel|
+      fuel_type = FUEL_TYPES.select{|t| t[:slug] == fuel.addition_type}.first
+      result = {type: fuel.addition_type,
+                category: fuel.category,
+                type_title: fuel_type[:title]}
+      ef_to_use = fuel.unit == "liters" ? fuel_type[:ef_per_liter] : fuel_type[:ef_per_gallon]
+      result[:value] = fuel.amount * ef_to_use
+      results << result
+    end
+    irrigation_fuels.each do |fuel|
+      fuel_type = FUEL_TYPES.select{|t| t[:slug] == fuel.addition_type}.first
+      result = {type: fuel.addition_type,
+                category: fuel.category,
+                type_title: fuel_type[:title]}
+      ef_to_use = fuel.unit == "liters" ? fuel_type[:ef_per_liter] : fuel_type[:ef_per_gallon]
+      result[:value] = fuel.amount * ef_to_use
+      results << result
+    end
+    results
   end
 end

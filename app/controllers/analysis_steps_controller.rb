@@ -16,7 +16,7 @@ class AnalysisStepsController < ApplicationController
       @analysis.nutrient_managements.build
       @analysis.transportation_fuels.build
       @analysis.irrigation_fuels.build
-      @analysis.other_fuels.build
+      @analysis.fuels.build
     when :not_rice
       @analysis = Analysis.new(session[:analysis])
       @analysis.fertilizers.build
@@ -58,7 +58,6 @@ class AnalysisStepsController < ApplicationController
         nutrient_managements_attributes: [ :amount, :category, :addition_type, :area ],
         transportation_fuels_attributes: [ :amount, :category, :addition_type, :area ],
         irrigation_fuels_attributes: [ :amount, :category, :addition_type, :area ],
-        other_fuels_attributes: [ :amount, :category, :addition_type, :area ],
         crop_management_practices: [])
     end
 end
