@@ -107,29 +107,34 @@ class Analysis < ApplicationRecord
   ]
 
   IRRIGATION_REGIMES = [
-    {slug: "cont-flood", title: "Continuous flooding"},
-    {slug: "one-aeration", title: "Intermittent flooding (1 aeration)"},
-    {slug: "multiple-aerations", title: "Intermittent flooding (multiple aerations)"},
-    {slug: "rainfed-reg", title: "Rainfed: Regular"},
-    {slug: "rainfed-drought", title: "Rainfed: Drought-prone"},
-    {slug: "rainfed-deep", title: "Rainfed: Deep water potential"}
+    {slug: "cont-flood", title: "Continuous flooding", scaling_factor: 1.0},
+    {slug: "one-aeration", title: "Intermittent flooding (1 aeration)", scaling_factor: 0.6},
+    {slug: "multiple-aerations", title: "Intermittent flooding (multiple aerations)", scaling_factor: 0.52},
+    {slug: "rainfed-reg", title: "Rainfed: Regular", scaling_factor: 0.28},
+    {slug: "rainfed-drought", title: "Rainfed: Drought-prone", scaling_factor: 0.25},
+    {slug: "rainfed-deep", title: "Rainfed: Deep water potential", scaling_factor: 0.31}
   ]
 
   FLOODING_PRACTICES = [
     {slug: "not-flooded-more",
-      title: "Not flooded more than 6 months before cultivation"},
+      title: "Not flooded more than 6 months before cultivation",
+      scaling_factor: 0.68},
     {slug: "not-flooded-less",
-      title: "Not flooded less than 6 months before cultivation"},
+      title: "Not flooded less than 6 months before cultivation",
+      scaling_factor: 1},
     {slug: "flooded",
-      title: "Flooded for more than 30 days before cultivation"}
+      title: "Flooded for more than 30 days before cultivation",
+      scaling_factor: 1.9}
   ]
 
   RICE_NUTRIENT_MANAGEMENT = [
-    {slug: "straw-less", title: "Straw <30 days before cultivation"},
-    {slug: "straw-more", title: "Straw >30 days after cultivation"},
-    {slug: "compost", title: "Compost"},
-    {slug: "farm-yard", title: "Farm yard manure"},
-    {slug: "green-manure", title: "Green manure"}
+    {slug: "straw-less", title: "Straw <30 days before cultivation",
+      conversion_factor: 1},
+    {slug: "straw-more", title: "Straw >30 days after cultivation",
+      conversion_factor: 0.29},
+    {slug: "compost", title: "Compost", conversion_factor: 0.05},
+    {slug: "farm-yard", title: "Farm yard manure", conversion_factor: 0.14},
+    {slug: "green-manure", title: "Green manure", conversion_factor: 0.5}
   ]
 
   def rice?
@@ -208,7 +213,7 @@ class Analysis < ApplicationRecord
   end
 
   def emissions_from_crop_residue_decomposition
-    #IF Crop Residue Burning is selected, then emissions from crop residue
+    # IF Crop Residue Burning is selected, then emissions from crop residue
     # decomposition = 0. All crop residue is assumed to be burned for cocoa,
     # coffee, and tea.
     return 0 if crop_management_practices.include?("residue-burning") ||
@@ -300,5 +305,24 @@ class Analysis < ApplicationRecord
     # Ccrop type Agroforestry (t C ha-1 yr-1)) *44/12
     r = CROPS.select{|t| t[:slug] == crop}.first
     ((area * r[:c_monoculture]) + (area * r[:c_agroforestry])) * 44/12
+  end
+
+  def emissions_from_rice_cultivation
+    return nil unless rice?
+    # (EFrice * Number of Cultivation Days * Area * 10-6) * 25
+    # EFrice = 1.30 * Water Regime Scaling Factor * Scaling Factor for
+    # Pre-Cultivation Flooding *Scaling Factor for Organic Amendment
+    # Water Regime Scaling Factor = irrigation_regimes[:scaling_factor]
+    # Scaling Factor for Pre-Cultivation Flooding = flooding_practices[:scaling_factor]
+    # Scaling Factor for Organic Amendment = (1 +Application Rate * Conversion Factor)^0.59
+    # Conversion factor: rice_nutrient_management[:conversion_factor]
+    regime = IRRIGATION_REGIMES.select{|t| t[:slug] == irrigation_regime}.first
+    practice = FLOODING_PRACTICES.select{|t| t[:slug] == flooding}.first
+    nutrient_mgt = RICE_NUTRIENT_MANAGEMENT.select{|t| t[:slug] == nutrient_managements.first.addition_type}.first
+    water_scaling_factor = rice_type == "upland" ? 0 : regime[:scaling_factor]
+    pre_cult_scaling_factor = practice[:scaling_factor]
+    conversion_factor = (1+nutrient_managements.first.amount*nutrient_mgt[:conversion_factor])**0.59
+    ef_rice = 1.30 * water_scaling_factor * pre_cult_scaling_factor * conversion_factor
+    (ef_rice * cultivation_time * area * (10**-6)) * 25
   end
 end

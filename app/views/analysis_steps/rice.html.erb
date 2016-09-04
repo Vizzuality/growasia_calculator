@@ -54,21 +54,21 @@
       <%= f.fields_for :transportation_fuels do |builder| %>
         <%= builder.hidden_field :category, value: Category::TRANSPORTATION_FUEL %>
         <%= builder.text_field :amount %>
-        <%= builder.select :unit, options_for_select(Analysis::FUEL_UNITS) %>
+        <%= builder.select :unit, options_for_select(Analysis::FUEL_UNITS.map{|t| [t[:title],t[:slug]]}) %>
         <%= builder.select :addition_type,
           options_for_select(Analysis::FUEL_TYPES.map{|t| [t[:title],t[:slug]]}) %> for transportation,
       <% end %>
       <%= f.fields_for :irrigation_fuels do |builder| %>
         <%= builder.hidden_field :category, value: Category::IRRIGATION_FUEL %>
         <%= builder.text_field :amount %>
-        <%= builder.select :unit, options_for_select(Analysis::FUEL_UNITS) %>
+        <%= builder.select :unit, options_for_select(Analysis::FUEL_UNITS.map{|t| [t[:title],t[:slug]]}) %>
         <%= builder.select :addition_type,
           options_for_select(Analysis::FUEL_TYPES.map{|t| [t[:title],t[:slug]]}) %> for irrigation, and
       <% end %>
       <%= f.fields_for :fuels do |builder| %>
         <%= builder.hidden_field :category, value: Category::FUEL %>
         <%= builder.text_field :amount %>
-        <%= builder.select :unit, options_for_select(Analysis::FUEL_UNITS) %>
+        <%= builder.select :unit, options_for_select(Analysis::FUEL_UNITS.map{|t| [t[:title],t[:slug]]}) %>
         <%= builder.select :addition_type,
           options_for_select(Analysis::FUEL_TYPES.map{|t| [t[:title],t[:slug]]}) %> for other practices.
       <% end %>
