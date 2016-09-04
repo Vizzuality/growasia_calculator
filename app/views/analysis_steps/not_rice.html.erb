@@ -41,13 +41,8 @@
       additional silviculture?
     </section>
 
-    <h1>Agrochemicals</h1>
-    <section>
-      We apply
-      <%= f.text_field :agrochemical_amount %>
-      kg. ha<sup>-1</sup> yr<sup>-1</sup> in agrochemicals including fertilizers,
-      pesticides, and herbicides.
-    </section>
+    <%= render 'liming', f: f %>
+    <%= render 'agrochemicals', f: f %>
 
     <h1>Fossil fuels</h1>
     <section>

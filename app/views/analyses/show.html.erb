@@ -1,7 +1,37 @@
-<h1><%= @analysis.geo_location.country %> - <%= @analysis.geo_location.state %></h1>
-<p><%= @analysis.crop %></p>
-<p><%= @analysis.area %>ha, <%= @analysis.yield %>kg. ha<sup>-1</sup> yr<sup>-1</sup>.</p>
+<%= @analysis.geo_location.country %>
+<%= @analysis.geo_location.state %>
+<%= @analysis.crop %>
+<%= @analysis.area %>ha
+<%= @analysis.yield %>kg. ha<sup>-1</sup> yr<sup>-1</sup>.
 
 <h1>Analysis</h1>
 <h2>Stable soil carbon content</h2>
-<%= @analysis.stable_soil_carbon_content.join(" ") %>
+<%= @analysis.stable_soil_carbon_content %>
+
+<h2>Emissions from fertilizer application</h2>
+<%= @analysis.emissions_from_fertilizers_application %> (t CO2-e)
+
+<h2>Emissions from crop residue composition</h2>
+<%= @analysis.emissions_from_crop_residue_decomposition %> (t CO2-e)
+
+<h2>Emissions from <%= @analysis.crop != "rice" ? "crop residue" : "rice straw"%> burning</h2>
+<%= @analysis.emissions_from_crop_residue_or_rice_straw_burning %> (t CO2-e)
+
+<% if @analysis.fertilizers.where(addition_type: "urea").any? %>
+  <h2>Emissions from urea hydrolysis</h2>
+  <%= @analysis.emissions_from_urea_hydrolysis %> (t CO2-e)
+<% end %>
+
+<% if @analysis.lime_amount && @analysis.lime_amount > 0.0 %>
+  <h2>Emissions from lime use</h2>
+  <%= @analysis.emissions_from_lime_use %> (t CO2-e)
+<% end %>
+<% if @analysis.dolomite_amount && @analysis.dolomite_amount > 0.0 %>
+  <h2>Emissions from dolomite use</h2>
+  <%= @analysis.emissions_from_dolomite_use %> (t CO2-e)
+<% end %>
+
+<% if @analysis.agrochemical_amount && @analysis.agrochemical_amount > 0.0 %>
+  <h2>Emissions from agrochemical use</h2>
+  <%= @analysis.emissions_from_agrochemical_use %> (t CO2-e)
+<% end %>
