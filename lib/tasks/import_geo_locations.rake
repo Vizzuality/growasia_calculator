@@ -16,9 +16,9 @@ namespace :import do
         fmg_full: row[4],
         fmg_reduced: row[5],
         fmg_no_till: row[6],
-        fl_low: row[7],
-        fl_high_without_manure: row[8],
-        fl_high_with_manure: row[9]
+        fi_low: row[7],
+        fi_high_without_manure: row[8],
+        fi_high_with_manure: row[9]
       )
     end
     puts "#{GeoLocation.count} geo locations created"
