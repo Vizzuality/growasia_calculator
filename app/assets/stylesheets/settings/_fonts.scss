@@ -1,0 +1,20 @@
+/* Fonts includer */
+@mixin font-face($font-family, $font-file, $weight, $style: "normal") {
+  @font-face {
+    font-family: $font-family;
+    src: url(asset-path($font-file + '..eot'));
+    src: url(asset-path($font-file + '..eot?#iefix')) format("embedded-opentype"),
+         url(asset-path($font-file + '.woff')) format("truetype"),
+         url(asset-path($font-file + '.woff2')) format("woff"),
+         url(asset-path($font-file + '.ttf')) format("woff2"),
+         url(asset-path($font-file + '.ttf')) format(".svg#" + $font-file);
+    font-weight: $weight;
+    font-style: $style;
+  }
+}
+
+@include font-face("Trade Gothic", 'TradeGothicLTCom-Bold', 700);
+@include font-face("Trade Gothic", 'TradeGothicLTCom', 400);
+@include font-face("Source Sans", 'sourcesanspro-bold-webfont', 700);
+@include font-face("Source Sans", 'sourcesanspro-semibold-webfont', 600);
+@include font-face("Source Sans", 'sourcesanspro-light-webfont', 200);

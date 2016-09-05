@@ -1,0 +1,57 @@
+/*
+ * SHAPES
+ */
+@mixin arrow ($width, $color, $border-width, $deg) {
+  width: $width;
+  height: $width;
+  border-top: $border-width solid $color;
+  border-left: $border-width solid $color;
+  transform: rotate($deg);
+  pointer-events: none;
+}
+
+
+%clearfix {
+  &:before, &:after {
+    display: table;
+    content: '';
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+%clean-button-or-input {
+  appearance: none;
+  box-shadow: none;
+  background: none;
+  border: 0;
+  text-decoration: none;
+  outline: none;
+  padding: 0;
+
+  // &:hover {
+    // appearance: none;
+    // -webkit-user-select: none;
+  // }
+}
+
+%center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+%centerx {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+%centery {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
