@@ -36,6 +36,9 @@ config/secrets.yml
 *.bowerrc
 bower.json
 
+# Auto-generate error files
+npm-debug.log
+
 # Ignore pow environment settings
 .powenv
 
