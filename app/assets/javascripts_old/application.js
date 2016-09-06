@@ -12,40 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require leaflet
-//= require URIjs
-//= require handlebars
-//= require underscore/underscore
-//= require backbone/backbone
-//= require d3
-//= require fuse
-//= require chosen
-//= require pickadate/picker
-//= require pickadate/picker.date
-
-//= require_self
-
-//= require_tree ./templates
-//= require_tree ./helpers/
-//= require_tree ./models/
-//= require_tree ./collections/
-//= require_tree ./views/
-//= require_tree ./controllers/
-
-//= require router
-//= require dispatcher
-
-(function() {
-
-  'use strict';
-
-  this.App = {
-    Events: _.extend(Backbone.Events),
-    View: {},
-    Model: {},
-    Collection: {},
-    Helper: {},
-    Controller: {}
-  };
-
-}).call(this);
+//= require jquery.steps.min
+//= require turbolinks
+//= require_tree .
