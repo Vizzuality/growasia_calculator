@@ -9,6 +9,12 @@
   left: 0;
   right: 0;
 
+  &.-home {
+    background-image: image-url('home-bg.jpg');
+    background-size: cover;
+    color: $white;
+  }
+
   &.-slide-1 {
     background-color: $color-1;
     color: $black;
