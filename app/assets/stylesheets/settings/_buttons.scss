@@ -1,9 +1,9 @@
 .btn {
-  padding: 20px 45px;
-  box-shadow: 0 1px 2px 0 rgba($black, 0.2);
-  border: solid 1px $white;
-  font-size: 11px;
-  letter-spacing: 2px;
+  padding: rem(20px) rem(45px);
+  box-shadow: 0 rem(1px) rem(2px) 0 rgba($black, 0.2);
+  border: solid rem(1px) $white;
+  font-size: rem(11px);
+  letter-spacing: rem(2px);
   font-weight: 700;
   text-transform: uppercase;
 

@@ -1,0 +1,21 @@
+.c-slide-content {
+  width: 50%;
+  max-width: rem(600px);
+  text-align: center;
+
+  .text {
+    &.-questions + &.-description {
+      margin-top: rem(1px);
+    }
+
+    &.-questions + .-questions {
+      margin-top: rem(40px);
+    }
+
+    &.-description + select,
+    &.-description + input {
+      margin-top: rem(16px);
+    }
+  }
+}
+
