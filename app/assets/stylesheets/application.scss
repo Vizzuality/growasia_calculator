@@ -10,6 +10,32 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
+ *= require normalize-rails
  *= require_self
  */
+
+/*
+ * Settings
+ */
+
+@import "settings/settings";
+@import "settings/general";
+@import "settings/utils";
+@import "settings/fonts";
+@import "settings/text";
+
+/*
+ * THANK YOU FOR KEEPING ALPHABETICAL ORDER
+ * Beyond this point, modules shouldn't have dependency among them.
+ */
+
+/*
+ * Layouts
+ */
+@import "layouts/layouts";
+
+/*
+ * Components
+ */
+
+

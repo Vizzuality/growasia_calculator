@@ -1,0 +1,56 @@
+* {
+  box-sizing: border-box;
+}
+
+/**
+ * Reset some basic elements
+ */
+body, h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, hr,
+dl, dd, ol, ul, figure {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+  // font-family: $font-family-1;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -webkit-overflow-scrolling: touch;
+}
+
+li {
+  list-style: none;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+a, li {
+  /* Avoid important here because we do want underline styles for some links */
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+}
+
+
+
+/*
+PROVISIONAL
+ */
+
+ul[role='tablist'] {
+  display: none;
+}
+
+#wizard h1 {
+  display: none;
+}
+
+.hidden {
+  display: none;
+}

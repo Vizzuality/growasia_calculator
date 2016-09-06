@@ -40,6 +40,9 @@ applied live inside: `app/views/analysis_steps/`
 
 * Make sure you have the correct ruby version installed
 * Install the project gems: `bundle install`
+
+* Copy the file `config/database_sample.yml` and rename it to only `database.yml`. Change there the configuration for your database. 
+
 * Create database: `rake db:create`
 * Run migrations: `rake db:migrate`
 * Import Geo Locations: `rake import:geo_locations`
