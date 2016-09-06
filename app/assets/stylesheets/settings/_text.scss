@@ -17,71 +17,71 @@
 
   //Home page claim
   &.-claim {
-    font-size: 40px;
+    font-size: rem(40px);
     font-weight: 100;
     line-height: 1.2;
-    letter-spacing: 0.5px;
+    letter-spacing: rem(.5px);
     opacity: 0.8;
   }
 
   //Slider big text. Form senteces.
   //Summary title.
   &.-questions {
-    font-size: 32px;
+    font-size: rem(32px);
     font-weight: 100;
     line-height: 1.25;
-    letter-spacing: 0.5px;
+    letter-spacing: rem(.5px);
   }
 
   //Slider small text. Gives instructions to user.
   &.-description {
-    font-size: 16px;
+    font-size: rem(16px);
     line-height: 1;
-    letter-spacing: 0.5px;
+    letter-spacing: rem(.5px);
     opacity: .4;
   }
 
   //Summary text
   &.-summary-big {
     color: $black;
-    font-size: 22px;
+    font-size: rem(22px);
     font-weight: 500;
-    opacity: 0.8;
+    opacity: .8;
   }
 
   //Summary text labels.
   &.-summary-small {
     color: $black;
-    font-size: 11px;
-    line-height: 0.73;
-    letter-spacing: 0.5px;
-    opacity: 0.3;
+    font-size: rem(11px);
+    line-height: .73;
+    letter-spacing: rem(.5px);
+    opacity: .3;
   }
 
   //Total emissions text
   &.-figure-extra-big {
     color: $black;
-    font-size: 120px;
+    font-size: rem(120px);
     font-weight: 500;
-    opacity: 0.8;
+    opacity: .8;
   }
 
   //This is not the text into the grap but the legend below.
   &.-graph-legend {
     color: $black;
-    font-size: 11px;
+    font-size: rem(11px);
     font-weight: 300;
-    letter-spacing: 1px;
+    letter-spacing: rem(1px);
     text-transform: uppercase;
-    opacity: 0.8;
+    opacity: .8;
   }
 
   &.-sidebar-resume {
     color: $black;
-    font-size: 22px;
+    font-size: rem(22px);
     font-weight: 100;
     line-height: 1.09;
-    letter-spacing: 0.6px;
+    letter-spacing: rem(.6px);
     opacity: 0.8;
   }
 
@@ -91,10 +91,10 @@
    */
   &.-link {
     color: $black;
-    font-size: 11px;
-    letter-spacing: 0.5px;
+    font-size: rem(11px);
+    letter-spacing: rem(.5px);
     text-decoration: underline;
-    opacity: 0.4;
+    opacity: .4;
   }
 
 
@@ -120,23 +120,23 @@
 
   //Inputs
   &.-form-inputs {
-    font-size: 32px;
+    font-size: rem(32px);
     font-weight: 500;
-    opacity: 0.9;
+    opacity: .9;
   }
 
   &.-sidebar-label {
     color: $white;
-    font-size: 16px;
+    font-size: rem(16px);
     font-weight: normal;
-    line-height: 0.5;
-    letter-spacing: 0.7px;
-    opacity: 0.7;
+    line-height: .5;
+    letter-spacing: rem(.7px);
+    opacity: .7;
   }
 
   &.-sidebar-input {
     color: $white;
-    font-size: 22px;
+    font-size: rem(22px);
     font-weight: 500;
   }
 }

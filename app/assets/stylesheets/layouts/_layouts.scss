@@ -1,0 +1,39 @@
+.l-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  &.-slide-1 {
+    background-color: $color-1;
+  }
+
+  &.-slide-2 {
+    background-color: $color-2;
+  }
+
+  &.-slide-3 {
+    background-color: $color-3;
+  }
+
+  &.-slide-4 {
+    background-color: $color-4;
+  }
+
+  &.-slide-5 {
+    background-color: $color-5;
+  }
+}
+
+//From wizard
+.actions {
+  position: absolute;
+  bottom: rem(20px);
+  z-index: 10;
+
+}
