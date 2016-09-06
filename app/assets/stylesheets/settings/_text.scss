@@ -5,7 +5,7 @@
  * There are some with colors and some without.
  * Those without color can be found with different
  * color along the project and setted with the apropiate
- * class.
+ * class or it will inherit it from its father.
  */
 
 .text {
@@ -97,24 +97,6 @@
     opacity: .4;
   }
 
-
-  /*
-   * COLORS
-   */
-  &.-dark {
-    color: $black;
-  }
-
-  &.-medium {
-    color: $black;
-    opacity: .3;
-  }
-
-  &.-light {
-    color: $white;
-  }
-
-
   //Note: this might be move to the form.scss sheet later.
   //Let's keep it here for instance.
 
@@ -138,5 +120,21 @@
     color: $white;
     font-size: rem(22px);
     font-weight: 500;
+  }
+
+
+  /*
+   * COLORS
+   */
+  &.-dark {
+    color: $black;
+  }
+
+  &.-medium {
+    opacity: .2;
+  }
+
+  &.-light {
+    color: $white;
   }
 }
