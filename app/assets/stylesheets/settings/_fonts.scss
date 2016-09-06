@@ -13,8 +13,7 @@
   }
 }
 
-@include font-face("Trade Gothic", 'TradeGothicLTCom-Bold', 700);
-@include font-face("Trade Gothic", 'TradeGothicLTCom', 400);
-@include font-face("Source Sans", 'sourcesanspro-bold-webfont', 700);
-@include font-face("Source Sans", 'sourcesanspro-semibold-webfont', 600);
-@include font-face("Source Sans", 'sourcesanspro-light-webfont', 200);
+@include font-face("HelveticaNeue", 'helveticaneue-medium', 500);
+@include font-face("HelveticaNeue", 'helveticaneue', 400);
+@include font-face("HelveticaNeue", 'helveticaneue-thin', 100);
+
