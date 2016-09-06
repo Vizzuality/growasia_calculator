@@ -1,5 +1,6 @@
 GEM
   remote: https://rubygems.org/
+  remote: https://rails-assets.org/
   specs:
     actioncable (5.0.0.1)
       actionpack (= 5.0.0.1)
@@ -39,6 +40,8 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.1.1)
+    autoprefixer-rails (6.4.0.1)
+      execjs
     builder (3.2.2)
     byebug (9.0.5)
     concurrent-ruby (1.0.2)
@@ -50,6 +53,11 @@ GEM
     ffi (1.9.14)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    handlebars_assets (0.23.0)
+      execjs (~> 2.0)
+      multi_json (~> 1.0)
+      sprockets (>= 2.0.0)
+      tilt (>= 1.2)
     i18n (0.7.0)
     jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
@@ -76,7 +84,6 @@ GEM
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
-    normalize-rails (4.1.1)
     pg (0.18.4)
     pkg-config (1.1.7)
     puma (3.6.0)
@@ -95,6 +102,11 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 5.0.0.1)
       sprockets-rails (>= 2.0.0)
+    rails-assets-URIjs (1.18.1)
+    rails-assets-backbone (1.3.3)
+      rails-assets-underscore (>= 1.8.3)
+    rails-assets-normalize-css (4.2.0)
+    rails-assets-underscore (1.8.3)
     rails-dom-testing (2.0.1)
       activesupport (>= 4.2.0, < 6.0)
       nokogiri (~> 1.6.0)
@@ -153,15 +165,20 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  autoprefixer-rails
   byebug
   enumerate_it
+  handlebars_assets
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
-  normalize-rails
   pg
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)
+  rails-assets-URIjs!
+  rails-assets-backbone!
+  rails-assets-normalize-css!
+  rails-assets-underscore!
   sass-rails (~> 5.0)
   spring
   spring-watcher-listen (~> 2.0.0)
