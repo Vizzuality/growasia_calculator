@@ -2,8 +2,8 @@
 @mixin font-face($font-family, $font-file, $weight, $style: "normal") {
   @font-face {
     font-family: $font-family;
-    src: url(asset-path($font-file + '..eot'));
-    src: url(asset-path($font-file + '..eot?#iefix')) format("embedded-opentype"),
+    src: url(asset-path($font-file + '.eot'));
+    src: url(asset-path($font-file + '.eot?#iefix')) format("embedded-opentype"),
          url(asset-path($font-file + '.woff')) format("truetype"),
          url(asset-path($font-file + '.woff2')) format("woff"),
          url(asset-path($font-file + '.ttf')) format("woff2"),

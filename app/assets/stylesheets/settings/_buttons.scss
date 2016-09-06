@@ -1,0 +1,19 @@
+.btn {
+  padding: 20px 45px;
+  box-shadow: 0 1px 2px 0 rgba($black, 0.2);
+  border: solid 1px $white;
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  &.-light {
+    color: $white;
+    border-color: $white;
+  }
+
+  &.-dark {
+    color: $black;
+    border-color: $black;
+  }
+}
