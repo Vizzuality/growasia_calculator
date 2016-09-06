@@ -13,16 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.steps.min
-//= require leaflet
 //= require URIjs
 //= require handlebars
 //= require underscore/underscore
 //= require backbone/backbone
-//= require d3
-//= require fuse
-//= require chosen
-//= require pickadate/picker
-//= require pickadate/picker.date
 
 //= require_self
 
