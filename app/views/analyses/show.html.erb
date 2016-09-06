@@ -1,8 +1,39 @@
-<%= @analysis.geo_location.country %>
-<%= @analysis.geo_location.state %>
-<%= @analysis.crop %>
-<%= @analysis.area %>ha
-<%= @analysis.yield %>kg. ha<sup>-1</sup> yr<sup>-1</sup>.
+<header class="c-analysis-header">
+  <div>
+    <ul class="list">
+      <li class="list-item">
+        <span class="title">Country</span>
+        <span class="value"><%= @analysis.geo_location.country %></span>
+      </li>
+      <li class="list-item">
+        <span class="title">Region</span>
+        <span class="value"><%= @analysis.geo_location.state %></span>
+      </li>
+    </ul>
+    <ul class="list">
+      <li class="list-item">
+        <span class="title">Crop</span>
+        <span class="value"><%= @analysis.crop.capitalize %></span>
+      </li>
+      <li class="list-item">
+        <span class="title">Area</span>
+        <span class="value"><%= @analysis.area %> <em>ha</em></span>
+      </li>
+      <li class="list-item">
+        <span class="title">Annual Production</span>
+        <span class="value"><%= @analysis.yield %> <em>kg. ha<sup>-1</sup> yr<sup>-1</sup></em></span>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<section>
+  <div class="c-analysis-emissions">
+
+  </div>
+  <div class="c-analysis-graphs"></div>
+  <div class="c-analysis-actions"></div>
+</section>
 
 <h1>Analysis</h1>
 <% if !@analysis.rice? %>

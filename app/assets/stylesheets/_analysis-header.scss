@@ -1,0 +1,44 @@
+.c-analysis-header {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba($font-color-2, 0.1);
+
+  .list {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 0 0 15px;
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+
+  .list-item {
+    margin: 0 20px 0 0;
+
+    &:last-child {
+      margin: 0;
+    }
+
+    .title {
+      display: block;
+      font-size: rem(11px);
+      line-height: 8px;
+      color: rgba($font-color-2, 0.3);
+    }
+
+    .value {
+      font-size: rem(22px);
+      font-weight: 500;
+      color: rgba($font-color-2, 0.8);
+
+      em {
+        font-style: normal;
+        color: rgba($font-color-2, 0.3);
+      }
+    }
+  }
+}
