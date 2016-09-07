@@ -25,7 +25,7 @@
       <div class="c-slide-content">
         <p class="text -questions">
           Currently, I’m growing
-          <%= f.select :crop, options_for_select(Analysis::CROPS.map{|t| [t[:title],t[:slug]]}) %>
+          <%= f.select :crop, select_options(Analysis::CROPS) %>
         </p>
         <p class="text -questions">
           on
@@ -35,7 +35,7 @@
         <p class="text -questions">
            and expect a yield of
            <%= f.text_field :yield %>
-           <%= f.select :yield_unit, options_for_select(Analysis::YIELD_UNITS.map{|t| [t[:title], t[:slug]]}) %>
+           <%= f.select :yield_unit, select_options(Analysis::YIELD_UNITS) %>
           <span class="text -form-inputs -medium">yr<sup>-1</sup></span>
         </p>
 
