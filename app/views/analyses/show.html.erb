@@ -1,8 +1,56 @@
-<%= @analysis.geo_location.country %>
-<%= @analysis.geo_location.state %>
-<%= @analysis.crop %>
-<%= @analysis.area %>ha
-<%= @analysis.yield %>kg. ha<sup>-1</sup> yr<sup>-1</sup>.
+<header class="c-analysis-header">
+  <div>
+    <ul class="list">
+      <li class="list-item">
+        <span class="title text -summary-small">Country</span>
+        <span class="value text -summary-big"><%= @analysis.geo_location.country %></span>
+      </li>
+      <li class="list-item">
+        <span class="title text -summary-small">Region</span>
+        <span class="value text -summary-big"><%= @analysis.geo_location.state %></span>
+      </li>
+    </ul>
+    <ul class="list">
+      <li class="list-item">
+        <span class="title text -summary-small">Crop</span>
+        <span class="value text -summary-big"><%= @analysis.crop.capitalize %></span>
+      </li>
+      <li class="list-item">
+        <span class="title text -summary-small">Area</span>
+        <span class="value text -summary-big"><%= @analysis.area %> <em>ha</em></span>
+      </li>
+      <li class="list-item">
+        <span class="title text -summary-small">Annual Production</span>
+        <span class="value text -summary-big"><%= @analysis.yield %> <em>kg. ha<sup>-1</sup> yr<sup>-1</sup></em></span>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<section>
+  <div class="c-analysis-total">
+    <div class="description text -questions">Your current estimated emission are:</div>
+    <div class="total">
+      <div class="value-box">
+        <span class="value text -figure-extra-big">144</span>
+        <span class="info"><svg><use xlink:href="#icon-help"></use></svg></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-analysis-graphs">
+    <div class="grid">
+      <div class="grid-col">
+        <div id="chart-1" class="c-graph"></div>
+      </div>
+      <div class="grid-col">
+        <div id="chart-2" class="c-graph"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-analysis-actions"></div>
+</section>
 
 <h1>Analysis</h1>
 <% if !@analysis.rice? %>

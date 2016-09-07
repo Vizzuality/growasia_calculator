@@ -31,7 +31,7 @@
       var routeSplited = routeName.split('#');
       var controllerName = routeSplited[0];
       var actionName = routeSplited[1];
-      var params = this.getParams(routeParams[0]);
+      var params = _.extend({id: routeParams[0]}, this.getParams(routeParams[1]));
       if (App.Controller[controllerName] &&
         App.Controller.hasOwnProperty(controllerName)) {
         var currentController = new App.Controller[controllerName]();
@@ -41,7 +41,7 @@
           // Setting new params in model
           this.updateParams(params);
           // Executing controller#action and passing url params
-          currentController[actionName](this.params.attributes);
+          currentController[actionName](params);
         } else {
           console.error('specified action doesn\'t exist');
         }

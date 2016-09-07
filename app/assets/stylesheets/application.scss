@@ -11,6 +11,7 @@
  * It is generally better to create a new file per style scope.
  *
  *= require normalize-css
+ *= require c3
  *= require_self
  */
 
@@ -38,5 +39,9 @@
 /*
  * Components
  */
-
 @import "components/c-slide-content";
+
+@import "components/c-analysis-header";
+@import "components/c-analysis-total";
+@import "components/c-analysis-graphs";
+@import "components/c-graph";
