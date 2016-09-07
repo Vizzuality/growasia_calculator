@@ -10,12 +10,12 @@
   text-transform: uppercase;
 
   &.-light {
-    color: $white !important;
+    color: $white;
     border-color: rgba($white, .4);
   }
 
   &.-dark {
-    color: $black !important;
+    color: $black;
     border-color: rgba($black, .4);
   }
 }
