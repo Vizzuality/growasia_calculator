@@ -14,9 +14,6 @@
 
   // Description
   .description {
-    font-size: rem(32px);
-    color: rgba($font-color-2, 0.8);
-    font-weight: 300;
     text-align: center;
   }
 
@@ -31,9 +28,6 @@
       margin: 0 auto;
 
       .value {
-        font-size: rem(120px);
-        font-weight: 700;
-        color: rgba($font-color-2, 0.8);
       }
 
       .info {
