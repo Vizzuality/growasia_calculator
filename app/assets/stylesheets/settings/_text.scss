@@ -15,6 +15,15 @@
    * SIZES
    */
 
+  &.-title {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    opacity: 0.4;
+  }
+
   //Home page claim
   &.-claim {
     font-size: rem(40px);
@@ -28,6 +37,7 @@
     font-size: rem(16px);
     line-height: 1.5;
     letter-spacing: rem(.5px);
+
   }
 
   //Slider big text. Form senteces.
@@ -88,7 +98,7 @@
     font-weight: 100;
     line-height: 1.09;
     letter-spacing: rem(.6px);
-    opacity: 0.8;
+    opacity: .8;
   }
 
 
@@ -118,7 +128,7 @@
     font-weight: normal;
     line-height: .5;
     letter-spacing: rem(.7px);
-    opacity: .7;
+    opacity: .8;
   }
 
   &.-sidebar-input {
