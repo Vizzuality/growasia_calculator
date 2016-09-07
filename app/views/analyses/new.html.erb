@@ -1,6 +1,7 @@
 <%= form_for @analysis do |f| %>
-  <div id="wizard">
+  <div id="slider">
 
+    <!-- SLIDE 1 -->
     <h1>Select Geography</h1>
     <section class="l-slide -slide-1">
       <div class="c-slide-content">
@@ -15,10 +16,10 @@
           <p class="text -description">Start typing or select your region in the map</p>
           <%= f.select :geo_location_id, [] %>
         </div>
-
       </div>
     </section>
 
+    <!-- SLIDE 2 -->
     <h1>Describe your agricultural activity</h1>
     <section class="l-slide -slide-2">
 
@@ -39,10 +40,13 @@
           <span class="text -form-inputs -medium">yr<sup>-1</sup></span>
         </p>
       </div>
-
     </section>
 
+    <!-- SLIDE 3 to x -->
     <%= render 'crops', f: f %>
     <%= render 'rice', f: f %>
+
+    <%= render 'partials/handlers' %>
+
   </div>
 <% end %>
