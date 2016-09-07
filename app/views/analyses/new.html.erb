@@ -1,4 +1,4 @@
-<%= form_for(@analysis, url: wizard_path, method: :put) do |f| %>
+<%= form_for @analysis do |f| %>
   <div id="wizard">
 
     <h1>Select Geography</h1>
@@ -38,13 +38,11 @@
            <%= f.select :yield_unit, select_options(Analysis::YIELD_UNITS) %>
           <span class="text -form-inputs -medium">yr<sup>-1</sup></span>
         </p>
-
-        <div class="actions">
-          <%= f.submit "next" %>
-        </div>
       </div>
 
     </section>
 
+    <%= render 'crops', f: f %>
+    <%= render 'rice', f: f %>
   </div>
 <% end %>
