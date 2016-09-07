@@ -7,7 +7,9 @@ class AnalysisSerializer < ActiveModel::Serializer
     result = []
     if !object.rice?
       result << {stable_soil_carbon_content: object.stable_soil_carbon_content}
-      result << {changes_in_carbon_content: object.changes_in_carbon_content}
+      if object.is_shaded?
+        result << {changes_in_carbon_content: object.changes_in_carbon_content}
+      end
       result << {emissions_from_crop_residue_decomposition: object.emissions_from_crop_residue_decomposition}
       result << {emissions_from_crop_residue: object.emissions_from_crop_residue_or_rice_straw_burning}
     else

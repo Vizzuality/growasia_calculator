@@ -41,10 +41,16 @@
   <div class="c-analysis-graphs">
     <div class="grid">
       <div class="grid-col">
-        <div id="chart-1" class="c-graph"></div>
+        <div id="chart-1" class="c-graph">
+          <div class="title text -summary-big">Emission Sources</div>
+          <div class="chart"></div>
+        </div>
       </div>
       <div class="grid-col">
-        <div id="chart-2" class="c-graph"></div>
+        <div id="chart-2" class="c-graph">
+          <div class="title text -summary-big">Carbon Emmisions</div>
+          <div class="chart"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -57,8 +63,10 @@
   <h2>Stable soil carbon content</h2>
   <%= @analysis.stable_soil_carbon_content %>
 
-  <h2>Changes in carbon content</h2>
-  <%= @analysis.changes_in_carbon_content %> (t CO2-e)
+  <% if @analysis.is_shaded? %>
+    <h2>Changes in carbon content</h2>
+    <%= @analysis.changes_in_carbon_content %> (t CO2-e)
+  <% end %>
 
   <h2>Emissions from crop residue decomposition</h2>
   <%= @analysis.emissions_from_crop_residue_decomposition %> (t CO2-e)

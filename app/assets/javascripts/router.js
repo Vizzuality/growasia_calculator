@@ -11,9 +11,7 @@
      */
     routes: {
       '': 'Home#index',
-      'analysis_steps/basic' : 'Analysis#index',
-      'analysis_steps/rice' : 'Analysis#index',
-      'analysis_steps/crops' : 'Analysis#index',
+      'analyses/new'  : 'Analysis#index',
 
       'analyses/:id' : 'Analysis#show'
       // Here you have an example

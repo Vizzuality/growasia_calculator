@@ -1,3 +1,26 @@
-.c-graphs {
+.c-graph {
+  width: 100%;
 
+  .title {
+    text-align: center;
+    margin: 0 0 rem(25px);
+  }
+
+  .c3 {
+    line {
+      fill: none;
+      stroke: rgba($font-color-2, .3);
+    }
+
+    path {
+      fill: none;
+      stroke: rgba($font-color-2, .3);
+    }
+
+    g {
+      &.tick {
+        fill: rgba($font-color-2, .3);
+      }
+    }
+  }
 }
