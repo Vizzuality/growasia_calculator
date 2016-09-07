@@ -6,7 +6,7 @@
 
   App.View.Steps = Backbone.View.extend({
 
-    currentSlide: 0,
+    currentSlide: 1,
 
     events: {
       'click .js--slider-handler' : 'changeDiapo',
@@ -19,13 +19,23 @@
 
       var opts = settings && settings.options ? settings.options : {};
       this.options = _.extend( this.defaults, opts );
+
+      this.cacheVars();
     },
 
-    render: function() {
+    cacheVars: function() {
+      this.$allSliders = $('.js--slide');
     },
 
     changeDiapo: function(e) {
+      $(e.currentTarget).data('step') === 'next' ? this.currentSlide += 1 : this.currentSlide -= 1;
 
+      this.showDiapo();
+    },
+
+    showDiapo: function() {
+      this.$allSliders.removeClass('-is-current');
+      $('#slide-' + this.currentSlide).addClass('-is-current');
     }
 
 

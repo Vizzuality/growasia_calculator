@@ -1,6 +1,6 @@
 <!-- SLIDE -->
 <h1>Tillage</h1>
-<section class="l-slide -slide-3">
+<section id="slide-3" class="l-slide -slide-3 js--slide">
   <div class="c-slide-content">
     <p class="text -questions">
     Crop management includes
@@ -30,7 +30,7 @@
 
 <!-- SLIDE -->
 <h1>Additional crop management</h1>
-<section class="l-slide -slide-4">
+<section id="slide-4" class="l-slide -slide-4 js--slide">
   <div class="c-slide-content">
     <p class="text -questions">Additional crop management practices include (check all that apply):</p>
     <% Analysis::CROP_MANAGEMENT_PRACTICES.each do |practice| %>
@@ -45,7 +45,7 @@
 
 <!-- SLIDE -->
 <h1>Shade trees</h1>
-<section class="l-slide -slide-5">
+<section id="slide-5" class="l-slide -slide-5 js--slide">
   <div class="c-slide-content">
     <p class="text -questions">
     The cropland
@@ -56,15 +56,44 @@
   </div>
 </section>
 
-<!-- SLIDE -->
-<%= render 'liming', f: f %>
+<!-- SLIDE : note = Figure out how to have this in both parts
+  rice and crop without duplicating
+-->
+<h1>Liming and Dolomite</h1>
+<section id="slide-6" class="l-slide -slide-6 js--slide">
+  <div class="c-slide-content">
+    <p class="text -description">Skip if it doesn't apply</p>
+
+    <p class="text -questions">
+      We apply
+      <%= f.text_field :lime_amount %><span class="text -form-inputs -medium">kg. ha<sup>-1</sup> yr<sup>-1</sup></span>
+      of lime and
+    </p>
+    <p class="text -questions">
+      <%= f.text_field :dolomite_amount %><span class="text -form-inputs -medium">kg. ha<sup>-1</sup> yr<sup>-1</sup></span>
+      of dolomite.
+    </p>
+  </div>
+</section>
 
 <!-- SLIDE -->
-<%= render 'agrochemicals', f: f %>
+<h1>Agrochemicals</h1>
+<section id="slide-7" class="l-slide -slide-7 js--slide">
+  <div class="c-slide-content">
+    <p class="text -questions">
+      We apply
+      <%= f.text_field :agrochemical_amount %>
+      <span class="text -form-inputs -medium">kg. ha<sup>-1</sup> yr<sup>-1</sup></span>
+    </p>
+    <p class="text -questions">
+      in agrochemicals including fertilizers, pesticides, and herbicides.
+    </p>
+  </div>
+</section>
 
 <!-- SLIDE -->
 <h1>Fossil fuels</h1>
-<section class="l-slide -slide-5">
+<section id="slide-8" class="l-slide -slide-8 js--slide">
   <div class="c-slide-content">
     <p class="text -questions">
     Each year, we use an estimated
