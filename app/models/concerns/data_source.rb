@@ -25,6 +25,11 @@ module DataSource
       n_ag: 0.007, r_bg: 0.16, n_bg: nil, c_monoculture: nil, c_agroforestry: nil}
   ]
 
+  YIELD_UNITS = [
+    {slug: "ton", title: "t/ha"},
+    {slug: "kg", title: "kg/ha"}
+  ]
+
   TILLAGES = [
     {slug: "no-tillage", title: "No Tillage", method: :fmg_no_till},
     {slug: "minimal", title: "Minimal/shallow tillage", method: :fmg_reduced},
