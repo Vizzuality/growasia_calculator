@@ -1,10 +1,16 @@
 <h1>Liming and Dolomite</h1>
-<section>
-  Skip if it doesn't apply.
+<section class="l-slide -slide-1">
+  <div class="c-slide-content">
+    <p class="text -description">Skip if it doesn't apply</p>
 
-  We apply
-  <%= f.text_field :lime_amount %> kg. ha<sup>-1</sup> yr<sup>-1</sup>
-  of lime and
-  <%= f.text_field :dolomite_amount %> kg. ha<sup>-1</sup> yr<sup>-1</sup>
-  of dolomite.
+    <p class="text -questions">
+      We apply
+      <%= f.text_field :lime_amount %><span class="text -form-inputs -medium">kg. ha<sup>-1</sup> yr<sup>-1</sup></span>
+      of lime and
+    </p>
+    <p class="text -questions">
+      <%= f.text_field :dolomite_amount %><span class="text -form-inputs -medium">kg. ha<sup>-1</sup> yr<sup>-1</sup></span>
+      of dolomite.
+    </p>
+  </div>
 </section>

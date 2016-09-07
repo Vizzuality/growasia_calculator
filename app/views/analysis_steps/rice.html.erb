@@ -1,7 +1,7 @@
 <%= form_for @analysis, url: wizard_path, method: :put do |f| %>
   <div id="wizard">
     <h1>Type of Rice and Irrigiation Regime</h1>
-    <section>
+    <section class="l-slide -slide-1">
       I grow
       <%= f.select :rice_type,
         options_for_select(["paddy",
@@ -14,7 +14,7 @@
     </section>
 
     <h1>Flooding before cultivation</h1>
-    <section>
+    <section class="l-slide -slide-1">
       Before cultivation starts, cropland is
       <%= f.select :flooding,
         options_for_select(Analysis::FLOODING_PRACTICES.map{|t| [t[:title],t[:slug]]}) %>
@@ -26,7 +26,7 @@
     <%= render 'agrochemicals', f: f %>
 
     <h1>Fertilizer and Nutrient Management</h1>
-    <section>
+    <section class="l-slide -slide-1">
       We apply
       <%= f.fields_for :fertilizers do |builder| %>
         <%= builder.hidden_field :category, value: Category::FERTILIZER %>
@@ -51,7 +51,7 @@
     </section>
 
     <h1>Fuel and purposes</h1>
-    <section>
+    <section class="l-slide -slide-1">
       Each year, we use an estimated
       <%= f.fields_for :transportation_fuels do |builder| %>
         <%= builder.hidden_field :category, value: Category::TRANSPORTATION_FUEL %>
