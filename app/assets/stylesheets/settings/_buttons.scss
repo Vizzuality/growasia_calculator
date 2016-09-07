@@ -67,6 +67,7 @@
   &:after {
     background-image: image-url('arrow_back.svg');
     cursor: pointer;
+    pointer-events: none;
   }
 
   &:hover {
@@ -82,6 +83,7 @@
   &:after {
     background-image: image-url('arrow_forward.svg');
     cursor: pointer;
+    pointer-events: none;
   }
 }
 
