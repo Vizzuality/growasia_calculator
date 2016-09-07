@@ -32,6 +32,9 @@
       analysisModel.fetch()
         .then(function(){
           console.log(analysisModel.toJSON());
+          this.analysisActionsView = new App.View.AnalysisActions({
+            el: '#analysisActions'
+          });
 
           this.chart1 = new App.View.Chart({
             el: '#chart-1',
