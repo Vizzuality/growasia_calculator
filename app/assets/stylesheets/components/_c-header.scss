@@ -1,0 +1,65 @@
+.c-header {
+
+  .btn-help {
+    position: absolute;
+    top: 32px;
+    left: 50%;
+    transform: translatex(-50%);
+  }
+
+  .text-wrap {
+    display: flex;
+    align-items: center;
+    width: rem(114px);
+    height: rem(88px);
+    transform: rotate(-90deg);
+    transform-origin: left top;
+  }
+
+  .-title {
+    margin-top: rem(29px);
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    width: rem(114px);
+    height: rem(88px);
+    transform: rotate(-90deg) translatex(-50%);
+    transform-origin: left top;
+
+    svg {
+      width: rem(114px);
+      height: rem(48px);
+      margin-top: rem(27px);
+
+      .-dark & {
+        fill: $black;
+      }
+
+      .-light & {
+        fill: $white;
+      }
+    }
+  }
+
+  .c-social {
+    margin-bottom: rem(88px);
+  }
+
+  &.-dark {
+    color: $black;
+
+    svg {
+      fill: $black;
+    }
+  }
+
+  &.-light {
+    color: $white;
+
+    svg {
+      fill: $white;
+    }
+  }
+}

@@ -1,3 +1,17 @@
+.l-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  width: rem(88px);
+}
+
 .l-slide {
   display: flex;
   justify-content: center;

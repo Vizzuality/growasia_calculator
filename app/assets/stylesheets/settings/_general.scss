@@ -33,6 +33,7 @@ a, li {
 }
 
 button {
+  @extend %clean-button-or-input;
   cursor: pointer;
   border: 0;
 }

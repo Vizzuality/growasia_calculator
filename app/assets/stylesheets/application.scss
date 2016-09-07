@@ -24,6 +24,7 @@
 @import "settings/utils";
 @import "settings/fonts";
 @import "settings/text";
+@import "settings/icons";
 @import "settings/buttons";
 
 /*
@@ -39,9 +40,12 @@
 /*
  * Components
  */
-@import "components/c-slide-content";
-
 @import "components/c-analysis-header";
 @import "components/c-analysis-total";
 @import "components/c-analysis-graphs";
 @import "components/c-graph";
+@import "components/c-header";
+@import "components/c-slide-content";
+@import "components/c-social";
+
+
