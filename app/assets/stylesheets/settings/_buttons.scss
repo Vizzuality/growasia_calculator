@@ -26,3 +26,15 @@
   height: rem(24px);
   padding: rem(5px);
 }
+
+
+.btn-prev {
+  &:after {
+    content: "";
+    @extend %center;
+    background-image: image-path('arrow_back.svg');
+    width: rem(24px);
+    height: rem(24px);
+
+  }
+}
