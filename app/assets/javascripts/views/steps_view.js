@@ -28,7 +28,18 @@
     },
 
     changeDiapo: function(e) {
+      var currentSlide = this.currentSlide;
+
       $(e.currentTarget).data('step') === 'next' ? this.currentSlide += 1 : this.currentSlide -= 1;
+
+
+      if (currentSlide === 2) {
+
+        var crop = $('#analysis_crop').val();
+        if (crop === 'rice') {
+          this.currentSlide = 9;
+        };
+      }
 
       this.showDiapo();
     },
