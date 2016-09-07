@@ -24,6 +24,12 @@
     opacity: 0.8;
   }
 
+  &.-intro {
+    font-size: rem(16px);
+    line-height: 1.5;
+    letter-spacing: rem(.5px);
+  }
+
   //Slider big text. Form senteces.
   //Summary title.
   &.-questions {
@@ -90,11 +96,10 @@
    * LINKS
    */
   &.-link {
-    color: $black;
     font-size: rem(11px);
     letter-spacing: rem(.5px);
     text-decoration: underline;
-    opacity: .4;
+    opacity: .8;
   }
 
   //Note: this might be move to the form.scss sheet later.

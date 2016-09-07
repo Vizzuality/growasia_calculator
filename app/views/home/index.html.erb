@@ -1,11 +1,20 @@
-<h1>Welcome to the Grow Asia Counter</h1>
-<p>
-  Use this tool to estimate and explore the greenhouse gas impacts of changes
-  in management practices for cocoa, coffee, tea, corn, rice, potatoes, and
-  horticulture.
-</p>
-<%= link_to "Start Here", analysis_steps_path %>
+<div class="l-slide -home">
+  <div class="c-slide-content">
 
-<%= link_to "#" do %>
-  Or learn more about the website's capabilities and data used.
-<% end %>
+    <svg class="logo">
+      <use xlink:href="#icon-logo"></use>
+    </svg>
+
+    <h1 class="text -claim">Welcome to the Grow Asia Counter</h1>
+    <p class="text -intro">
+      Use this tool to estimate and explore the greenhouse gas impacts of changes
+      in management practices for cocoa, coffee, tea, corn, rice, potatoes, and
+      horticulture
+    </p>
+    <%= link_to "Start Here", analysis_steps_path, class: "btn -light" %>
+
+    <%= link_to "#", class: "text -link -light" do %>
+      Or learn more about the website's capabilities and data used
+    <% end %>
+  </div>
+</div>
