@@ -11,9 +11,11 @@
      */
     routes: {
       '': 'Home#index',
-      'analysis_steps/basic' : 'Analysis#show',
-      'analysis_steps/rice' : 'Analysis#show',
-      'analysis_steps/crops' : 'Analysis#show'
+      'analysis_steps/basic' : 'Analysis#index',
+      'analysis_steps/rice' : 'Analysis#index',
+      'analysis_steps/crops' : 'Analysis#index',
+
+      'analyses/:id' : 'Analysis#show'
       // Here you have an example
       // 'countries': 'Countries#index',
       // 'countries/:iso': 'Countries#show'
