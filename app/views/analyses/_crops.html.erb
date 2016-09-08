@@ -14,7 +14,7 @@
         <%= f.fields_for :fertilizers do |builder| %>
           <%= builder.hidden_field :category, value: Category::FERTILIZER, class: '-input-small' %>
           <%= builder.text_field :amount, class: '-input-small' %>
-          <span class="text -form-inputs -medium">kg per ha per yr</span>
+          <span class="text -form-inputs -medium">kg per ha and yr</span>
         of
         <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES), {}, class: '-input-small' %>
         <% end %>
@@ -26,7 +26,7 @@
       <span>
         and
         <%= builder.text_field :amount, class: '-input-small' %>
-        <span class="text -form-inputs -medium">kg per ha per yr</span>
+        <span class="text -form-inputs -medium">kg per ha and yr</span>
         of
         <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES), {}, class: '-input-big' %>
         <% end %>
@@ -82,7 +82,7 @@
       </span>
       <span>
         <%= f.text_field :lime_amount, class: '-input-small' %>
-        <span class="text -form-inputs -medium">kg per ha per yr</span>
+        <span class="text -form-inputs -medium">kg per ha and yr</span>
       </span>
       <span>
         Do you apply dolomite?
@@ -90,7 +90,7 @@
       </span>
       <span>
         <%= f.text_field :dolomite_amount, class: '-input-small' %>
-        <span class="text -form-inputs -medium">kg per ha per yr</span>
+        <span class="text -form-inputs -medium">kg per ha and yr</span>
         of dolomite.
       </span>
     </p>
@@ -108,7 +108,7 @@
       </span>
       <span>
         <%= f.text_field :agrochemical_amount, class: '-input-small' %>
-        <span class="text -form-inputs -medium">kg per ha per yr</span>
+        <span class="text -form-inputs -medium">kg per ha and yr</span>
       </span>
     </p>
   </div>
