@@ -12,11 +12,30 @@
   &.-light {
     color: $white;
     border-color: rgba($white, .4);
+    fill: $white;
   }
 
   &.-dark {
     color: $black;
     border-color: rgba($black, .4);
+    fill: $black;
+  }
+
+  &.-with-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > * {
+      margin: 0 rem(5px) 0 0;
+      &:last-child {
+        margin: 0;
+      }
+    }
+
+    svg {
+      display: inline-block;
+    }
   }
 }
 

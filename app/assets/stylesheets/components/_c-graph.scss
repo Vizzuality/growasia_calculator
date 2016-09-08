@@ -22,5 +22,27 @@
         fill: rgba($font-color-2, .3);
       }
     }
+
+    // TOOLTIP
+    .c3-tooltip {
+      box-shadow: 0px 1px 6px 0 rgba($font-color-2, .5);
+
+      th {
+        padding: rem(10px) rem(8px) rem(5px);
+        color: rgba($font-color-2, .8);
+        background-color: $font-color-1;
+        font-weight: 500;
+        text-transform: capitalize;
+      }
+
+      tr {
+        border: none;
+      }
+
+      td {
+        padding: rem(5px) rem(10px);
+        border: none;
+      }
+    }
   }
 }

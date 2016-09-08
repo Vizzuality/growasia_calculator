@@ -23,18 +23,22 @@
       var analysisModel = new App.Model.Analysis({
         id: params.id
       });
+
       // Fetch the analysis before render the graphs
       analysisModel.fetch()
         .then(function(){
           console.log(analysisModel.toJSON());
+          this.analysisActionsView = new App.View.AnalysisActions({
+            el: '#analysisActions'
+          });
 
           this.chart1 = new App.View.Chart({
             el: '#chart-1',
             options: {
               data: {
                 columns: [
-                  ['data1', 30, 200, 100, 400, 150, 250],
-                  // ['data2', 130, 100, 140, 200, 150, 50]
+                  ['t CO2/ha/yr', 30, 200, 100],
+                  // ['data2', 130, 100, 140]
                 ],
                 type: 'bar'
               },
@@ -46,7 +50,7 @@
               axis: {
                 x: {
                   type: 'category',
-                  categories: ['cat1', 'cat2', 'cat3', 'cat4', 'cat5', 'cat6', 'cat7', 'cat8', 'cat9']
+                  categories: ['Tillage', 'Fertilizer', 'Other Agrochemicals']
                 }
               }
             }
@@ -57,13 +61,13 @@
             options: {
               data: {
                 columns: [
-                  ['data1', 30, 200],
-                  ['data2', 130, 100],
-                  ['data3', 230, 200]
+                  ['Tillage', 30, 200],
+                  ['Fertilizer', 130, 100],
+                  ['Other Agrochemicals', 230, 200]
                 ],
                 type: 'bar',
                 groups: [
-                  ['data1', 'data2', 'data3']
+                  ['Tillage', 'Fertilizer', 'Other Agrochemicals']
                 ]
               },
               bar: {
@@ -74,8 +78,14 @@
               axis: {
                 x: {
                   type: 'category',
-                  categories: ['cat1', 'cat2', 'cat3', 'cat4', 'cat5', 'cat6', 'cat7', 'cat8', 'cat9']
+                  categories: ['t CO2/ha/yr', 'bushel/corn/yr']
                 }
+              },
+              tooltip: {
+                grouped: false
+              },
+              color: {
+                pattern: ['#3f8c3f', '#2a5a3a', '#194b32']
               }
             }
           });
