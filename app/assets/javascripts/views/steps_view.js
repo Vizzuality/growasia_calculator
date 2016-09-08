@@ -10,7 +10,7 @@
     currentPath: '',
 
     events: {
-      'click .js--slider-handler' : 'changeDiapo',
+      'click .js--slider-handler' : 'onClickChangeDiapo',
     },
 
     initialize: function(settings) {
@@ -30,7 +30,7 @@
       this.btnNext = $('.js--slider-handler[data-step="next"]');
     },
 
-    changeDiapo: function(e) {
+    onClickChangeDiapo: function(e) {
       var currentSlide = this.nextSlide;
 
       $(e.currentTarget).data('step') === 'next' ? this.nextSlide += 1 : this.nextSlide -= 1;
