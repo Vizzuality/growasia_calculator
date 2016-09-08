@@ -25,12 +25,15 @@
     },
 
     cacheVars: function() {
-      this.$allSliders = $('.js--slide');
-      this.btnPrev = $('.js--slider-handler[data-step="prev"]');
-      this.btnNext = $('.js--slider-handler[data-step="next"]');
+      this.$allSliders = this.$el.find('.js--slide');
+      this.btnPrev = this.$el.find('.js--slider-handler[data-step="prev"]');
+      this.btnNext = this.$el.find('.js--slider-handler[data-step="next"]');
     },
 
     onClickChangeDiapo: function(e) {
+      //Obiously, we need to improve all this part to make it automatique and more scalable.
+      //But keep it for instance to think about add a library.
+
       var currentSlide = this.nextSlide;
 
       $(e.currentTarget).data('step') === 'next' ? this.nextSlide += 1 : this.nextSlide -= 1;
