@@ -4,7 +4,6 @@ class AnalysisSerializer < ActiveModel::Serializer
   belongs_to :geo_location
 
   def analysis
-    result = {}
     total = 0.0
 
     # for stacked bars
@@ -96,8 +95,9 @@ class AnalysisSerializer < ActiveModel::Serializer
     end
     nutrient_management[:total] = sub_total
     nutrient_management[:values] = values
-
     emissions_by_source << nutrient_management
+
+    total += sub_total
 
     # Liming
     values = []
@@ -127,7 +127,10 @@ class AnalysisSerializer < ActiveModel::Serializer
         total: sub_total,
         values: values
       }
+
+      total += sub_total
     end
+
     if object.agrochemical_amount && object.agrochemical_amount > 0.0
       sub_total = object.emissions_from_agrochemical_use
       emissions_by_source << {
@@ -142,6 +145,7 @@ class AnalysisSerializer < ActiveModel::Serializer
           }
         ]
       }
+      total += sub_total
     end
     sub_total = object.emissions_from_fossil_fuel_use
     emissions_by_source << {
@@ -156,6 +160,12 @@ class AnalysisSerializer < ActiveModel::Serializer
         }
       ]
     }
-    {emissions_by_source: [emissions_by_source]}
+    total += sub_total
+
+    {
+      total: total,
+      total_per_yield: total/object.yield*object.area,
+      emissions_by_source: [emissions_by_source]
+    }
   end
 end
