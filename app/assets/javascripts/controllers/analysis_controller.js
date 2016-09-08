@@ -84,6 +84,12 @@
                   type: 'category',
                   categories: ['t CO2/ha/yr', 'bushel/corn/yr']
                 }
+              },
+              tooltip: {
+                grouped: false
+              },
+              color: {
+                pattern: ['#3f8c3f', '#2a5a3a', '#194b32']
               }
             }
           });
