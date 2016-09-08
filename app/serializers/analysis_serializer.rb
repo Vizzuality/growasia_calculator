@@ -14,12 +14,12 @@ class AnalysisSerializer < ActiveModel::Serializer
       emissions_by_source << {
         slug: "soil-mgmt",
         name: "Soil management",
-        total: sub_total,
+        total: sub_total.to_f,
         values: [
           {
             slug: "soil-carbon-content",
             name: "Stable soil carbon content",
-            value: sub_total
+            value: sub_total.to_f
           }
         ]
       }
@@ -31,12 +31,12 @@ class AnalysisSerializer < ActiveModel::Serializer
         emissions_by_source << {
           slug: "agroforestry",
           name: "Agroforestry removals",
-          total: sub_total,
+          total: sub_total.to_f,
           values: [
             {
               slug: "changes-carbon-content",
               name: "Changes in carbon content",
-              value: sub_total
+              value: sub_total.to_f
             }
           ]
         }
@@ -56,7 +56,7 @@ class AnalysisSerializer < ActiveModel::Serializer
       values << {
         slug: "rice-cultivation",
         name: "Rice cultivation",
-        value: val
+        value: val.to_f
       }
       sub_total += val
     else
@@ -64,7 +64,7 @@ class AnalysisSerializer < ActiveModel::Serializer
       values << {
         slug: "residue-decomposition",
         name: "Crop residue decomposition",
-        value: val
+        value: val.to_f
       }
       sub_total += val
     end
@@ -72,7 +72,7 @@ class AnalysisSerializer < ActiveModel::Serializer
     values << {
       slug: "residue-burning",
       name: "#{object.rice? ? "Rice straw" : "Crop residue"} burning",
-      value: val
+      value: val.to_f
     }
     sub_total += val
 
@@ -80,7 +80,7 @@ class AnalysisSerializer < ActiveModel::Serializer
     values << {
       slug: "fertilizers",
       name: "Fertilizers Application",
-      value: val
+      value: val.to_f
     }
     sub_total += val
 
@@ -89,11 +89,11 @@ class AnalysisSerializer < ActiveModel::Serializer
       values << {
         slug: "urea",
         name: "Urea hydrolysis",
-        value: val
+        value: val.to_f
       }
       sub_total += val
     end
-    nutrient_management[:total] = sub_total
+    nutrient_management[:total] = sub_total.to_f
     nutrient_management[:values] = values
     emissions_by_source << nutrient_management
 
@@ -107,7 +107,7 @@ class AnalysisSerializer < ActiveModel::Serializer
       values << {
         slug: 'liming',
         name: 'Lime use',
-        value: val
+        value: val.to_f
       }
       sub_total += val
     end
@@ -116,7 +116,7 @@ class AnalysisSerializer < ActiveModel::Serializer
       values << {
         slug: 'dolomite',
         name: 'Dolomite use',
-        value: val
+        value: val.to_f
       }
       sub_total += val
     end
@@ -124,7 +124,7 @@ class AnalysisSerializer < ActiveModel::Serializer
       emissions_by_source << {
         slug: 'liming',
         name: 'Liming',
-        total: sub_total,
+        total: sub_total.to_f,
         values: values
       }
 
@@ -136,12 +136,12 @@ class AnalysisSerializer < ActiveModel::Serializer
       emissions_by_source << {
         slug: "agrochemical",
         name: "Agrochemical use",
-        total: sub_total,
+        total: sub_total.to_f,
         values: [
           {
             slug: "agrochemical",
             name: "Agrochemical use",
-            value: sub_total
+            value: sub_total.to_f
           }
         ]
       }
@@ -151,20 +151,20 @@ class AnalysisSerializer < ActiveModel::Serializer
     emissions_by_source << {
       slug: "fuel",
       name: "Fossil fuel use",
-      total: sub_total,
+      total: sub_total.to_f,
       values: [
         {
           slug: "fuel",
           name: "Fossil fuel use",
-          value: sub_total
+          value: sub_total.to_f
         }
       ]
     }
     total += sub_total
 
     {
-      total: total,
-      total_per_yield: total/object.yield*object.area,
+      total: total.to_f,
+      total_per_yield: (total/object.yield*object.area).to_f,
       emissions_by_source: [emissions_by_source]
     }
   end
