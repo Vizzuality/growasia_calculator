@@ -7,12 +7,8 @@
   App.Controller.Analysis = App.Controller.Page.extend({
 
     index: function() {
-      $('#wizard').steps({
-        headerTag: 'h1',
-        bodyTag: 'section',
-        autoFocus: true,
-        enableFinishButton: false
-      });
+
+      new App.View.Steps({el: '#slider'})
 
       $('#country').change(function() {
         if($(this).val() !== '') {
@@ -74,7 +70,7 @@
                 width: {
                   ratio: 0.5 // this makes bar width 50% of length between ticks
                 }
-              },              
+              },
               axis: {
                 x: {
                   type: 'category',

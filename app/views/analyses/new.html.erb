@@ -1,8 +1,9 @@
 <%= form_for @analysis do |f| %>
-  <div id="wizard">
+  <div id="slider">
 
+    <!-- SLIDE 1 -->
     <h1>Select Geography</h1>
-    <section class="l-slide -slide-1">
+    <section id="slide-1" class="l-slide -slide-1 js--slide -is-current">
       <div class="c-slide-content">
         <%= label_tag :country, "Select your country", class: "text -questions" %>
         <p class="text -description">Start typing or select your country in the map</p>
@@ -15,13 +16,12 @@
           <p class="text -description">Start typing or select your region in the map</p>
           <%= f.select :geo_location_id, [] %>
         </div>
-
       </div>
     </section>
 
+    <!-- SLIDE 2 -->
     <h1>Describe your agricultural activity</h1>
-    <section class="l-slide -slide-2">
-
+    <section id="slide-2" class="l-slide -slide-2 js--slide">
       <div class="c-slide-content">
         <p class="text -questions">
           Currently, I’m growing
@@ -39,10 +39,13 @@
           <span class="text -form-inputs -medium">yr<sup>-1</sup></span>
         </p>
       </div>
-
     </section>
 
+    <!-- SLIDE 3 to x -->
     <%= render 'crops', f: f %>
     <%= render 'rice', f: f %>
+
+    <%= render 'partials/handlers' %>
+
   </div>
 <% end %>
