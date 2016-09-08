@@ -9,12 +9,12 @@
       </span>
       <span>
         and the application of
+      </span>
+      <span>
         <%= f.fields_for :fertilizers do |builder| %>
           <%= builder.hidden_field :category, value: Category::FERTILIZER, class: '-input-small' %>
           <%= builder.text_field :amount, class: '-input-small' %>
           <span class="text -form-inputs -medium">kg/ha x yr</span>
-      </span>
-      <span>
         of
         <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES), {}, class: '-input-small' %>
         <% end %>
@@ -58,10 +58,13 @@
 <section id="slide-5" class="l-slide -slide-5 js--slide">
   <div class="c-slide-content">
     <p class="text -questions">
-      The cropland
-      <%= f.select:is_shaded, options_for_select([["Does", true], ["Does not", false]]) %>
-      currently include </br> shade trees, windbreaks, alley cropping, </br> or any type of
+    <span>
+      Does the cropland currently include </br> shade trees, windbreaks, alley cropping, </br> or any type of
       additional silviculture?
+    </span>
+    <span>
+      <%= f.select:is_shaded, options_for_select([["Yes", true], ["No", false]]) %>
+    </span>
     </p>
   </div>
 </section>
