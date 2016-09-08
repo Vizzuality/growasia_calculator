@@ -19,6 +19,7 @@
 //= require backbone/backbone
 //= require d3
 //= require c3
+//= require chosen.js
 
 //= require_self
 

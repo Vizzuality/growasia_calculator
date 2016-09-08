@@ -1,0 +1,150 @@
+/*
+ * Reset chosen.
+ */
+.chosen-container {
+  vertical-align: sub;
+}
+
+
+.chosen-container-single .chosen-single {
+  border: 0;
+  background: none;
+  color: white;
+  box-shadow: none;
+  padding: 0;
+  text-align: left;
+
+  height: 40px;
+  line-height: 40px;
+}
+
+.chosen-with-drop {
+  background: none;
+  border: 0;
+  box-shadow: none;
+}
+
+.chosen-container-active.chosen-with-drop .chosen-single {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+
+.chosen-container-single .chosen-single div b {
+  background: none;
+  position: relative;
+}
+
+.chosen-container-single .chosen-single div {
+
+  &:after {
+    @include arrow (rem(7px), rgba($black, .2), rem(2px), 225deg);
+    content: '';
+    display: block;
+    position: absolute;
+    top: 15px;
+    right: rem(2px);
+
+    transition: .2s ease-in;
+    transform-origin: center;
+  }
+}
+
+.chosen-with-drop .chosen-single div:after {
+  transform: rotate(45deg);
+}
+
+.chosen-container-single .chosen-single span {}
+
+.chosen-container.chosen-with-drop .chosen-drop {
+  border: 0;
+  border-radius: 0;
+  background-color: $white;
+}
+
+.chosen-container .chosen-results {
+  margin: 0;
+  padding: 0;
+  background-color: rgba($black, .1);
+
+  li {
+    font-size: rem(24px);
+    font-weight: 100;
+    padding: rem(10px) 0;
+    color: $font-color-2;
+    line-height: 1.1;
+
+    &:first-child {
+      margin-top: rem(5px);
+    }
+
+    &.highlighted {
+      color: $font-color-2;
+      background: rgba($font-color-2, .1);
+    }
+  }
+}
+
+.chosen-search {
+  display: none;
+}
+
+
+////////////////////
+//**** Forms *****//
+////////////////////
+.-input-big {
+  width: rem(336px);
+}
+
+.-input-small {
+  width: rem(208px);
+}
+
+input:not([type = "checkbox"]),
+select,
+.chosen-container {
+  @extend %clean-button-or-input;
+  min-width: rem(208px);
+  padding: rem(9px) rem(20px) rem(9px) rem(13px);
+  background-color: rgba($black, .04);
+  margin-top: rem(16px);
+
+  //Font
+  font-size: rem(32px);
+  font-weight: 500;
+  color: rgba($font-color-2, .8);
+}
+
+input[type = "checkbox"] {
+  @extend %clean-button-or-input;
+  width: rem(56px);
+  height: rem(56px);
+  margin-left: 20px;
+  background-color: rgba($black, .1);
+  transform: translatey(32%);
+}
+
+input[type = "submit"] {
+  @extend %clean-button-or-input;
+  @extend .btn;
+  font-size: rem(11px);
+  padding: 20px;
+  background-color: transparent;
+}
+
+.chosen-container-single .chosen-single span {
+  margin: 0;
+  margin-bottom: 0;
+  font-size: rem(32px);
+  font-weight: 500;
+  color: rgba($font-color-2, .8);
+}
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+
+  padding-bottom: rem(24px);
+}

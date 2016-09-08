@@ -10,13 +10,27 @@
 
       new App.View.Steps({el: '#slider'})
 
+      $('select').chosen();
+      $('select.-input-big').chosen({'width':'360px' });
+      $('select.-input-small').chosen({'width':'208px' });
+
       $('#country').change(function() {
         if($(this).val() !== '') {
+          var timeOut;
+
           $.get('/geo_locations/states_for/'+$(this).val());
+
+          //This is the most awful thing I have one in a while...
+          clearTimeout(timeOut);
+          timeOut = setTimeout(function() {
+            $("#analysis_geo_location_id").trigger("chosen:updated");
+          }, 400);
+
         } else {
           $("#state-selection").addClass("hidden");
         }
       });
+
     },
 
     show: function(params) {

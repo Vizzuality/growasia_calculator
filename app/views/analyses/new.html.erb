@@ -9,12 +9,12 @@
         <p class="text -description">Start typing or select your country in the map</p>
         <%= select_tag :country,
           options_from_collection_for_select(@geo_locations, :country, :country),
-          include_blank: true %>
+          include_blank: true, class: '-input-big' %>
 
         <div id="state-selection" class="hidden">
           <%= f.label :geo_location_id, "Select your region", class: "text -questions"%>
           <p class="text -description">Start typing or select your region in the map</p>
-          <%= f.select :geo_location_id, [] %>
+          <%= f.select :geo_location_id, [], {}, class: '-input-big' %>
         </div>
       </div>
     </section>
@@ -24,19 +24,23 @@
     <section id="slide-2" class="l-slide -slide-2 js--slide">
       <div class="c-slide-content">
         <p class="text -questions">
-          Currently, I’m growing
-          <%= f.select :crop, select_options(Analysis::CROPS) %>
-        </p>
-        <p class="text -questions">
-          on
-          <%= f.text_field :area %>
-          hectares
-        </p>
-        <p class="text -questions">
-           and expect a yield of
-           <%= f.text_field :yield %>
-           <%= f.select :yield_unit, select_options(Analysis::YIELD_UNITS) %>
-          <span class="text -form-inputs -medium">yr<sup>-1</sup></span>
+          <span>
+            Currently, I’m growing
+            <%= f.select :crop, select_options(Analysis::CROPS), {}, class: '-input-small'%>
+          </span>
+          <span>
+            on
+            <%= f.text_field :area, class: '-input-small' %>
+            hectares
+          </span>
+          <span>
+            and expect a yield of
+          </span>
+          <span>
+            <%= f.text_field :yield, class: '-input-small' %>
+            <%= f.select :yield_unit, select_options(Analysis::YIELD_UNITS), {}, class: '-input-small' %>
+            <span class="text -form-inputs -medium"> per yard</span>
+          </span>
         </p>
       </div>
     </section>
