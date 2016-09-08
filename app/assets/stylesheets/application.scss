@@ -12,6 +12,7 @@
  *
  *= require normalize-css
  *= require c3
+ *= require chosen.css
  *= require_self
  */
 
@@ -27,6 +28,7 @@
 @import "settings/icons";
 @import "settings/buttons";
 @import "settings/button-containers";
+@import "settings/form";
 
 /*
  * THANK YOU FOR KEEPING ALPHABETICAL ORDER

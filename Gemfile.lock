@@ -115,7 +115,10 @@ GEM
       rails-assets-underscore (>= 1.8.3)
     rails-assets-c3 (0.4.11)
       rails-assets-d3 (~> 3.5.0)
+    rails-assets-chosen (1.6.2)
+      rails-assets-jquery (>= 1.4.4)
     rails-assets-d3 (3.5.17)
+    rails-assets-jquery (3.1.0)
     rails-assets-normalize-css (4.2.0)
     rails-assets-underscore (1.8.3)
     rails-dom-testing (2.0.1)
@@ -188,6 +191,7 @@ DEPENDENCIES
   rails-assets-URIjs!
   rails-assets-backbone!
   rails-assets-c3 (= 0.4.11)!
+  rails-assets-chosen!
   rails-assets-d3 (~> 3.5.17)!
   rails-assets-normalize-css!
   rails-assets-underscore!
