@@ -67,9 +67,9 @@
   }
 
   .actions {
-    @extend %centerx;
+    position: absolute;
+    right: rem(16px);
     bottom: rem(32px);
   }
-
 }
 

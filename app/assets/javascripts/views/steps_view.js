@@ -46,7 +46,7 @@
       }
 
       if (this.currentPath === 'crop') {
-        if ( this.nextSlide > 8 ) {
+        if ( this.nextSlide >= 8 ) {
           this.nextSlide = 8;
           this.lastSlide = true;
         } else if(this.nextSlide <= 1 ) {
@@ -57,7 +57,7 @@
           this.lastSlide = false;
         }
       } else {
-        if ( this.nextSlide > 14 ) {
+        if ( this.nextSlide >= 14 ) {
           this.nextSlide = 14;
           this.lastSlide = true;
         } else if(this.nextSlide <= 1) {
