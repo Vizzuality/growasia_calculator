@@ -31,7 +31,7 @@
       var routeSplited = routeName.split('#');
       var controllerName = routeSplited[0];
       var actionName = routeSplited[1];
-      var params = _.extend({id: routeParams[0]}, this.getParams(routeParams[1]));
+      var params = (!!_.compact(routeParams).length) ? _.extend({id: routeParams[0]}, this.getParams(window.location.search)) : this.getParams(window.location.search);
       if (App.Controller[controllerName] &&
         App.Controller.hasOwnProperty(controllerName)) {
         var currentController = new App.Controller[controllerName]();
