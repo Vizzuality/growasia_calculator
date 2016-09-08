@@ -6,10 +6,11 @@
 
   App.View.Steps = Backbone.View.extend({
 
-    currentSlide: 1,
+    nextSlide: 1,
+    currentPath: '',
 
     events: {
-      'click .js--slider-handler' : 'changeDiapo',
+      'click .js--slider-handler' : 'onClickChangeDiapo',
     },
 
     initialize: function(settings) {
@@ -24,32 +25,63 @@
     },
 
     cacheVars: function() {
-      this.$allSliders = $('.js--slide');
+      this.$allSliders = this.$el.find('.js--slide');
+      this.btnPrev = this.$el.find('.js--slider-handler[data-step="prev"]');
+      this.btnNext = this.$el.find('.js--slider-handler[data-step="next"]');
     },
 
-    changeDiapo: function(e) {
-      var currentSlide = this.currentSlide;
+    onClickChangeDiapo: function(e) {
+      var currentSlide = this.nextSlide;
 
-      $(e.currentTarget).data('step') === 'next' ? this.currentSlide += 1 : this.currentSlide -= 1;
+      $(e.currentTarget).data('step') === 'next' ? this.nextSlide += 1 : this.nextSlide -= 1;
 
-
-      if (currentSlide === 2) {
-
+      if (currentSlide === 3) {
         var crop = $('#analysis_crop').val();
         if (crop === 'rice') {
-          this.currentSlide = 9;
+          this.nextSlide = 9;
+          this.currentPath = 'rice';
+        } else {
+          this.currentPath = 'crop';
         };
       }
 
+      if (this.currentPath === 'crop') {
+        if ( this.nextSlide > 8 ) {
+          this.nextSlide = 8;
+          this.lastSlide = true;
+        } else if(this.nextSlide <= 1 ) {
+          this.nextSlide = 1;
+          this.firstSlide = true;
+        } else {
+          this.firstSlide = false;
+          this.lastSlide = false;
+        }
+      } else {
+        if ( this.nextSlide > 14 ) {
+          this.nextSlide = 14;
+          this.lastSlide = true;
+        } else if(this.nextSlide <= 1) {
+          this.nextSlide = 1;
+          this.firstSlide = true;
+        } else {
+          this.firstSlide = false;
+          this.lastSlide = false;
+        }
+      }
+
+      this.manageHandlers();
       this.showDiapo();
     },
 
     showDiapo: function() {
       this.$allSliders.removeClass('-is-current');
-      $('#slide-' + this.currentSlide).addClass('-is-current');
+      $('#slide-' + this.nextSlide).addClass('-is-current');
+    },
+
+    manageHandlers: function() {
+      this.firstSlide ? this.btnPrev.addClass('is-hidden') : this.btnPrev.removeClass('is-hidden');
+      this.lastSlide ? this.btnNext.addClass('is-hidden') : this.btnNext.removeClass('is-hidden');
     }
-
-
   });
 
 })(this.App);
