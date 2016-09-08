@@ -24,22 +24,26 @@
         id: params.id
       });
 
+      var analysisActionsView = new App.View.AnalysisActions({
+        el: '#analysisActions'
+      });
+
       // Fetch the analysis before render the graphs
       analysisModel.fetch()
         .then(function(){
           console.log(analysisModel.toJSON());
-          this.analysisActionsView = new App.View.AnalysisActions({
-            el: '#analysisActions'
-          });
+
+          var emissions_by_source = this.parseEmissionBySource(analysisModel.get('analysis').emissions_by_source[0]);
+          console.log(emissions_by_source);
 
           this.chart1 = new App.View.Chart({
             el: '#chart-1',
             options: {
               data: {
-                columns: [
-                  ['t CO2/ha/yr', 30, 200, 100],
-                  // ['data2', 130, 100, 140]
-                ],
+                json: emissions_by_source.data.json,
+                keys: {
+                  value: ['total']
+                },
                 type: 'bar'
               },
               bar: {
@@ -50,8 +54,16 @@
               axis: {
                 x: {
                   type: 'category',
-                  categories: ['Tillage', 'Fertilizer', 'Other Agrochemicals']
+                  categories: emissions_by_source.axis.x.categories
+                },
+                y: {
+                  tick: {
+                    format: d3.format('s')
+                  }
                 }
+              },
+              legend: {
+                show: false
               }
             }
           });
@@ -94,7 +106,23 @@
           console.log('The API does not work');
         }.bind(this))
 
+    },
+
+    parseEmissionBySource: function(emissions) {
+      console.log(emissions);
+      return {
+        data: {
+          json: emissions
+        },
+        axis: {
+          x: {
+            categories: _.pluck(emissions, 'name')
+          }
+        }
+      }
+      console.log(emissions);
     }
+
   });
 
 
