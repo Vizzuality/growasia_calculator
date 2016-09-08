@@ -1,6 +1,4 @@
 .c-slide-content {
-  // width: 55%;
-  // max-width: rem(600px);
   text-align: center;
 
   .text {
@@ -35,6 +33,9 @@
 
   //HOME
   .-home & {
+    width: 55%;
+    max-width: rem(600px);
+
     .logo {
       width: rem(115px);
       height: rem(154px);
