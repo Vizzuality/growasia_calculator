@@ -148,7 +148,6 @@ class Analysis < ApplicationRecord
       ["coccoa", "coffee", "tea"].include?(crop)
 
     r = CROPS.select{|t| t[:slug] == crop}.first
-    converted_yield = yield_unit == "ton" ? yield : yield*0.001
     crop_residue = r[:final_default_residue_amount] ||
       converted_yield*r[:rpr]*(1-r[:moisture_content])
 
@@ -165,7 +164,7 @@ class Analysis < ApplicationRecord
     # EFCrop Residue = 1.6 (kg CO2-e/kg d.m. burned).
     # EFRice Straw = 1.5 (kg CO2-e/kg d.m. burned)
     r = CROPS.select{|t| t[:slug] == crop}.first
-    converted_yield = yield_unit == "ton" ? yield : yield*0.001
+
     crop_residue = r[:final_default_residue_amount] ||
       converted_yield*r[:rpr]*(1-r[:moisture_content])
     ef = rice? ? 1.5 : 1.6
@@ -242,5 +241,9 @@ class Analysis < ApplicationRecord
     conversion_factor = (1+nutrient_managements.first.amount*nutrient_mgt[:conversion_factor])**0.59
     ef_rice = 1.30 * water_scaling_factor * pre_cult_scaling_factor * conversion_factor
     (ef_rice * cultivation_time * area * (10**-6)) * 25
+  end
+
+  def converted_yield
+    converted_yield ||= yield_unit == "ton" ? self.yield : self.yield*0.001
   end
 end

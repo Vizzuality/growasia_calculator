@@ -1,16 +1,20 @@
 class AnalysisSerializer < ActiveModel::Serializer
-  attributes :id, :area, :yield, :crop, :analysis
+  attributes :id, :area, :yield, :yield_unit, :crop, :analysis
 
   belongs_to :geo_location
 
+  def yield_unit
+    "t per ha and yr"
+  end
+
   def yield
-    yield_unit == "ton" ? object.yield : object.yield*0.001
+    object.converted_yield
   end
 
   def analysis
     total = 0.0
-    converted_yield = yield_unit == "ton" ? object.yield : object.yield*0.001
-    per_yield = converted_yield*object.area
+
+    per_yield = object.converted_yield*object.area
 
     # for stacked bars
     emissions_by_source = []
