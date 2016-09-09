@@ -148,8 +148,9 @@ class Analysis < ApplicationRecord
       ["coccoa", "coffee", "tea"].include?(crop)
 
     r = CROPS.select{|t| t[:slug] == crop}.first
+    converted_yield = yield_unit == "ton" ? yield : yield*0.001
     crop_residue = r[:final_default_residue_amount] ||
-      self.yield*r[:rpr]*(1-r[:moisture_content])
+      converted_yield*r[:rpr]*(1-r[:moisture_content])
 
     # (t CO2-e) =[ (Area (ha) *
     # Crop residue (kg. ha-1yr-1) * NAG + (Crop residue (kg. ha-1 yr-1) * RBG *
@@ -164,8 +165,9 @@ class Analysis < ApplicationRecord
     # EFCrop Residue = 1.6 (kg CO2-e/kg d.m. burned).
     # EFRice Straw = 1.5 (kg CO2-e/kg d.m. burned)
     r = CROPS.select{|t| t[:slug] == crop}.first
+    converted_yield = yield_unit == "ton" ? yield : yield*0.001
     crop_residue = r[:final_default_residue_amount] ||
-      self.yield*r[:rpr]*(1-r[:moisture_content])
+      converted_yield*r[:rpr]*(1-r[:moisture_content])
     ef = rice? ? 1.5 : 1.6
     area * crop_residue * ef
   end

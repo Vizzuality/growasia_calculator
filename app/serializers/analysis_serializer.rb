@@ -3,9 +3,14 @@ class AnalysisSerializer < ActiveModel::Serializer
 
   belongs_to :geo_location
 
+  def yield
+    yield_unit == "ton" ? object.yield : object.yield*0.001
+  end
+
   def analysis
     total = 0.0
-    per_yield = object.yield*object.area
+    converted_yield = yield_unit == "ton" ? object.yield : object.yield*0.001
+    per_yield = converted_yield*object.area
 
     # for stacked bars
     emissions_by_source = []
