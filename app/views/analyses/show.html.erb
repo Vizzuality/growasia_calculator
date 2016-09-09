@@ -84,7 +84,7 @@
     <div class="input-group -header">
       <p class="text -sidebar-resume">Find out here how alternative practices could reduce your emissions</p>
     </div>
-    <%= form_for @analysis, remote: true do |f| %>
+    <%= form_for [:api, :v1, @analysis], remote: true do |f| %>
       <div class="input-group -first">
         <div>
           <label class="text -description" for="">Tillage</label>
