@@ -38,7 +38,7 @@
     </div>
   </div>
 
-  <div class="c-analysis-graphs">
+  <div id="analysisChartsView" class="c-analysis-graphs">
     <div class="grid">
       <div class="grid-col">
         <div id="chart-1" class="c-graph">
@@ -79,12 +79,12 @@
   </div>
 </section>
 
-<section class="l-analysis-sidebar">
+<section id="analysisSidebarView" class="l-analysis-sidebar">
   <div class="c-analysis-sidebar">
     <div class="input-group -header">
       <p class="text -sidebar-resume">Find out here how alternative practices could reduce your emissions</p>
     </div>
-    <%= form_for [:api, :v1, @analysis], remote: true do |f| %>
+    <%= form_for [:api, :v1, @analysis], :html => { :id => "analysis-sidebar-form" } do |f| %>
       <div class="input-group -first">
         <div>
           <label class="text -description" for="">Tillage</label>
