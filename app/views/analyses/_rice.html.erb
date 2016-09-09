@@ -43,17 +43,23 @@
 <h1>Liming and Dolomite</h1>
 <section id="slide-11" class="l-slide -slide-11 js--slide">
   <div class="c-slide-content">
-    <p class="text -description">Skip if it doesn't apply</p>
-
     <p class="text -questions">
       <span>
-        We apply
-        <%= f.text_field :lime_amount %><span class="text -form-inputs -medium">kg. ha<sup>-1</sup> yr<sup>-1</sup></span>
-        of lime and
+        Do you apply lime?
+        <input type="checkbox">
       </span>
       <span>
-        <%= f.text_field :dolomite_amount %><span class="text -form-inputs -medium">kg. ha<sup>-1</sup> yr<sup>-1</sup></span>
-        of dolomite
+        <%= f.text_field :lime_amount, class: '-input-small' %>
+        <span class="text -form-inputs -medium">kg per ha and yr</span>
+      </span>
+      <span>
+        Do you apply dolomite?
+        <input type="checkbox">
+      </span>
+      <span>
+        <%= f.text_field :dolomite_amount, class: '-input-small' %>
+        <span class="text -form-inputs -medium">kg per ha and yr</span>
+        of dolomite.
       </span>
     </p>
   </div>
@@ -65,12 +71,12 @@
   <div class="c-slide-content">
     <p class="text -questions">
       <span>
-        We apply
-        <%= f.text_field :agrochemical_amount %>
-        <span class="text -form-inputs -medium">kg. ha<sup>-1</sup> yr<sup>-1</sup></span>
+        Do you apply agrochemicals </br> including fertilizers, pesticides, or herbicides?
+        <input type="checkbox">
       </span>
       <span>
-        in agrochemicals including fertilizers, pesticides, and herbicides.
+        <%= f.text_field :agrochemical_amount, class: '-input-small' %>
+        <span class="text -form-inputs -medium">kg per ha and yr</span>
       </span>
     </p>
   </div>
@@ -85,21 +91,38 @@
         We apply
         <%= f.fields_for :fertilizers do |builder| %>
           <%= builder.hidden_field :category, value: Category::FERTILIZER %>
-          <%= builder.text_field :amount %>
-          kg. ha<sup>-1</sup> yr<sup>-1</sup> of
-          <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES) %> and
+          <%= builder.text_field :amount, class: '-input-small' %>
+          <span class="text -form-inputs -medium">kg per ha and yr</span>
+      </span>
+      <span>
+          of
+          <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES) %>
         <% end %>
+      </span>
+
+      <span>
+        and
         <%= f.fields_for :manures do |builder| %>
           <%= builder.hidden_field :category, value: Category::MANURE %>
-          and <%= builder.text_field :amount %> kg. ha<sup>-1</sup> yr<sup>-1</sup>
+          <%= builder.text_field :amount, class: '-input-small' %>
+          <span class="text -form-inputs -medium">kg per ha and yr</span>
+      </span>
+      <span>
           of
-          <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES) %>.
+          <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES) %>
         <% end %>
+      </span>
+
+      <span>
         Additionally, we incorporate
         <%= f.fields_for :nutrient_managements do |builder| %>
           <%= builder.hidden_field :category, value: Category::NUTRIENT_MANAGEMENT %>
-          <%= builder.text_field :amount %> kg. ha<sup>-1</sup> yr<sup>-1</sup> of
-          <%= builder.select :addition_type, select_options(Analysis::RICE_NUTRIENT_MANAGEMENT) %>.
+          <%= builder.text_field :amount, class: '-input-small' %>
+          <span class="text -form-inputs -medium">kg per ha and yr</span>
+      </span>
+      <span>
+          of
+          <%= builder.select :addition_type, select_options(Analysis::RICE_NUTRIENT_MANAGEMENT) %>
         <% end %>
       </span>
     </p>
@@ -113,21 +136,29 @@
     <p class="text -questions">
       <span>
         Each year, we use an estimated
+      </span>
+      <span>
         <%= f.fields_for :transportation_fuels do |builder| %>
           <%= builder.hidden_field :category, value: Category::TRANSPORTATION_FUEL %>
-          <%= builder.text_field :amount %>
+          <%= builder.text_field :amount, class: '-input-small' %>
           <%= builder.select :unit, select_options(Analysis::FUEL_UNITS) %>
-          <%= builder.select :addition_type, select_options(Analysis::FUEL_TYPES) %> for transportation,
+          <%= builder.select :addition_type, select_options(Analysis::FUEL_TYPES) %>
+          for transportation,
         <% end %>
+      </span>
+      <span>
         <%= f.fields_for :irrigation_fuels do |builder| %>
           <%= builder.hidden_field :category, value: Category::IRRIGATION_FUEL %>
-          <%= builder.text_field :amount %>
+          <%= builder.text_field :amount, class: '-input-small' %>
           <%= builder.select :unit, select_options(Analysis::FUEL_UNITS) %>
-          <%= builder.select :addition_type, select_options(Analysis::FUEL_TYPES) %> for irrigation, and
+          <%= builder.select :addition_type, select_options(Analysis::FUEL_TYPES) %>
+          for irrigation, and
         <% end %>
+      </span>
+      <span>
         <%= f.fields_for :fuels do |builder| %>
           <%= builder.hidden_field :category, value: Category::FUEL %>
-          <%= builder.text_field :amount %>
+          <%= builder.text_field :amount, class: '-input-small' %>
           <%= builder.select :unit, select_options(Analysis::FUEL_UNITS) %>
           <%= builder.select :addition_type, select_options(Analysis::FUEL_TYPES) %> for other practices.
         <% end %>

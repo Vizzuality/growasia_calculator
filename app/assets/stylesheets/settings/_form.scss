@@ -70,7 +70,7 @@
   li {
     font-size: rem(24px);
     font-weight: 100;
-    padding: rem(10px) 0;
+    padding: rem(10px);
     color: $font-color-2;
     line-height: 1.1;
 
@@ -130,6 +130,10 @@ select,
     width: 100%;
     color: $font-color-1;
   }
+
+  .c-slide-content .text & {
+    margin: 0;
+  }
 }
 
 input[type = "checkbox"] {
@@ -182,7 +186,9 @@ input[type = "submit"] {
 }
 
 .chosen-container-single .chosen-single span {
+  display: block !important;
   margin: 0;
+  margin-right: rem(20px);
   margin-bottom: 0;
   font-size: rem(32px);
   font-weight: 500;
