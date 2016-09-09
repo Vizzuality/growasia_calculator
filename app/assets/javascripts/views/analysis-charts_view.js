@@ -56,10 +56,7 @@
                 format: d3.format('.2s')
               }
             }
-          },
-          legend: {
-            show: false
-          }
+          }          
         }
       });
 
