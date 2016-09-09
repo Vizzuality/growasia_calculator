@@ -84,47 +84,61 @@
     <div class="input-group -header">
       <p class="text -sidebar-resume">Find out here how alternative practices could reduce your emissions</p>
     </div>
-    <div class="input-group -first">
-      <div>
-        <label class="text -description" for="">Tillage</label>
-        <select>
-          <option value="">Full Tillage</option>
-        </select>
+    <%= form_for @analysis, remote: true do |f| %>
+      <div class="input-group -first">
+        <div>
+          <label class="text -description" for="">Tillage</label>
+          <%= f.select:tillage, select_options(Analysis::TILLAGES), {}, class: '-input-big' %>
+        </div>
+        <%= f.fields_for :fertilizers do |builder| %>
+          <div>
+            <label class="text -description" for=""><%= builder.object.fertilizer_name %></label>
+            <%= builder.text_field :amount %>
+          </div>
+        <% end %>
+        <%= f.fields_for :manures do |builder| %>
+          <div>
+            <label class="text -description" for=""><%= builder.object.manure_name %></label>
+            <%= builder.text_field :amount %>
+          </div>
+        <% end %>
+        <div>
+          <label class="text -description" for="">Agrochemicals amount</label>
+          <%= f.text_field :agrochemical_amount %>
+        </div>
       </div>
-      <div>
-        <label class="text -description" for="">Fertilizer</label>
-        <select>
-          <option value="">DAP</option>
-        </select>
+      <div class="input-group -second">
+        <div>
+          <label class="text -description" for="">Crop management practices</label>
+          <% Analysis::CROP_MANAGEMENT_PRACTICES.each do |practice| %>
+            <div class="input-wrap">
+              <label class="text -form-inputs"><%= practice[:title] %></label>
+              <%= f.check_box :crop_management_practices, { multiple: true },
+                practice[:slug], nil %>
+            </div>
+          <% end %>
+        </div>
       </div>
-      <div>
-        <label class="text -description" for="">Other Agrochemicals</label>
-        <select>
-          <option value="">None</option>
-        </select>
-      </div>
-    </div>
-    <div class="input-group -second">
-      <div>
-        <label class="text -description" for="">Residue Burning</label>
-        <select>
-          <option value="">None</option>
-        </select>
-      </div>
-    </div>
-    <div class="input-group -third">
-      <div>
-        <label class="text -description" for="">Fosil Fuel Type</label>
-        <select>
-          <option value="">Diesel</option>
-        </select>
-      </div>
-      <div>
-        <label class="text -description" for="">Fosil Fuel Ammount</label>
-        <select>
-          <option value="">1800<span>L/yr</span></option>
-        </select>
-      </div>
+      <div class="input-group -third">
+        <div>
+          <label class="text -description" for="">Shaded?</label>
+          <%= f.select:is_shaded, options_for_select([["Yes", true], ["No", false]]) %>
+        </div>
+        <div>
+          <label class="text -description" for="">Lime</label>
+          <%= f.text_field :lime_amount %>
+        </div>
+        <div>
+          <label class="text -description" for="">Dolomite</label>
+          <%= f.text_field :dolomite_amount %>
+        </div>
+        <div>
+          <%= f.fields_for :fuels do |builder| %>
+            <label class="text -description" for=""><%= builder.object.fuel_name %></label>
+            <%= builder.text_field :amount %><%= builder.object.fuel_unit_name %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 </section>
