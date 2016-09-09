@@ -40,7 +40,7 @@
             },
             labels: {
               format: function (v, id, i, j) {
-                return d3.format('.2s')(v);
+                return d3.format('.3s')(v);
               }
             },
             type: 'bar',
@@ -57,8 +57,12 @@
               categories: _.pluck(emissions_by_source, 'name')
             },
             y: {
+              label: {
+                text: 't of CO2',
+                position: 'outer-middle'
+              },
               tick: {
-                format: d3.format('.2s')
+                format: d3.format('.3s')
               }
             }
           }

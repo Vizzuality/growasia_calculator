@@ -82,6 +82,12 @@
     opacity: .8;
   }
 
+  &.-figure-big {
+    color: $black;
+    font-size: rem(22px);
+  }
+
+
   //This is not the text into the grap but the legend below.
   &.-graph-legend {
     color: $black;

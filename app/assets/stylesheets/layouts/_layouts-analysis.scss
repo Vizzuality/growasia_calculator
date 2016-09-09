@@ -7,10 +7,12 @@
 }
 
 .l-analysis-sidebar {
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 0;
   bottom: 0;
   width: rem(336px);
+  height: 100%;
+  overflow: auto;
   background-color: $color-5;
 }
