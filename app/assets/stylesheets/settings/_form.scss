@@ -124,6 +124,12 @@ select,
   font-size: rem(32px);
   font-weight: 500;
   color: rgba($font-color-2, .8);
+
+  .c-analysis-sidebar & {
+    margin-top: rem(8px);
+    width: 100%;
+    color: $font-color-1;
+  }
 }
 
 input[type = "checkbox"] {

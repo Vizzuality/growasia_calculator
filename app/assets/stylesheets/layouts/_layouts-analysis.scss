@@ -1,0 +1,16 @@
+.l-analysis-main {
+  position: absolute;
+  left: rem(88px);
+  top: 0;
+  bottom: 0;
+  right: rem(336px);
+}
+
+.l-analysis-sidebar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: rem(336px);
+  background-color: $color-5;
+}

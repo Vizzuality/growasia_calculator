@@ -1,33 +1,33 @@
-<header class="c-analysis-header">
-  <div>
-    <ul class="list">
-      <li class="list-item">
-        <span class="title text -summary-small">Country</span>
-        <span class="value text -summary-big"><%= @analysis.geo_location.country %></span>
-      </li>
-      <li class="list-item">
-        <span class="title text -summary-small">Region</span>
-        <span class="value text -summary-big"><%= @analysis.geo_location.state %></span>
-      </li>
-    </ul>
-    <ul class="list">
-      <li class="list-item">
-        <span class="title text -summary-small">Crop</span>
-        <span class="value text -summary-big"><%= @analysis.crop.capitalize %></span>
-      </li>
-      <li class="list-item">
-        <span class="title text -summary-small">Area</span>
-        <span class="value text -summary-big"><%= @analysis.area %> <em>ha</em></span>
-      </li>
-      <li class="list-item">
-        <span class="title text -summary-small">Annual Production</span>
-        <span class="value text -summary-big"><%= @analysis.yield %> <em>kg. ha<sup>-1</sup> yr<sup>-1</sup></em></span>
-      </li>
-    </ul>
-  </div>
-</header>
+<section class="l-analysis-main">
+  <header class="c-analysis-header">
+    <div>
+      <ul class="list">
+        <li class="list-item">
+          <span class="title text -summary-small">Country</span>
+          <span class="value text -summary-big"><%= @analysis.geo_location.country %></span>
+        </li>
+        <li class="list-item">
+          <span class="title text -summary-small">Region</span>
+          <span class="value text -summary-big"><%= @analysis.geo_location.state %></span>
+        </li>
+      </ul>
+      <ul class="list">
+        <li class="list-item">
+          <span class="title text -summary-small">Crop</span>
+          <span class="value text -summary-big"><%= @analysis.crop.capitalize %></span>
+        </li>
+        <li class="list-item">
+          <span class="title text -summary-small">Area</span>
+          <span class="value text -summary-big"><%= @analysis.area %> <em>ha</em></span>
+        </li>
+        <li class="list-item">
+          <span class="title text -summary-small">Annual Production</span>
+          <span class="value text -summary-big"><%= @analysis.yield %> <em>kg. ha<sup>-1</sup> yr<sup>-1</sup></em></span>
+        </li>
+      </ul>
+    </div>
+  </header>
 
-<section>
   <div class="c-analysis-total">
     <div class="description text -questions">Your current estimated emission are:</div>
     <div class="total">
@@ -79,7 +79,57 @@
   </div>
 </section>
 
-<h1>Analysis</h1>
+<section class="l-analysis-sidebar">
+  <div class="c-analysis-sidebar">
+    <div class="input-group -header">
+      <p class="text -sidebar-resume">Find out here how alternative practices could reduce your emissions</p>
+    </div>
+    <div class="input-group -first">
+      <div>
+        <label class="text -description" for="">Tillage</label>
+        <select>
+          <option value="">Full Tillage</option>
+        </select>
+      </div>
+      <div>
+        <label class="text -description" for="">Fertilizer</label>
+        <select>
+          <option value="">DAP</option>
+        </select>
+      </div>
+      <div>
+        <label class="text -description" for="">Other Agrochemicals</label>
+        <select>
+          <option value="">None</option>
+        </select>
+      </div>
+    </div>
+    <div class="input-group -second">
+      <div>
+        <label class="text -description" for="">Residue Burning</label>
+        <select>
+          <option value="">None</option>
+        </select>
+      </div>
+    </div>
+    <div class="input-group -third">
+      <div>
+        <label class="text -description" for="">Fosil Fuel Type</label>
+        <select>
+          <option value="">Diesel</option>
+        </select>
+      </div>
+      <div>
+        <label class="text -description" for="">Fosil Fuel Ammount</label>
+        <select>
+          <option value="">1800<span>L/yr</span></option>
+        </select>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <h1>Analysis</h1>
 <% if !@analysis.rice? %>
   <h2>Stable soil carbon content</h2>
   <%= @analysis.stable_soil_carbon_content %>
@@ -124,4 +174,4 @@
 <% if @analysis.rice? %>
   <h2>Emissions from rice cultivation</h2>
   <%= @analysis.emissions_from_rice_cultivation %>
-<% end %>
+<% end %> -->
