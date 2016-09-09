@@ -1,8 +1,12 @@
 class Api::V1::AnalysesController < ApiController
-  before_action :set_analysis, only: [:show]
+  before_action :set_analysis, only: [:show, :update]
 
   # GET /api/v1/analyses/1
   def show
+    render json: @analysis
+  end
+
+  def update
     render json: @analysis
   end
 

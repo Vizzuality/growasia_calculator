@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :analyses, only: [:show]
+      resources :analyses, only: [:show, :update]
     end
   end
   resources :analyses, only: [:show, :new, :create]
