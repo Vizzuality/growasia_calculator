@@ -38,6 +38,11 @@
             json: {
               'Current practices': _.pluck(emissions_by_source, 'total')
             },
+            labels: {
+              format: function (v, id, i, j) {
+                return d3.format('.2s')(v);
+              }
+            },
             type: 'bar',
             order: null
           },
@@ -56,7 +61,7 @@
                 format: d3.format('.2s')
               }
             }
-          }          
+          }
         }
       });
 
