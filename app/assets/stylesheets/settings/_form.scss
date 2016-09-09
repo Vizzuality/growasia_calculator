@@ -127,14 +127,37 @@ select,
 }
 
 input[type = "checkbox"] {
+  display: none;
+}
+
+.checkbox-label,
+input[type = "checkbox"] + label {
   position: relative;
+  display: inline-block;
   @extend %clean-button-or-input;
   width: rem(56px);
   height: rem(56px);
   margin-left: 20px;
-  background-color: rgba($black, .1);
+  background-color: rgba($black, .04);
+  transform: translatey(16px);
 
   &:checked:after {
+    content: "";
+    @extend %center;
+    width: rem(18px);
+    height: rem(18px);
+    background-position: center;
+    background-image: image-url('check.svg');
+  }
+
+  .input-wrap & {
+    transform: translatey(0);
+  }
+}
+
+.checkbox-label:checked,
+input[type = "checkbox"]:checked + label {
+  &:after {
     content: "";
     @extend %center;
     width: rem(18px);

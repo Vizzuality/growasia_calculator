@@ -4,7 +4,7 @@
   <div class="c-slide-content">
     <p class="text -questions">
       <span>
-        Crop management includes
+        My crop management includes
         <%= f.select:tillage, select_options(Analysis::TILLAGES), {}, class: '-input-big' %>
       </span>
       <span>
@@ -42,10 +42,12 @@
     <p class="text -questions">Additional crop management practices include (check all that apply):</p>
     <div class="input-group">
       <% Analysis::CROP_MANAGEMENT_PRACTICES.each do |practice| %>
+        <!-- <%= debug practice %> -->
         <div class="input-wrap">
-          <label class="text -form-inputs"><%= practice[:title] %></label>
-          <%= f.check_box :crop_management_practices, { multiple: true },
+          <p class="text -form-inputs"><%= practice[:title] %></p>
+            <%= f.check_box :crop_management_practices, { multiple: true },
             practice[:slug], nil %>
+            <label for=<%= practice[:title] %>></label>
         </div>
       <% end %>
     </div>
@@ -77,7 +79,8 @@
     <p class="text -questions">
       <span>
         Do you apply lime?
-        <input type="checkbox">
+        <input type="checkbox" id="lime">
+        <label for="lime"></label>
       </span>
       <span>
         <%= f.text_field :lime_amount, class: '-input-small' %>
@@ -85,7 +88,8 @@
       </span>
       <span>
         Do you apply dolomite?
-        <input type="checkbox">
+        <input type="checkbox" id="dolomite">
+        <label for="dolomite"></label>
       </span>
       <span>
         <%= f.text_field :dolomite_amount, class: '-input-small' %>
@@ -103,7 +107,8 @@
     <p class="text -questions">
       <span>
         Do you apply agrochemicals </br> including fertilizers, pesticides, or herbicides?
-        <input type="checkbox">
+        <input type="checkbox" id="agrochemical">
+        <label for="agrochemical"></label>
       </span>
       <span>
         <%= f.text_field :agrochemical_amount, class: '-input-small' %>
