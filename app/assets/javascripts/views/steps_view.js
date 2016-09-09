@@ -38,7 +38,7 @@
 
       $(e.currentTarget).data('step') === 'next' ? this.nextSlide += 1 : this.nextSlide -= 1;
 
-      if (currentSlide === 3) {
+      if (currentSlide === 2) {
         var crop = $('#analysis_crop').val();
         if (crop === 'rice') {
           this.nextSlide = 9;

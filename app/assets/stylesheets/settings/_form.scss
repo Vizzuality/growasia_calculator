@@ -5,7 +5,6 @@
   vertical-align: sub;
 }
 
-
 .chosen-container-single .chosen-single {
   border: 0;
   background: none;
@@ -13,6 +12,7 @@
   box-shadow: none;
   padding: 0;
   text-align: left;
+  overflow: visible;
 
   height: 40px;
   line-height: 40px;
@@ -116,7 +116,7 @@ select,
 .chosen-container {
   @extend %clean-button-or-input;
   min-width: rem(208px);
-  padding: rem(9px) rem(20px) rem(9px) rem(13px);
+  padding: rem(9px) rem(40px) rem(9px) rem(13px);
   background-color: rgba($black, .04);
   margin-top: rem(16px);
 
