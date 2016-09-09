@@ -5,30 +5,30 @@
     <p class="text -questions">
       <span>
         My crop management includes
-        <%= f.select:tillage, select_options(Analysis::TILLAGES), {}, class: '-input-big' %>
+        <%= f.select:tillage, select_options(Analysis::TILLAGES), {}, class: "-input-big" %>
       </span>
       <span>
         and the application of
       </span>
       <span>
         <%= f.fields_for :fertilizers do |builder| %>
-          <%= builder.hidden_field :category, value: Category::FERTILIZER, class: '-input-small' %>
+          <%= builder.hidden_field :category, value: Category::FERTILIZER %>
           <%= builder.text_field :amount, class: '-input-small' %>
           <span class="text -form-inputs -medium">kg per ha and yr</span>
         of
-        <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES), {}, class: '-input-small' %>
+        <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES), {}, class: "-input-big" %>
         <% end %>
       </span>
       <span>
         <%= f.fields_for :manures do |builder| %>
-        <%= builder.hidden_field :category, value: Category::MANURE, class: '-input-small' %>
+        <%= builder.hidden_field :category, value: Category::MANURE, class: "-input-big" %>
       </span>
       <span>
         and
         <%= builder.text_field :amount, class: '-input-small' %>
         <span class="text -form-inputs -medium">kg per ha and yr</span>
         of
-        <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES), {}, class: '-input-big' %>
+        <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES), {} %>
         <% end %>
       </span>
     </p>
