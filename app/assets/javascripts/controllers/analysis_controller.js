@@ -16,16 +16,7 @@
 
       $('#country').change(function() {
         if($(this).val() !== '') {
-          var timeOut;
-
           $.get('/geo_locations/states_for/'+$(this).val());
-
-          //This is the most awful thing I have one in a while...
-          clearTimeout(timeOut);
-          timeOut = setTimeout(function() {
-            $("#analysis_geo_location_id").trigger("chosen:updated");
-          }, 400);
-
         } else {
           $("#state-selection").addClass("hidden");
         }
@@ -62,7 +53,6 @@
         model: analysisModel,
         modelCompare: analysisCompareModel
       });
-
 
       // Fetch the analysis before render the graphs
       analysisModel.fetch();

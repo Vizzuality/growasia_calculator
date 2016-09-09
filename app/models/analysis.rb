@@ -2,6 +2,8 @@ class Analysis < ApplicationRecord
   include DataSource
 
   belongs_to :geo_location
+  has_many :additions
+
   has_many :fertilizers, -> { where category: Category::FERTILIZER },
     class_name: 'Addition'
   accepts_nested_attributes_for :fertilizers, allow_destroy: true,
@@ -55,36 +57,67 @@ class Analysis < ApplicationRecord
 
   def correct_fi_value
     # FI high with manure = Manure
-    return geo_location.fi_high_w_manure if crop_management_practices.empty? &&
-      !fertilizers.any? && manures.any?
+    return geo_location.fi_high_w_manure if manures.any?
 
-    # FI medium = None OR synthetic OR crop rot OR n-fixing AND No Burning AND
-    # NO cover crop / Green Manure / Improved Fallow
-    return 1.00 if none_nutrient_management_practices? ||
-      synthetic_or_crop_rot_or_n_fixing? &&
-      !crop_management_practices.include?("residue-burning") &&
-      (["cover-crop", "green-manure", "improved-fallow"]-crop_management_practices).size == 3
+    return geo_location.fi_low if fi_low?
 
-    # FI Low: None OR synthetic fert OR crop rot OR (n-fixing AND Crop residue Burning)
-    return geo_location.fi_low if none_nutrient_management_practices? ||
-      synthetic_or_crop_rot_or_n_fixing? &&
-      crop_management_practices.include?("residue-burning")
+    return 1.00 if fi_medium?
 
+    return geo_location.fi_high_wo_manure if fi_high_wo_manure?
+  end
+
+  def fi_low?
+    # FI Low: None OR crop rot WITH burning of residues AND (NO cover crop
+    # OR green manure OR improved fallow OR n-fixing OR synthetic)
+    (
+      (
+        !additions.where(category: [Category::FERTILIZER, Category::MANURE]).any? &&
+        (!crop_management_practices || crop_management_practices.empty?)
+      ) ||
+      crop_management_practices.include?("crop-rot")
+    ) &&
+    crop_management_practices.include?("residue-burning") &&
+    (
+      (
+        !crop_management_practices.include?("cover-crop") ||
+        crop_management_practices.include?("green-manure") ||
+        crop_management_practices.include?("improved-fallow") ||
+        crop_management_practices.include?("n-fix") ||
+        fertilizers.any?
+      ) && !manures.any?
+    )
+  end
+
+  def fi_medium?
+    # FI medium = Synthetic OR n-fixing AND No Burning AND (
+    # NO cover crop && NO  Green Manure && NO Improved Fallow )
+    (
+      !manures.any? &&
+      (
+        fertilizers.any? ||
+        crop_management_practices.include?("n-fix")
+      )
+    ) &&
+    (["residue-burning", "cover-crop", "green-manure", "improved-fallow"] -
+     crop_management_practices).size == 4
+  end
+
+  def fi_high_wo_manure?
     # FI high without manure = synthetic or crop rotation or n-fixing AND
     # NO burning of residues AND WITH cover crop/green manure/improved fallow
-    return geo_location.fi_high_wo_manure if synthetic_or_crop_rot_or_n_fixing? &&
-      !crop_management_practices.include?("residue-burning") &&
-      (["cover-crop", "green-manure", "improved-fallow"]-crop_management_practices).size < 3
-  end
-
-  def none_nutrient_management_practices?
-    !fertilizers.any? && !manures.any? && crop_management_practices.empty?
-  end
-
-  def synthetic_or_crop_rot_or_n_fixing?
-    fertilizers.any? ||
-      crop_management_practices.include?("crop-rot") ||
-      crop_management_practices.include?("n-fix")
+    (
+      !manures.any? &&
+      (
+        fertilizers.any? ||
+        crop_management_practices.include?("n-fix")
+      )
+    ) &&
+    !crop_management_practices.include?("residue-burning") &&
+    (
+      crop_management_practices.include?("cover-crop") ||
+      crop_management_practices.include?("green-manure") ||
+      crop_management_practices.include?("improved-fallow")
+    )
   end
 
   #Area (ha) * Amount of Fertilizer Applied (kg ha-1 yr-1) * %Nfertilizer type *
@@ -116,7 +149,7 @@ class Analysis < ApplicationRecord
 
     r = CROPS.select{|t| t[:slug] == crop}.first
     crop_residue = r[:final_default_residue_amount] ||
-      self.yield*r[:rpr]*(1-r[:moisture_content])
+      converted_yield*r[:rpr]*(1-r[:moisture_content])
 
     # (t CO2-e) =[ (Area (ha) *
     # Crop residue (kg. ha-1yr-1) * NAG + (Crop residue (kg. ha-1 yr-1) * RBG *
@@ -131,8 +164,9 @@ class Analysis < ApplicationRecord
     # EFCrop Residue = 1.6 (kg CO2-e/kg d.m. burned).
     # EFRice Straw = 1.5 (kg CO2-e/kg d.m. burned)
     r = CROPS.select{|t| t[:slug] == crop}.first
+
     crop_residue = r[:final_default_residue_amount] ||
-      self.yield*r[:rpr]*(1-r[:moisture_content])
+      converted_yield*r[:rpr]*(1-r[:moisture_content])
     ef = rice? ? 1.5 : 1.6
     area * crop_residue * ef
   end
@@ -207,5 +241,9 @@ class Analysis < ApplicationRecord
     conversion_factor = (1+nutrient_managements.first.amount*nutrient_mgt[:conversion_factor])**0.59
     ef_rice = 1.30 * water_scaling_factor * pre_cult_scaling_factor * conversion_factor
     (ef_rice * cultivation_time * area * (10**-6)) * 25
+  end
+
+  def converted_yield
+    converted_yield ||= yield_unit == "ton" ? self.yield : self.yield*0.001
   end
 end
