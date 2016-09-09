@@ -1,44 +1,37 @@
-<header class="c-analysis-header">
-  <div>
-    <ul class="list">
-      <li class="list-item">
-        <span class="title text -summary-small">Country</span>
-        <span class="value text -summary-big"><%= @analysis.geo_location.country %></span>
-      </li>
-      <li class="list-item">
-        <span class="title text -summary-small">Region</span>
-        <span class="value text -summary-big"><%= @analysis.geo_location.state %></span>
-      </li>
-    </ul>
-    <ul class="list">
-      <li class="list-item">
-        <span class="title text -summary-small">Crop</span>
-        <span class="value text -summary-big"><%= @analysis.crop.capitalize %></span>
-      </li>
-      <li class="list-item">
-        <span class="title text -summary-small">Area</span>
-        <span class="value text -summary-big"><%= @analysis.area %> <em>ha</em></span>
-      </li>
-      <li class="list-item">
-        <span class="title text -summary-small">Annual Production</span>
-        <span class="value text -summary-big"><%= @analysis.converted_yield %> <em>t per ha</em></span>
-      </li>
-    </ul>
-  </div>
-</header>
-
-<section>
-  <div class="c-analysis-total">
-    <div class="description text -questions">Your current estimated emission are:</div>
-    <div class="total">
-      <div class="value-box">
-        <span class="value text -figure-extra-big">144</span>
-        <span class="info"><svg><use xlink:href="#icon-help"></use></svg></span>
-      </div>
+<section class="l-analysis-main">
+  <header class="c-analysis-header">
+    <div>
+      <ul class="list">
+        <li class="list-item">
+          <span class="title text -summary-small">Country</span>
+          <span class="value text -summary-big"><%= @analysis.geo_location.country %></span>
+        </li>
+        <li class="list-item">
+          <span class="title text -summary-small">Region</span>
+          <span class="value text -summary-big"><%= @analysis.geo_location.state %></span>
+        </li>
+      </ul>
+      <ul class="list">
+        <li class="list-item">
+          <span class="title text -summary-small">Crop</span>
+          <span class="value text -summary-big"><%= @analysis.crop.capitalize %></span>
+        </li>
+        <li class="list-item">
+          <span class="title text -summary-small">Area</span>
+          <span class="value text -summary-big"><%= @analysis.area %> <em>ha</em></span>
+        </li>
+        <li class="list-item">
+          <span class="title text -summary-small">Annual Production</span>
+          <span class="value text -summary-big"><%= @analysis.converted_yield %> <em>t per ha</em></span>
+        </li>
+      </ul>
     </div>
+  </header>
+
+  <div id="analysisTotalView" class="c-analysis-total">
   </div>
 
-  <div class="c-analysis-graphs">
+  <div id="analysisChartsView" class="c-analysis-graphs">
     <div class="grid">
       <div class="grid-col">
         <div id="chart-1" class="c-graph">
@@ -79,7 +72,71 @@
   </div>
 </section>
 
-<h1>Analysis</h1>
+<section id="analysisSidebarView" class="l-analysis-sidebar">
+  <div class="c-analysis-sidebar">
+    <div class="input-group -header">
+      <p class="text -sidebar-resume">Find out here how alternative practices could reduce your emissions</p>
+    </div>
+    <%= form_for [:api, :v1, @analysis], :html => { :id => "analysis-sidebar-form" } do |f| %>
+      <div class="input-group -first">
+        <div>
+          <label class="text -description" for="">Tillage</label>
+          <%= f.select:tillage, select_options(Analysis::TILLAGES), {}, class: '-input-big' %>
+        </div>
+        <%= f.fields_for :fertilizers do |builder| %>
+          <div>
+            <label class="text -description" for=""><%= builder.object.fertilizer_name %></label>
+            <%= builder.text_field :amount %>
+          </div>
+        <% end %>
+        <%= f.fields_for :manures do |builder| %>
+          <div>
+            <label class="text -description" for=""><%= builder.object.manure_name %></label>
+            <%= builder.text_field :amount %>
+          </div>
+        <% end %>
+        <div>
+          <label class="text -description" for="">Agrochemicals amount</label>
+          <%= f.text_field :agrochemical_amount %>
+        </div>
+      </div>
+      <div class="input-group -second">
+        <div>
+          <label class="text -description" for="">Crop management practices</label>
+          <% Analysis::CROP_MANAGEMENT_PRACTICES.each do |practice| %>
+            <div class="input-wrap">
+              <label class="text -form-inputs"><%= practice[:title] %></label>
+              <%= f.check_box :crop_management_practices, { multiple: true },
+                practice[:slug], nil %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="input-group -third">
+        <div>
+          <label class="text -description" for="">Shaded?</label>
+          <%= f.select:is_shaded, options_for_select([["Yes", true], ["No", false]]) %>
+        </div>
+        <div>
+          <label class="text -description" for="">Lime</label>
+          <%= f.text_field :lime_amount %>
+        </div>
+        <div>
+          <label class="text -description" for="">Dolomite</label>
+          <%= f.text_field :dolomite_amount %>
+        </div>
+        <div>
+          <%= f.fields_for :fuels do |builder| %>
+            <label class="text -description" for=""><%= builder.object.fuel_name %></label>
+            <%= builder.text_field :amount %><%= builder.object.fuel_unit_name %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<!-- <h1>Analysis</h1>
 <% if !@analysis.rice? %>
   <h2>Stable soil carbon content</h2>
   <%= @analysis.stable_soil_carbon_content %>
@@ -124,4 +181,4 @@
 <% if @analysis.rice? %>
   <h2>Emissions from rice cultivation</h2>
   <%= @analysis.emissions_from_rice_cultivation %>
-<% end %>
+<% end %> -->

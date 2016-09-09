@@ -1,0 +1,19 @@
+<div class="description text -questions">
+  {{#if totalCompare}}
+    Introducing alternative practices would result in:
+  {{else}}
+    Your current estimated emission are:
+  {{/if}}
+</div>
+<div class="total">
+  <div class="value-box">
+    <span class="value text -figure-extra-big">{{total}}</span>
+    {{#if totalCompare}}
+    <span class="value text -figure-extra-big">{{totalCompare}}</span>
+    {{/if}}
+    <span class="info"><svg><use xlink:href="#icon-help"></use></svg></span>
+  </div>
+  <div class="value-unit">
+    <span class="text -figure-big">t of CO<sub>2</sub></span>
+  </div>
+</div>

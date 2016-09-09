@@ -39,7 +39,7 @@
     },
 
     render: function() {
-      var chart = c3.generate(this.options);
+      this.chart = c3.generate(this.options);
     },
 
 
