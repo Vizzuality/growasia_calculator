@@ -51,6 +51,12 @@
         modelCompare: analysisCompareModel
       });
 
+      var analysisTotalView = new App.View.AnalysisTotal({
+        el: '#analysisTotalView',
+        model: analysisModel,
+        modelCompare: analysisCompareModel
+      });
+
       var analysisChartsView = new App.View.AnalysisCharts({
         el: '#analysisChartsView',
         model: analysisModel,
