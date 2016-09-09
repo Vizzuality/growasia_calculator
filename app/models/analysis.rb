@@ -90,29 +90,21 @@ class Analysis < ApplicationRecord
   #Area (ha) * Amount of Fertilizer Applied (kg ha-1 yr-1) * %Nfertilizer type *
   # (EFfertilizer type application + EFfertilizer type production) / 1000
   def emissions_from_fertilizers_application
-    results = []
+    emissions = 0.0
     fertilizers.each do |fert|
       fert_type = FERTILIZER_TYPES.select{|t| t[:slug] == fert.addition_type}.first
-      result = {type: fert.addition_type,
-                category: fert.category,
-                type_title: fert_type[:title]}
-      result[:value] = area*fert.amount*fert_type[:nfertilizer_type]*
+      emissions += area*fert.amount*fert_type[:nfertilizer_type]*
         (fert_type[:fertilizer_type_app] + fert_type[:fertilizer_type_prod]) /
         1000
-      results << result
     end
     manures.each do |manure|
       manure_type = MANURE_TYPES.
                   select{|t| t[:slug] == manure.addition_type}.first
-      result = {type: manure.addition_type,
-                category: manure.category,
-                type_title: manure_type[:title]}
-      result[:value] = area*manure.amount*manure_type[:nfertilizer_type]*
+      emissions += area*manure.amount*manure_type[:nfertilizer_type]*
         (manure_type[:fertilizer_type_app] + manure_type[:fertilizer_type_prod]) /
         1000
-      results << result
     end
-    results
+    emissions
   end
 
   def emissions_from_crop_residue_decomposition
@@ -171,35 +163,23 @@ class Analysis < ApplicationRecord
   end
 
   def emissions_from_fossil_fuel_use
-    results = []
+    emissions = 0.0
     fuels.each do |fuel|
       fuel_type = FUEL_TYPES.select{|t| t[:slug] == fuel.addition_type}.first
-      result = {type: fuel.addition_type,
-                category: fuel.category,
-                type_title: fuel_type[:title]}
       ef_to_use = fuel.unit == "liters" ? fuel_type[:ef_per_liter] : fuel_type[:ef_per_gallon]
-      result[:value] = fuel.amount * ef_to_use
-      results << result
+      emissions += fuel.amount * ef_to_use
     end
     transportation_fuels.each do |fuel|
       fuel_type = FUEL_TYPES.select{|t| t[:slug] == fuel.addition_type}.first
-      result = {type: fuel.addition_type,
-                category: fuel.category,
-                type_title: fuel_type[:title]}
       ef_to_use = fuel.unit == "liters" ? fuel_type[:ef_per_liter] : fuel_type[:ef_per_gallon]
-      result[:value] = fuel.amount * ef_to_use
-      results << result
+      emissions += fuel.amount * ef_to_use
     end
     irrigation_fuels.each do |fuel|
       fuel_type = FUEL_TYPES.select{|t| t[:slug] == fuel.addition_type}.first
-      result = {type: fuel.addition_type,
-                category: fuel.category,
-                type_title: fuel_type[:title]}
       ef_to_use = fuel.unit == "liters" ? fuel_type[:ef_per_liter] : fuel_type[:ef_per_gallon]
-      result[:value] = fuel.amount * ef_to_use
-      results << result
+      emissions += fuel.amount * ef_to_use
     end
-    results
+    emissions
   end
 
   def changes_in_carbon_content
