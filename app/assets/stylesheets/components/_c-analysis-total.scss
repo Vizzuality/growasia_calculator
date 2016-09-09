@@ -30,6 +30,10 @@
       margin: 0 auto;
 
       .value {
+        margin: 0 0 0 rem(100px);
+        &:first-child {
+          margin: 0;
+        }
       }
 
       .info {
