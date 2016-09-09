@@ -53,7 +53,7 @@
             },
             y: {
               tick: {
-                format: d3.format('s')
+                format: d3.format('.2s')
               }
             }
           },
