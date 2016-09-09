@@ -4,6 +4,10 @@ class AnalysisSerializer < ActiveModel::Serializer
   belongs_to :geo_location
 
   def analysis
+    if instance_options[:analysis_params]
+      object.assign_attributes(instance_options[:analysis_params])
+    end
+
     total = 0.0
     per_yield = object.yield*object.area
 
