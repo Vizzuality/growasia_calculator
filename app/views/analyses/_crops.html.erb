@@ -43,11 +43,11 @@
     <div class="input-group">
       <% Analysis::CROP_MANAGEMENT_PRACTICES.each do |practice| %>
 
-        <fieldset>
+        <div class="input-wrap">
           <label class="text -form-inputs"><%= practice[:title] %></label>
           <%= f.check_box :crop_management_practices, { multiple: true },
             practice[:slug], nil %>
-        </fieldset>
+        </div>
       <% end %>
     </div>
   </div>

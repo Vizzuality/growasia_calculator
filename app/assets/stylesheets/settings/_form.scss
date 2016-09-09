@@ -117,12 +117,21 @@ select,
 }
 
 input[type = "checkbox"] {
+  position: relative;
   @extend %clean-button-or-input;
   width: rem(56px);
   height: rem(56px);
   margin-left: 20px;
   background-color: rgba($black, .1);
-  transform: translatey(32%);
+
+  &:checked:after {
+    content: "";
+    @extend %center;
+    width: rem(18px);
+    height: rem(18px);
+    background-position: center;
+    background-image: image-url('check.svg');
+  }
 }
 
 input[type = "submit"] {
