@@ -3,27 +3,34 @@
 <section id="slide-3" class="l-slide -slide-3 js--slide">
   <div class="c-slide-content">
     <p class="text -questions">
-    Crop management includes
-    <%= f.select:tillage, select_options(Analysis::TILLAGES) %>
-    </p>
-    <p class="text -questions">
-    and the application of
-    <%= f.fields_for :fertilizers do |builder| %>
-      <%= builder.hidden_field :category, value: Category::FERTILIZER %>
-      <%= builder.text_field :amount %>
-      <span class="text -form-inputs -medium">kg. ha<sup>-1</sup> yr<sup>-1</sup></span>
-      of
-      <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES) %>
-    <% end %>
-    </p>
-    <p class="text -questions">
-    <%= f.fields_for :manures do |builder| %>
-      <%= builder.hidden_field :category, value: Category::MANURE %>
-      and <%= builder.text_field :amount %>
-    <span class="text -form-inputs -medium">kg. ha<sup>-1</sup> yr<sup>-1</sup></span>
-    of
-    <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES) %>
-  <% end %>
+      <span>
+        Crop management includes
+        <%= f.select:tillage, select_options(Analysis::TILLAGES), {}, class: '-input-big' %>
+      </span>
+      <span>
+        and the application of
+      </span>
+      <span>
+        <%= f.fields_for :fertilizers do |builder| %>
+          <%= builder.hidden_field :category, value: Category::FERTILIZER, class: '-input-small' %>
+          <%= builder.text_field :amount, class: '-input-small' %>
+          <span class="text -form-inputs -medium">kg per ha and yr</span>
+        of
+        <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES), {}, class: '-input-small' %>
+        <% end %>
+      </span>
+      <span>
+        <%= f.fields_for :manures do |builder| %>
+        <%= builder.hidden_field :category, value: Category::MANURE, class: '-input-small' %>
+      </span>
+      <span>
+        and
+        <%= builder.text_field :amount, class: '-input-small' %>
+        <span class="text -form-inputs -medium">kg per ha and yr</span>
+        of
+        <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES), {}, class: '-input-big' %>
+        <% end %>
+      </span>
     </p>
   </div>
 </section>
@@ -33,13 +40,16 @@
 <section id="slide-4" class="l-slide -slide-4 js--slide">
   <div class="c-slide-content">
     <p class="text -questions">Additional crop management practices include (check all that apply):</p>
-    <% Analysis::CROP_MANAGEMENT_PRACTICES.each do |practice| %>
-      <fieldset>
-        <label><%= practice[:title] %></label>
-        <%= f.check_box :crop_management_practices, { multiple: true },
-          practice[:slug], nil %>
-    </fieldset>
-  <% end %>
+    <div class="input-group">
+      <% Analysis::CROP_MANAGEMENT_PRACTICES.each do |practice| %>
+
+        <fieldset>
+          <label class="text -form-inputs"><%= practice[:title] %></label>
+          <%= f.check_box :crop_management_practices, { multiple: true },
+            practice[:slug], nil %>
+        </fieldset>
+      <% end %>
+    </div>
   </div>
 </section>
 
@@ -48,10 +58,13 @@
 <section id="slide-5" class="l-slide -slide-5 js--slide">
   <div class="c-slide-content">
     <p class="text -questions">
-    The cropland
-    <%= f.select:is_shaded, options_for_select([["Does", true], ["Does not", false]]) %>
-    currently include shade trees, windbreaks, alley cropping, or any type of
-    additional silviculture?
+    <span>
+      Does the cropland currently include </br> shade trees, windbreaks, alley cropping, </br> or any type of
+      additional silviculture?
+    </span>
+    <span>
+      <%= f.select:is_shaded, options_for_select([["Yes", true], ["No", false]]) %>
+    </span>
     </p>
   </div>
 </section>
@@ -62,16 +75,24 @@
 <h1>Liming and Dolomite</h1>
 <section id="slide-6" class="l-slide -slide-6 js--slide">
   <div class="c-slide-content">
-    <p class="text -description">Skip if it doesn't apply</p>
-
     <p class="text -questions">
-      We apply
-      <%= f.text_field :lime_amount %><span class="text -form-inputs -medium">kg. ha<sup>-1</sup> yr<sup>-1</sup></span>
-      of lime and
-    </p>
-    <p class="text -questions">
-      <%= f.text_field :dolomite_amount %><span class="text -form-inputs -medium">kg. ha<sup>-1</sup> yr<sup>-1</sup></span>
-      of dolomite.
+      <span>
+        Do you apply lime?
+        <input type="checkbox">
+      </span>
+      <span>
+        <%= f.text_field :lime_amount, class: '-input-small' %>
+        <span class="text -form-inputs -medium">kg per ha and yr</span>
+      </span>
+      <span>
+        Do you apply dolomite?
+        <input type="checkbox">
+      </span>
+      <span>
+        <%= f.text_field :dolomite_amount, class: '-input-small' %>
+        <span class="text -form-inputs -medium">kg per ha and yr</span>
+        of dolomite.
+      </span>
     </p>
   </div>
 </section>
@@ -81,12 +102,14 @@
 <section id="slide-7" class="l-slide -slide-7 js--slide">
   <div class="c-slide-content">
     <p class="text -questions">
-      We apply
-      <%= f.text_field :agrochemical_amount %>
-      <span class="text -form-inputs -medium">kg. ha<sup>-1</sup> yr<sup>-1</sup></span>
-    </p>
-    <p class="text -questions">
-      in agrochemicals including fertilizers, pesticides, and herbicides.
+      <span>
+        Do you apply agrochemicals </br> including fertilizers, pesticides, or herbicides?
+        <input type="checkbox">
+      </span>
+      <span>
+        <%= f.text_field :agrochemical_amount, class: '-input-small' %>
+        <span class="text -form-inputs -medium">kg per ha and yr</span>
+      </span>
     </p>
   </div>
 </section>
@@ -96,14 +119,20 @@
 <section id="slide-8" class="l-slide -slide-8 js--slide">
   <div class="c-slide-content">
     <p class="text -questions">
-    Each year, we use an estimated
-    <%= f.fields_for :fuels do |builder| %>
-      <%= builder.hidden_field :category, value: Category::FUEL %>
-      <%= builder.text_field :amount %>
-      <%= builder.select :unit, select_options(Analysis::FUEL_UNITS) %>
-      of
-      <%= builder.select :addition_type, select_options(Analysis::FUEL_TYPES) %>
-    <% end %>
+    <span>
+      Each year, we use an estimated
+    </span>
+    <span>
+      <%= f.fields_for :fuels do |builder| %>
+        <%= builder.hidden_field :category, value: Category::FUEL %>
+        <%= builder.text_field :amount %>
+        <%= builder.select :unit, select_options(Analysis::FUEL_UNITS) %>
+    </span>
+    <span>
+        of
+        <%= builder.select :addition_type, select_options(Analysis::FUEL_TYPES) %>
+      <% end %>
+    </span>
     </p>
     <div class="actions">
       <%= f.submit %>
