@@ -86,18 +86,18 @@
         <%= f.fields_for :fertilizers do |builder| %>
           <div>
             <label class="text -description" for=""><%= builder.object.fertilizer_name %></label>
-            <%= builder.text_field :amount %>
+            <%= builder.number_field :amount, min: 0 %>
           </div>
         <% end %>
         <%= f.fields_for :manures do |builder| %>
           <div>
             <label class="text -description" for=""><%= builder.object.manure_name %></label>
-            <%= builder.text_field :amount %>
+            <%= builder.number_field :amount, min: 0 %>
           </div>
         <% end %>
         <div>
           <label class="text -description" for="">Agrochemicals amount</label>
-          <%= f.text_field :agrochemical_amount %>
+          <%= f.number_field :agrochemical_amount, min: 0 %>
         </div>
       </div>
       <div class="input-group -second">
@@ -119,16 +119,16 @@
         </div>
         <div>
           <label class="text -description" for="">Lime</label>
-          <%= f.text_field :lime_amount %>
+          <%= f.number_field :lime_amount, min: 0  %>
         </div>
         <div>
           <label class="text -description" for="">Dolomite</label>
-          <%= f.text_field :dolomite_amount %>
+          <%= f.number_field :dolomite_amount, min: 0  %>
         </div>
         <div>
           <%= f.fields_for :fuels do |builder| %>
             <label class="text -description" for=""><%= builder.object.fuel_name %></label>
-            <%= builder.text_field :amount %><%= builder.object.fuel_unit_name %>
+            <%= builder.number_field :amount, min: 0  %><%= builder.object.fuel_unit_name %>
           <% end %>
         </div>
       <% end %>

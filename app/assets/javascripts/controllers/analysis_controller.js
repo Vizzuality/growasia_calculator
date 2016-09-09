@@ -54,7 +54,6 @@
         modelCompare: analysisCompareModel
       });
 
-
       // Fetch the analysis before render the graphs
       analysisModel.fetch();
     },
