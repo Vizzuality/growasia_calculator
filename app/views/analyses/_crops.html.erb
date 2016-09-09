@@ -14,7 +14,11 @@
         <%= f.fields_for :fertilizers do |builder| %>
           <%= builder.hidden_field :category, value: Category::FERTILIZER, class: '-input-small' %>
           <%= builder.text_field :amount, class: '-input-small' %>
+<<<<<<< HEAD
           <span class="text -form-inputs -medium">kg/ha x yr</span>
+=======
+          <span class="text -form-inputs -medium">kg per ha and yr</span>
+>>>>>>> 595784c03b8d88c3345ce2e1aa4a78affa3192e1
         of
         <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES), {}, class: '-input-small' %>
         <% end %>
@@ -26,7 +30,11 @@
       <span>
         and
         <%= builder.text_field :amount, class: '-input-small' %>
+<<<<<<< HEAD
         <span class="text -form-inputs -medium">kg/ha x yr</span>
+=======
+        <span class="text -form-inputs -medium">kg per ha and yr</span>
+>>>>>>> 595784c03b8d88c3345ce2e1aa4a78affa3192e1
         of
         <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES), {}, class: '-input-big' %>
         <% end %>
@@ -42,7 +50,6 @@
     <p class="text -questions">Additional crop management practices include (check all that apply):</p>
     <div class="input-group">
       <% Analysis::CROP_MANAGEMENT_PRACTICES.each do |practice| %>
-
         <div class="input-wrap">
           <label class="text -form-inputs"><%= practice[:title] %></label>
           <%= f.check_box :crop_management_practices, { multiple: true },
@@ -82,7 +89,11 @@
       </span>
       <span>
         <%= f.text_field :lime_amount, class: '-input-small' %>
+<<<<<<< HEAD
         <span class="text -form-inputs -medium">kg/ha x yr</span>
+=======
+        <span class="text -form-inputs -medium">kg per ha and yr</span>
+>>>>>>> 595784c03b8d88c3345ce2e1aa4a78affa3192e1
       </span>
       <span>
         Do you apply dolomite?
@@ -90,7 +101,11 @@
       </span>
       <span>
         <%= f.text_field :dolomite_amount, class: '-input-small' %>
+<<<<<<< HEAD
         <span class="text -form-inputs -medium">kg/ha x yr</span>
+=======
+        <span class="text -form-inputs -medium">kg per ha and yr</span>
+>>>>>>> 595784c03b8d88c3345ce2e1aa4a78affa3192e1
         of dolomite.
       </span>
     </p>
@@ -108,7 +123,11 @@
       </span>
       <span>
         <%= f.text_field :agrochemical_amount, class: '-input-small' %>
+<<<<<<< HEAD
         <span class="text -form-inputs -medium">kg/ha x yr</span>
+=======
+        <span class="text -form-inputs -medium">kg per ha and yr</span>
+>>>>>>> 595784c03b8d88c3345ce2e1aa4a78affa3192e1
       </span>
     </p>
   </div>
