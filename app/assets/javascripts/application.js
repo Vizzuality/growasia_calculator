@@ -20,6 +20,7 @@
 //= require d3
 //= require c3
 //= require chosen.js
+//= require leaflet.js
 
 //= require_self
 
