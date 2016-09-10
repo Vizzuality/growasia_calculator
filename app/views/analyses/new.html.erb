@@ -5,6 +5,7 @@
     <h1>Select Geography</h1>
     <section id="slide-1" class="l-slide -theme-1 js--slide -is-current">
       <div class="c-slide-content">
+        <div id="mapCountries" class="c-map"></div>
         <%= label_tag :country, "Select your country", class: "text -questions" %>
         <p class="text -description">Start typing or select your country in the map</p>
         <%= select_tag :country,

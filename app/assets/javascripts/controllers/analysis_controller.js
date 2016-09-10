@@ -8,7 +8,8 @@
 
     index: function() {
 
-      new App.View.Steps({el: '#slider'})
+      new App.View.Steps({el: '#slider'});
+      new App.View.Map({el: '#mapCountries', options:{country: 'all'}});
 
       $('select').chosen();
       $('select.-input-big').chosen({'width':'360px' });
