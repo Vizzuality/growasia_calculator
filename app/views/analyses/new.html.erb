@@ -6,17 +6,16 @@
     <section id="slide-1" class="l-slide -theme-1 js--slide -is-current">
       <div class="c-slide-content">
         <div id="mapCountries" class="c-map"></div>
-        <%= label_tag :country, "Select your country", class: "text -questions" %>
-        <p class="text -description">Start typing or select your country in the map</p>
+        <%= label_tag :country, "Select your country", class: "text -questions country-text" %>
+        <%= label_tag :region, "Select your region", class: "text -questions is-hidden region-text" %>
+        <p class="text -description country-text">Start typing or select your country in the map</p>
+        <p class="text -description region-text is-hidden">Start typing or select your region in the map</p>
         <%= select_tag :country,
           options_from_collection_for_select(@geo_locations, :country, :country),
           include_blank: true, class: '-input-big' %>
-
-        <div id="state-selection" class="hidden">
-          <%= f.label :geo_location_id, "Select your region", class: "text -questions"%>
-          <p class="text -description">Start typing or select your region in the map</p>
+        <span class="input-wrapper is-hidden">
           <%= f.select :geo_location_id, [], {}, class: '-input-big' %>
-        </div>
+        </span>
       </div>
     </section>
 

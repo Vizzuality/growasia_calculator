@@ -203,7 +203,8 @@ fieldset {
   padding-bottom: rem(24px);
 }
 
-
-#country_chosen .chosen-results {
+//Avoid countries drop down overflow the page.
+#country_chosen .chosen-results,
+#analysis_geo_location_id_chosen .chosen-results {
   max-height: 150px;
 }

@@ -1,5 +1,10 @@
 $(function() {
   $("#analysis_geo_location_id").html("<%= escape_javascript(options_from_collection_for_select(@geo_locations, :id, :state)) %>");
   $("#analysis_geo_location_id").trigger("chosen:updated");
-  $("#state-selection").removeClass("hidden");
+
+  $(".input-wrapper").removeClass("is-hidden");
+  $(".region-text").removeClass('is-hidden');
+
+  $(".country-text").addClass('is-hidden');
+
 });
