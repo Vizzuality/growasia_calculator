@@ -38,29 +38,45 @@
       this.map = new L.Map(this.el, mapOptions);
       this.geoJson = L.geoJson(this.geom, {
         style: this.getStyles.bind(this),
-        onEachFeature: this.onEachFeature.bind(this)
+        onEachFeature: this.setEvents.bind(this)
       }).addTo(this.map);
     },
 
+    //STYLES
     getStyles: function(feature) {
       return {
-        fillColor: this.getColor(feature.properties.density),
+        fillColor: this.getColor(feature.properties),
         weight: 2,
-        opacity: 1,
+        opacity: this.getOpacity(feature.properties.selected),
         color: '#fafb00',
         fillOpacity: 0.7
       };
     },
 
     getColor: function(d) {
-      return d > 1000 ? '#800026' :
-             d > 500  ? '#BD0026' :
-             d > 200  ? '#E31A1C' :
-             d > 100  ? '#FC4E2A' :
-             d > 50   ? '#FD8D3C' :
-             d > 20   ? '#FEB24C' :
-             d > 10   ? '#FED976' :
-                        '#FFEDA0';
+      return d.selected ? '#2a5a3a':
+             d.density > 1000 ? '#800026' :
+             d.density > 500  ? '#BD0026' :
+             d.density > 200  ? '#E31A1C' :
+             d.density > 100  ? '#FC4E2A' :
+             d.density > 50   ? '#FD8D3C' :
+             d.density > 20   ? '#FEB24C' :
+             d.density > 10   ? '#FED976' :
+             '#FED976';
+    },
+
+    getOpacity: function(d) {
+      return d ?  1 : 0.7;
+    },
+
+
+    //EVENTS
+    setEvents: function(feature, layer) {
+      layer.on({
+        mouseover: this.highlightFeature.bind(this),
+        mouseout: this.resetHighlight.bind(this),
+        click: this.selectCountry.bind(this)
+      });
     },
 
     highlightFeature: function(e) {
@@ -78,14 +94,24 @@
     },
 
     resetHighlight: function(e) {
-      this.geoJson.resetStyle(e.target);
+      var layer = e.target ? e.target : e;
+      this.geoJson.resetStyle(layer);
     },
 
-    onEachFeature: function(feature, layer) {
-      layer.on({
-        mouseover: this.highlightFeature.bind(this),
-        mouseout: this.resetHighlight.bind(this)
-      });
+    selectCountry: function(e) {
+      //Unselect previous layer
+      this.selectedLayer && (this.selectedLayer.feature.properties.selected = false);
+      this.selectedLayer && this.resetHighlight(this.selectedLayer);
+
+      //Select new layer
+      var layer = e.target;
+      layer.feature.properties.selected = true;
+
+      var name = layer.feature.properties.name;
+      name = 'Cambodia';
+      Backbone.Events.trigger('country:selected', {name: name});
+
+      this.selectedLayer = layer;
     }
   });
 

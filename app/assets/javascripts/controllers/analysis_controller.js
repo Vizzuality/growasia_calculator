@@ -9,7 +9,10 @@
     index: function() {
 
       new App.View.Steps({el: '#slider'});
+
       new App.View.Map({el: '#mapCountries', options:{country: 'all'}});
+
+      new App.View.Selectors({el: '#country'});
 
       $('select').chosen();
       $('select.-input-big').chosen({'width':'360px' });
