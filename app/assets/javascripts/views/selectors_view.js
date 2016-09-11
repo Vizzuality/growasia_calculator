@@ -22,12 +22,12 @@
     },
 
     listeners: function() {
-      Backbone.Events.on('country:selected', this.setSelectedValue.bind(this));
+      Backbone.Events.on('map:country:selected', this.setSelectedValue.bind(this));
     },
 
     setSelectedValue: function(obj) {
       this.$el.val(obj.name);
-      this.$el.trigger("chosen:updated");
+      this.$el.trigger('chosen:updated');
     },
 
     onChangeTriggerValue: function() {

@@ -114,7 +114,7 @@
 
       var name = layer.feature.properties.name;
       name = 'Cambodia';
-      Backbone.Events.trigger('country:selected', {name: name});
+      Backbone.Events.trigger('map:country:selected', {name: name});
 
       this.selectedLayer = layer;
     },
@@ -126,7 +126,8 @@
 
     setSelectedItems: function(obj) {
       var item = obj.item;
-      var layer = _.findWhere(this.map._layers, { name : "Alabama" });
+      item = "Alabama";
+      var layer = _.findWhere(this.map._layers, { name : item });
 
       _.each(this.map._layers, function(layer){
         if (layer.feature && layer.feature.properties.name === "Alabama") {
