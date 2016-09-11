@@ -10,14 +10,14 @@
       cartoAccount: 'goal16',
       tolerance: .5,
       query: {
-        all: 'SELECT * FROM countries',
+        all: "SELECT * FROM countries",
         region: ''
       },
       css: {
         all: '#countries{ polygon-fill: #c1de11; polygon-opacity: 0.4; line-color: #fafb00; line-width: 2; line-opacity: 1; }',
         region: ''
       },
-      zoom: 4,
+      zoom: 3,
       lat: 7.92,
       lng: 112.8
     },
@@ -51,6 +51,7 @@
         zoom: this.options.zoom,
         center: [this.options.lat, this.options.lng],
         scrollWheelZoom: false,
+        dragging: false,
         zoomControl: false,
         tileLayer: {
           continuousWorld: false,
@@ -68,6 +69,47 @@
       }.bind(this))
     },
 
+    /**
+     * Init the layer and return a deferred Object
+     * @return {Object} jQuery deferred object
+     */
+    initSVGLayer: function() {
+      var deferred = $.Deferred();
+      var geoQuery = this.options.query.all;
+
+      $.ajax({
+        dataType: 'json',
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8'
+        },
+        url: 'https://'+ this.options.cartoAccount +'.cartodb.com/api/v2/sql',
+        data: {
+          q: geoQuery,
+          format: 'topojson'
+        }
+      }).done(function(topoJSON) {
+        this.layer = new L.TopoJSON({
+          topoJSON,
+          defaultFillColor: this._getDefaultGeoColor()
+        });
+
+        this.fetchData();
+
+        deferred.resolve(this.layer);
+      }).fail(deferred.reject);
+
+      return deferred;
+    },
+
+    /**
+     * Return the default color of the geometries when created. It uses the first
+     * color of the cartocss (supposedly the lightest) in order to provide a
+     * smooth animation to the color.
+     * @return {String} CSS color
+     */
+    _getDefaultGeoColor: function() {
+      return '#fafb00';
+    },
 
     /**
      * Init the layer and return a deferred Object
