@@ -20,6 +20,12 @@
         this.geom = this.model.toJSON().features;
         this.createMap();
       }.bind(this));
+
+      this.listeners();
+    },
+
+    listeners: function() {
+      Backbone.Events.on('selector:item:selected', this.setSelectedItems.bind(this));
     },
 
     createMap: function() {
@@ -100,8 +106,7 @@
 
     selectCountry: function(e) {
       //Unselect previous layer
-      this.selectedLayer && (this.selectedLayer.feature.properties.selected = false);
-      this.selectedLayer && this.resetHighlight(this.selectedLayer);
+      this.unSelectPrevious();
 
       //Select new layer
       var layer = e.target;
@@ -112,6 +117,28 @@
       Backbone.Events.trigger('country:selected', {name: name});
 
       this.selectedLayer = layer;
+    },
+
+    unSelectPrevious: function() {
+      this.selectedLayer && (this.selectedLayer.feature.properties.selected = false);
+      this.selectedLayer && this.resetHighlight(this.selectedLayer);
+    },
+
+    setSelectedItems: function(obj) {
+      var item = obj.item;
+      var layer = _.findWhere(this.map._layers, { name : "Alabama" });
+
+      _.each(this.map._layers, function(layer){
+        if (layer.feature && layer.feature.properties.name === "Alabama") {
+          layer.feature.properties.selected = true;
+
+          layer.setStyle({fillColor: '#2a5a3a'});
+          this.unSelectPrevious();
+
+          this.selectedLayer = layer;
+        }
+      }.bind(this))
+
     }
   });
 
