@@ -144,7 +144,7 @@ class Analysis < ApplicationRecord
     # IF Crop Residue Burning is selected, then emissions from crop residue
     # decomposition = 0. All crop residue is assumed to be burned for cocoa,
     # coffee, and tea.
-    return 0 if crop_management_practices.include?("residue-burning") ||
+    return 0 if crop_management_practices && crop_management_practices.include?("residue-burning") ||
       ["cocoa", "coffee", "tea"].include?(crop)
 
     r = CROPS.select{|t| t[:slug] == crop}.first
