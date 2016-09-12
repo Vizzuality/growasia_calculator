@@ -11,7 +11,7 @@
 
     },
 
-    countries: ['Cambodia', 'Indonesia', 'Myanmar', 'Philipines', 'Vietnam'],
+    countries: ['Cambodia', 'Indonesia', 'Myanmar', 'Philippines', 'Vietnam'],
 
     initialize: function(settings) {
       if (!this.el) {
@@ -38,7 +38,7 @@
     createMap: function() {
       var mapOptions = {
         zoom:  4,
-        center: [12.24, 99.11], //ASIA [12.24, 99.11]
+        center: [12.24, 105], //ASIA [12.24, 99.11]
         scrollWheelZoom: false,
         dragging: false,
         zoomControl: false,
@@ -75,11 +75,7 @@
     getOpacity: function(d) {
       //TODO: Avoid having here all the countries names
       return d.selected ?  1 :
-             d.admin === 'Cambodia' ? 0.7 :
-             d.admin === 'Indonesia' ? 0.7 :
-             d.admin === 'Myanmar' ? 0.7 :
-             d.admin === 'Philipines' ? 0.7 :
-             d.admin === 'Vietnam' ? 0.7 :
+             this.countries.includes(d.admin) ? 0.8 :
              0.3;
     },
 
