@@ -114,8 +114,21 @@
     },
 
     showError: function(errors, input) {
-      console.log(input, errors)
-      debugger
+      var errorMessage;
+
+      if ($(input).hasClass('is-wrong')) {return}
+
+      var $chosenInput = $(input).next('.chosen-container');
+      var $currentInput = $chosenInput.length > 0 ? $chosenInput : $(input);
+
+
+      $(input).addClass('is-wrong');
+      $(input).next('.chosen-container').addClass('is-wrong');
+
+      // _.each(errors, function(error) {
+      //   errorMessage = '<div class="error">this field ' + error + '</div>';
+      //   $currentInput.after(errorMessage);
+      // });
     }
   });
 

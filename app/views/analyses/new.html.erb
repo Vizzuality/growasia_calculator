@@ -13,11 +13,13 @@
         <%= label_tag :region, "Select your region", class: "text -questions is-hidden region-text" %>
         <p class="text -description country-text">Start typing or select your country in the map</p>
         <p class="text -description region-text is-hidden">Start typing or select your region in the map</p>
-        <%= select_tag :country,
-          options_from_collection_for_select(@geo_locations, :country, :country),
-          include_blank: true, class: '-input-big is-required' %>
+        <div class="input-wrapper">
+          <%= select_tag :country,
+            options_from_collection_for_select(@geo_locations, :country, :country),
+            include_blank: true, class: '-input-big is-required' %>
+        </div>
         <span class="input-wrapper is-hidden">
-          <%= f.select :geo_location_id, [], {}, class: '-input-big is-required' %>
+          <%= f.select :geo_location_id, [], {}, class: '-input-big' %>
         </span>
       </div>
     </section>
@@ -33,14 +35,14 @@
           </span>
           <span>
             on
-            <%= f.text_field :area, class: '-input-small' %>
+            <%= f.text_field :area, class: '-input-small is-required is-numeric' %>
             hectares of land
           </span>
           <span>
             and expect a yield of
           </span>
           <span>
-            <%= f.text_field :yield, class: '-input-small' %>
+            <%= f.text_field :yield, class: '-input-small is-required is-numeric' %>
             <%= f.select :yield_unit, select_options(Analysis::YIELD_UNITS), {}, class: '-input-small' %>
             <span class="text -form-inputs -medium"> per yard</span>
           </span>

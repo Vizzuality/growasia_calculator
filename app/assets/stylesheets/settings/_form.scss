@@ -112,8 +112,8 @@
 }
 
 input:not([type = "checkbox"]),
-select,
-.chosen-container {
+.chosen-container,
+select {
   @extend %clean-button-or-input;
   min-width: rem(208px);
   padding: rem(9px) rem(40px) rem(9px) rem(13px);
@@ -208,3 +208,12 @@ fieldset {
 #analysis_geo_location_id_chosen .chosen-results {
   max-height: 150px;
 }
+
+.error {
+  font-style: italic;
+  font-size: 14px;
+  color: #ff5500;
+}
+
+
+
