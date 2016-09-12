@@ -58,7 +58,7 @@
             },
             y: {
               label: {
-                text: 't of CO2',
+                text: 't of CO2e',
                 position: 'outer-middle'
               },
               tick: {
