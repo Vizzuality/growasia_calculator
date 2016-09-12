@@ -168,7 +168,7 @@ class Analysis < ApplicationRecord
     crop_residue = r[:final_default_residue_amount] ||
       converted_yield*r[:rpr]*(1-r[:moisture_content])
     ef = rice? ? 1.5 : 1.6
-    area * crop_residue * ef
+    area * crop_residue * ef / 1000
   end
 
   def emissions_from_urea_hydrolysis
