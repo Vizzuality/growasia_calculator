@@ -29,9 +29,6 @@
       App.Events.on('Print:toggle', this.setPrint.bind(this));
     },
 
-    setBookMark: function() {
-    },
-
     setPrint: function() {
       window.print();
     },

@@ -50,9 +50,9 @@
 
     @media (min-width: $screen-m){
       left: 50%; top: 50%;
-      width: 500px;
+      width: rem(500px);
       height: auto;
-      min-height: 100px;
+      min-height: rem(100px);
       transform: translate(-50%,-60%);
     }
 
@@ -61,8 +61,8 @@
       position: absolute;
       top: 0px;
       right: 0px;
-      width: 40px;
-      height: 40px;
+      width: rem(40px);
+      height: rem(40px);
       z-index: 20;
 
       svg{
@@ -71,8 +71,8 @@
         right: 0;
         bottom: 0;
         left: 0;
-        width: 20px;
-        height: 20px;
+        width: rem(20px);
+        height: rem(20px);
         margin: auto;
       }
     }
@@ -94,7 +94,7 @@
   &:before, &:after {
     content: "";
     position: absolute;
-    height: 20px;
+    height: rem(20px);
     width: calc(100% - 8px);
     left: 0;
   }
@@ -136,16 +136,12 @@
       max-height: rem(450px);
     }
 
-    &.has-footer {
-      border-bottom: 66px solid transparent;
-    }
-
     .modal-content {
       height: auto;
       width: 100%;
       outline: none;
 
-      font-size: 15px;
+      font-size: rem(15px);
       color: $font-color-2;
     }
   }
@@ -159,35 +155,35 @@
   width: 100%;
   background: $white;
   z-index: 2;
-  padding: 20px;
+  padding: rem(20px);
   @include clearfix();
 
   // GRADIENTS
   .gradient {
     content: "";
     position: absolute;
-    height: 15px;
+    height: rem(15px);
     width: 100%;
     left: 0;
     top: 100%;
     @include gradient(top,rgba(255,255,255,1),rgba(255,255,255,0));
   }
 
-  ul{
-    margin: 15px 0;
+  ul {
+    margin: rem(15px) 0;
     position: relative;
     left: 50%;
     transform: translate(-50%,0);
     float: left;
-    padding: 4px;
+    padding: rem(4px);
     display: flex;
     justify-content: center;
     border: 1px solid $color-1;
     border-radius: 45px;
 
-    li{
-      font-size: 19px;
-      padding: 10px 20px 7px;
+    li {
+      font-size: rem(19px);
+      padding: rem(10px) rem(20px) rem(7px);
       color: $font-color-2;
       cursor: pointer;
       font-weight: 500;
@@ -214,7 +210,7 @@
   width: 100%;
   background: $white;
   z-index: 2;
-  padding: 15px 0;
+  padding: rem(15px) 0;
   @include clearfix();
   border-top: 1px solid $color-1;
 
@@ -222,7 +218,7 @@
   .gradient {
     content: "";
     position: absolute;
-    height: 15px;
+    height: rem(15px);
     width: calc(100% - 10px);
     left: 0;
     bottom: 100%;
@@ -235,7 +231,7 @@
 
 // Steps
 .modal-steps {
-  padding: 20px 20px 70px;
+  padding: rem(20px) rem(20px) rem(70px);
   > li {
     display: none;
 
@@ -244,10 +240,10 @@
     }
 
     .modal-step-content {
-      padding: 20px 0 0;
+      padding: rem(20px) 0 0;
 
       > * {
-        margin: 15px 0 0;
+        margin: rem(15px) 0 0;
 
         &:first-child {
           margin: 0;
