@@ -145,7 +145,7 @@ class Analysis < ApplicationRecord
     # decomposition = 0. All crop residue is assumed to be burned for cocoa,
     # coffee, and tea.
     return 0 if crop_management_practices.include?("residue-burning") ||
-      ["coccoa", "coffee", "tea"].include?(crop)
+      ["cocoa", "coffee", "tea"].include?(crop)
 
     r = CROPS.select{|t| t[:slug] == crop}.first
     crop_residue = r[:final_default_residue_amount] ||
