@@ -83,11 +83,8 @@
     },
 
     manageHandlers: function() {
-
       this.btnPrev.toggleClass('is-hidden', this.firstSlide);
-
-
-      this.btnNext.toggleClass('is-hidden', this.lastSlide)
+      this.btnNext.toggleClass('is-hidden', this.lastSlide);
     }
   });
 
