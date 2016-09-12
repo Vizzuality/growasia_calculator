@@ -28,6 +28,7 @@
       this.$allSliders = this.$el.find('.js--slide');
       this.btnPrev = this.$el.find('.js--slider-handler[data-step="prev"]');
       this.btnNext = this.$el.find('.js--slider-handler[data-step="next"]');
+      this.cropSelector = this.$el.find('#analysis_crop');
     },
 
     onClickChangeDiapo: function(e) {
@@ -39,7 +40,7 @@
       $(e.currentTarget).data('step') === 'next' ? this.nextSlide += 1 : this.nextSlide -= 1;
 
       if (currentSlide === 2) {
-        var crop = $('#analysis_crop').val();
+        var crop = this.cropSelector.val();
         if (crop === 'rice') {
           this.nextSlide = 9;
           this.currentPath = 'rice';
@@ -82,8 +83,11 @@
     },
 
     manageHandlers: function() {
-      this.firstSlide ? this.btnPrev.addClass('is-hidden') : this.btnPrev.removeClass('is-hidden');
-      this.lastSlide ? this.btnNext.addClass('is-hidden') : this.btnNext.removeClass('is-hidden');
+
+      this.btnPrev.toggleClass('is-hidden', this.firstSlide);
+
+
+      this.btnNext.toggleClass('is-hidden', this.lastSlide)
     }
   });
 
