@@ -15,9 +15,9 @@
         <p class="text -description region-text is-hidden">Start typing or select your region in the map</p>
         <%= select_tag :country,
           options_from_collection_for_select(@geo_locations, :country, :country),
-          include_blank: true, class: '-input-big' %>
+          include_blank: true, class: '-input-big is-required' %>
         <span class="input-wrapper is-hidden">
-          <%= f.select :geo_location_id, [], {}, class: '-input-big' %>
+          <%= f.select :geo_location_id, [], {}, class: '-input-big is-required' %>
         </span>
       </div>
     </section>
