@@ -201,17 +201,17 @@ class Analysis < ApplicationRecord
     fuels.each do |fuel|
       fuel_type = FUEL_TYPES.select{|t| t[:slug] == fuel.addition_type}.first
       ef_to_use = fuel.unit == "liters" ? fuel_type[:ef_per_liter] : fuel_type[:ef_per_gallon]
-      emissions += fuel.amount * ef_to_use
+      emissions += fuel.amount * ef_to_use / 1_000
     end
     transportation_fuels.each do |fuel|
       fuel_type = FUEL_TYPES.select{|t| t[:slug] == fuel.addition_type}.first
       ef_to_use = fuel.unit == "liters" ? fuel_type[:ef_per_liter] : fuel_type[:ef_per_gallon]
-      emissions += fuel.amount * ef_to_use
+      emissions += fuel.amount * ef_to_use / 1_000
     end
     irrigation_fuels.each do |fuel|
       fuel_type = FUEL_TYPES.select{|t| t[:slug] == fuel.addition_type}.first
       ef_to_use = fuel.unit == "liters" ? fuel_type[:ef_per_liter] : fuel_type[:ef_per_gallon]
-      emissions += fuel.amount * ef_to_use
+      emissions += fuel.amount * ef_to_use / 1_000
     end
     emissions
   end
