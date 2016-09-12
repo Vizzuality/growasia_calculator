@@ -60,6 +60,18 @@
       border-color: $white;
       fill: $white;
     }
+
+    input,
+    select,
+    label,
+    .chosen-container {
+      background-color: rgba($white, .1);
+    }
+
+    input:checked + label:after {
+      background-image: image-url('check_white.svg');
+    }
+
   }
 
   &.-theme-5 {
@@ -75,6 +87,17 @@
       border-color: $white;
       fill: $white;
     }
+
+    input,
+    select,
+    label,
+    .chosen-container {
+      background-color: rgba($white, .1);
+    }
+
+    input:checked + label:after {
+      background-image: image-url('check_white.svg');
+    }
   }
 
   &.-theme-6 {
@@ -89,6 +112,17 @@
       color: $white;
       border-color: $white;
       fill: $white;
+    }
+
+    input,
+    select,
+    label,
+    .chosen-container {
+      background-color: rgba($white, .1);
+    }
+
+    input:checked + label:after {
+      background-image: image-url('check_white.svg');
     }
   }
 
