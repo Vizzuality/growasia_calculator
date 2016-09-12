@@ -6,25 +6,23 @@
 
   App.Helper.Modal = Backbone.View.extend({
 
-    model: new (Backbone.Model.extend({
-      defaults: {
-        hidden: true
-      }
-    })),
-
     events: {
       'click .js-btn-modal-close' : 'onClickClose',
-      'click': 'onClickBackdrop'
     },
 
     initialize: function() {
+      this.model =  new (Backbone.Model.extend({
+        defaults: {
+          hidden: true
+        }
+      }));
+
       // All the methods that has _ is because they belong to the Parent View
       this._cache();
       this._listeners();
     },
 
     _listeners: function() {
-      this.model.off('change:hidden');
       this.model.on('change:hidden', this.changeHidden, this);
     },
 
@@ -63,12 +61,6 @@
     onClickClose: function(e) {
       e && e.preventDefault();
       this.hide();
-    },
-
-    onClickBackdrop: function(e) {
-      if(e.target === e.currentTarget) {
-        this.hide();
-      }
     },
 
     /**

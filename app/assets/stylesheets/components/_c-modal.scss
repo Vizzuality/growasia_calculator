@@ -1,0 +1,266 @@
+// Layout
+.c-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1101;
+  width: 100%;
+  height: 100%;
+  display: none;
+
+  &.-active {
+    display: block;
+
+    .modal-backdrop {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-window {
+      opacity: 1;
+      visibility: visible;
+      @media (min-width: $screen-m){
+        transform: translate(-50%,-50%);
+      }
+    }
+  }
+
+  .modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .modal-window {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0s ease-in-out;
+
+    @media (min-width: $screen-m){
+      left: 50%; top: 50%;
+      width: rem(500px);
+      height: auto;
+      min-height: rem(100px);
+      transform: translate(-50%,-60%);
+    }
+
+    .modal-close {
+      display: block;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      width: rem(40px);
+      height: rem(40px);
+      z-index: 20;
+
+      svg{
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: rem(20px);
+        height: rem(20px);
+        margin: auto;
+      }
+    }
+  }
+}
+
+
+// Styles
+.modal-backdrop {
+  background: rgba(0,0,0,0.25);
+}
+
+.modal-window {
+  background: $white;
+  border: none;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+
+  // GRADIENTS
+  &:before, &:after {
+    content: "";
+    position: absolute;
+    height: rem(20px);
+    width: calc(100% - 8px);
+    left: 0;
+  }
+
+  &:before {
+    top: 0;
+    @include gradient(top,rgba(255,255,255,1),rgba(255,255,255,0));
+  }
+
+  &:after {
+    bottom: 0;
+    @include gradient(top,rgba(255,255,255,0),rgba(255,255,255,1));
+  }
+
+  // MODAL CLOSE BTN
+  .modal-close {
+    svg{
+      fill: $font-color-2;
+    }
+
+    &:hover {
+      svg {
+        fill: darken($font-color-2,10%);
+      }
+    }
+  }
+
+  // MODAL WRAPPER
+  .modal-wrapper{
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
+    max-height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: rem(40px);
+    @media (min-width: $screen-m){
+      max-height: rem(450px);
+    }
+
+    .modal-content {
+      height: auto;
+      width: 100%;
+      outline: none;
+
+      font-size: rem(15px);
+      color: $font-color-2;
+    }
+  }
+}
+
+// MODAL HEADER
+.modal-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: $white;
+  z-index: 2;
+  padding: rem(20px);
+  @include clearfix();
+
+  // GRADIENTS
+  .gradient {
+    content: "";
+    position: absolute;
+    height: rem(15px);
+    width: 100%;
+    left: 0;
+    top: 100%;
+    @include gradient(top,rgba(255,255,255,1),rgba(255,255,255,0));
+  }
+
+  ul {
+    margin: rem(15px) 0;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%,0);
+    float: left;
+    padding: rem(4px);
+    display: flex;
+    justify-content: center;
+    border: 1px solid $color-1;
+    border-radius: 45px;
+
+    li {
+      font-size: rem(19px);
+      padding: rem(10px) rem(20px) rem(7px);
+      color: $font-color-2;
+      cursor: pointer;
+      font-weight: 500;
+      border-radius: 40px;
+
+      &:hover {
+        background: darken($white,1%);
+        text-decoration: underline;
+      }
+
+      &.is-active {
+        color: $white;
+        background: $color-1;
+      }
+    }
+  }
+}
+
+// MODAL FOOTER
+.modal-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: $white;
+  z-index: 2;
+  padding: rem(15px) 0;
+  @include clearfix();
+  border-top: 1px solid $color-1;
+
+  // GRADIENTS
+  .gradient {
+    content: "";
+    position: absolute;
+    height: rem(15px);
+    width: calc(100% - 10px);
+    left: 0;
+    bottom: 100%;
+    border-bottom: 1px solid $color-1;
+    @include gradient(top,rgba(255,255,255,0),rgba(255,255,255,1));
+  }
+
+}
+
+
+// Steps
+.modal-steps {
+  padding: rem(20px) rem(20px) rem(70px);
+  > li {
+    display: none;
+
+    &.is-active {
+      display: block;
+    }
+
+    .modal-step-content {
+      padding: rem(20px) 0 0;
+
+      > * {
+        margin: rem(15px) 0 0;
+
+        &:first-child {
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+// Source template
+.modal-content {
+
+  // Title
+  .modal-title {
+    display: block;
+    color: $font-color-2;
+    line-height: 1.25;
+    text-align: center;
+  }
+}

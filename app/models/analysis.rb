@@ -145,7 +145,7 @@ class Analysis < ApplicationRecord
     # decomposition = 0. All crop residue is assumed to be burned for cocoa,
     # coffee, and tea.
     return 0 if crop_management_practices.include?("residue-burning") ||
-      ["coccoa", "coffee", "tea"].include?(crop)
+      ["cocoa", "coffee", "tea"].include?(crop)
 
     r = CROPS.select{|t| t[:slug] == crop}.first
     crop_residue = r[:final_default_residue_amount] ||
@@ -168,7 +168,7 @@ class Analysis < ApplicationRecord
     crop_residue = r[:final_default_residue_amount] ||
       converted_yield*r[:rpr]*(1-r[:moisture_content])
     ef = rice? ? 1.5 : 1.6
-    area * crop_residue * ef
+    area * crop_residue * ef / 1000
   end
 
   def emissions_from_urea_hydrolysis

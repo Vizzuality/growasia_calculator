@@ -104,10 +104,13 @@
         <div>
           <label class="text -description" for="">Crop management practices</label>
           <% Analysis::CROP_MANAGEMENT_PRACTICES.each do |practice| %>
-            <div class="input-wrap">
-              <label class="text -form-inputs"><%= practice[:title] %></label>
-              <%= f.check_box :crop_management_practices, { multiple: true },
-                practice[:slug], nil %>
+            <div class="checkbox-box">
+              <div class="custom-checkbox">
+                <%= f.check_box :crop_management_practices, { multiple: true }, practice[:slug], nil %>
+                <label for="analysis_crop_management_practices_<%= practice[:slug] %>">
+                  <span></span> <%= practice[:title] %>
+                </label>
+              </div>
             </div>
           <% end %>
         </div>

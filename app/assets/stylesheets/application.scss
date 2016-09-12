@@ -27,9 +27,12 @@
 @import "settings/fonts";
 @import "settings/text";
 @import "settings/icons";
+@import "settings/mixins";
 @import "settings/buttons";
 @import "settings/button-containers";
 @import "settings/form";
+
+@import "settings/print";
 
 /*
  * THANK YOU FOR KEEPING ALPHABETICAL ORDER
@@ -39,18 +42,9 @@
 /*
  * Layouts
  */
-@import "layouts/layouts";
-@import "layouts/layouts-analysis";
+@import "layouts/*";
 
 /*
  * Components
  */
-@import "components/c-analysis-header";
-@import "components/c-analysis-graphs";
-@import "components/c-analysis-sidebar";
-@import "components/c-analysis-total";
-@import "components/c-map";
-@import "components/c-graph";
-@import "components/c-header";
-@import "components/c-slide-content";
-@import "components/c-social";
+@import "components/*";

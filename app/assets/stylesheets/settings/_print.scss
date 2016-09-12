@@ -1,0 +1,24 @@
+@media print {
+  @page {
+    size: A4 portrait;
+  }
+
+  body {
+    .l-header,
+    .l-analysis-sidebar,
+    .c-analysis-actions {
+      display: none;
+    }
+
+    .l-analysis-main {
+      position: relative;
+      width: 100%;
+      overflow: visible;
+      left: auto;
+      top: auto;
+      bottom: auto;
+      right: auto;
+      padding: 0 rem(40px);
+    }
+  }
+}
