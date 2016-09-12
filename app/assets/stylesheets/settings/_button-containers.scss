@@ -11,6 +11,8 @@
   &.-j-start { justify-content: flex-start; }
   &.-j-center { justify-content: center; }
   &.-j-end { justify-content: flex-end; }
+  &.-j-between { justify-content: space-between; }
+  &.-j-around { justify-content: space-around; }
 
   &.-a-start { align-items: flex-start; }
   &.-a-center { align-items: center; }

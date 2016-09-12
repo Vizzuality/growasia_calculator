@@ -26,13 +26,20 @@
 
     listeners: function() {
       // This is just an example of how it will work
-      App.Events.on('Save:toggle', function(){
-        console.log('// This is just an example of how it will work: Save:toggle');
-      }.bind(this));
+      App.Events.on('Save:toggle', this.setBookMark.bind(this));
+      App.Events.on('Print:toggle', this.setPrint.bind(this));
     },
 
     render: function() {
       // var chart = c3.generate(this.options);
+    },
+
+
+    setBookMark: function() {
+    },
+
+    setPrint: function() {
+      window.print();
     },
 
     /*
@@ -41,7 +48,6 @@
     onClickAction: function(e) {
       e && e.preventDefault();
       var action = $(e.currentTarget).data('action');
-      console.log(action);
       App.Events.trigger(action);
     }
 

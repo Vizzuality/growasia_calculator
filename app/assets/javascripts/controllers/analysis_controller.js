@@ -21,7 +21,6 @@
           $("#state-selection").addClass("hidden");
         }
       });
-
     },
 
     show: function(params) {
@@ -53,6 +52,8 @@
         model: analysisModel,
         modelCompare: analysisCompareModel
       });
+
+      var shareModalView = new App.View.Share({});
 
       // Fetch the analysis before render the graphs
       analysisModel.fetch();
