@@ -21,6 +21,7 @@
 //= require c3
 //= require chosen.js
 //= require leaflet.js
+//= require validate
 
 //= require_self
 
