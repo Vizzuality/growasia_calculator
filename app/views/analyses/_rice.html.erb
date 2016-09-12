@@ -46,7 +46,8 @@
     <p class="text -questions">
       <span>
         Do you apply lime?
-        <input type="checkbox">
+        <input type="checkbox" id="lime-rice">
+        <label for="lime-rice"></label>
       </span>
       <span>
         <%= f.text_field :lime_amount, class: '-input-small' %>
@@ -54,7 +55,8 @@
       </span>
       <span>
         Do you apply dolomite?
-        <input type="checkbox">
+        <input type="checkbox" id="dolomite-rice">
+        <label for="dolomite-rice"></label>
       </span>
       <span>
         <%= f.text_field :dolomite_amount, class: '-input-small' %>
@@ -71,7 +73,8 @@
     <p class="text -questions">
       <span>
         Do you apply agrochemicals </br> including fertilizers, pesticides, or herbicides?
-        <input type="checkbox">
+        <input type="checkbox" id="agrochemical">
+        <label for="agrochemical"></label>
       </span>
       <span>
         <%= f.text_field :agrochemical_amount, class: '-input-small' %>
