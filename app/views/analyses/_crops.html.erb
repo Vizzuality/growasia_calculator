@@ -42,12 +42,11 @@
     <p class="text -questions">Additional crop management practices include (check all that apply):</p>
     <div class="input-group">
       <% Analysis::CROP_MANAGEMENT_PRACTICES.each do |practice| %>
-        <!-- <%= debug practice %> -->
         <div class="input-wrap">
           <p class="text -form-inputs"><%= practice[:title] %></p>
             <%= f.check_box :crop_management_practices, { multiple: true },
-            practice[:slug], nil %>
-            <label for=<%= practice[:title] %>></label>
+              practice[:slug], nil %>
+            <%= label_tag "analysis_crop_management_practices_#{practice[:slug]}", "" %>
         </div>
       <% end %>
     </div>
