@@ -122,6 +122,7 @@ GEM
     rails-assets-jquery (3.1.0)
     rails-assets-normalize-css (4.2.0)
     rails-assets-underscore (1.8.3)
+    rails-assets-validate (0.10.0)
     rails-dom-testing (2.0.1)
       activesupport (>= 4.2.0, < 6.0)
       nokogiri (~> 1.6.0)
@@ -197,6 +198,7 @@ DEPENDENCIES
   rails-assets-d3 (~> 3.5.17)!
   rails-assets-normalize-css!
   rails-assets-underscore!
+  rails-assets-validate
   sass-rails (~> 5.0)
   spring
   spring-watcher-listen (~> 2.0.0)

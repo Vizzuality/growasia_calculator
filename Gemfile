@@ -43,6 +43,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'autoprefixer-rails'
 gem 'handlebars_assets'
 gem 'leaflet-rails'
+gem 'rails-assets-validate'
 
 
 source 'https://rails-assets.org' do
