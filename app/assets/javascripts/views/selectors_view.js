@@ -27,6 +27,7 @@
 
     setSelectedValue: function(obj) {
       this.$el.val(obj.name);
+      this.$el.trigger('change');
       this.$el.trigger('chosen:updated');
     },
 
