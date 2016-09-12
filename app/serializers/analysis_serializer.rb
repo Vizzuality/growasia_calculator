@@ -39,18 +39,18 @@ class AnalysisSerializer < ActiveModel::Serializer
         emissions_by_source << {
           slug: "agroforestry",
           name: "Agroforestry removals",
-          total: val.to_f,
-          total_per_yield: (val/per_yield).to_f
+          total: val.to_f*-1.0,
+          total_per_yield: (val/per_yield).to_f * -1.0
         }
-        total += val
+        total -= val
       end
     end
 
     if object.rice?
       val = object.emissions_from_rice_cultivation
       emissions_by_source << {
-        slug: "rice-cultivation",
-        name: "Rice cultivation",
+        slug: "rice-irrigation",
+        name: "Rice irrigation",
         total: val.to_f,
         total_per_yield: (val/per_yield).to_f
       }
@@ -77,7 +77,7 @@ class AnalysisSerializer < ActiveModel::Serializer
     val = object.emissions_from_fertilizers_application
     emissions_by_source << {
       slug: "fertilizers",
-      name: "Fertilizers Application",
+      name: "Synthetic fertilizers application",
       total: val.to_f,
       total_per_yield: (val/per_yield).to_f
     }
@@ -103,7 +103,7 @@ class AnalysisSerializer < ActiveModel::Serializer
     end
     emissions_by_source << {
       slug: 'liming',
-      name: 'Lime and Dolomite use',
+      name: 'Liming',
       total: val.to_f,
       total_per_yield: (val/per_yield).to_f
     }
@@ -113,7 +113,7 @@ class AnalysisSerializer < ActiveModel::Serializer
       val = object.emissions_from_agrochemical_use
       emissions_by_source << {
         slug: "agrochemical",
-        name: "Agrochemical use",
+        name: "Agrochemical application",
         total: val.to_f,
         total_per_yield: (val/per_yield).to_f
       }
@@ -122,7 +122,7 @@ class AnalysisSerializer < ActiveModel::Serializer
     val = object.emissions_from_fossil_fuel_use
     emissions_by_source << {
       slug: "fuel",
-      name: "Fossil fuel use",
+      name: "Fossil fuels",
       total: val.to_f,
       total_per_yield: (val/per_yield).to_f
     }

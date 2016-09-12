@@ -2,7 +2,7 @@ module DataSource
   extend ActiveSupport::Concern
 
   CROPS = [
-    {slug: "coccoa", title: "Cocoa", residue_amount: 25_000, rpr: nil,
+    {slug: "cocoa", title: "Cocoa", residue_amount: 25_000, rpr: nil,
       moisture_content: nil, final_default_residue_amount: 25_000,
       n_ag: nil, r_bg: nil, n_bg: nil, c_monoculture: 11, c_agroforestry: 6},
     {slug: "coffee", title: "Coffee", residue_amount: nil, rpr: 21,
