@@ -32,29 +32,64 @@
     color: $white;
   }
 
-  &.-slide-1 {
+  &.-theme-1 {
     background-color: $color-1;
     color: $black;
   }
 
-  &.-slide-2 {
+  &.-theme-2 {
     background-color: $color-2;
     color: $black;
   }
 
-  &.-slide-3 {
+  &.-theme-3 {
     background-color: $color-3;
     color: $black;
   }
 
-  &.-slide-4 {
+  &.-theme-4 {
     background-color: $color-4;
     color: $white;
+
+    input,
+    select,
+    .chosen-container,
+    .chosen-container span,
+    .chosen-container-single .chosen-single div:after {
+      color: $white;
+      border-color: $white;
+      fill: $white;
+    }
   }
 
-  &.-slide-5 {
+  &.-theme-5 {
     background-color: $color-5;
     color: $white;
+
+    input,
+    select,
+    .chosen-container,
+    .chosen-container span,
+    .chosen-container-single .chosen-single div:after {
+      color: $white;
+      border-color: $white;
+      fill: $white;
+    }
+  }
+
+  &.-theme-6 {
+    background-color: $color-6;
+    color: $white;
+
+    input,
+    select,
+    .chosen-container,
+    .chosen-container span,
+    .chosen-container-single .chosen-single div:after {
+      color: $white;
+      border-color: $white;
+      fill: $white;
+    }
   }
 
   //We will change the z-index for something

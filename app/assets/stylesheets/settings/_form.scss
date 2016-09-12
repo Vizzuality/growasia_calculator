@@ -5,7 +5,6 @@
   vertical-align: sub;
 }
 
-
 .chosen-container-single .chosen-single {
   border: 0;
   background: none;
@@ -13,6 +12,7 @@
   box-shadow: none;
   padding: 0;
   text-align: left;
+  overflow: visible;
 
   height: 40px;
   line-height: 40px;
@@ -70,7 +70,7 @@
   li {
     font-size: rem(24px);
     font-weight: 100;
-    padding: rem(10px) 0;
+    padding: rem(10px);
     color: $font-color-2;
     line-height: 1.1;
 
@@ -116,7 +116,7 @@ select,
 .chosen-container {
   @extend %clean-button-or-input;
   min-width: rem(208px);
-  padding: rem(9px) rem(20px) rem(9px) rem(13px);
+  padding: rem(9px) rem(40px) rem(9px) rem(13px);
   background-color: rgba($black, .04);
   margin-top: rem(16px);
 
@@ -130,17 +130,44 @@ select,
     width: 100%;
     color: $font-color-1;
   }
+
+  .c-slide-content .text & {
+    margin: 0;
+  }
 }
 
 input[type = "checkbox"] {
+  display: none;
+}
+
+.checkbox-label,
+input[type = "checkbox"] + label {
   position: relative;
+  display: inline-block;
   @extend %clean-button-or-input;
   width: rem(56px);
   height: rem(56px);
   margin-left: 20px;
-  background-color: rgba($black, .1);
+  background-color: rgba($black, .04);
+  transform: translatey(16px);
 
   &:checked:after {
+    content: "";
+    @extend %center;
+    width: rem(18px);
+    height: rem(18px);
+    background-position: center;
+    background-image: image-url('check.svg');
+  }
+
+  .input-wrap & {
+    transform: translatey(0);
+  }
+}
+
+.checkbox-label:checked,
+input[type = "checkbox"]:checked + label {
+  &:after {
     content: "";
     @extend %center;
     width: rem(18px);
@@ -159,7 +186,9 @@ input[type = "submit"] {
 }
 
 .chosen-container-single .chosen-single span {
+  display: block !important;
   margin: 0;
+  margin-right: rem(20px);
   margin-bottom: 0;
   font-size: rem(32px);
   font-weight: 500;
@@ -172,4 +201,10 @@ fieldset {
   padding: 0;
 
   padding-bottom: rem(24px);
+}
+
+//Avoid countries drop down overflow the page.
+#country_chosen .chosen-results,
+#analysis_geo_location_id_chosen .chosen-results {
+  max-height: 150px;
 }
