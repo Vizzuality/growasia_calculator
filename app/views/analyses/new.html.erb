@@ -3,30 +3,33 @@
 
     <!-- SLIDE 1 -->
     <h1>Select Geography</h1>
-    <section id="slide-1" class="l-slide -slide-1 js--slide -is-current">
+    <section id="slide-1" class="l-slide -theme-1 js--slide -is-current">
       <div class="c-slide-content">
-        <%= label_tag :country, "Select your country", class: "text -questions" %>
-        <p class="text -description">Start typing or select your country in the map</p>
+        <div class="c-map-group">
+          <div id="mapCountries" class="c-map"></div>
+          <!-- <div id="mapRegions" class="c-map"></div> -->
+        </div>
+        <%= label_tag :country, "Select your country", class: "text -questions country-text" %>
+        <%= label_tag :region, "Select your region", class: "text -questions is-hidden region-text" %>
+        <p class="text -description country-text">Start typing or select your country in the map</p>
+        <p class="text -description region-text is-hidden">Start typing or select your region in the map</p>
         <%= select_tag :country,
           options_from_collection_for_select(@geo_locations, :country, :country),
           include_blank: true, class: '-input-big' %>
-
-        <div id="state-selection" class="hidden">
-          <%= f.label :geo_location_id, "Select your region", class: "text -questions"%>
-          <p class="text -description">Start typing or select your region in the map</p>
+        <span class="input-wrapper is-hidden">
           <%= f.select :geo_location_id, [], {}, class: '-input-big' %>
-        </div>
+        </span>
       </div>
     </section>
 
     <!-- SLIDE 2 -->
     <h1>Describe your agricultural activity</h1>
-    <section id="slide-2" class="l-slide -slide-2 js--slide">
+    <section id="slide-2" class="l-slide -theme-2 js--slide">
       <div class="c-slide-content">
         <p class="text -questions">
           <span>
             Currently, I’m growing
-            <%= f.select :crop, select_options(Analysis::CROPS), {}, class: '-input-small'%>
+            <%= f.select :crop, select_options(Analysis::CROPS) %>
           </span>
           <span>
             on

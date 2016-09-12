@@ -1,0 +1,14 @@
+.c-map {
+  width: rem(650px);
+  height: rem(400px);
+  margin-bottom: rem(16px);
+}
+
+
+.leaflet-container {
+  background: transparent;
+}
+
+.leaflet-bottom.leaflet-right {
+  display: none;
+}
