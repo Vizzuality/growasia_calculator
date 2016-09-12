@@ -1,0 +1,12 @@
+.c-save {
+  text-align: center;
+  line-height: 1.5;
+  
+  > * {
+    margin: rem(20px) 0 0;
+
+    &:first-child {
+      margin: 0;
+    }
+  }
+}
