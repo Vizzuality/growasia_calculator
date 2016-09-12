@@ -1,34 +1,34 @@
 <!-- SLIDE -->
 <h1>Tillage</h1>
-<section id="slide-3" class="l-slide -slide-3 js--slide">
+<section id="slide-3" class="l-slide -theme-3 js--slide">
   <div class="c-slide-content">
     <p class="text -questions">
       <span>
-        Crop management includes
-        <%= f.select:tillage, select_options(Analysis::TILLAGES), {}, class: '-input-big' %>
+        My crop management includes
+        <%= f.select:tillage, select_options(Analysis::TILLAGES), {}, class: "-input-big" %>
       </span>
       <span>
         and the application of
       </span>
       <span>
         <%= f.fields_for :fertilizers do |builder| %>
-          <%= builder.hidden_field :category, value: Category::FERTILIZER, class: '-input-small' %>
+          <%= builder.hidden_field :category, value: Category::FERTILIZER %>
           <%= builder.text_field :amount, class: '-input-small' %>
           <span class="text -form-inputs -medium">kg per ha and yr</span>
         of
-        <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES), {}, class: '-input-small' %>
+        <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES), {}, class: "-input-big" %>
         <% end %>
       </span>
       <span>
         <%= f.fields_for :manures do |builder| %>
-        <%= builder.hidden_field :category, value: Category::MANURE, class: '-input-small' %>
+        <%= builder.hidden_field :category, value: Category::MANURE, class: "-input-big" %>
       </span>
       <span>
         and
         <%= builder.text_field :amount, class: '-input-small' %>
         <span class="text -form-inputs -medium">kg per ha and yr</span>
         of
-        <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES), {}, class: '-input-big' %>
+        <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES), {} %>
         <% end %>
       </span>
     </p>
@@ -37,15 +37,16 @@
 
 <!-- SLIDE -->
 <h1>Additional crop management</h1>
-<section id="slide-4" class="l-slide -slide-4 js--slide">
+<section id="slide-4" class="l-slide -theme-4 js--slide">
   <div class="c-slide-content">
     <p class="text -questions">Additional crop management practices include (check all that apply):</p>
     <div class="input-group">
       <% Analysis::CROP_MANAGEMENT_PRACTICES.each do |practice| %>
         <div class="input-wrap">
-          <label class="text -form-inputs"><%= practice[:title] %></label>
-          <%= f.check_box :crop_management_practices, { multiple: true },
-            practice[:slug], nil %>
+          <p class="text -form-inputs"><%= practice[:title] %></p>
+            <%= f.check_box :crop_management_practices, { multiple: true },
+              practice[:slug], nil %>
+            <%= label_tag "analysis_crop_management_practices_#{practice[:slug]}", "" %>
         </div>
       <% end %>
     </div>
@@ -54,7 +55,7 @@
 
 <!-- SLIDE -->
 <h1>Shade trees</h1>
-<section id="slide-5" class="l-slide -slide-5 js--slide">
+<section id="slide-5" class="l-slide -theme-5 js--slide">
   <div class="c-slide-content">
     <p class="text -questions">
     <span>
@@ -72,12 +73,13 @@
   rice and crop without duplicating
 -->
 <h1>Liming and Dolomite</h1>
-<section id="slide-6" class="l-slide -slide-6 js--slide">
+<section id="slide-6" class="l-slide -theme-6 js--slide">
   <div class="c-slide-content">
     <p class="text -questions">
       <span>
         Do you apply lime?
-        <input type="checkbox">
+        <input type="checkbox" id="lime">
+        <label for="lime"></label>
       </span>
       <span>
         <%= f.text_field :lime_amount, class: '-input-small' %>
@@ -85,12 +87,12 @@
       </span>
       <span>
         Do you apply dolomite?
-        <input type="checkbox">
+        <input type="checkbox" id="dolomite">
+        <label for="dolomite"></label>
       </span>
       <span>
         <%= f.text_field :dolomite_amount, class: '-input-small' %>
         <span class="text -form-inputs -medium">kg per ha and yr</span>
-        of dolomite.
       </span>
     </p>
   </div>
@@ -98,12 +100,13 @@
 
 <!-- SLIDE -->
 <h1>Agrochemicals</h1>
-<section id="slide-7" class="l-slide -slide-7 js--slide">
+<section id="slide-7" class="l-slide -theme-6 js--slide">
   <div class="c-slide-content">
     <p class="text -questions">
       <span>
         Do you apply agrochemicals </br> including fertilizers, pesticides, or herbicides?
-        <input type="checkbox">
+        <input type="checkbox" id="agrochemical">
+        <label for="agrochemical"></label>
       </span>
       <span>
         <%= f.text_field :agrochemical_amount, class: '-input-small' %>
@@ -115,7 +118,7 @@
 
 <!-- SLIDE -->
 <h1>Fossil fuels</h1>
-<section id="slide-8" class="l-slide -slide-8 js--slide">
+<section id="slide-8" class="l-slide -theme-6 js--slide">
   <div class="c-slide-content">
     <p class="text -questions">
     <span>

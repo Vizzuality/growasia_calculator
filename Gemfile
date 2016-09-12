@@ -42,6 +42,7 @@ gem 'jquery-rails'
 gem 'sass-rails', '~> 5.0'
 gem 'autoprefixer-rails'
 gem 'handlebars_assets'
+gem 'leaflet-rails'
 
 
 source 'https://rails-assets.org' do
