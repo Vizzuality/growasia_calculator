@@ -6,17 +6,17 @@
 
   App.Helper.Modal = Backbone.View.extend({
 
-    model: new (Backbone.Model.extend({
-      defaults: {
-        hidden: true
-      }
-    })),
-
     events: {
       'click .js-btn-modal-close' : 'onClickClose',
     },
 
     initialize: function() {
+      this.model =  new (Backbone.Model.extend({
+        defaults: {
+          hidden: true
+        }
+      }));
+
       // All the methods that has _ is because they belong to the Parent View
       this._cache();
       this._listeners();

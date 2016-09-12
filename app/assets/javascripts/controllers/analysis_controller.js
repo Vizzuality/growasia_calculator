@@ -54,6 +54,7 @@
       });
 
       var shareModalView = new App.View.Share({});
+      var saveModalView = new App.View.Save({});
 
       // Fetch the analysis before render the graphs
       analysisModel.fetch();

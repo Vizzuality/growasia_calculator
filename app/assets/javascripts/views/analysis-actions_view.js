@@ -26,14 +26,8 @@
 
     listeners: function() {
       // This is just an example of how it will work
-      App.Events.on('Save:toggle', this.setBookMark.bind(this));
       App.Events.on('Print:toggle', this.setPrint.bind(this));
     },
-
-    render: function() {
-      // var chart = c3.generate(this.options);
-    },
-
 
     setBookMark: function() {
     },
