@@ -6,7 +6,7 @@
 
   App.Model.Map = Backbone.Model.extend({
 
-    url: '../custom.geo.json',
+    url: '../asia.geo.json',
 
     parse: function(data) {
       return data;

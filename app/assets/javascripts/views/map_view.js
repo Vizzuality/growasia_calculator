@@ -11,6 +11,8 @@
 
     },
 
+    countries: ['Cambodia', 'Indonesia', 'Myanmar', 'Philipines', 'Vietnam'],
+
     initialize: function(settings) {
       if (!this.el) {
         return;
@@ -59,19 +61,26 @@
       return {
         fillColor: this.getColor(feature.properties),
         weight: 2,
-        opacity: this.getOpacity(feature.properties.selected),
+        opacity: this.getOpacity(feature.properties),
         color: '#fafb00',
-        fillOpacity: 0.7
+        fillOpacity: this.getOpacity(feature.properties)
       };
     },
 
     getColor: function(d) {
-      return d.selected ? '#2a5a3a':
-             '#c1de11';
+      return d.selected ? '#2a5a3a' : '#c1de11';
+
     },
 
     getOpacity: function(d) {
-      return d ?  1 : 0.7;
+      //TODO: Avoid having here all the countries names
+      return d.selected ?  1 :
+             d.admin === 'Cambodia' ? 0.7 :
+             d.admin === 'Indonesia' ? 0.7 :
+             d.admin === 'Myanmar' ? 0.7 :
+             d.admin === 'Philipines' ? 0.7 :
+             d.admin === 'Vietnam' ? 0.7 :
+             0.3;
     },
 
 
@@ -87,11 +96,13 @@
     highlightFeature: function(e) {
       var layer = e.target;
 
-      layer.setStyle({
-          weight: 1,
-          fillColor: '#3f8c3f',
-          fillOpacity: 0.7
-      });
+      if ( this.countries.includes(layer.feature.properties.admin) ) {
+        layer.setStyle({
+            weight: 1,
+            fillColor: '#3f8c3f',
+            fillOpacity: 0.7
+        });
+      }
 
       if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
         layer.bringToFront();
@@ -109,13 +120,16 @@
 
       //Select new layer
       var layer = e.target;
-      layer.feature.properties.selected = true;
 
-      var name = layer.feature.properties.admin;
-      console.log(name)
-      Backbone.Events.trigger('map:country:selected', {name: name});
+      if ( this.countries.includes(layer.feature.properties.admin) ) {
 
-      this.selectedLayer = layer;
+        layer.feature.properties.selected = true;
+
+        var name = layer.feature.properties.admin;
+        Backbone.Events.trigger('map:country:selected', {name: name});
+
+        this.selectedLayer = layer;
+      }
     },
 
     unSelectPrevious: function() {
