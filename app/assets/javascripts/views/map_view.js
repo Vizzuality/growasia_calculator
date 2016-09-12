@@ -6,6 +6,11 @@
 
   App.View.Map = Backbone.View.extend({
 
+    geometries: {
+      all: '',
+
+    },
+
     initialize: function(settings) {
       if (!this.el) {
         return;
@@ -31,7 +36,7 @@
     createMap: function() {
       var mapOptions = {
         zoom:  4,
-        center: [37.8, -96], //ASIA [12.24, 99.11]
+        center: [12.24, 99.11], //ASIA [12.24, 99.11]
         scrollWheelZoom: false,
         dragging: false,
         zoomControl: false,
@@ -42,6 +47,7 @@
       };
 
       this.map = new L.Map(this.el, mapOptions);
+
       this.geoJson = L.geoJson(this.geom, {
         style: this.getStyles.bind(this),
         onEachFeature: this.setEvents.bind(this)
@@ -61,14 +67,7 @@
 
     getColor: function(d) {
       return d.selected ? '#2a5a3a':
-             d.density > 1000 ? '#800026' :
-             d.density > 500  ? '#BD0026' :
-             d.density > 200  ? '#E31A1C' :
-             d.density > 100  ? '#FC4E2A' :
-             d.density > 50   ? '#FD8D3C' :
-             d.density > 20   ? '#FEB24C' :
-             d.density > 10   ? '#FED976' :
-             '#FED976';
+             '#c1de11';
     },
 
     getOpacity: function(d) {
@@ -112,8 +111,8 @@
       var layer = e.target;
       layer.feature.properties.selected = true;
 
-      var name = layer.feature.properties.name;
-      name = 'Cambodia';
+      var name = layer.feature.properties.admin;
+      console.log(name)
       Backbone.Events.trigger('map:country:selected', {name: name});
 
       this.selectedLayer = layer;
@@ -126,11 +125,10 @@
 
     setSelectedItems: function(obj) {
       var item = obj.item;
-      item = "Alabama";
       var layer = _.findWhere(this.map._layers, { name : item });
 
       _.each(this.map._layers, function(layer){
-        if (layer.feature && layer.feature.properties.name === "Alabama") {
+        if (layer.feature && layer.feature.properties.admin === item) {
           layer.feature.properties.selected = true;
 
           layer.setStyle({fillColor: '#2a5a3a'});
