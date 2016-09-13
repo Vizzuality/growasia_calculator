@@ -33,9 +33,17 @@
 
     onChangeTriggerValue: function() {
       var selectedItem = this.$el.val();
-      Backbone.Events.trigger('selector:item:selected', {item: selectedItem});
-    }
 
+      this.el.id === 'country' ? this.mode = 'regions' : this.mode = 'country';
+
+      if (this.el.id === 'country') {
+        Backbone.Events.trigger('selector:item:selected', {
+          item: selectedItem,
+          mode: this.mode,
+          country: selectedItem
+        });
+      }
+    }
   });
 
 })(this.App);

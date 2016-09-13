@@ -7,8 +7,38 @@
   App.View.Map = Backbone.View.extend({
 
     geometries: {
-      all: '',
-
+      country: {
+        url: '../asia.geo.json',
+        center: [12.24, 105],
+        zoom: 4
+      },
+      regions: {
+        Cambodia: {
+          url: '../cambodia.geo.json',
+          center: [12.24, 105],
+          zoom: 7
+        },
+        Vietnam: {
+          url: '../vietnam.geo.json',
+          center: [12.24, 105],
+          zoom: 5
+        },
+        Philippines: {
+          url: '../philipines.geo.json',
+          center: [10, 125],
+          zoom: 5
+        },
+        Myanmar: {
+          url: '../myanmar.geo.json',
+          center: [12, 100],
+          zoom: 5
+        },
+        Indonesia: {
+          url: '../indonesia.geo.json',
+          center: [0, 108],
+          zoom: 4
+        }
+      }
     },
 
     countries: ['Cambodia', 'Indonesia', 'Myanmar', 'Philippines', 'Vietnam'],
@@ -21,24 +51,34 @@
       var opts = settings && settings.options ? settings.options : {};
       this.options = _.extend({}, this.defaults, opts );
 
+      this.options.mode = this.getCurrentMode(this.options);
+      this.currentGeom = this.getCurrentGeom(this.options);
+
       this.model =  new App.Model.Map();
 
-      this.model.fetch().done(function() {
-        this.geom = this.model.toJSON().features;
-        this.createMap();
-      }.bind(this));
+      this.createMap();
+      this.getLayer();
 
       this.listeners();
     },
 
     listeners: function() {
-      Backbone.Events.on('selector:item:selected', this.setSelectedItems.bind(this));
+      // Backbone.Events.on('selector:item:selected', this.setSelectedItems.bind(this));
+      Backbone.Events.on('selector:item:selected', this.updateMap.bind(this));
+    },
+
+    getCurrentMode: function(opt) {
+      return opt.mode;
+    },
+
+    getCurrentGeom: function(opt) {
+      return opt.country ? this.geometries[opt.mode][opt.country] : this.geometries[opt.mode];
     },
 
     createMap: function() {
       var mapOptions = {
-        zoom:  4,
-        center: [12.24, 105], //ASIA [12.24, 99.11]
+        zoom: this.currentGeom.zoom || 4,
+        center: this.currentGeom.center || [12.24, 105], //ASIA [12.24, 99.11]
         scrollWheelZoom: false,
         dragging: false,
         zoomControl: false,
@@ -49,13 +89,11 @@
       };
 
       this.map = new L.Map(this.el, mapOptions);
-
-      this.geoJson = L.geoJson(this.geom, {
-        style: this.getStyles.bind(this),
-        onEachFeature: this.setEvents.bind(this)
-      }).addTo(this.map);
     },
 
+    /*
+     * LAYERS
+     */
     //STYLES
     getStyles: function(feature) {
       return {
@@ -69,16 +107,16 @@
 
     getColor: function(d) {
       return d.selected ? '#2a5a3a' : '#c1de11';
-
     },
 
     getOpacity: function(d) {
-      //TODO: Avoid having here all the countries names
+      //As sources are different, names are different.
+      //This will be fixed once we'will get the correct data
       return d.selected ?  1 :
              this.countries.includes(d.admin) ? 0.8 :
+             this.countries.includes(d.ADMIN) ? 0.8 :
              0.3;
     },
-
 
     //EVENTS
     setEvents: function(feature, layer) {
@@ -122,7 +160,7 @@
         layer.feature.properties.selected = true;
 
         var name = layer.feature.properties.admin;
-        Backbone.Events.trigger('map:country:selected', {name: name});
+        Backbone.Events.trigger('map:country:selected', {name: name, mode: this.mode});
 
         this.selectedLayer = layer;
       }
@@ -147,8 +185,39 @@
           this.selectedLayer = layer;
         }
       }.bind(this))
+    },
 
+    /*
+     * MAP METHODS
+     */
+    updateMap: function(obj) {
+      this.removeLayer();
+      this.mode = this.getCurrentMode(obj);
+      this.currentGeom = this.getCurrentGeom(obj);
+
+      this.map.setView( this.currentGeom.center, this.currentGeom.zoom);
+
+      this.getLayer();
+    },
+
+    removeLayer: function() {
+      this.map.removeLayer(this.geoJson);
+    },
+
+    addLayer: function() {
+      this.geoJson = L.geoJson(this.geom, {
+        style: this.getStyles.bind(this),
+        onEachFeature: this.setEvents.bind(this)
+      }).addTo(this.map);
+    },
+
+    getLayer: function() {
+      this.model.fetch({ url: this.currentGeom.url }).done(function() {
+        this.geom = this.model.toJSON().features;
+        this.addLayer();
+      }.bind(this));
     }
+
   });
 
 })(this.App);
