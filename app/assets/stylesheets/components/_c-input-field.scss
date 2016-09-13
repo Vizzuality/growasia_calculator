@@ -50,6 +50,10 @@
     .c-slide-content .text & {
       margin: 0;
     }
+
+    &.is-wrong {
+      border: 1px solid #ff5500;
+    }
   }
 
   input[type = "submit"] {
@@ -134,10 +138,6 @@
     font-style: italic;
     font-size: 14px;
     color: #ff5500;
-  }
-
-  .is-wrong {
-    border: 1px solid #ff5500;
   }
 
   /**
