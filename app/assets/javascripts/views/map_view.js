@@ -7,8 +7,8 @@
   App.View.Map = Backbone.View.extend({
 
     geometries: {
-      all: '',
-
+      countries: '',
+      regions: ''
     },
 
     countries: ['Cambodia', 'Indonesia', 'Myanmar', 'Philippines', 'Vietnam'],
@@ -147,8 +147,8 @@
           this.selectedLayer = layer;
         }
       }.bind(this))
-
     }
+
   });
 
 })(this.App);
