@@ -29,18 +29,20 @@
       this.$el.val(obj.name);
       this.$el.trigger('change');
       this.$el.trigger('chosen:updated');
-
-      obj.mode === 'countries' && this.changeMap(obj.name);
     },
 
     onChangeTriggerValue: function() {
       var selectedItem = this.$el.val();
-      Backbone.Events.trigger('selector:item:selected', {item: selectedItem});
-    },
 
-    changeMap: function(name) {
-      $('#mapWrapper').addClass('-second-map');
-      new App.View.Map({el: '#mapRegions', options:{mode: 'regions', country: name}});
+      this.el.id === 'country' ? this.mode = 'regions' : this.mode = 'country';
+
+      if (this.el.id === 'country') {
+        Backbone.Events.trigger('selector:item:selected', {
+          item: selectedItem,
+          mode: this.mode,
+          country: selectedItem
+        });
+      }
     }
 
   });
