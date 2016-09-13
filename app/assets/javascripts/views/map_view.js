@@ -11,10 +11,30 @@
         url: '../asia.geo.json'
       },
       regions: {
-        cambodia: {
+        Cambodia: {
           url: '../cambodia.geo.json',
           center: [12.24, 105],
           zoom: 7
+        },
+        Vietnam: {
+          url: '../vietnam.geo.json',
+          center: [12.24, 105],
+          zoom: 5
+        },
+        Philippines: {
+          url: '../philipines.geo.json',
+          center: [10, 125],
+          zoom: 5
+        },
+        Myanmar: {
+          url: '../myanmar.geo.json',
+          center: [12, 100],
+          zoom: 5
+        },
+        Indonesia: {
+          url: '../indonesia.geo.json',
+          center: [0, 108],
+          zoom: 4
         }
       }
     },
@@ -133,7 +153,7 @@
         layer.feature.properties.selected = true;
 
         var name = layer.feature.properties.admin;
-        Backbone.Events.trigger('map:country:selected', {name: name});
+        Backbone.Events.trigger('map:country:selected', {name: name, mode: this.mode});
 
         this.selectedLayer = layer;
       }

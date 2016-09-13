@@ -1,0 +1,15 @@
+.c-map-group {
+  width: rem(650px);
+  height: rem(400px);
+  margin-bottom: rem(16px);
+  overflow: hidden;
+
+  .maps-wrapper {
+    display: flex;
+    width: 200%;
+
+    &.-second-map {
+      transform: translatex(-50%);
+    }
+  }
+}
