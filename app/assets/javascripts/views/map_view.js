@@ -91,6 +91,9 @@
       this.map = new L.Map(this.el, mapOptions);
     },
 
+    /*
+     * LAYERS
+     */
     //STYLES
     getStyles: function(feature) {
       return {
@@ -104,16 +107,16 @@
 
     getColor: function(d) {
       return d.selected ? '#2a5a3a' : '#c1de11';
-
     },
 
     getOpacity: function(d) {
-      //TODO: Avoid having here all the countries names
+      //As sources are different, names are different.
+      //This will be fixed once we'will get the correct data
       return d.selected ?  1 :
              this.countries.includes(d.admin) ? 0.8 :
+             this.countries.includes(d.ADMIN) ? 0.8 :
              0.3;
     },
-
 
     //EVENTS
     setEvents: function(feature, layer) {
@@ -184,6 +187,9 @@
       }.bind(this))
     },
 
+    /*
+     * MAP METHODS
+     */
     updateMap: function(obj) {
       this.removeLayer();
       this.mode = this.getCurrentMode(obj);
