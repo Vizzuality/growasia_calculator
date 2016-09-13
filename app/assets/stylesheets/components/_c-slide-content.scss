@@ -26,7 +26,8 @@
     flex-wrap: wrap;
     justify-content: center;
     width: 80%;
-    margin-top: rem(60px);
+    max-width: 1200px;
+    margin-top: rem(30px);
     margin-right: auto;
     margin-left: auto;
 
@@ -43,14 +44,10 @@
         margin-right: 4%;
       }
 
-      label {
-        text-align: left;
-      }
+      // label {
+      //   text-align: left;
+      // }
     }
-  }
-
-  .input-group {
-    margin-top: rem(30px);
   }
 
   //HOME

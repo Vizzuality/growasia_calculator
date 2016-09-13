@@ -64,6 +64,7 @@
     input,
     select,
     label,
+    input[type = "checkbox"] + label,
     .chosen-container {
       background-color: rgba($white, .1);
     }
@@ -91,6 +92,7 @@
     input,
     select,
     label,
+    input[type = "checkbox"] + label,
     .chosen-container {
       background-color: rgba($white, .1);
     }
@@ -117,6 +119,7 @@
     input,
     select,
     label,
+    input[type = "checkbox"] + label,
     .chosen-container {
       background-color: rgba($white, .1);
     }
