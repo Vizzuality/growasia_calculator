@@ -7,8 +7,16 @@
   App.View.Map = Backbone.View.extend({
 
     geometries: {
-      countries: '',
-      regions: ''
+      countries: {
+        url: '../asia.geo.json'
+      },
+      regions: {
+        cambodia: {
+          url: '../cambodia.geo.json',
+          center: [12.24, 105],
+          zoom: 7
+        }
+      }
     },
 
     countries: ['Cambodia', 'Indonesia', 'Myanmar', 'Philippines', 'Vietnam'],
@@ -21,9 +29,12 @@
       var opts = settings && settings.options ? settings.options : {};
       this.options = _.extend({}, this.defaults, opts );
 
+      this.mode = this.options.mode;
+      this.currentGeom = this.options.country ? this.geometries[this.options.mode][this.options.country] : this.geometries[this.options.mode];
+
       this.model =  new App.Model.Map();
 
-      this.model.fetch().done(function() {
+      this.model.fetch({ url: this.currentGeom.url }).done(function() {
         this.geom = this.model.toJSON().features;
         this.createMap();
       }.bind(this));
@@ -37,8 +48,8 @@
 
     createMap: function() {
       var mapOptions = {
-        zoom:  4,
-        center: [12.24, 105], //ASIA [12.24, 99.11]
+        zoom: this.currentGeom.zoom || 4,
+        center: this.currentGeom.center || [12.24, 105], //ASIA [12.24, 99.11]
         scrollWheelZoom: false,
         dragging: false,
         zoomControl: false,

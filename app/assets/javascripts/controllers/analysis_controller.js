@@ -11,7 +11,7 @@
       new App.View.Steps({el: '#slider'});
 
       new App.View.Map({el: '#mapCountries', options:{mode: 'countries'}});
-      new App.View.Map({el: '#mapRegions', options:{mode: 'regions', country: 'Cambodia'}});
+      new App.View.Map({el: '#mapRegions', options:{mode: 'regions', country: 'cambodia'}});
 
       new App.View.Selectors({el: '#country'});
       new App.View.Selectors({el: '#analysis_geo_location_id'});
