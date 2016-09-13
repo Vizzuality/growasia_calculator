@@ -30,24 +30,6 @@
     margin-top: rem(30px);
     margin-right: auto;
     margin-left: auto;
-
-    .input-wrap {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 45%;
-      max-width: rem(430px);
-      margin-bottom: rem(20px);
-      float: left;
-
-      &:nth-child(2n + 1) {
-        margin-right: 4%;
-      }
-
-      // label {
-      //   text-align: left;
-      // }
-    }
   }
 
   //HOME

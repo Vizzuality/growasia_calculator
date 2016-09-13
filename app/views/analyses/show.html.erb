@@ -80,24 +80,32 @@
     <%= form_for [:api, :v1, @analysis], :html => { :id => "analysis-sidebar-form" } do |f| %>
       <div class="input-group -first">
         <div>
-          <label class="text -description" for="">Tillage</label>
-          <%= f.select:tillage, select_options(Analysis::TILLAGES), {}, class: '-input-big' %>
+          <div class="c-input-field">
+            <label class="text -description" for="">Tillage</label>
+            <%= f.select:tillage, select_options(Analysis::TILLAGES), {}, class: '-input-big' %>
+          </div>
         </div>
         <%= f.fields_for :fertilizers do |builder| %>
           <div>
-            <label class="text -description" for=""><%= builder.object.fertilizer_name %></label>
-            <%= builder.number_field :amount, min: 0 %>
+            <div class="c-input-field">
+              <label class="text -description" for=""><%= builder.object.fertilizer_name %></label>
+              <%= builder.number_field :amount, min: 0 %>
+            </div>
           </div>
         <% end %>
         <%= f.fields_for :manures do |builder| %>
           <div>
-            <label class="text -description" for=""><%= builder.object.manure_name %></label>
-            <%= builder.number_field :amount, min: 0 %>
+            <div class="c-input-field">
+              <label class="text -description" for=""><%= builder.object.manure_name %></label>
+              <%= builder.number_field :amount, min: 0 %>
+            </div>
           </div>
         <% end %>
         <div>
-          <label class="text -description" for="">Agrochemicals amount</label>
-          <%= f.number_field :agrochemical_amount, min: 0 %>
+          <div class="c-input-field">
+            <label class="text -description" for="">Agrochemicals amount</label>
+            <%= f.number_field :agrochemical_amount, min: 0 %>
+          </div>
         </div>
       </div>
       <div class="input-group -second">
@@ -108,7 +116,7 @@
               <div class="custom-checkbox">
                 <%= f.check_box :crop_management_practices, { multiple: true }, practice[:slug], nil %>
                 <label for="analysis_crop_management_practices_<%= practice[:slug] %>">
-                  <span></span> <%= practice[:title] %>
+                  <span></span><%= practice[:title] %>
                 </label>
               </div>
             </div>
@@ -117,21 +125,29 @@
       </div>
       <div class="input-group -third">
         <div>
-          <label class="text -description" for="">Shaded?</label>
-          <%= f.select:is_shaded, options_for_select([["Yes", true], ["No", false]]) %>
+          <div class="c-input-field">
+            <label class="text -description" for="">Shaded?</label>
+            <%= f.select:is_shaded, options_for_select([["Yes", true], ["No", false]]) %>
+          </div>
         </div>
         <div>
-          <label class="text -description" for="">Lime</label>
-          <%= f.number_field :lime_amount, min: 0  %>
+          <div class="c-input-field">
+            <label class="text -description" for="">Lime</label>
+            <%= f.number_field :lime_amount, min: 0  %>
+          </div>
         </div>
         <div>
-          <label class="text -description" for="">Dolomite</label>
-          <%= f.number_field :dolomite_amount, min: 0  %>
+          <div class="c-input-field">
+            <label class="text -description" for="">Dolomite</label>
+            <%= f.number_field :dolomite_amount, min: 0  %>
+          </div>
         </div>
         <div>
           <%= f.fields_for :fuels do |builder| %>
-            <label class="text -description" for=""><%= builder.object.fuel_name %></label>
-            <%= builder.number_field :amount, min: 0  %><%= builder.object.fuel_unit_name %>
+            <div class="c-input-field">
+              <label class="text -description" for=""><%= builder.object.fuel_name %></label>
+              <%= builder.number_field :amount, min: 0  %><%= builder.object.fuel_unit_name %>
+            </div>
           <% end %>
         </div>
       <% end %>

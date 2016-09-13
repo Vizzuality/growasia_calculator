@@ -6,14 +6,18 @@
     <p class="text -questions">
       <span>
         I grow
-        <%= f.select :rice_type,
-          options_for_select(["paddy", "upland"]) %>
+        <span class="c-input-field">
+          <%= f.select :rice_type,
+            options_for_select(["paddy", "upland"]) %>
+        </span>
       </span>
       <span>
         rice and the irrigation regime can be described as
       </span>
       </span>
-        <%= f.select :irrigation_regime, select_options(Analysis::IRRIGATION_REGIMES) %>
+        <div class="c-input-field">
+          <%= f.select :irrigation_regime, select_options(Analysis::IRRIGATION_REGIMES) %>
+        </div>
       </span>
     </p>
   </section>
@@ -27,11 +31,15 @@
           Before cultivation starts, cropland is
         </span>
         <span>
-          <%= f.select :flooding, select_options(Analysis::FLOODING_PRACTICES) %>
+          <span class="c-input-field">
+            <%= f.select :flooding, select_options(Analysis::FLOODING_PRACTICES) %>
+          </span>
         </span>
         <span>
           and cultivation takes
-          <%= f.text_field :cultivation_time, value: 120, class: '-input-small' %> days
+          <span class="c-input-field">
+            <%= f.text_field :cultivation_time, value: 120, class: '-input-small' %> days
+          </span>
         </span>
       </p>
   </div>
@@ -46,20 +54,28 @@
     <p class="text -questions">
       <span>
         Do you apply lime?
-        <input type="checkbox" id="limeRice">
-        <label for="limeRice"></label>
+        <span class="c-input-field">
+          <input type="checkbox" id="limeRice">
+          <label for="limeRice"></label>
+        </span>
       </span>
       <span>
-        <%= f.text_field :lime_amount, class: '-input-small' %>
-        <span class="text -form-inputs -medium">kg per ha and yr</span>
+        <span class="c-input-field">
+          <%= f.text_field :lime_amount, class: '-input-small' %>
+          <span class="text -form-inputs -medium">kg per ha and yr</span>
+        </span>
       </span>
       <span>
         Do you apply dolomite?
-        <input type="checkbox" id="dolomiteRice">
-        <label for="dolomiteRice"></label>
+        <span class="c-input-field">
+          <input type="checkbox" id="dolomiteRice">
+          <label for="dolomiteRice"></label>
+        </span>
       </span>
       <span>
-        <%= f.text_field :dolomite_amount, class: '-input-small' %>
+        <span class="c-input-field">
+          <%= f.text_field :dolomite_amount, class: '-input-small' %>
+        </span>
         <span class="text -form-inputs -medium">kg per ha and yr</span>
       </span>
     </p>
@@ -73,11 +89,15 @@
     <p class="text -questions">
       <span>
         Do you apply agrochemicals </br> including fertilizers, pesticides, or herbicides?
-        <input type="checkbox" id="agrochemicalRice">
-        <label for="agrochemicalRice"></label>
+        <span class="c-input-field">
+          <input type="checkbox" id="agrochemicalRice">
+          <label for="agrochemicalRice"></label>
+        </span>
       </span>
       <span>
-        <%= f.text_field :agrochemical_amount, class: '-input-small' %>
+        <span class="c-input-field">
+          <%= f.text_field :agrochemical_amount, class: '-input-small' %>
+        </span>
         <span class="text -form-inputs -medium">kg per ha and yr</span>
       </span>
     </p>
@@ -93,12 +113,16 @@
         We apply
         <%= f.fields_for :fertilizers do |builder| %>
           <%= builder.hidden_field :category, value: Category::FERTILIZER %>
-          <%= builder.text_field :amount, class: '-input-small' %>
+          <span class="c-input-field">
+            <%= builder.text_field :amount, class: '-input-small' %>
+          </span>
           <span class="text -form-inputs -medium">kg per ha and yr</span>
       </span>
       <span>
           of
-          <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES) %>
+          <span class="c-input-field">
+            <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES) %>
+          </span>
         <% end %>
       </span>
 
@@ -106,12 +130,16 @@
         and
         <%= f.fields_for :manures do |builder| %>
           <%= builder.hidden_field :category, value: Category::MANURE %>
-          <%= builder.text_field :amount, class: '-input-small' %>
+          <span class="c-input-field">
+            <%= builder.text_field :amount, class: '-input-small' %>
+          </span>
           <span class="text -form-inputs -medium">kg per ha and yr</span>
       </span>
       <span>
           of
-          <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES) %>
+          <span class="c-input-field">
+            <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES) %>
+          </span>
         <% end %>
       </span>
 
@@ -119,12 +147,16 @@
         Additionally, we incorporate
         <%= f.fields_for :nutrient_managements do |builder| %>
           <%= builder.hidden_field :category, value: Category::NUTRIENT_MANAGEMENT %>
-          <%= builder.text_field :amount, class: '-input-small' %>
+          <span class="c-input-field">
+            <%= builder.text_field :amount, class: '-input-small' %>
+          </span>
           <span class="text -form-inputs -medium">kg per ha and yr</span>
       </span>
       <span>
           of
-          <%= builder.select :addition_type, select_options(Analysis::RICE_NUTRIENT_MANAGEMENT) %>
+          <span class="c-input-field">
+            <%= builder.select :addition_type, select_options(Analysis::RICE_NUTRIENT_MANAGEMENT) %>
+          </span>
         <% end %>
       </span>
     </p>
@@ -142,31 +174,40 @@
       <span>
         <%= f.fields_for :transportation_fuels do |builder| %>
           <%= builder.hidden_field :category, value: Category::TRANSPORTATION_FUEL %>
-          <%= builder.text_field :amount, class: '-input-small' %>
-          <%= builder.select :unit, select_options(Analysis::FUEL_UNITS) %>
-          <%= builder.select :addition_type, select_options(Analysis::FUEL_TYPES) %>
+          <span class="c-input-field">
+            <%= builder.text_field :amount, class: '-input-small' %>
+            <%= builder.select :unit, select_options(Analysis::FUEL_UNITS) %>
+            <%= builder.select :addition_type, select_options(Analysis::FUEL_TYPES) %>
+          </span>
           for transportation,
         <% end %>
       </span>
       <span>
         <%= f.fields_for :irrigation_fuels do |builder| %>
-          <%= builder.hidden_field :category, value: Category::IRRIGATION_FUEL %>
-          <%= builder.text_field :amount, class: '-input-small' %>
-          <%= builder.select :unit, select_options(Analysis::FUEL_UNITS) %>
-          <%= builder.select :addition_type, select_options(Analysis::FUEL_TYPES) %>
+          <span class="c-input-field">
+            <%= builder.hidden_field :category, value: Category::IRRIGATION_FUEL %>
+            <%= builder.text_field :amount, class: '-input-small' %>
+            <%= builder.select :unit, select_options(Analysis::FUEL_UNITS) %>
+            <%= builder.select :addition_type, select_options(Analysis::FUEL_TYPES) %>
+          </span>
           for irrigation, and
         <% end %>
       </span>
       <span>
         <%= f.fields_for :fuels do |builder| %>
-          <%= builder.hidden_field :category, value: Category::FUEL %>
-          <%= builder.text_field :amount, class: '-input-small' %>
-          <%= builder.select :unit, select_options(Analysis::FUEL_UNITS) %>
-          <%= builder.select :addition_type, select_options(Analysis::FUEL_TYPES) %> for other practices.
+          <span class="c-input-field">
+            <%= builder.hidden_field :category, value: Category::FUEL %>
+            <%= builder.text_field :amount, class: '-input-small' %>
+            <%= builder.select :unit, select_options(Analysis::FUEL_UNITS) %>
+            <%= builder.select :addition_type, select_options(Analysis::FUEL_TYPES) %>
+          </span>
+          for other practices.
         <% end %>
       </span>
       <div class="actions">
-        <%= f.submit %>
+        <div class="c-input-field">
+          <%= f.submit %>
+        </div>
       </div>
     </p>
   </div>

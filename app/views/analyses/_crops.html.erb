@@ -5,7 +5,9 @@
     <p class="text -questions">
       <span>
         My crop management includes
-        <%= f.select:tillage, select_options(Analysis::TILLAGES), {}, class: "-input-big" %>
+        <span class="c-input-field">
+          <%= f.select:tillage, select_options(Analysis::TILLAGES), {}, class: "-input-big" %>
+        </span>
       </span>
       <span>
         and the application of
@@ -13,22 +15,30 @@
       <span>
         <%= f.fields_for :fertilizers do |builder| %>
           <%= builder.hidden_field :category, value: Category::FERTILIZER %>
-          <%= builder.text_field :amount, class: '-input-small  is-required' %>
+          <span class="c-input-field">
+            <%= builder.text_field :amount, class: '-input-small  is-required' %>
+          </span>
           <span class="text -form-inputs -medium">kg per ha and yr</span>
         of
-        <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES), {}, class: "-input-big" %>
+        <span class="c-input-field">
+          <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES), {}, class: "-input-big" %>
+        </span>
         <% end %>
       </span>
       <span>
         <%= f.fields_for :manures do |builder| %>
-        <%= builder.hidden_field :category, value: Category::MANURE, class: "-input-big" %>
+        <%= builder.hidden_field :category, value: Category::MANURE %>
       </span>
       <span>
         and
-        <%= builder.text_field :amount, class: '-input-small is-required' %>
+        <span class="c-input-field">
+          <%= builder.text_field :amount, class: '-input-small is-required' %>
+        </span>
         <span class="text -form-inputs -medium">kg per ha and yr</span>
         of
-        <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES), {} %>
+        <span class="c-input-field">
+          <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES), {} %>
+        </span>
         <% end %>
       </span>
     </p>
@@ -42,12 +52,12 @@
     <p class="text -questions">Additional crop management practices include (check all that apply):</p>
     <div class="input-group">
       <% Analysis::CROP_MANAGEMENT_PRACTICES.each do |practice| %>
-        <div class="input-wrap">
+        <span class="c-input-field -checkbox">
           <p class="text -form-inputs"><%= practice[:title] %></p>
             <%= f.check_box :crop_management_practices, { multiple: true },
               practice[:slug], nil %>
             <%= label_tag "analysis_crop_management_practices_#{practice[:slug]}", "" %>
-        </div>
+        </span>
       <% end %>
     </div>
   </div>
@@ -63,7 +73,9 @@
       additional silviculture?
     </span>
     <span>
-      <%= f.select:is_shaded, options_for_select([["Yes", true], ["No", false]]) %>
+      <span class="c-input-field">
+        <%= f.select:is_shaded, options_for_select([["Yes", true], ["No", false]]) %>
+      </span>
     </span>
     </p>
   </div>
@@ -78,20 +90,28 @@
     <p class="text -questions">
       <span>
         Do you apply lime?
-        <input type="checkbox" id="lime">
-        <label for="lime"></label>
+        <span class="c-input-field">
+          <input type="checkbox" id="lime">
+          <label for="lime"></label>
+        </span>
       </span>
       <span>
-        <%= f.text_field :lime_amount, class: '-input-small' %>
+        <span class="c-input-field">
+          <%= f.text_field :lime_amount, class: '-input-small' %>
+        </span>
         <span class="text -form-inputs -medium">kg per ha and yr</span>
       </span>
       <span>
         Do you apply dolomite?
-        <input type="checkbox" id="dolomite">
-        <label for="dolomite"></label>
+        <span class="c-input-field">
+          <input type="checkbox" id="dolomite">
+          <label for="dolomite"></label>
+        </span>
       </span>
       <span>
-        <%= f.text_field :dolomite_amount, class: '-input-small' %>
+        <span class="c-input-field">
+          <%= f.text_field :dolomite_amount, class: '-input-small' %>
+        </span>
         <span class="text -form-inputs -medium">kg per ha and yr</span>
       </span>
     </p>
@@ -105,11 +125,15 @@
     <p class="text -questions">
       <span>
         Do you apply agrochemicals </br> including fertilizers, pesticides, or herbicides?
-        <input type="checkbox" id="agrochemical">
-        <label for="agrochemical"></label>
+        <span class="c-input-field">
+          <input type="checkbox" id="agrochemical">
+          <label for="agrochemical"></label>
+        </span>
       </span>
       <span>
-        <%= f.text_field :agrochemical_amount, class: '-input-small' %>
+        <span class="c-input-field">
+          <%= f.text_field :agrochemical_amount, class: '-input-small' %>
+        </span>
         <span class="text -form-inputs -medium">kg per ha and yr</span>
       </span>
     </p>
@@ -127,17 +151,25 @@
     <span>
       <%= f.fields_for :fuels do |builder| %>
         <%= builder.hidden_field :category, value: Category::FUEL %>
-        <%= builder.text_field :amount %>
-        <%= builder.select :unit, select_options(Analysis::FUEL_UNITS) %>
+        <span class="c-input-field">
+          <%= builder.text_field :amount %>
+        </span>
+        <span class="c-input-field">
+          <%= builder.select :unit, select_options(Analysis::FUEL_UNITS) %>
+        </span>
     </span>
     <span>
         of
-        <%= builder.select :addition_type, select_options(Analysis::FUEL_TYPES) %>
+        <span class="c-input-field">
+          <%= builder.select :addition_type, select_options(Analysis::FUEL_TYPES) %>
+        </span>
       <% end %>
     </span>
     </p>
     <div class="actions">
-      <%= f.submit %>
+      <div class="c-input-field">
+        <%= f.submit %>
+      </div>
     </div>
   </div>
 </section>
