@@ -59,13 +59,13 @@
 
 
     changeMapMode: function() {
-      Backbone.Events.trigger('selector:country:selected', {
+      Backbone.Events.trigger('selector:item:selected', {
         country: this.model.get('country')
       });
     },
 
     changeMapRegion: function() {
-      Backbone.Events.trigger('selector:region:selected', {
+      Backbone.Events.trigger('selector:item:selected', {
         region: this.model.get('region')
       });
     }

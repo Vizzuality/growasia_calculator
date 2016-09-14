@@ -6,6 +6,8 @@
 
   App.View.Map = Backbone.View.extend({
 
+    model: new (Backbone.Model.extend()),
+
     geometries: {
       all: {
         url: '../asia.geo.json',
@@ -61,8 +63,14 @@
     },
 
     listeners: function() {
-      Backbone.Events.on('selector:country:selected', this.changeMapMode.bind(this));
-      Backbone.Events.on('selector:region:selected', this.changeMapMode.bind(this));
+      this.model.on('change:country', this.changeMapMode.bind(this));
+      this.model.on('change:region', this.changeMapRegion.bind(this));
+
+      Backbone.Events.on('selector:item:selected', this.updateMapState.bind(this));
+    },
+
+    updateMapState: function(obj) {
+      this.model.set(obj);
     },
 
     getCurrentMode: function(opt) {
@@ -70,7 +78,6 @@
     },
 
     getCurrentGeom: function(opt) {
-
       return opt.country ? this.geometries[opt.country] : this.geometries['all'];
     },
 
@@ -175,6 +182,14 @@
       }
     },
 
+    updateLayer: function() {
+
+    },
+
+    changeMapRegion: function() {
+
+    },
+
     unSelectPrevious: function() {
       this.selectedLayer && (this.selectedLayer.feature.properties.selected = false);
       this.selectedLayer && this.resetHighlight(this.selectedLayer);
@@ -199,10 +214,10 @@
     /*
      * MAP METHODS
      */
-    changeMapMode: function(obj) {
+    changeMapMode: function() {
       this.removeLayer();
-      this.currentGeom = this.getCurrentGeom(obj);
-
+      this.currentGeom = this.getCurrentGeom(this.model.get('country'));
+      debugger
       this.map.setView( this.currentGeom.center, this.currentGeom.zoom);
 
       this.getLayer();
