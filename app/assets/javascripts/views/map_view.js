@@ -166,7 +166,7 @@
       if ( this.mode === 'regions' || this.countries.includes(layer.feature.properties.admin) ) {
 
         layer.feature.properties.selected = true;
-
+        console.log(layer.feature.properties)
         var name = layer.feature.properties.admin || layer.feature.properties.name;
         var region_id = layer.feature.properties.id_1 || '';
 
