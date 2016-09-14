@@ -96,13 +96,21 @@
      */
     //STYLES
     getStyles: function(feature) {
-      return {
+      var style = this.mode === 'regions' ? {
+        fillColor: this.getColor(feature.properties),
+        weight: 2,
+        opacity: 0.8,
+        color: '#fafb00',
+        fillOpacity: 0.8
+      } : {
         fillColor: this.getColor(feature.properties),
         weight: 2,
         opacity: this.getOpacity(feature.properties),
         color: '#fafb00',
         fillOpacity: this.getOpacity(feature.properties)
-      };
+      }
+
+      return style;
     },
 
     getColor: function(d) {
@@ -130,7 +138,7 @@
     highlightFeature: function(e) {
       var layer = e.target;
 
-      if ( this.countries.includes(layer.feature.properties.admin) ) {
+      if ( this.mode === 'regions' || this.countries.includes(layer.feature.properties.admin) ) {
         layer.setStyle({
             weight: 1,
             fillColor: '#3f8c3f',
@@ -155,12 +163,14 @@
       //Select new layer
       var layer = e.target;
 
-      if ( this.countries.includes(layer.feature.properties.admin) ) {
+      if ( this.mode === 'regions' || this.countries.includes(layer.feature.properties.admin) ) {
 
         layer.feature.properties.selected = true;
 
-        var name = layer.feature.properties.admin;
-        Backbone.Events.trigger('map:country:selected', {name: name, mode: this.mode});
+        var name = layer.feature.properties.admin || layer.feature.properties.name;
+        var region_id = layer.feature.properties.id_1 || '';
+
+        Backbone.Events.trigger('map:country:selected', {name: name, mode: this.mode, region_id: region_id });
 
         this.selectedLayer = layer;
       }
@@ -191,13 +201,15 @@
      * MAP METHODS
      */
     updateMap: function(obj) {
-      this.removeLayer();
-      this.mode = this.getCurrentMode(obj);
-      this.currentGeom = this.getCurrentGeom(obj);
+      if (obj.item) {
+        this.removeLayer();
+        this.mode = this.getCurrentMode(obj);
+        this.currentGeom = this.getCurrentGeom(obj);
 
-      this.map.setView( this.currentGeom.center, this.currentGeom.zoom);
+        this.map.setView( this.currentGeom.center, this.currentGeom.zoom);
 
-      this.getLayer();
+        this.getLayer();
+      }
     },
 
     removeLayer: function() {

@@ -26,17 +26,20 @@
     },
 
     setSelectedValue: function(obj) {
-      this.$el.val(obj.name);
-      this.$el.trigger('change');
-      this.$el.trigger('chosen:updated');
+      var $selector = obj.mode === 'regions' ? $('#analysis_geo_location_id'):$('#country');
+
+      obj.mode === 'regions' ? $selector.val(obj.region_id) : $selector.val(obj.name);
+
+      $selector.trigger('change');
+      $selector.trigger('chosen:updated');
     },
 
-    onChangeTriggerValue: function() {
+    onChangeTriggerValue: function(e) {
       var selectedItem = this.$el.val();
 
       this.el.id === 'country' ? this.mode = 'regions' : this.mode = 'country';
 
-      if (this.el.id === 'country') {
+      if (this.mode !== 'country') {
         Backbone.Events.trigger('selector:item:selected', {
           item: selectedItem,
           mode: this.mode,
