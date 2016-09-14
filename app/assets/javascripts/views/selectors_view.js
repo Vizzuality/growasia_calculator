@@ -6,8 +6,11 @@
 
   App.View.Selectors = Backbone.View.extend({
 
+    model: new (Backbone.Model.extend()),
+
     events: {
-      'change' : 'onChangeTriggerValue'
+      'change #country' : 'onChangeCountry',
+      'change #analysis_geo_location_id' : 'onChangeRegion'
     },
 
     initialize: function(settings) {
@@ -22,6 +25,9 @@
     },
 
     listeners: function() {
+      this.model.on('change:country', this.changeMapMode.bind(this));
+      this.model.on('change:region', this.changeMapRegion.bind(this));
+
       Backbone.Events.on('map:country:selected', this.setSelectedValue.bind(this));
     },
 
@@ -34,18 +40,34 @@
       $selector.trigger('chosen:updated');
     },
 
-    onChangeTriggerValue: function(e) {
-      var selectedItem = this.$el.val();
 
-      this.el.id === 'country' ? this.mode = 'regions' : this.mode = 'country';
+    onChangeCountry: function(e) {
+      var value = $(e.currentTarget).val();
 
-      if (this.mode !== 'country') {
-        Backbone.Events.trigger('selector:item:selected', {
-          item: selectedItem,
-          mode: this.mode,
-          country: selectedItem
-        });
-      }
+      this.model.set({
+        country: value
+      });
+    },
+
+    onChangeRegion: function(e) {
+      var value = $(e.currentTarget).val();
+
+      this.model.set({
+        region: value
+      });
+    },
+
+
+    changeMapMode: function() {
+      Backbone.Events.trigger('selector:country:selected', {
+        country: this.model.get('country')
+      });
+    },
+
+    changeMapRegion: function() {
+      Backbone.Events.trigger('selector:region:selected', {
+        region: this.model.get('region')
+      });
     }
   });
 

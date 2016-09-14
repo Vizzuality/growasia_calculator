@@ -7,37 +7,35 @@
   App.View.Map = Backbone.View.extend({
 
     geometries: {
-      country: {
+      all: {
         url: '../asia.geo.json',
         center: [12.24, 105],
         zoom: 4
       },
-      regions: {
-        Cambodia: {
-          url: '../cambodia.geojson',
-          center: [12.24, 105],
-          zoom: 7
-        },
-        Vietnam: {
-          url: '../vietnam.geojson',
-          center: [12.24, 105],
-          zoom: 5
-        },
-        Philippines: {
-          url: '../philipines.geojson',
-          center: [10, 125],
-          zoom: 5
-        },
-        Myanmar: {
-          url: '../myanmar.geojson',
-          center: [12, 100],
-          zoom: 5
-        },
-        Indonesia: {
-          url: '../indonesia.geojson',
-          center: [0, 108],
-          zoom: 4
-        }
+      Cambodia: {
+        url: '../cambodia.geojson',
+        center: [12.24, 105],
+        zoom: 7
+      },
+      Vietnam: {
+        url: '../vietnam.geojson',
+        center: [12.24, 105],
+        zoom: 5
+      },
+      Philippines: {
+        url: '../philipines.geojson',
+        center: [10, 125],
+        zoom: 5
+      },
+      Myanmar: {
+        url: '../myanmar.geojson',
+        center: [12, 100],
+        zoom: 5
+      },
+      Indonesia: {
+        url: '../indonesia.geojson',
+        center: [0, 108],
+        zoom: 4
       }
     },
 
@@ -63,8 +61,8 @@
     },
 
     listeners: function() {
-      // Backbone.Events.on('selector:item:selected', this.setSelectedItems.bind(this));
-      Backbone.Events.on('selector:item:selected', this.updateMap.bind(this));
+      Backbone.Events.on('selector:country:selected', this.changeMapMode.bind(this));
+      Backbone.Events.on('selector:region:selected', this.changeMapMode.bind(this));
     },
 
     getCurrentMode: function(opt) {
@@ -72,7 +70,8 @@
     },
 
     getCurrentGeom: function(opt) {
-      return opt.country ? this.geometries[opt.mode][opt.country] : this.geometries[opt.mode];
+
+      return opt.country ? this.geometries[opt.country] : this.geometries['all'];
     },
 
     createMap: function() {
@@ -200,16 +199,13 @@
     /*
      * MAP METHODS
      */
-    updateMap: function(obj) {
-      if (obj.item) {
-        this.removeLayer();
-        this.mode = this.getCurrentMode(obj);
-        this.currentGeom = this.getCurrentGeom(obj);
+    changeMapMode: function(obj) {
+      this.removeLayer();
+      this.currentGeom = this.getCurrentGeom(obj);
 
-        this.map.setView( this.currentGeom.center, this.currentGeom.zoom);
+      this.map.setView( this.currentGeom.center, this.currentGeom.zoom);
 
-        this.getLayer();
-      }
+      this.getLayer();
     },
 
     removeLayer: function() {
