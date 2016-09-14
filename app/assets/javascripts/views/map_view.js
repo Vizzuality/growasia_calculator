@@ -14,27 +14,27 @@
       },
       regions: {
         Cambodia: {
-          url: '../cambodia.geo.json',
+          url: '../cambodia.geojson',
           center: [12.24, 105],
           zoom: 7
         },
         Vietnam: {
-          url: '../vietnam.geo.json',
+          url: '../vietnam.geojson',
           center: [12.24, 105],
           zoom: 5
         },
         Philippines: {
-          url: '../philipines.geo.json',
+          url: '../philipines.geojson',
           center: [10, 125],
           zoom: 5
         },
         Myanmar: {
-          url: '../myanmar.geo.json',
+          url: '../myanmar.geojson',
           center: [12, 100],
           zoom: 5
         },
         Indonesia: {
-          url: '../indonesia.geo.json',
+          url: '../indonesia.geojson',
           center: [0, 108],
           zoom: 4
         }
