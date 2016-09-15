@@ -74,9 +74,9 @@ class Analysis < ApplicationRecord
         !additions.where(category: [Category::FERTILIZER, Category::MANURE]).any? &&
         (!crop_management_practices || crop_management_practices.empty?)
       ) ||
-      crop_management_practices.include?("crop-rot")
+      (crop_management_practices && crop_management_practices.include?("crop-rot"))
     ) &&
-    crop_management_practices.include?("residue-burning") &&
+    crop_management_practices && crop_management_practices.include?("residue-burning") &&
     (
       (
         !crop_management_practices.include?("cover-crop") ||
@@ -95,7 +95,7 @@ class Analysis < ApplicationRecord
       !manures.any? &&
       (
         fertilizers.any? ||
-        crop_management_practices.include?("n-fix")
+        (crop_management_practices && crop_management_practices.include?("n-fix"))
       )
     ) &&
     (["residue-burning", "cover-crop", "green-manure", "improved-fallow"] -
@@ -109,10 +109,10 @@ class Analysis < ApplicationRecord
       !manures.any? &&
       (
         fertilizers.any? ||
-        crop_management_practices.include?("n-fix")
+        (crop_management_practices && crop_management_practices.include?("n-fix"))
       )
     ) &&
-    !crop_management_practices.include?("residue-burning") &&
+    (crop_management_practices && !crop_management_practices.include?("residue-burning")) &&
     (
       crop_management_practices.include?("cover-crop") ||
       crop_management_practices.include?("green-manure") ||
