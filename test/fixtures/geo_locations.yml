@@ -4,24 +4,22 @@ one:
   country: MyString
   state: MyString
   soc_ref: 
-  soc_ref_unit: MyString
-  flu: MyString
+  flu: 
   fmg_full: 
   fmg_reduced: 
   fmg_no_till: 
-  fl_low: 
-  fl_high_without_manure: 
-  fl_high_with_manure: 
+  fi_low: 
+  fi_high_wo_manure: 
+  fi_high_w_manure: 
 
 two:
   country: MyString
   state: MyString
   soc_ref: 
-  soc_ref_unit: MyString
-  flu: MyString
+  flu: 
   fmg_full: 
   fmg_reduced: 
   fmg_no_till: 
-  fl_low: 
-  fl_high_without_manure: 
-  fl_high_with_manure: 
+  fi_low: 
+  fi_high_wo_manure: 
+  fi_high_w_manure: 
