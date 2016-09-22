@@ -232,14 +232,20 @@ class Analysis < ApplicationRecord
     # Water Regime Scaling Factor = irrigation_regimes[:scaling_factor]
     # Scaling Factor for Pre-Cultivation Flooding = flooding_practices[:scaling_factor]
     # Scaling Factor for Organic Amendment = (1 +Application Rate * Conversion Factor)^0.59
+    # Application rate is the amount of nutrient_management divided by 1000 to conver to tonnes/ha
     # Conversion factor: rice_nutrient_management[:conversion_factor]
     regime = IRRIGATION_REGIMES.select{|t| t[:slug] == irrigation_regime}.first
     practice = FLOODING_PRACTICES.select{|t| t[:slug] == flooding}.first
     nutrient_mgt = RICE_NUTRIENT_MANAGEMENT.select{|t| t[:slug] == nutrient_managements.first.addition_type}.first
+
     water_scaling_factor = rice_type == "upland" ? 0 : regime[:scaling_factor]
+
     pre_cult_scaling_factor = practice[:scaling_factor]
-    conversion_factor = (1+nutrient_managements.first.amount*nutrient_mgt[:conversion_factor])**0.59
+
+    conversion_factor = (1+nutrient_managements.first.amount/1000*nutrient_mgt[:conversion_factor])**0.59
+
     ef_rice = 1.30 * water_scaling_factor * pre_cult_scaling_factor * conversion_factor
+
     (ef_rice * cultivation_time * area * (10**-6)) * 25
   end
 
