@@ -6,9 +6,14 @@
 
   App.Controller.Analysis = App.Controller.Page.extend({
 
-    index: function() {
+    index: function(params) {
 
-      new App.View.Steps({el: '#slider'});
+      new App.View.Slider({
+        params: params,
+        el: '#sliderView'
+      });
+
+      // new App.View.Steps({el: '#slider'});
 
       new App.View.Map({el: '#mapCountries', options:{mode: 'country'}});
 

@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.transit
 //= require jquery.steps.min
 //= require URIjs
 //= require handlebars

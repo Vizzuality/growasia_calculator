@@ -120,6 +120,8 @@ GEM
       rails-assets-jquery (>= 1.4.4)
     rails-assets-d3 (3.5.17)
     rails-assets-jquery (3.1.0)
+    rails-assets-jquery.transit (0.9.12)
+      rails-assets-jquery
     rails-assets-normalize-css (4.2.0)
     rails-assets-underscore (1.8.3)
     rails-assets-validate (0.10.0)
@@ -196,6 +198,7 @@ DEPENDENCIES
   rails-assets-c3 (= 0.4.11)!
   rails-assets-chosen!
   rails-assets-d3 (~> 3.5.17)!
+  rails-assets-jquery.transit!
   rails-assets-normalize-css!
   rails-assets-underscore!
   rails-assets-validate
@@ -208,4 +211,4 @@ DEPENDENCIES
   web-console
 
 BUNDLED WITH
-   1.12.5
+   1.13.1

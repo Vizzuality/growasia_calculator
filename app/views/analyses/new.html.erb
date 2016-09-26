@@ -1,10 +1,23 @@
 <%= form_for @analysis do |f| %>
-  <div id="slider">
+<div id="sliderView" class="c-slider">
+  <ul>
+    <li class="c-slider-item js-slider-item -color1 -initial">
+      <div class="c-slider-arrows">
+        <ul>
+          <li class="arrow -left js-slider-arrow" data-direction="prev">
+            <button type="button" name="button">
+              <svg class="c-icon -medium"><use xlink:href="#icon-arrow_back"></use></svg>
+            </button>
+          </li>
+          <li class="arrow -rigth js-slider-arrow" data-direction="prev">
+            <button type="button" name="button">
+              <svg class="c-icon -medium"><use xlink:href="#icon-arrow_back"></use></svg>
+            </button>
+          </li>
+        </ul>
+      </div>
 
-    <!-- SLIDE 1 -->
-    <h1>Select Geography</h1>
-    <section id="slide-1" class="l-slide -theme-1 js--slide -is-current">
-      <div class="c-slide-content">
+      <div class="c-slider-step js-slider-step -active">
         <div class="c-map-group">
           <div id="mapCountries" class="c-map"></div>
         </div>
@@ -21,12 +34,24 @@
           <%= f.select :geo_location_id, [], {}, class: '-input-big' %>
         </span>
       </div>
-    </section>
+    </li>
 
-    <!-- SLIDE 2 -->
-    <h1>Describe your agricultural activity</h1>
-    <section id="slide-2" class="l-slide -theme-2 js--slide">
-      <div class="c-slide-content">
+    <li class="c-slider-item js-slider-item -color2">
+      <div class="c-slider-arrows">
+        <ul>
+          <li class="arrow -left js-slider-arrow" data-direction="prev">
+            <button type="button" name="button">
+              <svg class="c-icon -medium"><use xlink:href="#icon-arrow_back"></use></svg>
+            </button>
+          </li>
+          <li class="arrow -rigth js-slider-arrow" data-direction="next">
+            <button type="button" name="button">
+              <svg class="c-icon -medium"><use xlink:href="#icon-arrow_forward"></use></svg>
+            </button>
+          </li>
+        </ul>
+      </div>
+      <div class="c-slider-step js-slider-step -active">
         <p class="text -questions">
           <span>
             Currently, I’m growing
@@ -55,13 +80,76 @@
           </span>
         </p>
       </div>
-    </section>
+    </li>
 
-    <!-- SLIDE 3 to x -->
-    <%= render 'crops', f: f %>
-    <%= render 'rice', f: f %>
+    <li class="c-slider-item js-slider-item -color3">
+      <div class="c-slider-arrows">
+        <ul>
+          <li class="arrow -left js-slider-arrow" data-direction="prev">
+            <button type="button" name="button">
+              <svg class="c-icon -medium"><use xlink:href="#icon-arrow_back"></use></svg>
+            </button>
+          </li>
+          <li class="arrow -rigth js-slider-arrow" data-direction="next">
+            <button type="button" name="button">
+              <svg class="c-icon -medium"><use xlink:href="#icon-arrow_forward"></use></svg>
+            </button>
+          </li>
+        </ul>
+      </div>
+      <div class="c-slider-step js-slider-step -active">
+        Step 1
+      </div>
+    </li>
 
-    <%= render 'partials/handlers' %>
+    <li class="c-slider-item js-slider-item -color4">
+      <div class="c-slider-arrows">
+        <ul>
+          <li class="arrow -left js-slider-arrow" data-direction="prev">
+            <button type="button" name="button">
+              <svg class="c-icon -medium"><use xlink:href="#icon-arrow_back"></use></svg>
+            </button>
+          </li>
+          <li class="arrow -rigth js-slider-arrow" data-direction="next">
+            <button type="button" name="button">
+              <svg class="c-icon -medium"><use xlink:href="#icon-arrow_forward"></use></svg>
+            </button>
+          </li>
+        </ul>
+      </div>
+      <div class="c-slider-step js-slider-step -active -light">
+        Step 1
+      </div>
+      <div class="c-slider-step js-slider-step -light">
+        Step 2
+      </div>
+    </li>
 
-  </div>
+    <li class="c-slider-item js-slider-item -color5">
+      <div class="c-slider-arrows">
+        <ul>
+          <li class="arrow -left js-slider-arrow" data-direction="next">
+            <button type="button" name="button">
+              <svg class="c-icon -medium"><use xlink:href="#icon-arrow_forward"></use></svg>
+            </button>
+          </li>
+          <li class="arrow -rigth js-slider-arrow" data-direction="next">
+            <button type="button" name="button">
+              <svg class="c-icon -medium"><use xlink:href="#icon-arrow_forward"></use></svg>
+            </button>
+          </li>
+        </ul>
+      </div>
+      <div class="c-slider-step js-slider-step -active -light">
+        Step 1
+      </div>
+      <div class="c-slider-step js-slider-step -light">
+        Step 2
+      </div>
+      <div class="c-slider-step js-slider-step -light">
+        Step 3
+      </div>
+    </li>
+  </ul>
+</div>
 <% end %>
