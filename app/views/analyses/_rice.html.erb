@@ -1,40 +1,42 @@
 <div class="c-slider-step js-slider-step -active">
   <!-- <h1>Type of Rice and Irrigiation Regime</h1> -->
-  <p class="text -questions">
+  <div class="slider-step-container">
     <span>
       I grow
-      <span class="c-input-field">
+      <span class="c-field -little">
         <%= f.select :rice_type,
           options_for_select(["paddy", "upland"]) %>
       </span>
     </span>
     <span>
-      rice and the irrigation regime can be described as
+      rice and the irrigation regime
     </span>
-    </span>
-      <div class="c-input-field">
+    <span>
+      can be described as
+      <div class="c-field -huge">
         <%= f.select :irrigation_regime, select_options(Analysis::IRRIGATION_REGIMES) %>
       </div>
     </span>
-  </p>
+  </div>
 </div>
 
 <div class="c-slider-step js-slider-step">
   <!-- <h1>Flooding before cultivation</h1> -->
-  <p class="text -questions">
+  <div class="slider-step-container">
     <span>
       Before cultivation starts, cropland is
     </span>
     <span>
-      <span class="c-input-field">
+      <span class="c-field -huge">
         <%= f.select :flooding, select_options(Analysis::FLOODING_PRACTICES) %>
       </span>
     </span>
     <span>
       and cultivation takes
-      <span class="c-input-field">
-        <%= f.text_field :cultivation_time, value: 120, class: '-input-small' %> days
+      <span class="c-field -little">
+        <%= f.text_field :cultivation_time, value: 120, class: '-right' %>
       </span>
+      days
     </span>
-  </p>
+  </div>
 </div>

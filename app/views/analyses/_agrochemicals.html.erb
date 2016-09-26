@@ -1,18 +1,18 @@
 <div class="c-slider-step js-slider-step -active">
   <!-- <h1>Agrochemicals</h1> -->
-  <p class="text -questions">
+  <div class="slider-step-container">
     <span>
       Do you apply agrochemicals </br> including fertilizers, pesticides, or herbicides?
-      <span class="c-input-field">
+      <span class="c-field">
         <input type="checkbox" id="agrochemicalRice">
         <label for="agrochemicalRice"></label>
       </span>
     </span>
     <span>
-      <span class="c-input-field">
-        <%= f.text_field :agrochemical_amount, class: '-input-small' %>
+      <span class="c-field -little">
+        <%= f.text_field :agrochemical_amount, class: '-right' %>
       </span>
       <span class="text -form-inputs -medium">kg per ha and yr</span>
     </span>
-  </p>
+  </div>
 </div>

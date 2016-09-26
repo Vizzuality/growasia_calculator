@@ -44,6 +44,7 @@ gem 'autoprefixer-rails'
 gem 'handlebars_assets'
 gem 'leaflet-rails'
 gem 'rails-assets-validate'
+gem "select2-rails"
 
 
 source 'https://rails-assets.org' do
@@ -53,8 +54,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-URIjs'
   gem 'rails-assets-d3', '~> 3.5.17'
   gem 'rails-assets-c3', '0.4.11'
-  gem 'rails-assets-chosen'
-  gem 'rails-assets-jquery.transit'  
+  gem 'rails-assets-jquery.transit'
 end
 
 
