@@ -1,54 +1,33 @@
 <%= form_for @analysis do |f| %>
-<div id="sliderView" class="c-slider">
-  <ul>
-    <li class="c-slider-item js-slider-item -color1 -initial">
-      <%= render partial: 'arrows', locals: { type: 'first' } %>
-      <%= render 'country', f: f %>
-    </li>
+  <div id="sliderView" class="c-slider">
+    <ul>
+      <li class="c-slider-item js-slider-item -color1 -initial">
+        <%= render partial: 'arrows', locals: { type: 'first' } %>
+        <%= render 'country', f: f %>
+      </li>
 
-    <li class="c-slider-item js-slider-item -color2">
-      <%= render partial: 'arrows', locals: { type: 'default' } %>
-      <%= render 'type', f: f %>
-    </li>
+      <li class="c-slider-item js-slider-item -color2">
+        <%= render partial: 'arrows', locals: { type: 'default' } %>
+        <%= render 'type', f: f %>
+      </li>
 
-    <li class="c-slider-item js-slider-item -color3">
-      <%= render partial: 'arrows', locals: { type: 'default' } %>
-      <div class="c-slider-step js-slider-step -active">
-        Step 1
-      </div>
-      <div class="c-slider-step js-slider-step">
-        Step 2
-      </div>
-      <div class="c-slider-step js-slider-step">
-        Step 3
-      </div>
-      <div class="c-slider-step js-slider-step">
-        Step 4
-      </div>
-    </li>
+      <li class="c-slider-item js-slider-item -color3">
+        <%= render partial: 'arrows', locals: { type: 'default' } %>
+        <%= render 'rice', f: f %>
+        <%= render 'crops', f: f %>
+      </li>
 
-    <li class="c-slider-item js-slider-item -color4">
-      <%= render partial: 'arrows', locals: { type: 'default' } %>
-      <div class="c-slider-step js-slider-step -active -light">
-        Step 1
-      </div>
-      <div class="c-slider-step js-slider-step -light">
-        Step 2
-      </div>
-    </li>
+      <li class="c-slider-item js-slider-item -color4">
+        <%= render partial: 'arrows', locals: { type: 'default' } %>
+        <%= render 'liming', f: f %>
+        <%= render 'agrochemicals', f: f %>
+        <%= render 'fertilizers', f: f %>
+      </li>
 
-    <li class="c-slider-item js-slider-item -color5">
-      <%= render partial: 'arrows', locals: { type: 'last' } %>
-      <div class="c-slider-step js-slider-step -active -light">
-        Step 1
-      </div>
-      <div class="c-slider-step js-slider-step -light">
-        Step 2
-      </div>
-      <div class="c-slider-step js-slider-step -light">
-        Step 3
-      </div>
-    </li>
-  </ul>
-</div>
+      <li class="c-slider-item js-slider-item -color5">
+        <%= render partial: 'arrows', locals: { type: 'last' } %>
+        <%= render 'fuel', f: f %>
+      </li>
+    </ul>
+  </div>
 <% end %>

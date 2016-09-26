@@ -1,17 +1,31 @@
-<!-- SLIDE -->
-<h1>Liming and Dolomite</h1>
-<section id="slide-6" class="l-slide -slide-6 js--slide">
-  <div class="c-slide-content">
-    <p class="text -description">Skip if it doesn't apply</p>
-
-    <p class="text -questions">
-      We apply
-      <%= f.text_field :lime_amount %><span class="text -form-inputs -medium">kg. ha<sup>-1</sup> yr<sup>-1</sup></span>
-      of lime and
-    </p>
-    <p class="text -questions">
-      <%= f.text_field :dolomite_amount %><span class="text -form-inputs -medium">kg. ha<sup>-1</sup> yr<sup>-1</sup></span>
-      of dolomite.
-    </p>
-  </div>
-</section>
+<div class="c-slider-step js-slider-step -active">
+  <!-- <h1>Liming and Dolomite</h1> -->
+  <p class="text -questions">
+    <span>
+      Do you apply lime?
+      <span class="c-input-field">
+        <input type="checkbox" id="limeRice">
+        <label for="limeRice"></label>
+      </span>
+    </span>
+    <span>
+      <span class="c-input-field">
+        <%= f.text_field :lime_amount, class: '-input-small' %>
+        <span class="text -form-inputs -medium">kg per ha and yr</span>
+      </span>
+    </span>
+    <span>
+      Do you apply dolomite?
+      <span class="c-input-field">
+        <input type="checkbox" id="dolomiteRice">
+        <label for="dolomiteRice"></label>
+      </span>
+    </span>
+    <span>
+      <span class="c-input-field">
+        <%= f.text_field :dolomite_amount, class: '-input-small' %>
+      </span>
+      <span class="text -form-inputs -medium">kg per ha and yr</span>
+    </span>
+  </p>
+</div>
