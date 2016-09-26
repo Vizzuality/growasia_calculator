@@ -20,7 +20,7 @@
 //= require backbone/backbone
 //= require d3
 //= require c3
-//= require chosen.js
+//= require select2
 //= require leaflet.js
 //= require validate
 

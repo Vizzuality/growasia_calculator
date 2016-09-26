@@ -1,0 +1,29 @@
+<div class="c-slider-step js-slider-step -active">
+  <div class="slider-step-container">
+    <span>
+      Currently, I’m growing
+      <span class="c-field -little">
+        <%= f.select :crop, select_options(Analysis::CROPS) %>
+      </span>
+    </span>
+    <span>
+      on
+      <span class="c-field -little">
+        <%= f.text_field :area, class: '-right is-required is-numeric', autocomplete: 'off' %>
+      </span>
+      hectares of land
+    </span>
+    <span>
+      and expect a yield of
+    </span>
+    <span>
+      <span class="c-field -little">
+        <%= f.text_field :yield, class: '-right is-required is-numeric', autocomplete: 'off' %>
+      </span>
+      <span class="c-field -little">
+        <%= f.select :yield_unit, select_options(Analysis::YIELD_UNITS), {}, class: '-input-small' %>
+      </span>
+      per yard
+    </span>
+  </div>
+</div>

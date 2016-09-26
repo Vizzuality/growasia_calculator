@@ -1,0 +1,50 @@
+<div class="c-slider-step js-slider-step -active">
+  <!-- <h1>Fertilizer and Nutrient Management</h1> -->
+  <div class="slider-step-container">
+    <span>
+      We apply
+      <%= f.fields_for :fertilizers do |builder| %>
+        <%= builder.hidden_field :category, value: Category::FERTILIZER %>
+        <span class="c-field -little">
+          <%= builder.text_field :amount, class: '-right' %>
+          <span class="unit">kg per ha and yr</span>
+        </span>
+        of
+        <span class="c-field -little">
+          <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES) %>
+        </span>
+      <% end %>
+    </span>
+    <span>
+      and
+      <%= f.fields_for :manures do |builder| %>
+        <%= builder.hidden_field :category, value: Category::MANURE %>
+        <span class="c-field -little">
+          <%= builder.text_field :amount, class: '-right' %>
+          <span class="unit">kg per ha and yr</span>
+        </span>
+        of
+        <span class="c-field -little">
+          <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES) %>
+        </span>
+      <% end %>
+    </span>
+
+    <span>
+      Additionally, we incorporate
+    </span>
+    <span>
+      <%= f.fields_for :nutrient_managements do |builder| %>
+        <%= builder.hidden_field :category, value: Category::NUTRIENT_MANAGEMENT %>
+        <span class="c-field -little">
+          <%= builder.text_field :amount, class: '-right' %>
+          <span class="unit">kg per ha and yr</span>
+        </span>
+        of
+        <span class="c-field -little">
+          <%= builder.select :addition_type, select_options(Analysis::RICE_NUTRIENT_MANAGEMENT) %>
+        </span>
+      <% end %>
+    </span>
+  </div>
+</div>

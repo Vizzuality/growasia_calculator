@@ -1,14 +1,18 @@
-<!-- SLIDE -->
-<h1>Agrochemicals</h1>
-<section id="slide-6" class="l-slide -slide-6 js--slide">
-  <div class="c-slide-content">
-    <p class="text -questions">
-      We apply
-      <%= f.text_field :agrochemical_amount %>
-      <span class="text -form-inputs -medium">kg. ha<sup>-1</sup> yr<sup>-1</sup></span>
-    </p>
-    <p class="text -questions">
-      in agrochemicals including fertilizers, pesticides, and herbicides.
-    </p>
+<div class="c-slider-step js-slider-step -active">
+  <!-- <h1>Agrochemicals</h1> -->
+  <div class="slider-step-container">
+    <span>
+      Do you apply agrochemicals </br> including fertilizers, pesticides, or herbicides?
+      <span class="c-field">
+        <input type="checkbox" id="agrochemicalRice">
+        <label for="agrochemicalRice"></label>
+      </span>
+    </span>
+    <span>
+      <span class="c-field -little">
+        <%= f.text_field :agrochemical_amount, class: '-right' %>
+        <span class="unit">kg per ha and yr</span>
+      </span>
+    </span>
   </div>
-</section>
+</div>

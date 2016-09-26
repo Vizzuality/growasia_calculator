@@ -1,159 +1,33 @@
 <%= form_for @analysis do |f| %>
-<div id="sliderView" class="c-slider">
-  <ul>
-    <li class="c-slider-item js-slider-item -color1 -initial">
-      <div class="c-slider-arrows">
-        <ul>
-          <li class="arrow -left js-slider-arrow" data-direction="prev">
-            <button type="button" name="button">
-              <svg class="c-icon -small"><use xlink:href="#icon-arrow_back"></use></svg>
-            </button>
-          </li>
-        </ul>
-      </div>
+  <div id="sliderView" class="c-slider">
+    <ul>
+      <li class="c-slider-item js-slider-item -color1 -initial">
+        <%= render partial: 'arrows', locals: { type: 'first' } %>
+        <%= render 'country', f: f %>
+      </li>
 
-      <div class="c-slider-step js-slider-step -active">
-        <div class="c-map-group">
-          <div id="mapCountries" class="c-map"></div>
-        </div>
-        <%= label_tag :country, "Select your country", class: "text -questions country-text" %>
-        <%= label_tag :region, "Select your region", class: "text -questions is-hidden region-text" %>
-        <p class="text -description country-text">Start typing or select your country in the map</p>
-        <p class="text -description region-text is-hidden">Start typing or select your region in the map</p>
-        <span class="c-input-field">
-          <%= select_tag :country,
-            options_from_collection_for_select(@geo_locations, :country, :country),
-            include_blank: true, class: '-input-big is-required' %>
-        </span>
-        <span class="c-input-field is-hidden">
-          <%= f.select :geo_location_id, [], {}, class: '-input-big' %>
-        </span>
-      </div>
-    </li>
+      <li class="c-slider-item js-slider-item -color2">
+        <%= render partial: 'arrows', locals: { type: 'default' } %>
+        <%= render 'type', f: f %>
+      </li>
 
-    <li class="c-slider-item js-slider-item -color2">
-      <div class="c-slider-arrows">
-        <ul>
-          <li class="arrow -left js-slider-arrow" data-direction="prev">
-            <button type="button" name="button">
-              <svg class="c-icon -small"><use xlink:href="#icon-arrow_back"></use></svg>
-            </button>
-          </li>
-          <li class="arrow -rigth js-slider-arrow" data-direction="next">
-            <button type="button" name="button">
-              <svg class="c-icon -small"><use xlink:href="#icon-arrow_forward"></use></svg>
-            </button>
-          </li>
-        </ul>
-      </div>
-      <div class="c-slider-step js-slider-step -active">
-        <p class="text -questions">
-          <span>
-            Currently, I’m growing
-            <span class="c-input-field">
-              <%= f.select :crop, select_options(Analysis::CROPS) %>
-            </span>
-          </span>
-          <span>
-            on
-            <span class="c-input-field">
-              <%= f.text_field :area, class: '-input-small is-required is-numeric' %>
-            </span>
-            hectares of land
-          </span>
-          <span>
-            and expect a yield of
-          </span>
-          <span>
-            <span class="c-input-field">
-              <%= f.text_field :yield, class: '-input-small is-required is-numeric' %>
-            </span>
-            <span class="c-input-field">
-              <%= f.select :yield_unit, select_options(Analysis::YIELD_UNITS), {}, class: '-input-small' %>
-            </span>
-            <span class="text -form-inputs -medium"> per yard</span>
-          </span>
-        </p>
-      </div>
-    </li>
+      <li class="c-slider-item js-slider-item -color3">
+        <%= render partial: 'arrows', locals: { type: 'default' } %>
+        <%= render 'rice', f: f %>
+        <%= render 'crops', f: f %>
+      </li>
 
-    <li class="c-slider-item js-slider-item -color3">
-      <div class="c-slider-arrows">
-        <ul>
-          <li class="arrow -left js-slider-arrow" data-direction="prev">
-            <button type="button" name="button">
-              <svg class="c-icon -small"><use xlink:href="#icon-arrow_back"></use></svg>
-            </button>
-          </li>
-          <li class="arrow -rigth js-slider-arrow" data-direction="next">
-            <button type="button" name="button">
-              <svg class="c-icon -small"><use xlink:href="#icon-arrow_forward"></use></svg>
-            </button>
-          </li>
-        </ul>
-      </div>
-      <div class="c-slider-step js-slider-step -active">
-        Step 1
-      </div>
-      <div class="c-slider-step js-slider-step">
-        Step 2
-      </div>
-      <div class="c-slider-step js-slider-step">
-        Step 3
-      </div>
-      <div class="c-slider-step js-slider-step">
-        Step 4
-      </div>
-    </li>
+      <li class="c-slider-item js-slider-item -color4">
+        <%= render partial: 'arrows', locals: { type: 'default' } %>
+        <%= render 'liming', f: f %>
+        <%= render 'agrochemicals', f: f %>
+        <%= render 'fertilizers', f: f %>
+      </li>
 
-    <li class="c-slider-item js-slider-item -color4">
-      <div class="c-slider-arrows">
-        <ul>
-          <li class="arrow -left js-slider-arrow" data-direction="prev">
-            <button type="button" name="button">
-              <svg class="c-icon -small"><use xlink:href="#icon-arrow_back"></use></svg>
-            </button>
-          </li>
-          <li class="arrow -rigth js-slider-arrow" data-direction="next">
-            <button type="button" name="button">
-              <svg class="c-icon -small"><use xlink:href="#icon-arrow_forward"></use></svg>
-            </button>
-          </li>
-        </ul>
-      </div>
-      <div class="c-slider-step js-slider-step -active -light">
-        Step 1
-      </div>
-      <div class="c-slider-step js-slider-step -light">
-        Step 2
-      </div>
-    </li>
-
-    <li class="c-slider-item js-slider-item -color5">
-      <div class="c-slider-arrows">
-        <ul>
-          <li class="arrow -left js-slider-arrow" data-direction="next">
-            <button type="button" name="button">
-              <svg class="c-icon -small"><use xlink:href="#icon-arrow_forward"></use></svg>
-            </button>
-          </li>
-          <li class="arrow -rigth js-slider-arrow" data-direction="next">
-            <button type="button" name="button">
-              <svg class="c-icon -small"><use xlink:href="#icon-arrow_forward"></use></svg>
-            </button>
-          </li>
-        </ul>
-      </div>
-      <div class="c-slider-step js-slider-step -active -light">
-        Step 1
-      </div>
-      <div class="c-slider-step js-slider-step -light">
-        Step 2
-      </div>
-      <div class="c-slider-step js-slider-step -light">
-        Step 3
-      </div>
-    </li>
-  </ul>
-</div>
+      <li class="c-slider-item js-slider-item -color5">
+        <%= render partial: 'arrows', locals: { type: 'last' } %>
+        <%= render 'fuel', f: f %>
+      </li>
+    </ul>
+  </div>
 <% end %>

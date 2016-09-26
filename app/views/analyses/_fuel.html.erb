@@ -1,0 +1,53 @@
+<div class="c-slider-step js-slider-step -active">
+  <!-- <h1>Fuel and purposes</h1> -->
+  <div class="slider-step-container">
+    <span>
+      Each year, we use an estimated
+    </span>
+    <span>
+      <%= f.fields_for :transportation_fuels do |builder| %>
+        <%= builder.hidden_field :category, value: Category::TRANSPORTATION_FUEL %>
+        <span class="c-field -little">
+          <%= builder.text_field :amount, class: '' %>
+        </span>
+        <span class="c-field -little">
+          <%= builder.select :unit, select_options(Analysis::FUEL_UNITS) %>
+        </span>
+        <span class="c-field -little">
+          <%= builder.select :addition_type, select_options(Analysis::FUEL_TYPES) %>
+        </span>
+        for transportation,
+      <% end %>
+    </span>
+    <span>
+      <%= f.fields_for :irrigation_fuels do |builder| %>
+        <span class="c-field -little">
+          <%= builder.hidden_field :category, value: Category::IRRIGATION_FUEL %>
+          <%= builder.text_field :amount, class: '' %>
+        </span>
+        <span class="c-field -little">
+          <%= builder.select :unit, select_options(Analysis::FUEL_UNITS) %>
+        </span>
+        <span class="c-field -little">
+          <%= builder.select :addition_type, select_options(Analysis::FUEL_TYPES) %>
+        </span>
+        for irrigation, and
+      <% end %>
+    </span>
+    <span>
+      <%= f.fields_for :fuels do |builder| %>
+        <span class="c-field -little">
+          <%= builder.hidden_field :category, value: Category::FUEL %>
+          <%= builder.text_field :amount, class: '' %>
+        </span>
+        <span class="c-field -little">
+          <%= builder.select :unit, select_options(Analysis::FUEL_UNITS) %>
+        </span>
+        <span class="c-field -little">
+          <%= builder.select :addition_type, select_options(Analysis::FUEL_TYPES) %>
+        </span>
+        for other practices.
+      <% end %>
+    </span>
+  </div>
+</div>

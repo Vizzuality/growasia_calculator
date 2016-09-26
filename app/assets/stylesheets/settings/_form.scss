@@ -1,105 +1,403 @@
-/*
- * Reset chosen.
- */
-.chosen-container {
-  vertical-align: sub;
-}
+$label-width: 100px;
 
-.chosen-container-single .chosen-single {
-  border: 0;
-  background: none;
-  color: white;
-  box-shadow: none;
-  padding: 0;
-  text-align: left;
-  overflow: visible;
 
-  height: 40px;
-  line-height: 40px;
-}
-
-.chosen-with-drop {
-  background: none;
-  border: 0;
-  box-shadow: none;
-}
-
-.chosen-container-active.chosen-with-drop .chosen-single {
-  background: transparent;
-  box-shadow: none;
+input[type="password"],
+input[type="text"],
+input[type="date"],
+input[type="email"],
+textarea {
+  display: block;
+  width: 100%;
   border: none;
-}
-
-.chosen-container-single .chosen-single div b {
-  background: none;
+  background: rgba($black, .05);
+  padding: 10px;
+  margin: 0;
+  font-size: 32px;
+  border-radius: 0px;
+  outline: none;
+  line-height: normal;
   position: relative;
+  top: 4px;
+
+  // ALIGN
+  &.-left {
+    text-align: left;
+  }
+
+  &.-right {
+    text-align: right;
+  }
+
+  &:focus {
+    border-color: darken(rgba($black, .4),10%);
+  }
 }
 
-.chosen-container-single .chosen-single div {
+/**
+ * Field
+ */
+.c-field {
+  position: relative;
+  padding: 0;
+  display: inline-block;
 
-  &:after {
-    @include arrow (rem(7px), rgba($black, .2), rem(2px), 225deg);
-    content: '';
+  &.-default {
+    padding: 0;
+
+    > label {
+      display: block;
+      text-align: left;
+      width: 100%;
+      position: relative;
+      left: auto;
+      top: auto;
+      transform: none;
+      margin: 0 0 3px;
+    }
+  }
+
+  &.-hidden {
+    display: none;
+  }
+
+  // SIZES
+  &.-little {
+    max-width: 160px;
+  }
+
+  &.-medium {
+    max-width: 350px;
+  }
+
+  &.-huge {
+    max-width: 500px;
+  }
+
+  // PADDING
+  &.-no-padding {
+    padding: 0;
+  }
+
+  label {
+    padding: 0 15px 0 0;
+    width: 100%;
+    color: rgba($black, .8);
+    font-weight: 500;
+    font-size: 13px;
+    text-transform: uppercase;
+    text-align: right;
+    line-height: 1.5;
+    @media (min-width: $screen-m) {
+      display: block;
+      text-align: left;
+      width: 100%;
+      position: relative;
+      left: auto;
+      top: auto;
+      transform: none;
+      margin: 0 0 3px;
+    }
+
+    &.-error {
+      color: rgba(red, .8);
+    }
+
+  }
+
+  textarea {
+    height: 182px;
+    max-width: 100%;
+  }
+
+  > p {
+    color: rgba($black, .8);
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0 0 5px;
+
+    &.-hint {
+      font-size: 12px;
+      margin: 5px 0;
+      font-style: italic;
+    }
+
+    &.-terms {
+      font-size: 10px;
+      margin: 5px;
+    }
+  }
+
+  // SELECT2
+  .unit {
+    position: absolute;
+    font-size: 12px;
+    top: 100%;
+    transform: translate(0,5px);
+    font-weight: 500;
+    right: 0;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  // SELECT2
+  .select2-container {
+    width: 100% !important;
+  }
+
+  // STATES
+  &.-short {
+    input[type="password"],
+    input[type="text"],
+    input[type="date"],
+    input[type="email"],
+    textarea {
+      max-width: 400px;
+    }
+  }
+
+  &.-with-errors{
+    label {
+      color: rgba(red, .8);
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      border: 1px solid rgba(red, .8);
+    }
+
+    p {
+      margin-bottom: 25px;
+      font-weight: 500;
+      font-size: 12px;
+      color: rgba(red, .8);
+      text-transform: uppercase;
+    }
+  }
+}
+
+/**
+ * Radio
+ */
+.radio-box {
+  @include clearfix();
+  padding: 6px 0;
+  font-size: 12px;
+
+  .custom-radio {
+    display: flex;
+    width: 100%;
+
+    &.-with-input {
+      flex-wrap: wrap;
+
+      label {
+        width: 100%;
+      }
+
+      input[type=text] {
+        max-width: 250px;
+        margin: 0 0 0 25px;
+      }
+    }
+  }
+
+  label {
+    padding: 8px 0;
+    font-weight: 400;
+    text-transform: none;
+    position: relative;
+    padding-left: 25px;
+    line-height: 1;
+    cursor: pointer;
+    width: auto;
+    top: 0;
+    left: 0;
+    transform: none;
+    text-align: left;
+
+    &.-uppercase {
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    span {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 16px;
+      height: 16px;
+      border: 1px solid rgba($black, .8);
+      border-radius: 50%;
+      transform: translate(0,-50%);
+
+      &:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 50%;
+        height: 50%;
+        background: $color-1;
+        border-radius: 50%;
+        display: none;
+        transform: translate(-50%,-50%);
+      }
+    }
+  }
+
+  input[type=radio] {
+    display: none;
+  }
+
+  input[type=radio]:checked + label {
+    span{
+      &:after {
+        display: block;
+      }
+    }
+  }
+}
+
+
+/**
+ * Checkbox
+ */
+.checkbox-box {
+  @include clearfix();
+  padding: 6px 0;
+  font-size: 12px;
+
+  .custom-checkbox {
+    display: flex;
+    width: 100%;
+  }
+
+  &.-divided {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 15px 0;
+
+    .custom-checkbox {
+      display: flex;
+      width: 50%;
+    }
+
+  }
+
+  label {
+    padding: 8px 0;
+    font-weight: 400;
+    text-transform: none;
+    position: relative;
+    padding-left: 25px;
+    line-height: 1;
+    cursor: pointer;
+    width: auto;
+    top: 0;
+    left: 0;
+    transform: none;
+    text-align: left;
+
+    &.-uppercase {
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    span {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 16px;
+      height: 16px;
+      border: 1px solid rgba($black, .8);
+      transform: translate(0,-50%);
+
+      &:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 50%;
+        height: 50%;
+        background: $color-1;
+        display: none;
+        transform: translate(-50%,-50%);
+      }
+    }
+  }
+
+  input[type=checkbox] {
+    display: none;
+  }
+
+  input[type=checkbox]:checked + label {
+    span{
+      &:after {
+        display: block;
+      }
+    }
+  }
+}
+
+.file-box {
+  position: relative;
+  display: inline-block;
+
+  .file-btn-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    z-index: 0;
+
+    > p {
+      display: block;
+      width: 100%;
+      border: 1px solid rgba($black, .4);
+      padding: 10px;
+      margin: 0;
+      font-size: 14px;
+      border-radius: 4px;
+      outline: none;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 250px;
+    }
+
+    > button {
+      border-radius: 0;
+    }
+
+  }
+
+  .file-progress {
+    display: block;
+    height: 5px;
+    width: 100%;
+
+    > span {
+      display: block;
+      background: $color-1;
+      width: 0;
+      height: 100%;
+    }
+
+    &.-uploading {
+      background: rgba($black, .8);
+    }
+  }
+
+  input[type="file"] {
     display: block;
     position: absolute;
-    top: 15px;
-    right: rem(2px);
-
-    transition: .2s ease-in;
-    transform-origin: center;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
   }
 }
-
-.chosen-with-drop .chosen-single div:after {
-  transform: rotate(45deg);
-}
-
-.chosen-container-single .chosen-single span {}
-
-.chosen-container.chosen-with-drop .chosen-drop {
-  border: 0;
-  border-radius: 0;
-  background-color: $white;
-}
-
-.chosen-container .chosen-results {
-  margin: 0;
-  padding: 0;
-  background-color: rgba($black, .1);
-
-  li {
-    font-size: rem(24px);
-    font-weight: 100;
-    padding: rem(10px);
-    color: $font-color-2;
-    line-height: 1.1;
-
-    &:first-child {
-      margin-top: rem(5px);
-    }
-
-    &.highlighted {
-      color: $font-color-2;
-      background: rgba($font-color-2, .1);
-    }
-  }
-}
-
-/* TODO: Temp solution for user testing. needs styling still
-.chosen-search {
-  display: none;
-}
-*/
-
-.chosen-rtl .chosen-search input[type="text"],
-.chosen-container-single .chosen-single abbr,
-.chosen-container-single .chosen-single div b,
-.chosen-container-single .chosen-search input[type="text"],
-.chosen-container-multi .chosen-choices .search-choice .search-choice-close,
-.chosen-container .chosen-results-scroll-down span,
-.chosen-container .chosen-results-scroll-up span {
-  background-image: none !important;
-}
-
-
-

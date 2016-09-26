@@ -1,0 +1,30 @@
+<div class="c-slider-step js-slider-step -active">
+  <div class="c-map-group">
+    <div id="mapCountries" class="c-map"></div>
+  </div>
+
+  <div class="c-country-label">
+    <div id="country-label">
+      <span class="text -questions">Select your country</span>
+      <p class="text -description">Start typing or select your country in the map</p>
+    </div>
+    <div id="region-label" class="-hidden">
+      <span class="text -questions">Select your region</span>
+      <p class="text -description">Start typing or select your region in the map</p>
+    </div>
+  </div>
+
+  <div class="c-btn-container -j-center -a-center">
+    <span class="c-input-field">
+      <%= select_tag :country,
+        options_from_collection_for_select(@geo_locations, :country, :country),
+        include_blank: true,
+        class: '-input-big is-required',
+        'data-placeholder': ''
+      %>
+    </span>
+    <span class="c-input-field is-hidden">
+      <%= f.select :geo_location_id, [], {}, class: '-input-big' %>
+    </span>
+  </div>
+</div>

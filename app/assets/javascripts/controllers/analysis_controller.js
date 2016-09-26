@@ -20,9 +20,21 @@
       new App.View.Selectors({el: '#country'});
       new App.View.Selectors({el: '#analysis_geo_location_id'});
 
-      $('select').chosen();
-      $('select.-input-big').chosen({'width':'360px' });
-      $('select.-input-small').chosen({'width':'208px' });
+      $('select').select2({
+        theme: "default",
+        minimumResultsForSearch: -1
+        // Use this if you want a single select with a clear button
+        // allowClear: true,
+        // templateSelection: function (data, container) {
+        //   // Return the placeholder
+        //   if (!data.id) {
+        //     return data.text;
+        //   }
+        //   // Return the selected option
+        //   return $('<span class="select2-selection__choice">' + data.text + '<span class="select2-selection__clear">×</span></span>');
+        // }
+
+      });
 
       $('#country').change(function() {
         if($(this).val() !== '') {

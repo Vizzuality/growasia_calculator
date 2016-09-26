@@ -10,6 +10,12 @@
       'change' : 'onChangeTriggerValue'
     },
 
+    model: new (Backbone.Model.extend({
+      defaults: {
+
+      }
+    })),
+
     initialize: function(settings) {
       if (!this.el) {
         return;
@@ -22,13 +28,13 @@
     },
 
     listeners: function() {
+      this.listenTo(this.model, 'change:country')
       Backbone.Events.on('map:country:selected', this.setSelectedValue.bind(this));
     },
 
     setSelectedValue: function(obj) {
       this.$el.val(obj.name);
       this.$el.trigger('change');
-      this.$el.trigger('chosen:updated');
     },
 
     onChangeTriggerValue: function() {

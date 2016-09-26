@@ -27,34 +27,6 @@
     width: rem(208px);
   }
 
-  input:not([type = "checkbox"]),
-  .chosen-container,
-  select {
-    @extend %clean-button-or-input;
-    min-width: rem(208px);
-    padding: rem(9px) rem(40px) rem(9px) rem(13px);
-    background-color: rgba($black, .04);
-    margin-top: rem(16px);
-
-    //Font
-    font-size: rem(32px);
-    font-weight: 500;
-    color: rgba($font-color-2, .8);
-
-    .c-analysis-sidebar & {
-      margin-top: rem(8px);
-      width: 100%;
-      color: $font-color-1;
-    }
-
-    .c-slide-content .text & {
-      margin: 0;
-    }
-
-    &.is-wrong {
-      border: 1px solid #ff5500;
-    }
-  }
 
   input[type = "submit"] {
     @extend %clean-button-or-input;
@@ -62,16 +34,6 @@
     font-size: rem(11px);
     padding: 20px;
     background-color: transparent;
-  }
-
-  .chosen-container-single .chosen-single span {
-    display: block !important;
-    margin: 0;
-    margin-right: rem(20px);
-    margin-bottom: 0;
-    font-size: rem(32px);
-    font-weight: 500;
-    color: rgba($font-color-2, .8);
   }
 
   fieldset {
