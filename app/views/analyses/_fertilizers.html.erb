@@ -1,16 +1,16 @@
 <div class="c-slider-step js-slider-step -active">
   <!-- <h1>Fertilizer and Nutrient Management</h1> -->
-  <div class="slider-step-container">
+  <div class="slider-step-container -light">
     <span>
       We apply
       <%= f.fields_for :fertilizers do |builder| %>
         <%= builder.hidden_field :category, value: Category::FERTILIZER %>
-        <span class="c-field -little">
-          <%= builder.text_field :amount, class: '-right -js-required -js-numeric' %>
+        <span class="c-field -little -light">
+          <%= builder.text_field :amount, class: '-right -js-required -js-numeric', autocomplete: 'off' %>
           <span class="unit">kg per ha and yr</span>
         </span>
         of
-        <span class="c-field -little">
+        <span class="c-field -little -light">
           <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES) %>
         </span>
       <% end %>
@@ -19,12 +19,12 @@
       and
       <%= f.fields_for :manures do |builder| %>
         <%= builder.hidden_field :category, value: Category::MANURE %>
-        <span class="c-field -little">
-          <%= builder.text_field :amount, class: '-right -js-required -js-numeric' %>
+        <span class="c-field -little -light">
+          <%= builder.text_field :amount, class: '-right -js-required -js-numeric', autocomplete: 'off' %>
           <span class="unit">kg per ha and yr</span>
         </span>
         of
-        <span class="c-field -little">
+        <span class="c-field -little -light">
           <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES) %>
         </span>
       <% end %>
@@ -36,12 +36,12 @@
     <span>
       <%= f.fields_for :nutrient_managements do |builder| %>
         <%= builder.hidden_field :category, value: Category::NUTRIENT_MANAGEMENT %>
-        <span class="c-field -little">
-          <%= builder.text_field :amount, class: '-right -js-required -js-numeric' %>
+        <span class="c-field -little -light">
+          <%= builder.text_field :amount, class: '-right -js-required -js-numeric', autocomplete: 'off' %>
           <span class="unit">kg per ha and yr</span>
         </span>
         of
-        <span class="c-field -little">
+        <span class="c-field -little -light">
           <%= builder.select :addition_type, select_options(Analysis::RICE_NUTRIENT_MANAGEMENT) %>
         </span>
       <% end %>

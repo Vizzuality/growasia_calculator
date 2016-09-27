@@ -178,27 +178,34 @@
       }
     },
 
+    // TODO: I would like to change this...
+    // It would be better if we validate using classes but without trigger the validations, I mean,
+    // we need to add this kind of validations if (!!$(input).val()) {} for numerics...
     validateStep: function() {
-      var errors;
+      var errors = [];
       var $currentSlide = this.$stepsItems.eq(this.model.get('stepindex'));
       var $required = $currentSlide.find('.-js-required');
       var $numeric = $currentSlide.find('.-js-numeric');
 
       if ($required) {
         _.each($required, function(input) {
-          errors = this.validator.requiredValidation($(input).val());
-          this.toggleError(errors, input);
+          var error = this.validator.requiredValidation($(input).val());
+          !!error && errors.push(error);
+          this.toggleError(error, input);
         }.bind(this));
       }
 
       if ($numeric) {
         _.each($numeric, function(input) {
-          errors = this.validator.numericValidation($(input).val());
-          this.toggleError(errors, input);
+          if (!!$(input).val()) {
+            var error = this.validator.numericValidation($(input).val());
+            !!error && errors.push(error);
+            this.toggleError(error, input);
+          }
         }.bind(this));
       }
 
-      return errors && true;
+      return !!errors.length && true;
     },
 
     validateInput: function(input) {
@@ -212,14 +219,16 @@
       }
 
       if (is_numeric) {
-        errors = this.validator.numericValidation($(input).val());
-        this.toggleError(errors, input);
+        if (!!$(input).val()) {
+          errors = this.validator.numericValidation($(input).val());
+          this.toggleError(errors, input);
+        }
       }
     },
 
-    toggleError: function(errors, input) {
-      $(input).toggleClass('-error', !!errors);
-      $(input).parents('.c-field').toggleClass('-error', !!errors);
+    toggleError: function(error, input) {
+      $(input).toggleClass('-error', !!error);
+      $(input).parents('.c-field').toggleClass('-error', !!error);
     }
 
   });

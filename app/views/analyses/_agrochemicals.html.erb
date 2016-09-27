@@ -1,6 +1,6 @@
 <div class="c-slider-step js-slider-step -active">
   <!-- <h1>Agrochemicals</h1> -->
-  <div class="slider-step-container">
+  <div class="slider-step-container -light">
     <span>
       Do you apply agrochemicals </br> including fertilizers, pesticides, or herbicides?
       <span class="c-field">
@@ -9,8 +9,8 @@
       </span>
     </span>
     <span>
-      <span class="c-field -little">
-        <%= f.text_field :agrochemical_amount, class: '-right -js-numeric' %>
+      <span class="c-field -little -light">
+        <%= f.text_field :agrochemical_amount, class: '-right -js-numeric', autocomplete: 'off' %>
         <span class="unit">kg per ha and yr</span>
       </span>
     </span>
