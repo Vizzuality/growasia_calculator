@@ -8,7 +8,7 @@
       <%= f.fields_for :transportation_fuels do |builder| %>
         <%= builder.hidden_field :category, value: Category::TRANSPORTATION_FUEL %>
         <span class="c-field -little -light">
-          <%= builder.text_field :amount, class: '-js-required -js-numeric', autocomplete: 'off' %>
+          <%= builder.number_field :amount, class: '-js-required -js-numeric', autocomplete: 'off' %>
         </span>
         <span class="c-field -little -light">
           <%= builder.select :unit, select_options(Analysis::FUEL_UNITS) %>
@@ -23,7 +23,7 @@
       <%= f.fields_for :irrigation_fuels do |builder| %>
         <span class="c-field -little -light">
           <%= builder.hidden_field :category, value: Category::IRRIGATION_FUEL %>
-          <%= builder.text_field :amount, class: '-js-required -js-numeric', autocomplete: 'off' %>
+          <%= builder.number_field :amount, class: '-js-required -js-numeric', autocomplete: 'off' %>
         </span>
         <span class="c-field -little -light">
           <%= builder.select :unit, select_options(Analysis::FUEL_UNITS) %>
@@ -38,7 +38,7 @@
       <%= f.fields_for :fuels do |builder| %>
         <span class="c-field -little -light">
           <%= builder.hidden_field :category, value: Category::FUEL %>
-          <%= builder.text_field :amount, class: '-js-required -js-numeric', autocomplete: 'off' %>
+          <%= builder.number_field :amount, class: '-js-required -js-numeric', autocomplete: 'off' %>
         </span>
         <span class="c-field -little -light">
           <%= builder.select :unit, select_options(Analysis::FUEL_UNITS) %>

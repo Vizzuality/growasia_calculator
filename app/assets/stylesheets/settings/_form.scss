@@ -94,6 +94,7 @@ textarea {
     input[type="text"],
     input[type="date"],
     input[type="email"],
+    input[type="number"],
     textarea {
       border-color: rgba(red, .8);
     }
@@ -160,17 +161,7 @@ textarea {
   .select2-container {
     width: 100% !important;
   }
-
-  // STATES
-  &.-short {
-    input[type="password"],
-    input[type="text"],
-    input[type="date"],
-    input[type="email"],
-    textarea {
-      max-width: 400px;
-    }
-  }
+  // TODO: Style custom number fields 
 }
 
 /**
