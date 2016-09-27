@@ -15,4 +15,16 @@
       font-weight: 100;
     }
   }
+
+  .slider-step-checkbox-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    > * {
+      width: 50%;
+      margin: 25px 0 0;
+    }
+  }
 }
