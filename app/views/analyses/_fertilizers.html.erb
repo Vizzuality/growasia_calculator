@@ -9,14 +9,13 @@
           <%= builder.text_field :amount, class: '-right' %>
           <span class="unit">kg per ha and yr</span>
         </span>
-
-    </span>
-    <span>
         of
         <span class="c-field -little">
           <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES) %>
         </span>
       <% end %>
+    </span>
+    <span>
       and
       <%= f.fields_for :manures do |builder| %>
         <%= builder.hidden_field :category, value: Category::MANURE %>
@@ -24,8 +23,6 @@
           <%= builder.text_field :amount, class: '-right' %>
           <span class="unit">kg per ha and yr</span>
         </span>
-    </span>
-    <span>
         of
         <span class="c-field -little">
           <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES) %>
@@ -35,14 +32,14 @@
 
     <span>
       Additionally, we incorporate
+    </span>
+    <span>
       <%= f.fields_for :nutrient_managements do |builder| %>
         <%= builder.hidden_field :category, value: Category::NUTRIENT_MANAGEMENT %>
         <span class="c-field -little">
           <%= builder.text_field :amount, class: '-right' %>
           <span class="unit">kg per ha and yr</span>
         </span>
-    </span>
-    <span>
         of
         <span class="c-field -little">
           <%= builder.select :addition_type, select_options(Analysis::RICE_NUTRIENT_MANAGEMENT) %>
