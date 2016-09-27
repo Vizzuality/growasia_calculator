@@ -1,0 +1,102 @@
+/**
+ * Field
+ */
+.c-field {
+  position: relative;
+  padding: 0;
+  display: inline-block;
+
+  &.-default {
+    padding: 0;
+
+    > label {
+      display: block;
+      text-align: left;
+      width: 100%;
+      position: relative;
+      left: auto;
+      top: auto;
+      transform: none;
+      margin: 0 0 3px;
+    }
+  }
+
+  // STATES
+  &.-block { display: block;}
+  &.-hidden { display: none;}
+
+
+  // SIZES
+  &.-little { max-width: 160px; }
+  &.-medium { max-width: 350px; }
+  &.-huge { max-width: 500px;}
+  &.-all { width: 100%;}
+
+  // PADDING
+  &.-no-padding {
+    padding: 0;
+  }
+
+  &.-light {
+    input[type="password"],
+    input[type="text"],
+    input[type="date"],
+    input[type="email"],
+    input[type="number"],
+    textarea {
+      color: $white;
+    }
+  }
+
+  // ERRORS
+  &.-error {
+    label {
+      color: rgba(red, .8);
+    }
+
+    input[type="password"],
+    input[type="text"],
+    input[type="date"],
+    input[type="email"],
+    input[type="number"],
+    textarea {
+      border-color: rgba(red, .8);
+    }
+  }
+
+  textarea {
+    height: 182px;
+    max-width: 100%;
+  }
+
+  > p {
+    color: rgba($black, .8);
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0 0 5px;
+
+    &.-hint {
+      font-size: 12px;
+      margin: 5px 0;
+      font-style: italic;
+    }
+  }
+
+  // UNITS
+  .unit {
+    position: absolute;
+    font-size: 12px;
+    top: 100%;
+    transform: translate(0,5px);
+    font-weight: 500;
+    right: 0;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  // SELECT2
+  .select2-container {
+    width: 100% !important;
+  }
+  // TODO: Style custom number fields
+}
