@@ -1,30 +1,32 @@
 <div class="c-slider-step js-slider-step -active">
   <!-- <h1>Liming and Dolomite</h1> -->
   <div class="slider-step-container -light">
-    <span>
-      Do you apply lime?
-      <span class="c-field">
-        <input type="checkbox" id="limeRice">
-        <label for="limeRice"></label>
-      </span>
+    <span class="text -questions">
+      <div class="c-checkbox-box -big -inline">
+        <div class="custom-checkbox">
+          <input type="checkbox" id="limeRice">
+          <label for="limeRice">Do you apply lime? <span><svg class='c-icon -small'><use xlink:href='#icon-close'></use></svg></span></label>
+        </div>
+      </div>
     </span>
     <span>
       <span class="c-field -medium -light">
-        <%= f.number_field :lime_amount, class: '-right -js-numeric', autocomplete: 'off' %>
+        <%= f.number_field :lime_amount, class: '-right -js-numeric', autocomplete: 'off', min: '0' %>
         <span class="unit">kg per ha and yr</span>
       </span>
 
     </span>
-    <span>
-      Do you apply dolomite?
-      <span class="c-field">
-        <input type="checkbox" id="dolomiteRice">
-        <label for="dolomiteRice"></label>
-      </span>
+    <span class="text -questions">
+      <div class="c-checkbox-box -big -inline">
+        <div class="custom-checkbox">
+          <input type="checkbox" id="dolomiteRice">
+          <label for="dolomiteRice">Do you apply dolomite? <span><svg class='c-icon -small'><use xlink:href='#icon-close'></use></svg></span></label>
+        </div>
+      </div>
     </span>
     <span>
       <span class="c-field -medium -light">
-        <%= f.number_field :dolomite_amount, class: '-right -js-numeric', autocomplete: 'off' %>
+        <%= f.number_field :dolomite_amount, class: '-right -js-numeric', autocomplete: 'off', min: '0' %>
         <span class="unit">kg per ha and yr</span>
       </span>
     </span>

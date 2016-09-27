@@ -6,7 +6,7 @@
 
     model: new (Backbone.Model.extend({
       defaults: {
-        index: 0,
+        index: 3,
         length: 5,
 
         stepindex: null,
@@ -39,6 +39,8 @@
     cache: function() {
       this.$window = $(window);
       this.$document = $(document);
+
+      this.$form = $('#new_analysis');
 
       this.$sliderItems = this.$el.find('.js-slider-item');
       this.$sliderArrows = this.$el.find('.js-slider-arrow');
@@ -110,7 +112,7 @@
         .eq(this.model.get('stepindex'))
         .toggleClass('-active', true);
     },
-    
+
 
 
     // UI EVENTS
@@ -157,7 +159,7 @@
           if (!this.validateStep()) {
             this.model.set('direction', 'next');
             if (stepindex + 1 > stepslength - 1) {
-              newIndex = ((index + 1) > length - 1) ? length - 1 : index + 1;
+              newIndex = ((index + 1) > length - 1) ? this.submitForm() : index + 1;
               this.model.set('index', newIndex);
             } else {
               newStepIndex = stepindex + 1;
@@ -251,6 +253,10 @@
     toggleError: function(error, input) {
       $(input).toggleClass('-error', !!error);
       $(input).parents('.c-field').toggleClass('-error', !!error);
+    },
+
+    submitForm: function() {
+      this.$form.submit();
     }
 
   });
