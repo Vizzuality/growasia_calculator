@@ -17,7 +17,7 @@
     text-transform: none;
     position: relative;
     padding-left: 32px;
-    line-height: 1;
+    line-height: 1.5;
     cursor: pointer;
     width: auto;
     top: 0;
@@ -73,6 +73,8 @@
       span {
         width: 36px;
         height: 36px;
+        top: 10px;
+        transform: none;        
       }
     }
   }

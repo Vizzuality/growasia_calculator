@@ -4,14 +4,14 @@
     <span class="text -questions">
       <div class="c-checkbox-box -big -inline">
         <div class="custom-checkbox">
-          <input type="checkbox" id="limeRice">
-          <label for="limeRice">Do you apply lime? <span><svg class='c-icon -small'><use xlink:href='#icon-close'></use></svg></span></label>
+          <input type="checkbox" class="js-required-checkbox" data-input="lime_amount" id="limeRice">
+          <label for="limeRice">Do you apply lime? <span><svg class='c-icon -small'><use xlink:href='#icon-check'></use></svg></span></label>
         </div>
       </div>
     </span>
     <span>
       <span class="c-field -medium -light">
-        <%= f.number_field :lime_amount, class: '-right -js-numeric', autocomplete: 'off', min: '0' %>
+        <%= f.number_field :lime_amount, class: '-right -disabled -js-numeric', autocomplete: 'off', min: '0', disabled: true %>
         <span class="unit">kg per ha and yr</span>
       </span>
 
@@ -19,14 +19,14 @@
     <span class="text -questions">
       <div class="c-checkbox-box -big -inline">
         <div class="custom-checkbox">
-          <input type="checkbox" id="dolomiteRice">
-          <label for="dolomiteRice">Do you apply dolomite? <span><svg class='c-icon -small'><use xlink:href='#icon-close'></use></svg></span></label>
+          <input type="checkbox" class="js-required-checkbox" data-input="dolomite_amount" id="dolomiteRice">
+          <label for="dolomiteRice">Do you apply dolomite? <span><svg class='c-icon -small'><use xlink:href='#icon-check'></use></svg></span></label>
         </div>
       </div>
     </span>
     <span>
       <span class="c-field -medium -light">
-        <%= f.number_field :dolomite_amount, class: '-right -js-numeric', autocomplete: 'off', min: '0' %>
+        <%= f.number_field :dolomite_amount, class: '-right -disabled -js-numeric', autocomplete: 'off', min: '0', disabled: true %>
         <span class="unit">kg per ha and yr</span>
       </span>
     </span>

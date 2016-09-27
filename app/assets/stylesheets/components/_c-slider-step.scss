@@ -1,4 +1,5 @@
 .c-slider-step {
+  text-align: center;
 
   .slider-step-container {
     font-size: rem(32px);
@@ -23,7 +24,7 @@
     flex-wrap: wrap;
 
     > * {
-      width: 50%;
+      width: 47.5%;
       margin: 25px 0 0;
     }
   }

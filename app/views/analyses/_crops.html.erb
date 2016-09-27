@@ -43,21 +43,25 @@
 </div>
 
 
-<div class="c-slider-step js-slider-step" data-crop="other">
+<div class="c-slider-step js-slider-step -medium" data-crop="other">
   <!-- <h1>Additional crop management</h1> -->
   <div class="slider-step-container">
-    <span class="text -questions">Additional crop management practices include (check all that apply):</span>
-    <div class="slider-step-checkbox-grid">
-      <% Analysis::CROP_MANAGEMENT_PRACTICES.each do |practice| %>
-      <div class="c-checkbox-box -medium">
-        <div class="custom-checkbox">
-          <%= f.check_box :crop_management_practices, { multiple: true },
-          practice[:slug], nil %>
-          <%= label_tag "analysis_crop_management_practices_#{practice[:slug]}", "<span><svg class='c-icon -small'><use xlink:href='#icon-close'></use></svg></span> #{practice[:title]}".html_safe %>
-        </div>
+    <span>
+      <div class="text -questions">
+        Additional crop management practices include (check all that apply):
       </div>
-      <% end %>
-    </div>
+      <div class="slider-step-checkbox-grid">
+        <% Analysis::CROP_MANAGEMENT_PRACTICES.each do |practice| %>
+        <div class="c-checkbox-box -medium">
+          <div class="custom-checkbox">
+            <%= f.check_box :crop_management_practices, { multiple: true },
+            practice[:slug], nil %>
+            <%= label_tag "analysis_crop_management_practices_#{practice[:slug]}", "<span><svg class='c-icon -small'><use xlink:href='#icon-check'></use></svg></span> #{practice[:title]}".html_safe %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </span>
   </div>
 </div>
 
@@ -65,11 +69,11 @@
 <div class="c-slider-step js-slider-step" data-crop="other">
   <!-- <h1>Shade trees</h1> -->
   <div class="slider-step-container">
-    <span class="text -questions">
-      Does the cropland currently include </br> shade trees, windbreaks, alley cropping, </br> or any type of
-      additional silviculture?
-    </span>
     <span>
+      <div class="text -questions">
+        Does the cropland currently include shade trees, windbreaks, alley cropping, or any type of
+        additional silviculture?
+      </div>
       <span class="c-field">
         <%= f.select:is_shaded, options_for_select([["Yes", true], ["No", false]]) %>
       </span>

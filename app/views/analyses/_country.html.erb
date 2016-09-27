@@ -1,4 +1,4 @@
-<div class="c-slider-step js-slider-step -active">
+<div class="c-slider-step js-slider-step -full-size -active">
   <div class="c-map-group">
     <div id="mapCountries" class="c-map"></div>
   </div>
@@ -6,11 +6,11 @@
   <div class="c-country-label">
     <div id="country-label">
       <span class="text -questions">Select your country</span>
-      <p class="text -description">Start typing or select your country in the map</p>
+      <p class="text -description">Select your country in the map</p>
     </div>
     <div id="region-label" class="-hidden">
       <span class="text -questions">Select your region</span>
-      <p class="text -description">Start typing or select your region in the map</p>
+      <p class="text -description">Select your region in the map</p>
     </div>
   </div>
 
@@ -23,7 +23,7 @@
         'data-placeholder': ''
       %>
     </span>
-    <span class="c-field -all -medium -hidden">
+    <span id="region-field" class="c-field -all -medium -hidden">
       <%= f.select :geo_location_id, [], {}, class: '-js-required' %>
     </span>
   </div>

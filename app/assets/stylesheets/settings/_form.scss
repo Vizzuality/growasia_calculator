@@ -10,14 +10,14 @@ textarea {
   width: 100%;
   border: 1px solid transparent;
   background: rgba($black, .05);
-  padding: 10px;
+  padding: 8px 10px;
   margin: 0;
   font-size: 32px;
   border-radius: 0px;
   outline: none;
   line-height: normal;
   position: relative;
-  top: 4px;
+  top: 2px;
 
   // ALIGN
   &.-left {
@@ -28,7 +28,15 @@ textarea {
     text-align: right;
   }
 
+  &.-disabled { opacity: 0.5; }
+
   &:focus {
     border-color: darken(rgba($black, .4),10%);
   }
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

@@ -6,7 +6,7 @@
 
     model: new (Backbone.Model.extend({
       defaults: {
-        index: 3,
+        index: 0,
         length: 5,
 
         stepindex: null,
@@ -21,7 +21,10 @@
     events: {
       'click .js-slider-arrow' : 'onClickDirection',
       'change input,textarea,select' : 'onChangeInput',
-      'change #analysis_crop' : 'onChangeCrop'
+      'change #analysis_crop' : 'onChangeCrop',
+      'change #country' : 'onChangeCountry',
+      'change #analysis_geo_location_id' : 'onChangeRegion',
+      'change .js-required-checkbox' : 'onChangeRequiredCheckbox',
     },
 
     initialize: function(settings) {
@@ -45,7 +48,13 @@
       this.$sliderItems = this.$el.find('.js-slider-item');
       this.$sliderArrows = this.$el.find('.js-slider-arrow');
 
+      // CROP
       this.$selectCrop = this.$el.find('#analysis_crop');
+
+      // COUNTRY
+      this.$countryLabel = this.$el.find('#country-label');
+      this.$regionField = this.$el.find('#region-field')
+      this.$regionLabel = this.$el.find('#region-label');
     },
 
     listeners: function() {
@@ -98,6 +107,7 @@
         }
 
         $el.transition(this.getStyle(i), time);
+        App.Events.trigger('Slider:index', this.model.get('index'));
 
       }.bind(this));
     },
@@ -116,12 +126,35 @@
 
 
     // UI EVENTS
+    onChangeCountry: function(e) {
+      var value = $(e.currentTarget).val();
+      if (!!value) {
+        $.get('/geo_locations/states_for/'+value);
+        // It's not my best code...
+        this.$countryLabel.addClass("-hidden");
+        this.$regionField.removeClass("-hidden");
+        this.$regionLabel.removeClass("-hidden");
+      } else {
+        $("#state-selection").addClass("hidden");
+      }
+    },
+
     onChangeCrop: function(e) {
       this.model.set('crop', e.currentTarget.value);
     },
 
     onChangeInput: function(e) {
       this.validateInput(e.currentTarget);
+    },
+
+    onChangeRequiredCheckbox: function(e) {
+      var is_checked = $(e.currentTarget).is(':checked');
+      var $input = $('#analysis_'+ e.currentTarget.dataset.input);
+
+      $input
+        .prop('disabled', !is_checked)
+        .toggleClass('-disabled', !is_checked)
+        .toggleClass('-js-required', is_checked);
     },
 
     onClickDirection: function(e) {

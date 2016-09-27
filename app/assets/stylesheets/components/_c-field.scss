@@ -25,7 +25,6 @@
   &.-block { display: block;}
   &.-hidden { display: none;}
 
-
   // SIZES
   &.-little { max-width: 160px; }
   &.-medium { max-width: 350px; }
@@ -64,11 +63,6 @@
     }
   }
 
-  textarea {
-    height: 182px;
-    max-width: 100%;
-  }
-
   > p {
     color: rgba($black, .8);
     font-size: 14px;
@@ -87,11 +81,14 @@
     position: absolute;
     font-size: 12px;
     top: 100%;
-    transform: translate(0,5px);
+    transform: translate(0,2px);
     font-weight: 500;
     right: 0;
     line-height: 1;
     white-space: nowrap;
+    display: block;
+    background: rgba($black,.08);
+    padding: 2px 5px;
   }
 
   // SELECT2

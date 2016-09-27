@@ -7,6 +7,9 @@
   App.Controller.Analysis = App.Controller.Page.extend({
 
     index: function(params) {
+      new App.View.Header({
+        el: '#headerView'
+      });
 
       new App.View.Slider({
         params: params,
@@ -17,15 +20,6 @@
 
       new App.View.Selectors({el: '#country'});
       new App.View.Selectors({el: '#analysis_geo_location_id'});
-
-
-      $('#country').change(function() {
-        if($(this).val() !== '') {
-          $.get('/geo_locations/states_for/'+$(this).val());
-        } else {
-          $("#state-selection").addClass("hidden");
-        }
-      });
 
       this.addSelectLib();
     },
