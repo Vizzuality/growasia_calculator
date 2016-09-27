@@ -14,7 +14,7 @@
       <%= f.fields_for :fertilizers do |builder| %>
         <%= builder.hidden_field :category, value: Category::FERTILIZER %>
         <span class="c-field -little">
-          <%= builder.number_field :amount, class: '-right -js-required -js-numeric', autocomplete: 'off' %>
+          <%= builder.number_field :amount, class: '-right -js-required -js-numeric', autocomplete: 'off', min: '0' %>
           <span class="unit">kg per ha and yr</span>
         </span>
       of
@@ -30,7 +30,7 @@
     <span>
       and
       <span class="c-field -little">
-        <%= builder.number_field :amount, class: '-right -js-required -js-numeric', autocomplete: 'off' %>
+        <%= builder.number_field :amount, class: '-right -js-required -js-numeric', autocomplete: 'off', min: '0' %>
         <span class="unit">kg per ha and yr</span>
       </span>
       of
@@ -45,16 +45,19 @@
 
 <div class="c-slider-step js-slider-step" data-crop="other">
   <!-- <h1>Additional crop management</h1> -->
-  <p class="text -questions">Additional crop management practices include (check all that apply):</p>
   <div class="slider-step-container">
-    <% Analysis::CROP_MANAGEMENT_PRACTICES.each do |practice| %>
-      <span class="c-input-field -checkbox">
-        <p class="text -form-inputs"><%= practice[:title] %></p>
+    <span class="text -questions">Additional crop management practices include (check all that apply):</span>
+    <div class="slider-step-checkbox-grid">
+      <% Analysis::CROP_MANAGEMENT_PRACTICES.each do |practice| %>
+      <div class="c-checkbox-box -medium">
+        <div class="custom-checkbox">
           <%= f.check_box :crop_management_practices, { multiple: true },
-            practice[:slug], nil %>
-          <%= label_tag "analysis_crop_management_practices_#{practice[:slug]}", "" %>
-      </span>
-    <% end %>
+          practice[:slug], nil %>
+          <%= label_tag "analysis_crop_management_practices_#{practice[:slug]}", "<span><svg class='c-icon -small'><use xlink:href='#icon-close'></use></svg></span> #{practice[:title]}".html_safe %>
+        </div>
+      </div>
+      <% end %>
+    </div>
   </div>
 </div>
 
@@ -62,7 +65,7 @@
 <div class="c-slider-step js-slider-step" data-crop="other">
   <!-- <h1>Shade trees</h1> -->
   <div class="slider-step-container">
-    <span>
+    <span class="text -questions">
       Does the cropland currently include </br> shade trees, windbreaks, alley cropping, </br> or any type of
       additional silviculture?
     </span>
