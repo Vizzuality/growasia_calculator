@@ -1,0 +1,96 @@
+/**
+ * Checkbox
+ */
+.c-checkbox-box {
+  @include clearfix();
+  padding: 6px 0;
+  font-size: 24px;
+
+  .custom-checkbox {
+    display: flex;
+    width: 100%;
+  }
+
+  label {
+    padding: 8px 0;
+    font-weight: 100;
+    text-transform: none;
+    position: relative;
+    padding-left: 32px;
+    line-height: 1;
+    cursor: pointer;
+    width: auto;
+    top: 0;
+    left: 0;
+    transform: none;
+    text-align: left;
+
+    &.-uppercase {
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 24px;
+      height: 24px;
+      background: rgba($black, .05);
+      border: 1px solid transparent;
+      transform: translate(0,-50%);
+
+      svg {
+        content: "";
+        display: none;
+        width: 50%;
+        height: 50%;
+        fill: $black;
+      }
+    }
+  }
+
+  input[type=checkbox] {
+    display: none;
+  }
+
+  input[type=checkbox]:checked + label {
+    span{
+      svg {
+        display: block;
+      }
+    }
+  }
+
+  &.-medium {
+    font-size: 24px;
+    label {
+      padding-left: 48px;
+
+      span {
+        width: 36px;
+        height: 36px;
+      }
+    }
+  }
+
+
+  &.-big {
+    font-size: 32px;
+    label {
+      padding-left: 64px;
+
+      span {
+        width: 48px;
+        height: 48px;
+      }
+    }
+  }
+
+  &.-inline {
+    display: inline-block;
+  }
+}
