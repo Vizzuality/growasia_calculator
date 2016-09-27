@@ -1,6 +1,6 @@
 $(function() {
   $("#analysis_geo_location_id").html("<%= escape_javascript(options_from_collection_for_select(@geo_locations, :id, :state)) %>");
-  $("#analysis_geo_location_id").trigger("chosen:updated");
+  $("#analysis_geo_location_id").trigger("change");
 
   $(".c-field").removeClass("-hidden");
   $(".region-text").removeClass('-hidden');

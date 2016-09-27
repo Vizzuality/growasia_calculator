@@ -12,13 +12,16 @@
         stepindex: null,
         stepslength: null,
 
-        direction: null
+        direction: null,
+
+        crop: 'cocoa'
       }
     })),
 
     events: {
       'click .js-slider-arrow' : 'onClickDirection',
       'change input,textarea,select' : 'onChangeInput',
+      'change #analysis_crop' : 'onChangeCrop'
     },
 
     initialize: function(settings) {
@@ -36,8 +39,11 @@
     cache: function() {
       this.$window = $(window);
       this.$document = $(document);
+
       this.$sliderItems = this.$el.find('.js-slider-item');
       this.$sliderArrows = this.$el.find('.js-slider-arrow');
+
+      this.$selectCrop = this.$el.find('#analysis_crop');
     },
 
     listeners: function() {
@@ -49,7 +55,69 @@
       this.$window.on('resize.slider', this.changeIndex.bind(this));
     },
 
+
+    // CHANGE EVENTS
+    changeIndex: function(e) {
+      var index = this.model.get('index');
+      var newStepIndex = 0;
+      var time = (e && e.type === 'resize') ? 0 : 500;
+      var crop = (this.model.get('crop') === 'rice') ? 'rice' : 'other';
+
+      _.each(this.$sliderItems, function(el, i) {
+        var $el = $(el);
+
+        if (i == index) {
+          // Save the steps of the selected index
+          // Depending on the crop selected we will show different steps
+          var stepsItems = _.reject($el.find('.js-slider-step'), function(step){
+            var dataCrop = $(step).data('crop');
+            if (dataCrop) {
+              return dataCrop != crop
+            }
+          });
+
+          this.$stepsItems = $(stepsItems);
+
+          // Set the stepIndex depending on the direction
+          switch (this.model.get('direction')) {
+            case 'prev':
+              newStepIndex = this.$stepsItems.length - 1
+            break;
+
+            case 'next':
+              newStepIndex = 0
+            break;
+          }
+
+          // Set the model
+          this.model.set('stepslength', this.$stepsItems.length, { silent: true });
+          this.model.set('stepindex', newStepIndex, { silent: true });
+          this.model.trigger('change:stepindex');
+        }
+
+        $el.transition(this.getStyle(i), time);
+
+      }.bind(this));
+    },
+
+    changeStepIndex: function() {
+      this.$sliderItems
+        .eq(this.model.get('index'))
+          .find('.js-slider-step')
+          .toggleClass('-active', false);
+
+      this.$stepsItems
+        .eq(this.model.get('stepindex'))
+        .toggleClass('-active', true);
+    },
+    
+
+
     // UI EVENTS
+    onChangeCrop: function(e) {
+      this.model.set('crop', e.currentTarget.value);
+    },
+
     onChangeInput: function(e) {
       this.validateInput(e.currentTarget);
     },
@@ -99,52 +167,6 @@
         break;
       }
     },
-
-
-
-
-    // CHANGE EVENTS
-    changeIndex: function(e) {
-      var index = this.model.get('index');
-      var newStepIndex = 0;
-      var time = (e && e.type === 'resize') ? 0 : 500;
-
-      _.each(this.$sliderItems, function(el, i) {
-        var $el = $(el);
-
-        if (i == index) {
-          // Save the steps of the selected index
-          this.$stepsItems = $el.find('.js-slider-step');
-
-          // Set the stepIndex depending on the direction
-          switch (this.model.get('direction')) {
-            case 'prev':
-              newStepIndex = this.$stepsItems.length - 1
-            break;
-
-            case 'next':
-              newStepIndex = 0
-            break;
-          }
-
-          // Set the model
-          this.model.set('stepslength', this.$stepsItems.length, { silent: true });
-          this.model.set('stepindex', newStepIndex, { silent: true });
-          this.model.trigger('change:stepindex');
-        }
-
-        $el.transition(this.getStyle(i), time);
-
-      }.bind(this));
-    },
-
-
-    changeStepIndex: function() {
-      this.$stepsItems.toggleClass('-active', false);
-      this.$stepsItems.eq(this.model.get('stepindex')).toggleClass('-active', true);
-    },
-
-
 
 
     // HELPERS

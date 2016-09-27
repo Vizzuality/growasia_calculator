@@ -7,6 +7,12 @@
 			border-color: transparent rgba($white, .5) rgba($white, .5) transparent;
 		}
 	}
+
+	&.-error {
+		.select2-container--default .select2-selection--single {
+			border-color: transparent transparent rgba(red, .8) transparent;
+		}
+	}
 }
 
 // TO-DO: this file needs to be refactored
