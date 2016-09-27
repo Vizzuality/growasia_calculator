@@ -1,3 +1,20 @@
+.c-field {
+	&.-light {
+		.select2-container--default .select2-selection--single .select2-selection__rendered {
+			color: $white;
+		}
+		.select2-container--default .select2-selection--single:after {
+			border-color: transparent rgba($white, .5) rgba($white, .5) transparent;
+		}
+	}
+
+	&.-error {
+		.select2-container--default .select2-selection--single {
+			border-color: transparent transparent rgba(red, .8) transparent;
+		}
+	}
+}
+
 // TO-DO: this file needs to be refactored
 .select2-container {
 	// min-width: 200px;
@@ -97,7 +114,7 @@
       display: block;
       position: absolute;
       top: 20px;
-      right: 10px;
+      right: 16px;
       width: 10px;
       height: 10px;
       transform: rotate(45deg);

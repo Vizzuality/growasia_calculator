@@ -13,8 +13,6 @@
         el: '#sliderView'
       });
 
-      // new App.View.Steps({el: '#slider'});
-
       new App.View.Map({el: '#mapCountries', options:{mode: 'country'}});
 
       new App.View.Selectors({el: '#country'});

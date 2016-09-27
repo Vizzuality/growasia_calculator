@@ -15,16 +15,16 @@
   </div>
 
   <div class="c-btn-container -j-center -a-center">
-    <span class="c-input-field">
+    <span class="c-field -all -medium">
       <%= select_tag :country,
         options_from_collection_for_select(@geo_locations, :country, :country),
         include_blank: true,
-        class: '-input-big is-required',
+        class: '-js-required',
         'data-placeholder': ''
       %>
     </span>
-    <span class="c-input-field is-hidden">
-      <%= f.select :geo_location_id, [], {}, class: '-input-big' %>
+    <span class="c-field -all -medium -hidden">
+      <%= f.select :geo_location_id, [], {}, class: '-js-required' %>
     </span>
   </div>
 </div>

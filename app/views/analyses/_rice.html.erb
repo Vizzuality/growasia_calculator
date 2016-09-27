@@ -1,11 +1,11 @@
-<div class="c-slider-step js-slider-step -active">
+<div class="c-slider-step js-slider-step" data-crop="rice">
   <!-- <h1>Type of Rice and Irrigiation Regime</h1> -->
   <div class="slider-step-container">
     <span>
       I grow
       <span class="c-field -little">
         <%= f.select :rice_type,
-          options_for_select(["paddy", "upland"]) %>
+          options_for_select(["paddy", "upland"]), {}, class: '-js-required' %>
       </span>
     </span>
     <span>
@@ -14,13 +14,13 @@
     <span>
       can be described as
       <div class="c-field -huge">
-        <%= f.select :irrigation_regime, select_options(Analysis::IRRIGATION_REGIMES) %>
+        <%= f.select :irrigation_regime, select_options(Analysis::IRRIGATION_REGIMES), {}, class: '-js-required' %>
       </div>
     </span>
   </div>
 </div>
 
-<div class="c-slider-step js-slider-step">
+<div class="c-slider-step js-slider-step" data-crop="rice">
   <!-- <h1>Flooding before cultivation</h1> -->
   <div class="slider-step-container">
     <span>
@@ -28,13 +28,13 @@
     </span>
     <span>
       <span class="c-field -huge">
-        <%= f.select :flooding, select_options(Analysis::FLOODING_PRACTICES) %>
+        <%= f.select :flooding, select_options(Analysis::FLOODING_PRACTICES), {}, class: '-js-required' %>
       </span>
     </span>
     <span>
       and cultivation takes
       <span class="c-field -little">
-        <%= f.text_field :cultivation_time, value: 120, class: '-right' %>
+        <%= f.number_field :cultivation_time, value: 120, class: '-right -js-required -js-numeric', autocomplete: 'off' %>
       </span>
       days
     </span>
