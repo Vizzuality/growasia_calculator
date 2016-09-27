@@ -7,8 +7,9 @@
         <%= builder.hidden_field :category, value: Category::FERTILIZER %>
         <span class="c-field -little">
           <%= builder.text_field :amount, class: '-right' %>
+          <span class="unit">kg per ha and yr</span>
         </span>
-        <span class="text -form-inputs -medium">kg per ha and yr</span>
+
     </span>
     <span>
         of
@@ -21,8 +22,8 @@
         <%= builder.hidden_field :category, value: Category::MANURE %>
         <span class="c-field -little">
           <%= builder.text_field :amount, class: '-right' %>
+          <span class="unit">kg per ha and yr</span>
         </span>
-        <span class="text -form-inputs -medium">kg per ha and yr</span>
     </span>
     <span>
         of
@@ -38,8 +39,8 @@
         <%= builder.hidden_field :category, value: Category::NUTRIENT_MANAGEMENT %>
         <span class="c-field -little">
           <%= builder.text_field :amount, class: '-right' %>
+          <span class="unit">kg per ha and yr</span>
         </span>
-        <span class="text -form-inputs -medium">kg per ha and yr</span>
     </span>
     <span>
         of

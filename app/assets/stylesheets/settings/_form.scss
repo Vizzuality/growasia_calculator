@@ -128,6 +128,18 @@ textarea {
   }
 
   // SELECT2
+  .unit {
+    position: absolute;
+    font-size: 12px;
+    top: 100%;
+    transform: translate(0,5px);
+    font-weight: 500;
+    right: 0;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  // SELECT2
   .select2-container {
     width: 100% !important;
   }
