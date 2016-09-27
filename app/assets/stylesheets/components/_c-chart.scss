@@ -1,0 +1,32 @@
+.chart {
+  margin-bottom: 40px;
+
+  svg {
+    overflow: visible !important;
+  }
+
+  //I can not find a way to move the legend within the library API.
+  //I will get back to it later.
+  .c3-legend-item {
+    fill-opacity: .8;
+    text-transform: uppercase;
+    font-family: $font-family-1;
+    font-size: rem(11px);
+    font-weight: 400;
+
+    &:first-of-type {
+      transform: translate(-20px, 40px);
+    }
+
+    &:last-of-type {
+      transform: translate(20px, 40px);
+    }
+  }
+
+}
+
+.c3 text {
+  fill: $black;
+  fill-opacity: .8;
+  font-size: rem(12px);
+}

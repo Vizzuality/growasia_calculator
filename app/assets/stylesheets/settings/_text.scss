@@ -143,11 +143,13 @@
   }
 
   &.-label {
+    display: inline-block;
     font-size: rem(16px);
     line-height: 0.5;
     letter-spacing: 0.7px;
     opacity: .7;
     text-transform: none;
+    margin-bottom: 8px;
   }
 
 

@@ -5,14 +5,14 @@
   <%= form_for [:api, :v1, @analysis], :html => { :id => "analysis-sidebar-form" } do |f| %>
     <div class="input-group -first">
       <div>
-        <div class="c-field -full">
+        <div class="c-field -full -light">
           <label class="text -label" for="">Tillage</label>
           <%= f.select:tillage, select_options(Analysis::TILLAGES), {} %>
         </div>
       </div>
       <%= f.fields_for :fertilizers do |builder| %>
         <div>
-          <div class="c-field">
+          <div class="c-field -light">
             <label class="text -label" for=""><%= builder.object.fertilizer_name %></label>
             <%= builder.number_field :amount, min: 0 %>
           </div>
@@ -20,14 +20,14 @@
       <% end %>
       <%= f.fields_for :manures do |builder| %>
         <div>
-          <div class="c-field">
+          <div class="c-field -light">
             <label class="text -label" for=""><%= builder.object.manure_name %></label>
             <%= builder.number_field :amount, min: 0 %>
           </div>
         </div>
       <% end %>
       <div>
-        <div class="c-field">
+        <div class="c-field -light">
           <label class="text -label" for="">Agrochemicals amount</label>
           <%= f.number_field :agrochemical_amount, min: 0 %>
         </div>
@@ -58,13 +58,13 @@
       <div>
         <div class="c-field -light">
           <label class="text -label" for="">Lime</label>
-          <%= f.number_field :lime_amount, min: 0, class: '-right'  %>
+          <%= f.number_field :lime_amount, min: 0 %>
         </div>
       </div>
       <div>
         <div class="c-field -light">
           <label class="text -label" for="">Dolomite</label>
-          <%= f.number_field :dolomite_amount, min: 0, class: '-right'  %>
+          <%= f.number_field :dolomite_amount, min: 0 %>
         </div>
       </div>
       <div>
