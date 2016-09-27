@@ -5,6 +5,11 @@
     line-height: rem(96px);
     letter-spacing: rem(.5px);
     color: rgba(0,0,0,.8);
+
+    &.-light {
+      color: rgba(255,255,255,1);
+    }
+
     > * {
       display: block;
       font-weight: 100;

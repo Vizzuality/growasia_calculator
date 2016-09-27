@@ -5,10 +5,11 @@ input[type="password"],
 input[type="text"],
 input[type="date"],
 input[type="email"],
+input[type="number"],
 textarea {
   display: block;
   width: 100%;
-  border: none;
+  border: 1px solid transparent;
   background: rgba($black, .05);
   padding: 10px;
   margin: 0;
@@ -56,26 +57,47 @@ textarea {
     }
   }
 
-  &.-hidden {
-    display: none;
-  }
+  // STATES
+  &.-block { display: block;}
+  &.-hidden { display: none;}
+
 
   // SIZES
-  &.-little {
-    max-width: 160px;
-  }
-
-  &.-medium {
-    max-width: 350px;
-  }
-
-  &.-huge {
-    max-width: 500px;
-  }
+  &.-little { max-width: 160px; }
+  &.-medium { max-width: 350px; }
+  &.-huge { max-width: 500px;}
+  &.-all { width: 100%;}
 
   // PADDING
   &.-no-padding {
     padding: 0;
+  }
+
+  &.-light {
+    input[type="password"],
+    input[type="text"],
+    input[type="date"],
+    input[type="email"],
+    input[type="number"],
+    textarea {
+      color: $white;
+    }
+  }
+
+  // ERRORS
+  &.-error {
+    label {
+      color: rgba(red, .8);
+    }
+
+    input[type="password"],
+    input[type="text"],
+    input[type="date"],
+    input[type="email"],
+    input[type="number"],
+    textarea {
+      border-color: rgba(red, .8);
+    }
   }
 
   label {
@@ -96,10 +118,6 @@ textarea {
       top: auto;
       transform: none;
       margin: 0 0 3px;
-    }
-
-    &.-error {
-      color: rgba(red, .8);
     }
 
   }
@@ -143,36 +161,7 @@ textarea {
   .select2-container {
     width: 100% !important;
   }
-
-  // STATES
-  &.-short {
-    input[type="password"],
-    input[type="text"],
-    input[type="date"],
-    input[type="email"],
-    textarea {
-      max-width: 400px;
-    }
-  }
-
-  &.-with-errors{
-    label {
-      color: rgba(red, .8);
-    }
-
-    input[type="text"],
-    input[type="email"] {
-      border: 1px solid rgba(red, .8);
-    }
-
-    p {
-      margin-bottom: 25px;
-      font-weight: 500;
-      font-size: 12px;
-      color: rgba(red, .8);
-      text-transform: uppercase;
-    }
-  }
+  // TODO: Style custom number fields 
 }
 
 /**
