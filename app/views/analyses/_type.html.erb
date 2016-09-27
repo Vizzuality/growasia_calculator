@@ -3,13 +3,13 @@
     <span>
       Currently, I’m growing
       <span class="c-field -little">
-        <%= f.select :crop, select_options(Analysis::CROPS) %>
+        <%= f.select :crop, select_options(Analysis::CROPS), {}, class: '-js-required' %>
       </span>
     </span>
     <span>
       on
       <span class="c-field -little">
-        <%= f.text_field :area, class: '-right is-required is-numeric', autocomplete: 'off' %>
+        <%= f.text_field :area, class: '-right -js-required -js-numeric', autocomplete: 'off' %>
       </span>
       hectares of land
     </span>
@@ -18,10 +18,10 @@
     </span>
     <span>
       <span class="c-field -little">
-        <%= f.text_field :yield, class: '-right is-required is-numeric', autocomplete: 'off' %>
+        <%= f.text_field :yield, class: '-right -js-required -js-numeric', autocomplete: 'off' %>
       </span>
-      <span class="c-field -little">
-        <%= f.select :yield_unit, select_options(Analysis::YIELD_UNITS), {}, class: '-input-small' %>
+      <span class="c-field -medium">
+        <%= f.select :yield_unit, select_options(Analysis::YIELD_UNITS), {}, class: '-js-required' %>
       </span>
       per yard
     </span>

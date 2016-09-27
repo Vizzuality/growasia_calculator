@@ -8,7 +8,7 @@ input[type="email"],
 textarea {
   display: block;
   width: 100%;
-  border: none;
+  border: 1px solid transparent;
   background: rgba($black, .05);
   padding: 10px;
   margin: 0;
@@ -56,26 +56,37 @@ textarea {
     }
   }
 
-  &.-hidden {
-    display: none;
-  }
+  // STATES
+  &.-block { display: block;}
+  &.-hidden { display: none;}
+
 
   // SIZES
-  &.-little {
-    max-width: 160px;
-  }
-
-  &.-medium {
-    max-width: 350px;
-  }
-
-  &.-huge {
-    max-width: 500px;
-  }
+  &.-little { max-width: 160px; }
+  &.-medium { max-width: 350px; }
+  &.-huge { max-width: 500px;}
+  &.-all { width: 100%;}
 
   // PADDING
   &.-no-padding {
     padding: 0;
+  }
+
+  // ERRORS
+  &.-error {
+    label {
+      color: rgba(red, .8);
+    }
+
+    input[type="password"],
+    input[type="text"],
+    input[type="date"],
+    input[type="email"],
+    textarea {
+      border-color: rgba(red, .8);
+    }
+
+    
   }
 
   label {
@@ -96,10 +107,6 @@ textarea {
       top: auto;
       transform: none;
       margin: 0 0 3px;
-    }
-
-    &.-error {
-      color: rgba(red, .8);
     }
 
   }

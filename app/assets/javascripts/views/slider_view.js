@@ -18,12 +18,16 @@
 
     events: {
       'click .js-slider-arrow' : 'onClickDirection',
+      'change input,textarea,select' : 'onChangeInput',
     },
 
     initialize: function(settings) {
       this.options = _.extend({}, this.defaults, settings.options || {});
       this.cache();
       this.listeners();
+
+      // Set the validators
+      this.validator = new App.Helper.FormValidation();
 
       // Set the initial state
       this.changeIndex();
@@ -46,6 +50,10 @@
     },
 
     // UI EVENTS
+    onChangeInput: function(e) {
+      this.validateInput(e.currentTarget);
+    },
+
     onClickDirection: function(e) {
       // Slider index
       var index = this.model.get('index'),
@@ -78,13 +86,15 @@
           // If it's the last step,
           // we should move to the next slider
           // Otherwise next step
-          this.model.set('direction', 'next');
-          if (stepindex + 1 > stepslength - 1) {
-            newIndex = ((index + 1) > length - 1) ? length - 1 : index + 1;
-            this.model.set('index', newIndex);
-          } else {
-            newStepIndex = stepindex + 1;
-            this.model.set('stepindex', newStepIndex);
+          if (!this.validateStep()) {
+            this.model.set('direction', 'next');
+            if (stepindex + 1 > stepslength - 1) {
+              newIndex = ((index + 1) > length - 1) ? length - 1 : index + 1;
+              this.model.set('index', newIndex);
+            } else {
+              newStepIndex = stepindex + 1;
+              this.model.set('stepindex', newStepIndex);
+            }
           }
         break;
       }
@@ -98,6 +108,7 @@
       var index = this.model.get('index');
       var newStepIndex = 0;
       var time = (e && e.type === 'resize') ? 0 : 500;
+
       _.each(this.$sliderItems, function(el, i) {
         var $el = $(el);
 
@@ -166,6 +177,50 @@
         }
       }
     },
+
+    validateStep: function() {
+      var errors;
+      var $currentSlide = this.$stepsItems.eq(this.model.get('stepindex'));
+      var $required = $currentSlide.find('.-js-required');
+      var $numeric = $currentSlide.find('.-js-numeric');
+
+      if ($required) {
+        _.each($required, function(input) {
+          errors = this.validator.requiredValidation($(input).val());
+          this.toggleError(errors, input);
+        }.bind(this));
+      }
+
+      if ($numeric) {
+        _.each($numeric, function(input) {
+          errors = this.validator.numericValidation($(input).val());
+          this.toggleError(errors, input);
+        }.bind(this));
+      }
+
+      return errors && true;
+    },
+
+    validateInput: function(input) {
+      var errors;
+      var is_required = $(input).hasClass('-js-required');
+      var is_numeric = $(input).hasClass('-js-numeric');
+
+      if (is_required) {
+        errors = this.validator.requiredValidation($(input).val());
+        this.toggleError(errors, input);
+      }
+
+      if (is_numeric) {
+        errors = this.validator.numericValidation($(input).val());
+        this.toggleError(errors, input);
+      }
+    },
+
+    toggleError: function(errors, input) {
+      $(input).toggleClass('-error', !!errors);
+      $(input).parents('.c-field').toggleClass('-error', !!errors);
+    }
 
   });
 

@@ -4,7 +4,7 @@
     <span>
       My crop management includes
       <span class="c-field -little">
-        <%= f.select:tillage, select_options(Analysis::TILLAGES), {}, class: "-input-big" %>
+        <%= f.select:tillage, select_options(Analysis::TILLAGES), {}, class: "-js-required" %>
       </span>
     </span>
     <span>
@@ -14,12 +14,12 @@
       <%= f.fields_for :fertilizers do |builder| %>
         <%= builder.hidden_field :category, value: Category::FERTILIZER %>
         <span class="c-field -little">
-          <%= builder.text_field :amount, class: '-right', autocomplete: 'off' %>
+          <%= builder.text_field :amount, class: '-right -js-required -js-numeric', autocomplete: 'off' %>
           <span class="unit">kg per ha and yr</span>
         </span>
       of
       <span class="c-field -medium">
-        <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES), {}, class: "-input-big" %>
+        <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES), {}, class: "-js-required" %>
       </span>
       <% end %>
     </span>
@@ -30,12 +30,12 @@
     <span>
       and
       <span class="c-field -little">
-        <%= builder.text_field :amount, class: '-right', autocomplete: 'off' %>
+        <%= builder.text_field :amount, class: '-right -js-required -js-numeric', autocomplete: 'off' %>
         <span class="unit">kg per ha and yr</span>
       </span>
       of
       <span class="c-field -medium">
-        <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES), {} %>
+        <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES), {}, class: "-js-required" %>
       </span>
       <% end %>
     </span>
