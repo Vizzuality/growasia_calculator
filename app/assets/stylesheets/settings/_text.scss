@@ -143,6 +143,14 @@
     font-weight: 500;
   }
 
+  &.-label {
+    font-size: rem(16px);
+    line-height: 0.5;
+    letter-spacing: 0.7px;
+    opacity: .7;
+    text-transform: none;
+  }
+
 
   /*
    * COLORS

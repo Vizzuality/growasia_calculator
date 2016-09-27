@@ -18,21 +18,6 @@
       new App.View.Selectors({el: '#country'});
       new App.View.Selectors({el: '#analysis_geo_location_id'});
 
-      $('select').select2({
-        theme: "default",
-        minimumResultsForSearch: -1
-        // Use this if you want a single select with a clear button
-        // allowClear: true,
-        // templateSelection: function (data, container) {
-        //   // Return the placeholder
-        //   if (!data.id) {
-        //     return data.text;
-        //   }
-        //   // Return the selected option
-        //   return $('<span class="select2-selection__choice">' + data.text + '<span class="select2-selection__clear">×</span></span>');
-        // }
-
-      });
 
       $('#country').change(function() {
         if($(this).val() !== '') {
@@ -41,9 +26,12 @@
           $("#state-selection").addClass("hidden");
         }
       });
+
+      this.addSelectLib();
     },
 
     show: function(params) {
+
       var analysisModel = new App.Model.Analysis({
         id: params.id
       });
@@ -78,7 +66,16 @@
 
       // Fetch the analysis before render the graphs
       analysisModel.fetch();
+
+      this.addSelectLib();
     },
+
+    addSelectLib: function() {
+      $('select').select2({
+        theme: "default",
+        minimumResultsForSearch: -1
+      });
+    }
 
   });
 

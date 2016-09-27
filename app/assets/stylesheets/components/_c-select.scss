@@ -1,4 +1,5 @@
 .c-field {
+
 	&.-light {
 		.select2-container--default .select2-selection--single .select2-selection__rendered {
 			color: $white;
@@ -13,6 +14,10 @@
 			border-color: transparent transparent rgba(red, .8) transparent;
 		}
 	}
+
+  &.-full {
+    width: 100%;
+  }
 }
 
 // TO-DO: this file needs to be refactored
