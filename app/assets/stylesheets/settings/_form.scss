@@ -100,28 +100,6 @@ textarea {
     }
   }
 
-  label {
-    padding: 0 15px 0 0;
-    width: 100%;
-    color: rgba($black, .8);
-    font-weight: 500;
-    font-size: 13px;
-    text-transform: uppercase;
-    text-align: right;
-    line-height: 1.5;
-    @media (min-width: $screen-m) {
-      display: block;
-      text-align: left;
-      width: 100%;
-      position: relative;
-      left: auto;
-      top: auto;
-      transform: none;
-      margin: 0 0 3px;
-    }
-
-  }
-
   textarea {
     height: 182px;
     max-width: 100%;
