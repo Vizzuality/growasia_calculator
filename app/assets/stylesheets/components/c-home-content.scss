@@ -1,38 +1,35 @@
 .c-home-content {
   text-align: center;
+  width: 55%;
+  max-width: rem(600px);
 
-  .-home & {
-    width: 55%;
-    max-width: rem(600px);
+  .logo {
+    width: rem(115px);
+    height: rem(154px);
+    fill: $white;
+    padding-bottom: rem(104px);
+  }
 
-    .logo {
-      width: rem(115px);
-      height: rem(154px);
-      fill: $white;
-      padding-bottom: rem(104px);
-    }
+  .text {
+    &.-intro {
+      margin-top: rem(8px);
 
-    .text {
-      &.-intro {
-        margin-top: rem(8px);
-
-        + .btn {
-          margin-top: rem(16px);
-        }
+      + .btn {
+        margin-top: rem(16px);
       }
     }
+  }
 
-    .btn {
-      & + .-link {
-        margin-top: rem(24px);
-      }
+  .btn {
+    & + .-link {
+      margin-top: rem(24px);
     }
+  }
 
-    .-link {
-      display: block;
-      width: rem(190px);
-      margin-left: auto;
-      margin-right: auto;
-    }
+  .-link {
+    display: block;
+    width: rem(190px);
+    margin-left: auto;
+    margin-right: auto;
   }
 }
