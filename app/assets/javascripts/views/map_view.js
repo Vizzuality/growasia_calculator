@@ -182,10 +182,6 @@
 
       _.each(this.map._layers, function(layer){
 
-        if (layer.feature && layer.feature.properties) {
-          // console.log(layer.feature.properties)
-        }
-
         if (layer.feature && layer.feature.properties.id_1 === region_id) {
           layer.feature.properties.selected = true;
 
