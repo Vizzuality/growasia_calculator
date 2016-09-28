@@ -1,0 +1,16 @@
+<div>
+  <%= f.hidden_field :category, value: Category::MANURE %>
+  <span>
+    and
+    <span class="c-field my-upper-class-replacement">
+      <%= f.number_field :amount, class: '-right -js-numeric', autocomplete: 'off', min: '0' %>
+      <span class="unit">kg per ha and yr</span>
+    </span>
+    of
+    <span class="c-field my-bottom-class-replacement">
+      <%= f.select :addition_type, select_options(Analysis::MANURE_TYPES) %>
+    </span>
+  </span>
+  <%= f.hidden_field :_destroy %>
+  <%= link_to "remove", '#', class: "remove_fields" %>
+</div>
