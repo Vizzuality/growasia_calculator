@@ -200,6 +200,7 @@
     },
 
     setSelectedCountry: function() {
+
       this.removeLayer();
       this.currentGeom = this.getCurrentGeom(this.model.get('country'));
       this.map.setView(this.currentGeom.center, this.currentGeom.zoom);
