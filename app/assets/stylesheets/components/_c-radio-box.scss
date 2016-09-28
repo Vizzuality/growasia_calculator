@@ -1,0 +1,82 @@
+/**
+ * Radio
+ */
+.c-radio-box {
+  @include clearfix();
+  padding: 6px 0;
+  font-size: 12px;
+
+  .custom-radio {
+    display: flex;
+    width: 100%;
+
+    &.-with-input {
+      flex-wrap: wrap;
+
+      label {
+        width: 100%;
+      }
+
+      input[type=text] {
+        max-width: 250px;
+        margin: 0 0 0 25px;
+      }
+    }
+  }
+
+  label {
+    padding: 8px 0;
+    font-weight: 400;
+    text-transform: none;
+    position: relative;
+    padding-left: 25px;
+    line-height: 1;
+    cursor: pointer;
+    width: auto;
+    top: 0;
+    left: 0;
+    transform: none;
+    text-align: left;
+
+    &.-uppercase {
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    span {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 16px;
+      height: 16px;
+      border: 1px solid rgba($black, .8);
+      border-radius: 50%;
+      transform: translate(0,-50%);
+
+      &:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 50%;
+        height: 50%;
+        background: $color-1;
+        border-radius: 50%;
+        display: none;
+        transform: translate(-50%,-50%);
+      }
+    }
+  }
+
+  input[type=radio] {
+    display: none;
+  }
+
+  input[type=radio]:checked + label {
+    span{
+      &:after {
+        display: block;
+      }
+    }
+  }
+}

@@ -1,214 +1,42 @@
-<!-- SLIDE -->
-<h1>Type of Rice and Irrigiation Regime</h1>
-<section id="slide-9" class="l-slide -theme-3 js--slide">
-  <div class="c-slide-content">
-
-    <p class="text -questions">
-      <span>
-        I grow
-        <span class="c-input-field">
-          <%= f.select :rice_type,
-            options_for_select(["paddy", "upland"]) %>
-        </span>
+<div class="c-slider-step js-slider-step" data-crop="rice">
+  <!-- <h1>Type of Rice and Irrigiation Regime</h1> -->
+  <div class="slider-step-container">
+    <span>
+      I grow
+      <span class="c-field -little">
+        <%= f.select :rice_type,
+          options_for_select(["paddy", "upland"]), {}, class: '-js-required' %>
       </span>
-      <span>
-        rice and the irrigation regime can be described as
-      </span>
-      </span>
-        <div class="c-input-field">
-          <%= f.select :irrigation_regime, select_options(Analysis::IRRIGATION_REGIMES) %>
-        </div>
-      </span>
-    </p>
-  </section>
-
-  <!-- SLIDE -->
-  <h1>Flooding before cultivation</h1>
-  <section id="slide-10" class="l-slide -theme-3 js--slide">
-    <div class="c-slide-content">
-      <p class="text -questions">
-        <span>
-          Before cultivation starts, cropland is
-        </span>
-        <span>
-          <span class="c-input-field">
-            <%= f.select :flooding, select_options(Analysis::FLOODING_PRACTICES) %>
-          </span>
-        </span>
-        <span>
-          and cultivation takes
-          <span class="c-input-field">
-            <%= f.text_field :cultivation_time, value: 120, class: '-input-small' %> days
-          </span>
-        </span>
-      </p>
-  </div>
-</section>
-
-<!-- SLIDE : note = Figure out how to have this in both parts
-  rice and crop without duplicating
--->
-<h1>Liming and Dolomite</h1>
-<section id="slide-11" class="l-slide -theme-4 js--slide">
-  <div class="c-slide-content">
-    <p class="text -questions">
-      <span>
-        Do you apply lime?
-        <span class="c-input-field">
-          <input type="checkbox" id="limeRice">
-          <label for="limeRice"></label>
-        </span>
-      </span>
-      <span>
-        <span class="c-input-field">
-          <%= f.text_field :lime_amount, class: '-input-small' %>
-          <span class="text -form-inputs -medium">kg per ha and yr</span>
-        </span>
-      </span>
-      <span>
-        Do you apply dolomite?
-        <span class="c-input-field">
-          <input type="checkbox" id="dolomiteRice">
-          <label for="dolomiteRice"></label>
-        </span>
-      </span>
-      <span>
-        <span class="c-input-field">
-          <%= f.text_field :dolomite_amount, class: '-input-small' %>
-        </span>
-        <span class="text -form-inputs -medium">kg per ha and yr</span>
-      </span>
-    </p>
-  </div>
-</section>
-
-<!-- SLIDE -->
-<h1>Agrochemicals</h1>
-<section id="slide-12" class="l-slide -theme-4 js--slide">
-  <div class="c-slide-content">
-    <p class="text -questions">
-      <span>
-        Do you apply agrochemicals </br> including fertilizers, pesticides, or herbicides?
-        <span class="c-input-field">
-          <input type="checkbox" id="agrochemicalRice">
-          <label for="agrochemicalRice"></label>
-        </span>
-      </span>
-      <span>
-        <span class="c-input-field">
-          <%= f.text_field :agrochemical_amount, class: '-input-small' %>
-        </span>
-        <span class="text -form-inputs -medium">kg per ha and yr</span>
-      </span>
-    </p>
-  </div>
-</section>
-
-<!-- SLIDE -->
-<h1>Fertilizer and Nutrient Management</h1>
-<section id="slide-13" class="l-slide -theme-4 js--slide">
-  <div class="c-slide-content">
-    <p class="text -questions">
-      <span>
-        We apply
-        <%= f.fields_for :fertilizers do |builder| %>
-          <%= builder.hidden_field :category, value: Category::FERTILIZER %>
-          <span class="c-input-field">
-            <%= builder.text_field :amount, class: '-input-small' %>
-          </span>
-          <span class="text -form-inputs -medium">kg per ha and yr</span>
-      </span>
-      <span>
-          of
-          <span class="c-input-field">
-            <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES) %>
-          </span>
-        <% end %>
-      </span>
-
-      <span>
-        and
-        <%= f.fields_for :manures do |builder| %>
-          <%= builder.hidden_field :category, value: Category::MANURE %>
-          <span class="c-input-field">
-            <%= builder.text_field :amount, class: '-input-small' %>
-          </span>
-          <span class="text -form-inputs -medium">kg per ha and yr</span>
-      </span>
-      <span>
-          of
-          <span class="c-input-field">
-            <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES) %>
-          </span>
-        <% end %>
-      </span>
-
-      <span>
-        Additionally, we incorporate
-        <%= f.fields_for :nutrient_managements do |builder| %>
-          <%= builder.hidden_field :category, value: Category::NUTRIENT_MANAGEMENT %>
-          <span class="c-input-field">
-            <%= builder.text_field :amount, class: '-input-small' %>
-          </span>
-          <span class="text -form-inputs -medium">kg per ha and yr</span>
-      </span>
-      <span>
-          of
-          <span class="c-input-field">
-            <%= builder.select :addition_type, select_options(Analysis::RICE_NUTRIENT_MANAGEMENT) %>
-          </span>
-        <% end %>
-      </span>
-    </p>
-  </div>
-</section>
-
-<!-- SLIDE -->
-<h1>Fuel and purposes</h1>
-<section id="slide-14" class="l-slide -theme-5 js--slide">
-  <div class="c-slide-content">
-    <p class="text -questions">
-      <span>
-        Each year, we use an estimated
-      </span>
-      <span>
-        <%= f.fields_for :transportation_fuels do |builder| %>
-          <%= builder.hidden_field :category, value: Category::TRANSPORTATION_FUEL %>
-          <span class="c-input-field">
-            <%= builder.text_field :amount, class: '-input-small' %>
-            <%= builder.select :unit, select_options(Analysis::FUEL_UNITS) %>
-            <%= builder.select :addition_type, select_options(Analysis::FUEL_TYPES) %>
-          </span>
-          for transportation,
-        <% end %>
-      </span>
-      <span>
-        <%= f.fields_for :irrigation_fuels do |builder| %>
-          <span class="c-input-field">
-            <%= builder.hidden_field :category, value: Category::IRRIGATION_FUEL %>
-            <%= builder.text_field :amount, class: '-input-small' %>
-            <%= builder.select :unit, select_options(Analysis::FUEL_UNITS) %>
-            <%= builder.select :addition_type, select_options(Analysis::FUEL_TYPES) %>
-          </span>
-          for irrigation, and
-        <% end %>
-      </span>
-      <span>
-        <%= f.fields_for :fuels do |builder| %>
-          <span class="c-input-field">
-            <%= builder.hidden_field :category, value: Category::FUEL %>
-            <%= builder.text_field :amount, class: '-input-small' %>
-            <%= builder.select :unit, select_options(Analysis::FUEL_UNITS) %>
-            <%= builder.select :addition_type, select_options(Analysis::FUEL_TYPES) %>
-          </span>
-          for other practices.
-        <% end %>
-      </span>
-      <div class="actions">
-        <div class="c-input-field">
-          <%= f.submit %>
-        </div>
+    </span>
+    <span>
+      rice and the irrigation regime
+    </span>
+    <span>
+      can be described as
+      <div class="c-field -huge">
+        <%= f.select :irrigation_regime, select_options(Analysis::IRRIGATION_REGIMES), {}, class: '-js-required' %>
       </div>
-    </p>
+    </span>
   </div>
-</section>
+</div>
+
+<div class="c-slider-step js-slider-step" data-crop="rice">
+  <!-- <h1>Flooding before cultivation</h1> -->
+  <div class="slider-step-container">
+    <span>
+      Before cultivation starts, cropland is
+    </span>
+    <span>
+      <span class="c-field -huge">
+        <%= f.select :flooding, select_options(Analysis::FLOODING_PRACTICES), {}, class: '-js-required' %>
+      </span>
+    </span>
+    <span>
+      and cultivation takes
+      <span class="c-field -little">
+        <%= f.number_field :cultivation_time, value: 120, class: '-right -js-required -js-numeric', autocomplete: 'off', min: '0' %>
+      </span>
+      days
+    </span>
+  </div>
+</div>

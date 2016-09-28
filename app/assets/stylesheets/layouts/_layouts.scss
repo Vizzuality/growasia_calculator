@@ -10,6 +10,8 @@
   left: 0;
   z-index: 20;
   width: rem(88px);
+  // TODO: test it the analysis page and home
+  max-height: calc(100% - 105px);
 }
 
 .l-slide {

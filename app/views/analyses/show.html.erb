@@ -52,19 +52,19 @@
     <ul class="c-btn-container -j-center -a-center">
       <li>
         <button type="button" name="button" class="btn -dark -with-icon js-btn-action" data-action="Save:toggle">
-          <svg class="icon -medium"><use xlink:href="#icon-save"></use></svg>
+          <svg class="c-icon -medium"><use xlink:href="#icon-save"></use></svg>
           <span>Save</span>
         </button>
       </li>
       <li>
         <button type="button" name="button" class="btn -dark -with-icon js-btn-action" data-action="Print:toggle">
-          <svg class="icon -medium"><use xlink:href="#icon-print"></use></svg>
+          <svg class="c-icon -medium"><use xlink:href="#icon-print"></use></svg>
           <span>Print</span>
         </button>
       </li>
       <li>
         <button type="button" name="button" class="btn -dark -with-icon js-btn-action" data-action="Share:toggle">
-          <svg class="icon -medium"><use xlink:href="#icon-share"></use></svg>
+          <svg class="c-icon -medium"><use xlink:href="#icon-share"></use></svg>
           <span>Share</span>
         </button>
       </li>
@@ -73,86 +73,7 @@
 </section>
 
 <section id="analysisSidebarView" class="l-analysis-sidebar">
-  <div class="c-analysis-sidebar">
-    <div class="input-group -header">
-      <p class="text -sidebar-resume">Find out here how alternative practices could reduce your emissions</p>
-    </div>
-    <%= form_for [:api, :v1, @analysis], :html => { :id => "analysis-sidebar-form" } do |f| %>
-      <div class="input-group -first">
-        <div>
-          <div class="c-input-field">
-            <label class="text -description" for="">Tillage</label>
-            <%= f.select:tillage, select_options(Analysis::TILLAGES), {}, class: '-input-big' %>
-          </div>
-        </div>
-        <%= f.fields_for :fertilizers do |builder| %>
-          <div>
-            <div class="c-input-field">
-              <label class="text -description" for=""><%= builder.object.fertilizer_name %></label>
-              <%= builder.number_field :amount, min: 0 %>
-            </div>
-          </div>
-        <% end %>
-        <%= f.fields_for :manures do |builder| %>
-          <div>
-            <div class="c-input-field">
-              <label class="text -description" for=""><%= builder.object.manure_name %></label>
-              <%= builder.number_field :amount, min: 0 %>
-            </div>
-          </div>
-        <% end %>
-        <div>
-          <div class="c-input-field">
-            <label class="text -description" for="">Agrochemicals amount</label>
-            <%= f.number_field :agrochemical_amount, min: 0 %>
-          </div>
-        </div>
-      </div>
-      <div class="input-group -second">
-        <div>
-          <label class="text -description" for="">Crop management practices</label>
-          <% Analysis::CROP_MANAGEMENT_PRACTICES.each do |practice| %>
-            <div class="checkbox-box">
-              <div class="custom-checkbox">
-                <%= f.check_box :crop_management_practices, { multiple: true }, practice[:slug], nil %>
-                <label for="analysis_crop_management_practices_<%= practice[:slug] %>">
-                  <span></span><%= practice[:title] %>
-                </label>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      </div>
-      <div class="input-group -third">
-        <div>
-          <div class="c-input-field">
-            <label class="text -description" for="">Shaded?</label>
-            <%= f.select:is_shaded, options_for_select([["Yes", true], ["No", false]]) %>
-          </div>
-        </div>
-        <div>
-          <div class="c-input-field">
-            <label class="text -description" for="">Lime</label>
-            <%= f.number_field :lime_amount, min: 0  %>
-          </div>
-        </div>
-        <div>
-          <div class="c-input-field">
-            <label class="text -description" for="">Dolomite</label>
-            <%= f.number_field :dolomite_amount, min: 0  %>
-          </div>
-        </div>
-        <div>
-          <%= f.fields_for :fuels do |builder| %>
-            <div class="c-input-field">
-              <label class="text -description" for=""><%= builder.object.fuel_name %></label>
-              <%= builder.number_field :amount, min: 0  %><%= builder.object.fuel_unit_name %>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-  </div>
+  <%= render 'analysis_sidebar' %>
 </section>
 
 <!-- <h1>Analysis</h1>

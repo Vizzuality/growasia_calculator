@@ -1,105 +1,42 @@
-/*
- * Reset chosen.
- */
-.chosen-container {
-  vertical-align: sub;
-}
+$label-width: 100px;
 
-.chosen-container-single .chosen-single {
-  border: 0;
-  background: none;
-  color: white;
-  box-shadow: none;
-  padding: 0;
-  text-align: left;
-  overflow: visible;
-
-  height: 40px;
-  line-height: 40px;
-}
-
-.chosen-with-drop {
-  background: none;
-  border: 0;
-  box-shadow: none;
-}
-
-.chosen-container-active.chosen-with-drop .chosen-single {
-  background: transparent;
-  box-shadow: none;
-  border: none;
-}
-
-.chosen-container-single .chosen-single div b {
-  background: none;
-  position: relative;
-}
-
-.chosen-container-single .chosen-single div {
-
-  &:after {
-    @include arrow (rem(7px), rgba($black, .2), rem(2px), 225deg);
-    content: '';
-    display: block;
-    position: absolute;
-    top: 15px;
-    right: rem(2px);
-
-    transition: .2s ease-in;
-    transform-origin: center;
-  }
-}
-
-.chosen-with-drop .chosen-single div:after {
-  transform: rotate(45deg);
-}
-
-.chosen-container-single .chosen-single span {}
-
-.chosen-container.chosen-with-drop .chosen-drop {
-  border: 0;
-  border-radius: 0;
-  background-color: $white;
-}
-
-.chosen-container .chosen-results {
+input[type="password"],
+input[type="text"],
+input[type="date"],
+input[type="email"],
+input[type="number"],
+textarea {
+  display: block;
+  width: 100%;
+  border: 1px solid transparent;
+  background: rgba($black, .05);
+  padding: 8px 10px;
   margin: 0;
-  padding: 0;
-  background-color: rgba($black, .1);
+  font-size: 32px;
+  border-radius: 0px;
+  outline: none;
+  line-height: normal;
+  position: relative;
+  top: 2px;
 
-  li {
-    font-size: rem(24px);
-    font-weight: 100;
-    padding: rem(10px);
-    color: $font-color-2;
-    line-height: 1.1;
+  // ALIGN
+  &.-left {
+    text-align: left;
+  }
 
-    &:first-child {
-      margin-top: rem(5px);
-    }
+  &.-right {
+    text-align: right;
+  }
 
-    &.highlighted {
-      color: $font-color-2;
-      background: rgba($font-color-2, .1);
-    }
+  &.-disabled { opacity: 0.5; }
+
+  &:focus {
+    border-color: darken(rgba($black, .4),10%);
   }
 }
 
-/* TODO: Temp solution for user testing. needs styling still
-.chosen-search {
-  display: none;
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
-*/
-
-.chosen-rtl .chosen-search input[type="text"],
-.chosen-container-single .chosen-single abbr,
-.chosen-container-single .chosen-single div b,
-.chosen-container-single .chosen-search input[type="text"],
-.chosen-container-multi .chosen-choices .search-choice .search-choice-close,
-.chosen-container .chosen-results-scroll-down span,
-.chosen-container .chosen-results-scroll-up span {
-  background-image: none !important;
-}
-
-
-

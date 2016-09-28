@@ -1,0 +1,9 @@
+.c-country-label {
+  margin: rem(16px) 0;
+
+  > * {
+    &.-hidden {
+      display: none;
+    }
+  }
+}
