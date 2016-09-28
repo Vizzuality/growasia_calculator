@@ -218,10 +218,9 @@ class Analysis < ApplicationRecord
 
   def changes_in_carbon_content
     return nil if rice? || !is_shaded?
-    #(Area (ha) * Ccrop type Monoculture (t C ha-1)) + (Area (ha) *
-    # Ccrop type Agroforestry (t C ha-1 yr-1)) *44/12
+    #Area (ha) * # Ccrop type Agroforestry (t C ha-1 yr-1) *44/12
     r = CROPS.select{|t| t[:slug] == crop}.first
-    ((area * r[:c_monoculture]) + (area * r[:c_agroforestry])) * 44/12
+    area * r[:c_agroforestry] * 44/12
   end
 
   def emissions_from_rice_cultivation
