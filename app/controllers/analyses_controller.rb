@@ -33,7 +33,7 @@ class AnalysesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def analysis_params
       params.require(:analysis).permit(:geo_location_id, :area, :yield,
-        :yield_unit, :is_shaded, :crop, :tillage, :agrochemical_amount,
+        :yield_unit, :agroforestry_practices, :crop, :tillage, :agrochemical_amount,
         :rice_type, :irrigation_regime, :flooding, :cultivation_time,
         :lime_amount, :dolomite_amount, :annual_cultivation_cycles,
         fertilizers_attributes: [ :id, :amount, :category, :addition_type, :area ],

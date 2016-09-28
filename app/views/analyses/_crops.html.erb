@@ -71,11 +71,11 @@
   <div class="slider-step-container">
     <span>
       <div class="text -questions">
-        Does the cropland currently include shade trees, windbreaks, alley cropping, or any type of
+        Does the cropland currently include windbreaks, alley cropping, or any type of
         additional silviculture?
       </div>
       <span class="c-field">
-        <%= f.select:is_shaded, options_for_select([["Yes", true], ["No", false]]) %>
+        <%= f.select :agroforestry_practices, options_for_select([["Yes", true], ["No", false]]) %>
       </span>
     </span>
   </div>
