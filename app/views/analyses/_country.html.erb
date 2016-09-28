@@ -14,7 +14,7 @@
     </div>
   </div>
 
-  <div class="c-btn-container -j-center -a-center">
+  <div id="mapSelectors" class="c-btn-container -j-center -a-center">
     <span class="c-field -all -medium">
       <%= select_tag :country,
         options_from_collection_for_select(@geo_locations, :country, :country),
