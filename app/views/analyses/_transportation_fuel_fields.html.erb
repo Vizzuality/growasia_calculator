@@ -10,4 +10,6 @@
     <%= f.select :addition_type, select_options(Analysis::FUEL_TYPES) %>
   </span>
   for transportation,
+  <%= f.hidden_field :_destroy %>
+  <%= link_to "remove", '#', class: "remove_fields" %>
 </div>
