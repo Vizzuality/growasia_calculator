@@ -39,19 +39,19 @@ module DataSource
   ]
 
   FERTILIZER_TYPES = [
-    {slug: "urea", title: "Urea", nfertilizer_type: 46,
+    {slug: "urea", title: "Urea", nfertilizer_type: 0.46,
       fertilizer_type_prod: 1.54, fertilizer_type_app: 6.205},
-    {slug: "ammonia", title: "Ammonia", nfertilizer_type: 82,
+    {slug: "ammonia", title: "Ammonia", nfertilizer_type: 0.82,
       fertilizer_type_prod: 1.35, fertilizer_type_app: 6.205},
-    {slug: "ammonia-sulphate", title: "Ammonium sulphate", nfertilizer_type: 21,
+    {slug: "ammonia-sulphate", title: "Ammonium sulphate", nfertilizer_type: 0.21,
       fertilizer_type_prod: 0.35, fertilizer_type_app: 6.205},
-    {slug: "map", title: "Monammonium phosphate (MAP)", nfertilizer_type: 11,
+    {slug: "map", title: "Monammonium phosphate (MAP)", nfertilizer_type: 0.11,
       fertilizer_type_prod: 0.18, fertilizer_type_app: 6.205},
-    {slug: "dap", title: "Diammonium phosphate (DAP)", nfertilizer_type: 18,
+    {slug: "dap", title: "Diammonium phosphate (DAP)", nfertilizer_type: 0.18,
       fertilizer_type_prod: 0.3, fertilizer_type_app: 6.205},
-    {slug: "ammonia-nitrate", title: "Ammonium nitrate", nfertilizer_type: 33.5,
+    {slug: "ammonia-nitrate", title: "Ammonium nitrate", nfertilizer_type: 0.335,
       fertilizer_type_prod: 0.55, fertilizer_type_app: 6.205},
-    {slug: "calcium-ammonium", title: "Calcium ammonium nitrate", nfertilizer_type: 27,
+    {slug: "calcium-ammonium", title: "Calcium ammonium nitrate", nfertilizer_type: 0.27,
       fertilizer_type_prod: 0.43, fertilizer_type_app: 6.205}
   ]
 
