@@ -15,12 +15,12 @@
         <div>
           <%= builder.hidden_field :category, value: Category::FERTILIZER %>
           <span class="c-field -little">
-            <%= builder.number_field :amount, class: '-right -js-required -js-numeric', autocomplete: 'off', min: '0' %>
+            <%= builder.number_field :amount, class: '-right -js-numeric', autocomplete: 'off', min: '0' %>
             <span class="unit">kg per ha and yr</span>
           </span>
           of
           <span class="c-field -medium">
-            <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES), {}, class: "-js-required" %>
+            <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES) %>
           </span>
         </div>
       <% end %>
@@ -31,12 +31,12 @@
       <span>
         and
         <span class="c-field -little">
-          <%= builder.number_field :amount, class: '-right -js-required -js-numeric', autocomplete: 'off', min: '0' %>
+          <%= builder.number_field :amount, class: '-right -js-numeric', autocomplete: 'off', min: '0' %>
           <span class="unit">kg per ha and yr</span>
         </span>
         of
         <span class="c-field -medium">
-          <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES), {}, class: "-js-required" %>
+          <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES) %>
         </span>
       </span>
     <% end %>
