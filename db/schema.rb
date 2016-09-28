@@ -60,7 +60,6 @@ ActiveRecord::Schema.define(version: 20160928111113) do
     t.decimal  "fi_high_w_manure"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
-    t.string   "slug"
   end
 
 end

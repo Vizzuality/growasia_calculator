@@ -18,8 +18,7 @@
 
       new App.View.Map({el: '#mapCountries', options:{mode: 'country'}});
 
-      new App.View.Selectors({el: '#country'});
-      new App.View.Selectors({el: '#analysis_geo_location_id'});
+      new App.View.Selectors({el: '#mapSelectors'});
 
       this.addSelectLib();
     },
