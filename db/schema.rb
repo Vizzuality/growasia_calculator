@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160907105058) do
+ActiveRecord::Schema.define(version: 20160928100903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20160907105058) do
     t.decimal  "lime_amount"
     t.decimal  "dolomite_amount"
     t.string   "yield_unit"
+    t.integer  "annual_cultivation_cycles"
   end
 
   create_table "geo_locations", force: :cascade do |t|
@@ -59,6 +60,7 @@ ActiveRecord::Schema.define(version: 20160907105058) do
     t.decimal  "fi_high_w_manure"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.string   "slug"
   end
 
 end
