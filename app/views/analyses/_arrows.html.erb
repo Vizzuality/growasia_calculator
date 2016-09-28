@@ -1,0 +1,18 @@
+<div class="c-slider-arrows">
+  <ul>
+
+    <li class="arrow -left js-slider-arrow" data-direction="<%= slider_direction_left?(type) %>">
+      <button type="button" name="button">
+        <svg class="c-icon -small"><use xlink:href="#icon-arrow_<%= arrow_direction_left?(type) %>"></use></svg>
+      </button>
+    </li>
+
+    <% unless type == 'first' %>
+    <li class="arrow -rigth js-slider-arrow" data-direction="<%= slider_direction_right?(type) %>">
+      <button type="button" name="button">
+        <svg class="c-icon -small"><use xlink:href="#icon-arrow_<%= arrow_direction_right?(type) %>"></use></svg>
+      </button>
+    </li>
+    <% end %>
+  </ul>
+</div>

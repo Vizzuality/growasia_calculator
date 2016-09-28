@@ -6,17 +6,17 @@
 
   App.Controller.Analysis = App.Controller.Page.extend({
 
-    index: function() {
+    index: function(params) {
 
-      new App.View.Steps({el: '#slider'});
+      new App.View.Slider({
+        params: params,
+        el: '#sliderView'
+      });
 
       new App.View.Map({el: '#mapCountries', options:{mode: 'country'}});
 
       new App.View.Selectors({el: '#mapSelectors'});
 
-      $('select').chosen();
-      $('select.-input-big').chosen({'width':'360px' });
-      $('select.-input-small').chosen({'width':'208px' });
 
       $('#country').change(function() {
         if($(this).val() !== '') {
@@ -25,9 +25,12 @@
           $("#state-selection").addClass("hidden");
         }
       });
+
+      this.addSelectLib();
     },
 
     show: function(params) {
+
       var analysisModel = new App.Model.Analysis({
         id: params.id
       });
@@ -62,7 +65,16 @@
 
       // Fetch the analysis before render the graphs
       analysisModel.fetch();
+
+      this.addSelectLib();
     },
+
+    addSelectLib: function() {
+      $('select').select2({
+        theme: "default",
+        minimumResultsForSearch: -1
+      });
+    }
 
   });
 

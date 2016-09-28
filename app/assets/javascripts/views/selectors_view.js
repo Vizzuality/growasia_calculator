@@ -13,6 +13,12 @@
       'change #analysis_geo_location_id' : 'onChangeRegion'
     },
 
+    model: new (Backbone.Model.extend({
+      defaults: {
+
+      }
+    })),
+
     initialize: function(settings) {
       if (!this.el) {
         return;
@@ -25,6 +31,7 @@
     },
 
     listeners: function() {
+
       this.model.on('change:country', this.changeMapMode.bind(this));
       this.model.on('change:region', this.changeMapRegion.bind(this));
 
