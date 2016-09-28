@@ -14,6 +14,7 @@
           <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES) %>
         </span>
       <% end %>
+      <%= link_to_add_fields "+Add", f, :fertilizers, "-little -light", "-little -light" %>
     </span>
     <span>
       and
@@ -28,6 +29,7 @@
           <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES) %>
         </span>
       <% end %>
+      <%= link_to_add_fields "+Add", f, :manures, "-little -light", "-little -light" %>
     </span>
 
     <span>

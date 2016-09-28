@@ -12,33 +12,35 @@
     </span>
     <span>
       <%= f.fields_for :fertilizers do |builder| %>
-        <%= builder.hidden_field :category, value: Category::FERTILIZER %>
+        <div>
+          <%= builder.hidden_field :category, value: Category::FERTILIZER %>
+          <span class="c-field -little">
+            <%= builder.number_field :amount, class: '-right -js-required -js-numeric', autocomplete: 'off', min: '0' %>
+            <span class="unit">kg per ha and yr</span>
+          </span>
+          of
+          <span class="c-field -medium">
+            <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES), {}, class: "-js-required" %>
+          </span>
+        </div>
+      <% end %>
+      <%= link_to_add_fields "+Add", f, :fertilizers, "-little", "-medium" %>
+    </span>
+    <%= f.fields_for :manures do |builder| %>
+      <%= builder.hidden_field :category, value: Category::MANURE %>
+      <span>
+        and
         <span class="c-field -little">
           <%= builder.number_field :amount, class: '-right -js-required -js-numeric', autocomplete: 'off', min: '0' %>
           <span class="unit">kg per ha and yr</span>
         </span>
-      of
-      <span class="c-field -medium">
-        <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES), {}, class: "-js-required" %>
+        of
+        <span class="c-field -medium">
+          <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES), {}, class: "-js-required" %>
+        </span>
       </span>
-      <% end %>
-    </span>
-    <span>
-      <%= f.fields_for :manures do |builder| %>
-      <%= builder.hidden_field :category, value: Category::MANURE %>
-    </span>
-    <span>
-      and
-      <span class="c-field -little">
-        <%= builder.number_field :amount, class: '-right -js-required -js-numeric', autocomplete: 'off', min: '0' %>
-        <span class="unit">kg per ha and yr</span>
-      </span>
-      of
-      <span class="c-field -medium">
-        <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES), {}, class: "-js-required" %>
-      </span>
-      <% end %>
-    </span>
+    <% end %>
+    <%= link_to_add_fields "+Add", f, :manures, "-little", "-medium" %>
   </div>
 </div>
 
