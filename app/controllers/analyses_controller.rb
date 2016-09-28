@@ -35,7 +35,7 @@ class AnalysesController < ApplicationController
       params.require(:analysis).permit(:geo_location_id, :area, :yield,
         :yield_unit, :is_shaded, :crop, :tillage, :agrochemical_amount,
         :rice_type, :irrigation_regime, :flooding, :cultivation_time,
-        :lime_amount, :dolomite_amount,
+        :lime_amount, :dolomite_amount, :annual_cultivation_cycles,
         fertilizers_attributes: [ :id, :amount, :category, :addition_type, :area ],
         manures_attributes: [ :id, :amount, :category, :addition_type, :area ],
         fuels_attributes: [ :id, :amount, :category, :addition_type, :area, :unit ],

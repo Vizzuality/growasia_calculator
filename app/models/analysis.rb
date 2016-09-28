@@ -226,7 +226,7 @@ class Analysis < ApplicationRecord
 
   def emissions_from_rice_cultivation
     return nil unless rice?
-    # (EFrice * Number of Cultivation Days * Area * 10-6) * 25
+    # (EFrice * Number of Cultivation Days * Annual Number of Cultivation Cycles * Area * 10-6) * 25
     # EFrice = 1.30 * Water Regime Scaling Factor * Scaling Factor for
     # Pre-Cultivation Flooding *Scaling Factor for Organic Amendment
     # Water Regime Scaling Factor = irrigation_regimes[:scaling_factor]
@@ -246,7 +246,7 @@ class Analysis < ApplicationRecord
 
     ef_rice = 1.30 * water_scaling_factor * pre_cult_scaling_factor * conversion_factor
 
-    (ef_rice * cultivation_time * area * (10**-6)) * 25
+    (ef_rice * cultivation_time * annual_cultivation_cycles * area * (10**-6)) * 25
   end
 
   def converted_yield
