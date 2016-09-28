@@ -1,0 +1,11 @@
+<span class="c-field -little -light">
+  <%= f.hidden_field :category, value: Category::FUEL %>
+  <%= f.number_field :amount, class: '-right -js-required -js-numeric', autocomplete: 'off', min: '0' %>
+</span>
+<span class="c-field -little -light">
+  <%= f.select :unit, select_options(Analysis::FUEL_UNITS) %>
+</span>
+<span class="c-field -little -light">
+  <%= f.select :addition_type, select_options(Analysis::FUEL_TYPES) %>
+</span>
+for other practices.
