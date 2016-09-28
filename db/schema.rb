@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160928100903) do
+ActiveRecord::Schema.define(version: 20160928111113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,9 +30,9 @@ ActiveRecord::Schema.define(version: 20160928100903) do
     t.integer  "geo_location_id"
     t.decimal  "area"
     t.decimal  "yield"
-    t.boolean  "is_shaded"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.boolean  "agroforestry_practices",    default: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.string   "crop"
     t.string   "tillage"
     t.decimal  "agrochemical_amount"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20160928100903) do
     t.string   "irrigation_regime"
     t.string   "flooding"
     t.integer  "cultivation_time"
-    t.string   "crop_management_practices",              array: true
+    t.string   "crop_management_practices",                              array: true
     t.decimal  "lime_amount"
     t.decimal  "dolomite_amount"
     t.string   "yield_unit"

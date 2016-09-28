@@ -217,8 +217,9 @@ class Analysis < ApplicationRecord
   end
 
   def changes_in_carbon_content
-    return nil if rice? || !is_shaded?
-    #Area (ha) * # Ccrop type Agroforestry (t C ha-1 yr-1) *44/12
+    return nil if rice? || !agroforestry_present?
+    #(Area (ha) * Ccrop type Monoculture (t C ha-1)) + (Area (ha) *
+    # Ccrop type Agroforestry (t C ha-1 yr-1)) *44/12
     r = CROPS.select{|t| t[:slug] == crop}.first
     area * r[:c_agroforestry] * 44/12
   end

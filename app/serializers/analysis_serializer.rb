@@ -34,7 +34,7 @@ class AnalysisSerializer < ActiveModel::Serializer
       total += val
 
       # shaded
-      if object.is_shaded?
+      if object.agroforestry_present?
         val = object.changes_in_carbon_content
         emissions_by_source << {
           slug: "agroforestry",
