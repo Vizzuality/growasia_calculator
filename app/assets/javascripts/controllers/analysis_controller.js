@@ -93,7 +93,7 @@
     removeFields: function() {
       $(document).on('click', '.remove_fields', function(event) {
         $(this).prev('input[type=hidden]').val('1');
-        $(this).closest('.form-inputs').hide();
+        $(this).closest('div').hide();
         return event.preventDefault();
       });
     }

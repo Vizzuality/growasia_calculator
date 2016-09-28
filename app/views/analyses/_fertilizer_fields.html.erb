@@ -8,5 +8,6 @@
   <span class="c-field my-bottom-class-replacement">
     <%= f.select :addition_type, select_options(Analysis::FERTILIZER_TYPES) %>
   </span>
+  <%= f.hidden_field :_destroy %>
   <%= link_to "remove", '#', class: "remove_fields" %>
 </div>
