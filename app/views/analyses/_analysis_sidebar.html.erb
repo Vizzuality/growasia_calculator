@@ -1,0 +1,80 @@
+<div class="c-analysis-sidebar">
+  <div class="input-group -header">
+    <p class="text -sidebar-resume">Find out here how alternative practices could reduce your emissions</p>
+  </div>
+  <%= form_for [:api, :v1, @analysis], :html => { :id => "analysis-sidebar-form" } do |f| %>
+    <div class="input-group -first">
+      <div>
+        <div class="c-field -full -light">
+          <label class="text -label" for="">Tillage</label>
+          <%= f.select:tillage, select_options(Analysis::TILLAGES), {} %>
+        </div>
+      </div>
+      <%= f.fields_for :fertilizers do |builder| %>
+        <div>
+          <div class="c-field -light">
+            <label class="text -label" for=""><%= builder.object.fertilizer_name %></label>
+            <%= builder.number_field :amount, min: 0 %>
+          </div>
+        </div>
+      <% end %>
+      <%= f.fields_for :manures do |builder| %>
+        <div>
+          <div class="c-field -light">
+            <label class="text -label" for=""><%= builder.object.manure_name %></label>
+            <%= builder.number_field :amount, min: 0 %>
+          </div>
+        </div>
+      <% end %>
+      <div>
+        <div class="c-field -light">
+          <label class="text -label" for="">Agrochemicals amount</label>
+          <%= f.number_field :agrochemical_amount, min: 0 %>
+        </div>
+      </div>
+    </div>
+    <div class="input-group -second">
+      <div>
+        <label class="text -label" for="">Crop management practices</label>
+        <% Analysis::CROP_MANAGEMENT_PRACTICES.each do |practice| %>
+          <div class="checkbox-box">
+            <div class="custom-checkbox">
+              <%= f.check_box :crop_management_practices, { multiple: true }, practice[:slug], nil %>
+              <label for="analysis_crop_management_practices_<%= practice[:slug] %>">
+                <span></span><%= practice[:title] %>
+              </label>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="input-group -third">
+      <div>
+        <div class="c-field -full -light">
+          <label class="text -label" for="">Shaded?</label>
+          <%= f.select:is_shaded, options_for_select([["Yes", true], ["No", false]]) %>
+        </div>
+      </div>
+      <div>
+        <div class="c-field -light">
+          <label class="text -label" for="">Lime</label>
+          <%= f.number_field :lime_amount, min: 0 %>
+        </div>
+      </div>
+      <div>
+        <div class="c-field -light">
+          <label class="text -label" for="">Dolomite</label>
+          <%= f.number_field :dolomite_amount, min: 0 %>
+        </div>
+      </div>
+      <div>
+        <%= f.fields_for :fuels do |builder| %>
+          <div class="c-field -light">
+            <label class="text -label" for=""><%= builder.object.fuel_name %></label>
+            <%= builder.number_field :amount, min: 0  %><%= builder.object.fuel_unit_name %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

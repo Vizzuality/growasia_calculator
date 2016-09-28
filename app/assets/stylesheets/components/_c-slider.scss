@@ -1,0 +1,99 @@
+.c-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  > ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+
+    > li {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      transform: translate(100%,0);
+    }
+  }
+}
+
+.c-slider-item {
+  &.-initial {
+    transform: translate(0,0);
+  }
+
+  // COLORS
+  &.-color1 { background: $color-1;}
+  &.-color2 { background: $color-2;}
+  &.-color3 { background: $color-3;}
+  &.-color4 { background: $color-4;}
+  &.-color5 { background: $color-5;}
+}
+
+
+.c-slider-arrows {
+  .arrow {
+    position: absolute;
+    bottom: 0;
+    z-index: 10;
+
+    border: 1px solid $black;
+    border-radius: 3px;
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      user-select: none;
+
+      appearance: none;
+      background: none;
+      border: none;
+    }
+
+    &:hover {
+      background: rgba($white, 0.15);
+    }
+
+    &.-left {
+      transform: translate(50%,-50%);
+      right: (($slider-constant-open + $slider-constant)/2);
+    }
+
+    &.-rigth {
+      transform: translate(-50%,-50%);
+      left: (($slider-constant-open + $slider-constant)/2);
+    }
+  }
+}
+
+.c-slider-step {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  transform: translate(-50%,-50%);
+  text-align: center;
+
+  &.-light {
+    color: $white;
+  }
+
+  &.-active {
+    display: block;
+  }
+}

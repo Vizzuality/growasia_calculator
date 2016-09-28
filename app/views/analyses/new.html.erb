@@ -1,67 +1,33 @@
 <%= form_for @analysis do |f| %>
-  <div id="slider">
+  <div id="sliderView" class="c-slider">
+    <ul>
+      <li class="c-slider-item js-slider-item -color1 -initial">
+        <%= render partial: 'arrows', locals: { type: 'first' } %>
+        <%= render 'country', f: f %>
+      </li>
 
-    <!-- SLIDE 1 -->
-    <h1>Select Geography</h1>
-    <section id="slide-1" class="l-slide -theme-1 js--slide -is-current">
-      <div class="c-slide-content">
-        <div class="c-map-group">
-          <div id="mapCountries" class="c-map"></div>
-        </div>
-        <%= label_tag :country, "Select your country", class: "text -questions country-text" %>
-        <%= label_tag :region, "Select your region", class: "text -questions is-hidden region-text" %>
-        <p class="text -description country-text">Start typing or select your country in the map</p>
-        <p class="text -description region-text is-hidden">Start typing or select your region in the map</p>
-        <span class="c-input-field">
-          <%= select_tag :country,
-            options_from_collection_for_select(@geo_locations, :country, :country),
-            include_blank: true, class: '-input-big is-required' %>
-        </span>
-        <span class="c-input-field is-hidden">
-          <%= f.select :geo_location_id, [], {}, class: '-input-big' %>
-        </span>
-      </div>
-    </section>
+      <li class="c-slider-item js-slider-item -color2">
+        <%= render partial: 'arrows', locals: { type: 'default' } %>
+        <%= render 'type', f: f %>
+      </li>
 
-    <!-- SLIDE 2 -->
-    <h1>Describe your agricultural activity</h1>
-    <section id="slide-2" class="l-slide -theme-2 js--slide">
-      <div class="c-slide-content">
-        <p class="text -questions">
-          <span>
-            Currently, I’m growing
-            <span class="c-input-field">
-              <%= f.select :crop, select_options(Analysis::CROPS) %>
-            </span>
-          </span>
-          <span>
-            on
-            <span class="c-input-field">
-              <%= f.text_field :area, class: '-input-small is-required is-numeric' %>
-            </span>
-            hectares of land
-          </span>
-          <span>
-            and expect a yield of
-          </span>
-          <span>
-            <span class="c-input-field">
-              <%= f.text_field :yield, class: '-input-small is-required is-numeric' %>
-            </span>
-            <span class="c-input-field">
-              <%= f.select :yield_unit, select_options(Analysis::YIELD_UNITS), {}, class: '-input-small' %>
-            </span>
-            <span class="text -form-inputs -medium"> per yard</span>
-          </span>
-        </p>
-      </div>
-    </section>
+      <li class="c-slider-item js-slider-item -color3">
+        <%= render partial: 'arrows', locals: { type: 'default' } %>
+        <%= render 'rice', f: f %>
+        <%= render 'crops', f: f %>
+      </li>
 
-    <!-- SLIDE 3 to x -->
-    <%= render 'crops', f: f %>
-    <%= render 'rice', f: f %>
+      <li class="c-slider-item js-slider-item -color4">
+        <%= render partial: 'arrows', locals: { type: 'default' } %>
+        <%= render 'liming', f: f %>
+        <%= render 'agrochemicals', f: f %>
+        <%= render 'fertilizers', f: f %>
+      </li>
 
-    <%= render 'partials/handlers' %>
-
+      <li class="c-slider-item js-slider-item -color5">
+        <%= render partial: 'arrows', locals: { type: 'last' } %>
+        <%= render 'fuel', f: f %>
+      </li>
+    </ul>
   </div>
 <% end %>

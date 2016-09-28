@@ -2,42 +2,46 @@
 
   'use strict';
 
-  App.View = App.View || {};
+  App.View = App.View || {};
 
   App.View.Map = Backbone.View.extend({
 
+    model: new (Backbone.Model.extend({
+          defaults: {
+            country: 'all'
+          }
+        })),
+
     geometries: {
-      country: {
+      all: {
         url: '../asia.geo.json',
         center: [12.24, 105],
         zoom: 4
       },
-      regions: {
-        Cambodia: {
-          url: '../cambodia.geo.json',
-          center: [12.24, 105],
-          zoom: 7
-        },
-        Vietnam: {
-          url: '../vietnam.geo.json',
-          center: [12.24, 105],
-          zoom: 5
-        },
-        Philippines: {
-          url: '../philipines.geo.json',
-          center: [10, 125],
-          zoom: 5
-        },
-        Myanmar: {
-          url: '../myanmar.geo.json',
-          center: [12, 100],
-          zoom: 5
-        },
-        Indonesia: {
-          url: '../indonesia.geo.json',
-          center: [0, 108],
-          zoom: 4
-        }
+      Cambodia: {
+        url: '../cambodia.geojson',
+        center: [12.24, 105],
+        zoom: 7
+      },
+      Vietnam: {
+        url: '../vietnam.geojson',
+        center: [12.24, 105],
+        zoom: 5
+      },
+      Philippines: {
+        url: '../philipines.geojson',
+        center: [10, 125],
+        zoom: 5
+      },
+      Myanmar: {
+        url: '../myanmar.geojson',
+        center: [12, 100],
+        zoom: 5
+      },
+      Indonesia: {
+        url: '../indonesia.geojson',
+        center: [0, 108],
+        zoom: 4
       }
     },
 
@@ -51,8 +55,7 @@
       var opts = settings && settings.options ? settings.options : {};
       this.options = _.extend({}, this.defaults, opts );
 
-      this.options.mode = this.getCurrentMode(this.options);
-      this.currentGeom = this.getCurrentGeom(this.options);
+      this.currentGeom = this.getCurrentGeom();
 
       this.model =  new App.Model.Map();
 
@@ -63,16 +66,18 @@
     },
 
     listeners: function() {
-      // Backbone.Events.on('selector:item:selected', this.setSelectedItems.bind(this));
-      Backbone.Events.on('selector:item:selected', this.updateMap.bind(this));
+      this.model.on('change:country', this.setSelectedCountry.bind(this));
+      this.model.on('change:region', this.setSelectedRegion.bind(this));
+
+      Backbone.Events.on('selector:item:selected', this.updateMapState.bind(this));
     },
 
-    getCurrentMode: function(opt) {
-      return opt.mode;
+    updateMapState: function(obj) {
+      this.model.set(obj);
     },
 
-    getCurrentGeom: function(opt) {
-      return opt.country ? this.geometries[opt.mode][opt.country] : this.geometries[opt.mode];
+    getCurrentGeom: function() {
+      return this.geometries[this.model.get('country')];
     },
 
     createMap: function() {
@@ -96,13 +101,21 @@
      */
     //STYLES
     getStyles: function(feature) {
-      return {
+      var style = this.mode === 'regions' ? {
+        fillColor: this.getColor(feature.properties),
+        weight: 2,
+        opacity: 0.8,
+        color: '#fafb00',
+        fillOpacity: 0.8
+      } : {
         fillColor: this.getColor(feature.properties),
         weight: 2,
         opacity: this.getOpacity(feature.properties),
         color: '#fafb00',
         fillOpacity: this.getOpacity(feature.properties)
-      };
+      }
+
+      return style;
     },
 
     getColor: function(d) {
@@ -123,14 +136,24 @@
       layer.on({
         mouseover: this.highlightFeature.bind(this),
         mouseout: this.resetHighlight.bind(this),
-        click: this.selectCountry.bind(this)
+        click: this.onClickSelectItem.bind(this)
       });
+    },
+
+    onClickSelectItem: function(e) {
+      var layer = e.target;
+
+      if (layer.feature.properties.admin) {
+        this.model.set({country: layer.feature.properties.admin})
+      } else {
+        this.model.set({region: layer.feature.properties.id_1})
+      }
     },
 
     highlightFeature: function(e) {
       var layer = e.target;
 
-      if ( this.countries.includes(layer.feature.properties.admin) ) {
+      if ( this.model.get('country') || this.countries.includes(layer.feature.properties.admin) ) {
         layer.setStyle({
             weight: 1,
             fillColor: '#3f8c3f',
@@ -148,35 +171,22 @@
       this.geoJson.resetStyle(layer);
     },
 
-    selectCountry: function(e) {
-      //Unselect previous layer
-      this.unSelectPrevious();
-
-      //Select new layer
-      var layer = e.target;
-
-      if ( this.countries.includes(layer.feature.properties.admin) ) {
-
-        layer.feature.properties.selected = true;
-
-        var name = layer.feature.properties.admin;
-        Backbone.Events.trigger('map:country:selected', {name: name, mode: this.mode});
-
-        this.selectedLayer = layer;
-      }
-    },
 
     unSelectPrevious: function() {
       this.selectedLayer && (this.selectedLayer.feature.properties.selected = false);
       this.selectedLayer && this.resetHighlight(this.selectedLayer);
     },
 
-    setSelectedItems: function(obj) {
-      var item = obj.item;
-      var layer = _.findWhere(this.map._layers, { name : item });
+    setSelectedRegion: function() {
+      var region_id = this.model.get('region');
 
       _.each(this.map._layers, function(layer){
-        if (layer.feature && layer.feature.properties.admin === item) {
+
+        if (layer.feature && layer.feature.properties) {
+          // console.log(layer.feature.properties)
+        }
+
+        if (layer.feature && layer.feature.properties.id_1 === region_id) {
           layer.feature.properties.selected = true;
 
           layer.setStyle({fillColor: '#2a5a3a'});
@@ -184,20 +194,21 @@
 
           this.selectedLayer = layer;
         }
-      }.bind(this))
+      }.bind(this));
+
+      Backbone.Events.trigger('map:selected', { region: region_id });
     },
 
-    /*
-     * MAP METHODS
-     */
-    updateMap: function(obj) {
-      this.removeLayer();
-      this.mode = this.getCurrentMode(obj);
-      this.currentGeom = this.getCurrentGeom(obj);
+    setSelectedCountry: function() {
 
-      this.map.setView( this.currentGeom.center, this.currentGeom.zoom);
+      this.removeLayer();
+      this.currentGeom = this.getCurrentGeom(this.model.get('country'));
+      this.map.setView(this.currentGeom.center, this.currentGeom.zoom);
 
       this.getLayer();
+
+      Backbone.Events.trigger('map:selected', {
+        country: this.model.get('country')});
     },
 
     removeLayer: function() {
@@ -217,8 +228,6 @@
         this.addLayer();
       }.bind(this));
     }
-
   });
 
 })(this.App);
-
