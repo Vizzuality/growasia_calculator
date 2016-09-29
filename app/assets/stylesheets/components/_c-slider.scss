@@ -84,17 +84,46 @@
       appearance: none;
       background: none;
       border: none;
-      border: 1px solid $black;
+      border: 1px solid rgba($black, .2);
       border-radius: 3px;
 
       svg {
         margin: 0 auto;
+        fill: rgba($black, .8)
       }
     }
 
     &:hover {
       button {
-        background: rgba($white, 0.15);
+        background: rgba($black, .8);
+        // Themes
+        &.-light {
+          background: rgba($white, .8);
+        }
+
+        // Colors
+        &.-color1 { svg { fill: $color-1;}}
+        &.-color2 { svg { fill: $color-2;}}
+        &.-color3 { svg { fill: $color-3;}}
+        &.-color4 { svg { fill: $color-4;}}
+        &.-color5 { svg { fill: $color-5;}}
+      }
+    }
+
+    &:active {
+      button {
+        background: rgba($black, 1);
+        // Themes
+        &.-light {
+          background: rgba($white, 1);
+        }
+
+        // Colors
+        &.-color1 { svg { fill: $color-1;}}
+        &.-color2 { svg { fill: $color-2;}}
+        &.-color3 { svg { fill: $color-3;}}
+        &.-color4 { svg { fill: $color-4;}}
+        &.-color5 { svg { fill: $color-5;}}
       }
     }
 

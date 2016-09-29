@@ -2,29 +2,29 @@
   <div id="sliderView" class="c-slider">
     <ul>
       <li class="c-slider-item js-slider-item -color1 -initial">
-        <%= render partial: 'arrows', locals: { type: 'first' } %>
+        <%= render partial: 'arrows', locals: { type: 'first', 'color': '-color1', 'theme': '' } %>
         <%= render 'country', f: f %>
       </li>
 
       <li class="c-slider-item js-slider-item -color2 -inline">
-        <%= render partial: 'arrows', locals: { type: 'default' } %>
+        <%= render partial: 'arrows', locals: { type: 'default', 'color': '-color2', 'theme': '' } %>
         <%= render 'type', f: f %>
       </li>
 
       <li class="c-slider-item js-slider-item -color3 -inline">
-        <%= render partial: 'arrows', locals: { type: 'default' } %>
+        <%= render partial: 'arrows', locals: { type: 'default', 'color': '-color3', 'theme': '' } %>
         <%= render 'crops', f: f %>
       </li>
 
       <li class="c-slider-item js-slider-item -color4 -inline">
-        <%= render partial: 'arrows', locals: { type: 'default' } %>
+        <%= render partial: 'arrows', locals: { type: 'default', 'color': '-color4', 'theme': '-light' } %>
         <%= render 'liming', f: f %>
         <%= render 'agrochemicals', f: f %>
         <%= render 'fertilizers', f: f %>
       </li>
 
       <li class="c-slider-item js-slider-item -color5 -inline">
-        <%= render partial: 'arrows', locals: { type: 'last' } %>
+        <%= render partial: 'arrows', locals: { type: 'last', 'color': '-color5', 'theme': '-light' } %>
         <%= render 'fuel', f: f %>
       </li>
     </ul>
