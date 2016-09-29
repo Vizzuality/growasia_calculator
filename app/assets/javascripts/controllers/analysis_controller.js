@@ -23,6 +23,7 @@
       this.addSelectLib();
       this.addFields();
       this.removeFields();
+      this.selectFields();
     },
 
     show: function(params) {
@@ -87,6 +88,24 @@
         regexp = new RegExp($(this).data('id'), 'g');
         $(this).before($(this).data('fields').replace(regexp, time));
         return event.preventDefault();
+      });
+    },
+
+    selectFields: function() {
+      $(document).on('change', '.select_fields', function(event) {
+        event.preventDefault();
+        var selectedVal = $(this).val();
+        if(!!selectedVal) {
+          var regexp, time;
+          time = new Date().getTime();
+          regexp = new RegExp($(this).data('id'), 'g');
+          var $newFields = $(this).data('fields').replace(regexp, time)
+          var selectId = $($newFields).find('select').attr('id');
+          $(this).parent('span').before($newFields);
+          $('#'+selectId).val(selectedVal);
+          $(this).val('');
+          $(this).trigger('change');
+        }
       });
     },
 

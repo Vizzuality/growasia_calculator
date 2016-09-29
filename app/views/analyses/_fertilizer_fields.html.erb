@@ -1,13 +1,13 @@
-<div>
+<span>
   <%= f.hidden_field :category, value: Category::FERTILIZER %>
-  <span class="c-field my-upper-class-replacement">
+  <span class="c-field -little">
     <%= f.number_field :amount, class: '-right -js-numeric', autocomplete: 'off', min: '0' %>
     <span class="unit">kg per ha and yr</span>
   </span>
   of
-  <span class="c-field my-bottom-class-replacement">
+  <span class="c-field -medium">
     <%= f.select :addition_type, select_options(Analysis::FERTILIZER_TYPES) %>
   </span>
   <%= f.hidden_field :_destroy %>
   <%= link_to "remove", '#', class: "remove_fields" %>
-</div>
+</span>
