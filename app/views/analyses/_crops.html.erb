@@ -75,7 +75,8 @@
         additional silviculture?
       </div>
       <span class="c-field">
-        <%= f.select :agroforestry_practices, options_for_select([["Yes", true], ["No", false]]) %>
+        <%= f.select :agroforestry_practices,
+          options_for_select([["Yes", true], ["No", false]], f.object.agroforestry_practices) %>
       </span>
     </span>
   </div>
