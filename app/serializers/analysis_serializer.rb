@@ -38,16 +38,14 @@ class AnalysisSerializer < ActiveModel::Serializer
       }
       total += val
 
-      if object.agroforestry_practices?
-        val = object.changes_in_carbon_content
-        emissions_by_source << {
-          slug: "agroforestry",
-          name: "Agroforestry removals",
-          total: val.to_f*-1.0,
-          total_per_yield: (val/per_yield).to_f * -1.0
-        }
-        total -= val
-      end
+      val = object.changes_in_carbon_content
+      emissions_by_source << {
+        slug: "agroforestry",
+        name: "Agroforestry removals",
+        total: val.to_f*-1.0,
+        total_per_yield: (val/per_yield).to_f * -1.0
+      }
+      total -= val
     end
 
     if object.rice?
@@ -70,15 +68,13 @@ class AnalysisSerializer < ActiveModel::Serializer
     total += val
 
     val = object.emissions_from_crop_residue_or_rice_straw_burning
-    if val
-      emissions_by_source << {
-        slug: "residue-burning",
-        name: "#{object.rice? ? "Rice straw" : "Crop residue"} burning",
-        total: val.to_f,
-        total_per_yield: (val/per_yield).to_f
-      }
-      total += val
-    end
+    emissions_by_source << {
+      slug: "residue-burning",
+      name: "#{object.rice? ? "Rice straw" : "Crop residue"} burning",
+      total: val.to_f,
+      total_per_yield: (val/per_yield).to_f
+    }
+    total += val
 
     val = object.emissions_from_fertilizers_application
     emissions_by_source << {
@@ -98,24 +94,17 @@ class AnalysisSerializer < ActiveModel::Serializer
     }
     total += val
 
-    if object.fertilizers.where(addition_type: "urea").any?
-      val = object.emissions_from_urea_hydrolysis
-      emissions_by_source << {
-        slug: "urea",
-        name: "Urea hydrolysis",
-        total: val.to_f,
-        total_per_yield: (val/per_yield).to_f
-      }
-      total += val
-    end
+    val = object.emissions_from_urea_hydrolysis
+    emissions_by_source << {
+      slug: "urea",
+      name: "Urea hydrolysis",
+      total: val.to_f,
+      total_per_yield: (val/per_yield).to_f
+    }
+    total += val
 
-    val = 0.0
-    if object.lime_amount && object.lime_amount > 0.0
-      val = object.emissions_from_lime_use
-    end
-    if object.dolomite_amount && object.dolomite_amount > 0.0
-      val += object.emissions_from_dolomite_use
-    end
+    val = object.emissions_from_lime_use
+    val += object.emissions_from_dolomite_use
     emissions_by_source << {
       slug: 'liming',
       name: 'Liming',
@@ -124,16 +113,15 @@ class AnalysisSerializer < ActiveModel::Serializer
     }
     total += val
 
-    if object.agrochemical_amount && object.agrochemical_amount > 0.0
-      val = object.emissions_from_agrochemical_use
-      emissions_by_source << {
-        slug: "agrochemical",
-        name: "Agrochemical application",
-        total: val.to_f,
-        total_per_yield: (val/per_yield).to_f
-      }
-      total += val
-    end
+    val = object.emissions_from_agrochemical_use
+    emissions_by_source << {
+      slug: "agrochemical",
+      name: "Agrochemical application",
+      total: val.to_f,
+      total_per_yield: (val/per_yield).to_f
+    }
+    total += val
+
     val = object.emissions_from_fossil_fuel_use
     emissions_by_source << {
       slug: "fuel",

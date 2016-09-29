@@ -177,7 +177,7 @@ class Analysis < ApplicationRecord
   end
 
   def emissions_from_crop_residue_or_rice_straw_burning
-    return nil unless crop_management_practices && crop_management_practices.include?("residue-burning")
+    return 0.0 unless crop_management_practices && crop_management_practices.include?("residue-burning")
 
     #Emissions from crop residue burning (t CO2-e) = Area (ha) *
     # Crop residue (kg. ha-1yr-1) OR Rice Straw (kg. ha-1yr-1) * EFCrop Residue
@@ -193,26 +193,26 @@ class Analysis < ApplicationRecord
   end
 
   def emissions_from_urea_hydrolysis
-    return nil unless fertilizers.where(addition_type: "urea").any?
+    return 0.0 unless fertilizers.where(addition_type: "urea").any?
     #Area (ha) * urea application (kg. ha-1yr-1) * 0.20 * (44/12) / 1000
     urea = fertilizers.where(addition_type: "urea").first
     area * urea.amount * 0.20 * (44/12) / 1_000
   end
 
   def emissions_from_lime_use
-    return nil unless lime_amount && lime_amount > 0.0
+    return 0.0 unless lime_amount && lime_amount > 0.0
     #(Area (ha) * amount of lime applied (kg. ha-1. yr-1) * 0.12 * (44/12)) / 1000
     (area * lime_amount * 0.12 * (44/12)) / 1_000
   end
 
   def emissions_from_dolomite_use
-    return nil unless dolomite_amount && dolomite_amount > 0.0
+    return 0.0 unless dolomite_amount && dolomite_amount > 0.0
     #(Area (ha) * amount of dolomite applied (kg. ha-1. yr-1) * 0.13 * (44/12)) / 1000
     (area * dolomite_amount * 0.13 * (44/12)) / 1_000
   end
 
   def emissions_from_agrochemical_use
-    return nil unless agrochemical_amount && agrochemical_amount > 0.0
+    return 0.0 unless agrochemical_amount && agrochemical_amount > 0.0
     #(Area (ha) * amount of agrochemicals applied (kg. ha-1. yr-1) * 19.4 kg CO2/ha) / 1000
     (area * agrochemical_amount * 19.4) / 1_000
   end
@@ -238,7 +238,7 @@ class Analysis < ApplicationRecord
   end
 
   def changes_in_carbon_content
-    return nil if rice? || !agroforestry_practices?
+    return 0.0 if rice? || !agroforestry_practices?
     #(Area (ha) * Ccrop type Monoculture (t C ha-1)) + (Area (ha) *
     # Ccrop type Agroforestry (t C ha-1 yr-1)) *44/12
     r = CROPS.select{|t| t[:slug] == crop}.first
@@ -246,7 +246,7 @@ class Analysis < ApplicationRecord
   end
 
   def emissions_from_rice_cultivation
-    return nil unless rice?
+    return 0.0 unless rice?
     # (EFrice * Number of Cultivation Days * Annual Number of Cultivation Cycles * Area * 10-6) * 25
     # EFrice = 1.30 * Water Regime Scaling Factor * Scaling Factor for
     # Pre-Cultivation Flooding *Scaling Factor for Organic Amendment
