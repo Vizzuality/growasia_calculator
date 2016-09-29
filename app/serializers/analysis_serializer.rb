@@ -13,6 +13,8 @@ class AnalysisSerializer < ActiveModel::Serializer
 
   def analysis
     if instance_options[:analysis_params]
+      old_fmg = object.fmg_value
+      old_fi = object.fi_value
       object.assign_attributes(instance_options[:analysis_params])
     end
 
@@ -23,8 +25,11 @@ class AnalysisSerializer < ActiveModel::Serializer
     # for stacked bars
     emissions_by_source = []
     if !object.rice?
-      # Soil management
-      val = object.stable_soil_carbon_content
+      val = if instance_options[:analysis_params] && (old_fmg != object.fmg_value || old_fi != object.fi_value)
+              object.emissions_from_soil_management_changed(old_fmg, old_fi)
+            else
+              object.emissions_from_soil_management
+            end
       emissions_by_source << {
         slug: "soil-mgmt",
         name: "Soil management",
@@ -33,7 +38,6 @@ class AnalysisSerializer < ActiveModel::Serializer
       }
       total += val
 
-      # shaded
       if object.agroforestry_practices?
         val = object.changes_in_carbon_content
         emissions_by_source << {
