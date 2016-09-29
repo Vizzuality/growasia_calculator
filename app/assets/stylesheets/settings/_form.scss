@@ -32,7 +32,7 @@ textarea {
   &.-disabled { opacity: 0.5; }
 
   &:focus {
-    border-color: darken(rgba($black, .4),10%);
+    border-color: rgba($black, .4);
   }
 }
 
