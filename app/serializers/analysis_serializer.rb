@@ -83,6 +83,15 @@ class AnalysisSerializer < ActiveModel::Serializer
     }
     total += val
 
+    val = object.emissions_from_manures_application
+    emissions_by_source << {
+      slug: "manures",
+      name: "Manure application",
+      total: val.to_f,
+      total_per_yield: (val/per_yield).to_f
+    }
+    total += val
+
     if object.fertilizers.where(addition_type: "urea").any?
       val = object.emissions_from_urea_hydrolysis
       emissions_by_source << {
