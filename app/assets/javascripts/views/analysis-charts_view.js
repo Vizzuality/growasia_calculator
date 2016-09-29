@@ -38,7 +38,11 @@
             },
             labels: {
               format: function (v, id, i, j) {
-                return d3.format('.3s')(v);
+                if (v > 1000 || v < -1000) {
+                  return d3.format('.3s')(v);
+                } else {
+                  return d3.round(v, 3);
+                }
               }
             },
             type: 'bar',
@@ -60,8 +64,21 @@
                 position: 'outer-middle'
               },
               tick: {
-                format: d3.format('.3s')
+                format: function (v, id, i, j) {
+                  if (v > 1000 || v < -1000) {
+                    return d3.format('.3s')(v);
+                  } else {
+                    return d3.round(v, 3);
+                  }
+                }
               }
+            }
+          },
+          grid: {
+            y: {
+              lines: [
+                {value: 0}
+              ]
             }
           },
           legend: {
