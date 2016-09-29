@@ -6,9 +6,11 @@ class AnalysesController < ApplicationController
       distinct.order(:country)
     @analysis = Analysis.new
     @analysis.nutrient_managements.build
-    @analysis.transportation_fuels.build
-    @analysis.irrigation_fuels.build
-    @analysis.fuels.build
+    Analysis::FUEL_TYPES.each do |fuel|
+      @analysis.transportation_fuels.build(addition_type: fuel[:slug])
+      @analysis.irrigation_fuels.build(addition_type: fuel[:slug])
+      @analysis.fuels.build(addition_type: fuel[:slug])
+    end
   end
 
   def create

@@ -45,26 +45,11 @@ module AnalysesHelper
     end
   end
 
-  def link_to_add_fields(name, f, association)
+  def select_to_add_fields(name, f, association, options)
     new_object = f.object.send(association).klass.new
     id = new_object.object_id
     fields = f.fields_for(association, new_object, child_index: id) do |builder|
       render(association.to_s.singularize + "_fields", f: builder)
-    end
-    link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
-  end
-
-  def select_to_add_fields(name, f, association, options, upper_classes=nil, bottom_classes=nil)
-    new_object = f.object.send(association).klass.new
-    id = new_object.object_id
-    fields = f.fields_for(association, new_object, child_index: id) do |builder|
-      render(association.to_s.singularize + "_fields", f: builder)
-    end
-    if upper_classes
-      fields = fields.gsub("my-upper-class-replacement", upper_classes)
-    end
-    if bottom_classes
-      fields = fields.gsub("my-bottom-class-replacement", bottom_classes)
     end
     select_tag("#{id}_#{association.to_s}", options, include_blank: name,
                class: "select_fields", data: {id: id, fields: fields.gsub("\n", "")})
