@@ -10,7 +10,9 @@
 // </div>
 
 .c-analysis-total {
-  padding: rem(40px) 0;
+  margin: rem(16px) 0;
+  padding: rem(16px) 0;
+  border-bottom: 1px solid rgba($black, 0.1);
 
   // Description
   .description {
@@ -22,7 +24,6 @@
   // Total value
   .total {
     text-align: center;
-    padding: rem(20px) 0;
 
     .value-box {
       position: relative;

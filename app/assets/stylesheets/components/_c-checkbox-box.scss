@@ -11,6 +11,10 @@
     width: 100%;
   }
 
+  input:checked + label {
+    font-weight: 500;
+  }
+
   label {
     padding: 8px 0;
     font-weight: 100;
@@ -29,28 +33,28 @@
       text-transform: uppercase;
       font-weight: 500;
     }
+  }
 
-    span {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 24px;
-      height: 24px;
-      background: rgba($black, .05);
-      border: 1px solid transparent;
-      transform: translate(0,-50%);
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    background: rgba($black, .05);
+    border: 1px solid transparent;
+    transform: translate(0,-50%);
+  }
 
-      svg {
-        content: "";
-        display: none;
-        width: 50%;
-        height: 50%;
-        fill: $black;
-      }
-    }
+  svg {
+    content: "";
+    display: none;
+    width: 50%;
+    height: 50%;
+    fill: $black;
   }
 
   input[type=checkbox] {
@@ -65,8 +69,25 @@
     }
   }
 
+  &.-small {
+    padding-bottom: 0;
+    font-size: rem(18px);
+
+    label {
+      padding-left: rem(50px);
+
+      span {
+        width: 40px;
+        height: 40px;
+        top: 0;
+        transform: none;
+      }
+    }
+  }
+
   &.-medium {
     font-size: 24px;
+
     label {
       padding-left: 48px;
 
@@ -74,14 +95,14 @@
         width: 36px;
         height: 36px;
         top: 10px;
-        transform: none;        
+        transform: none;
       }
     }
   }
 
-
   &.-big {
     font-size: 32px;
+
     label {
       padding-left: 64px;
 
@@ -94,5 +115,12 @@
 
   &.-inline {
     display: inline-block;
+  }
+
+  &.-light {
+
+    svg {
+      fill: $white;
+    }
   }
 }

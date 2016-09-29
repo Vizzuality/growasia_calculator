@@ -1,28 +1,8 @@
 .chart {
-  margin-bottom: 40px;
 
   svg {
     overflow: visible !important;
   }
-
-  //I can not find a way to move the legend within the library API.
-  //I will get back to it later.
-  .c3-legend-item {
-    fill-opacity: .8;
-    text-transform: uppercase;
-    font-family: $font-family-1;
-    font-size: rem(11px);
-    font-weight: 400;
-
-    &:first-of-type {
-      transform: translate(-20px, 40px);
-    }
-
-    &:last-of-type {
-      transform: translate(20px, 40px);
-    }
-  }
-
 }
 
 .c3 text {
@@ -30,3 +10,33 @@
   fill-opacity: .8;
   font-size: rem(12px);
 }
+
+.c3-legend-background {
+  stroke: transparent;
+  fill: transparent;
+}
+
+.c3-legend-item {
+  fill-opacity: .8;
+  font-family: $font-family-1;
+  font-size: rem(12px);
+  line-height: rem(13px);
+  font-weight: 400;
+}
+
+.c3-text {
+  fill: $black !important;
+  opacity: .3 !important;
+  font-size: rem(11px);
+}
+
+//Force labels to show in the graph area.
+.tick text {
+  transform: translatey(-5px);
+}
+
+.c3-chart-texts .c3-text {
+  font-size: rem(10px);
+}
+
+

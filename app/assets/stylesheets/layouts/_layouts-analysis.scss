@@ -1,10 +1,14 @@
 .l-analysis-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: absolute;
   left: rem(88px);
   top: 0;
   bottom: 0;
   right: rem(336px);
-  padding: 0 rem(40px);
+  height: 100vh;
+  min-height: rem(795px);
   overflow: auto;
 }
 
@@ -14,7 +18,12 @@
   top: 0;
   bottom: 0;
   width: rem(336px);
-  height: 100%;
+  height: 100vh;
   overflow: auto;
   background-color: $color-5;
+}
+
+.l-analysis-advise {
+  text-align: center;
+  padding: rem(8px) 0;
 }

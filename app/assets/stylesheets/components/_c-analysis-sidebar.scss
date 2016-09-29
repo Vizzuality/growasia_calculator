@@ -2,10 +2,10 @@
   color: $font-color-1;
 
   .input-group {
-    padding: rem(24px);
+    padding: rem(14px) rem(24px);
 
     &.-header {
-      background-color: $color-2;
+      background-color: $color-3;
     }
 
     &.-first {
@@ -21,7 +21,11 @@
     }
 
     > div {
-      margin-bottom: rem(24px);
+      margin-bottom: rem(20px);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 }

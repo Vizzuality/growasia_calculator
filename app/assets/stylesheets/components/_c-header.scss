@@ -1,5 +1,5 @@
 .c-header {
-  
+
   .btn-help {
     position: absolute;
     top: 32px;
@@ -65,6 +65,10 @@
 
   &.-yellow {
     background: $bright-yellow;
+  }
+
+  &.-analysis {
+    max-height: none;
   }
 
 }

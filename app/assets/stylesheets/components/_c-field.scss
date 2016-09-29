@@ -42,8 +42,10 @@
     input[type="date"],
     input[type="email"],
     input[type="number"],
-    textarea {
+    textarea,
+    .select2-container {
       color: $white;
+      background-color: rgba($white, .1);
     }
   }
 
@@ -96,4 +98,35 @@
     width: 100% !important;
   }
   // TODO: Style custom number fields
+  //
+  &.-full {
+    width: 100%;
+  }
+
+  &.-narrow {
+    select,
+    input,
+    .select2-selection__rendered {
+      max-height: rem(40px) !important;
+      line-height: rem(40px) !important;
+      font-size: rem(18px);
+    }
+
+    .c-field.-narrow .select2-selection__rendered {
+      font-size: rem(18px);
+    }
+
+    .select2-selection {
+      border-color: transparent transparent $white transparent;
+    }
+
+    .select2-selection--single {
+      &:after {
+        top: 13px;
+        width: 5px;
+        height: 5px;
+      }
+    }
+  }
 }
+
