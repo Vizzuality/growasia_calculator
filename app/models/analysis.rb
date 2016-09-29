@@ -127,15 +127,20 @@ class Analysis < ApplicationRecord
     fertilizers.each do |fert|
       fert_type = FERTILIZER_TYPES.select{|t| t[:slug] == fert.addition_type}.first
       emissions += area*fert.amount*fert_type[:nfertilizer_type]*
-        (fert_type[:fertilizer_type_app] + fert_type[:fertilizer_type_prod]) /
-        1000
+        (fert_type[:fertilizer_type_app] + fert_type[:fertilizer_type_prod]) / 1000
     end
+    emissions
+  end
+
+  #Area (ha) * Amount of Fertilizer Applied (kg ha-1 yr-1) * %Nfertilizer type *
+  # (EFfertilizer type application + EFfertilizer type production) / 1000
+  def emissions_from_manures_application
+    emissions = 0.0
     manures.each do |manure|
       manure_type = MANURE_TYPES.
                   select{|t| t[:slug] == manure.addition_type}.first
       emissions += area*manure.amount*manure_type[:nfertilizer_type]*
-        (manure_type[:fertilizer_type_app] + manure_type[:fertilizer_type_prod]) /
-        1000
+        (manure_type[:fertilizer_type_app] + manure_type[:fertilizer_type_prod]) / 1000
     end
     emissions
   end
