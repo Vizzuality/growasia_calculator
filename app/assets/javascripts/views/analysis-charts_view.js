@@ -19,9 +19,7 @@
       this.listeners();
     },
 
-    cache: function() {
-
-    },
+    cache: function() {},
 
     listeners: function() {
       this.model.on('change', this.render.bind(this));
@@ -48,7 +46,7 @@
           },
           bar: {
             width: {
-              ratio: 0.5 // this makes bar width 50% of length between ticks
+              ratio: 0.75 // this makes bar width 50% of length between ticks
             }
           },
           axis: {
@@ -65,10 +63,15 @@
                 format: d3.format('.3s')
               }
             }
+          },
+          legend: {
+            position: 'inset',
+            inset: {
+              anchor: 'top-right'
+            }
           }
         }
       });
-
     },
 
     update: function() {

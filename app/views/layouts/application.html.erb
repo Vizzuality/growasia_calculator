@@ -9,7 +9,7 @@
 
   </head>
 
-  <body>
+  <body class=<%= "#{params[:controller]}_#{params[:action]}" %> >
     <%= render 'partials/icons' %>
     <%= render 'partials/header' %>
     <%= yield %>

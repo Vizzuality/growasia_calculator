@@ -28,8 +28,12 @@
     </div>
   </header>
 
+  <hr>
+
   <div id="analysisTotalView" class="c-analysis-total">
   </div>
+
+  <hr>
 
   <div id="analysisChartsView" class="c-analysis-graphs">
     <div class="grid">
@@ -39,40 +43,42 @@
           <div class="chart"></div>
         </div>
       </div>
-      <!-- <div class="grid-col">
-        <div id="chart-2" class="c-graph">
-          <div class="title text -summary-big">Carbon Emmisions</div>
-          <div class="chart"></div>
-        </div>
-      </div> -->
     </div>
   </div>
+
+  <hr>
 
   <div id="analysisActions" class="c-analysis-actions">
     <ul class="c-btn-container -j-center -a-center">
       <li>
         <button type="button" name="button" class="btn -dark -with-icon js-btn-action" data-action="Save:toggle">
-          <svg class="c-icon -medium"><use xlink:href="#icon-save"></use></svg>
-          <span>Save</span>
+          <svg class="c-icon -small"><use xlink:href="#icon-save"></use></svg>
+          <span>Bookmark</span>
         </button>
       </li>
       <li>
         <button type="button" name="button" class="btn -dark -with-icon js-btn-action" data-action="Print:toggle">
-          <svg class="c-icon -medium"><use xlink:href="#icon-print"></use></svg>
+          <svg class="c-icon -small"><use xlink:href="#icon-print"></use></svg>
           <span>Print</span>
         </button>
       </li>
       <li>
         <button type="button" name="button" class="btn -dark -with-icon js-btn-action" data-action="Share:toggle">
-          <svg class="c-icon -medium"><use xlink:href="#icon-share"></use></svg>
+          <svg class="c-icon -small"><use xlink:href="#icon-share"></use></svg>
           <span>Share</span>
         </button>
       </li>
     </ul>
   </div>
+
+  <div class="l-analysis-advise">
+    <a href="#"><p class="text -link -medium">Learn more about our methodology</p></a>
+  </div>
+
 </section>
 
 <section id="analysisSidebarView" class="l-analysis-sidebar">
   <%= render 'analysis_sidebar' %>
 </section>
+
 

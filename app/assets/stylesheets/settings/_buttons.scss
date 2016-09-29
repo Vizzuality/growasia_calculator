@@ -2,11 +2,11 @@
   display: inline-block;
   padding: rem(20px) rem(45px);
   // box-shadow: 0 rem(1px) rem(2px) 0 rgba($black, 0.2);
-  border: solid rem(1px) rgba($black, .4);
+  border: solid rem(1px) rgba($black, .2);
   border-radius: rem(6px);
   font-size: rem(11px);
   letter-spacing: rem(2px);
-  font-weight: 700;
+  font-weight: 400;
   text-transform: uppercase;
   cursor: pointer;
 
@@ -40,6 +40,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: rem(10px) rem(20px);
+    min-width: rem(132px);
 
     > * {
       margin: 0 rem(5px) 0 0;

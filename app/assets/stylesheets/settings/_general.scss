@@ -38,8 +38,6 @@ button {
   border: 0;
 }
 
-
-
 /*
 PROVISIONAL
  */
@@ -48,10 +46,13 @@ ul[role='tablist'] {
   display: none;
 }
 
-// #wizard h1 {
-//   display: none;
-// }
-
 .is-hidden {
   display: none;
+}
+
+hr {
+  width: 100%;
+  margin: 16px 0;
+  border: none;
+  border-bottom: 1px solid rgba($font-color-2, 0.1);
 }
