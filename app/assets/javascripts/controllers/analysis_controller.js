@@ -92,6 +92,7 @@
     },
 
     selectFields: function() {
+      var that = this;
       $(document).on('change', '.select_fields', function(event) {
         event.preventDefault();
         var selectedVal = $(this).val();
@@ -103,6 +104,7 @@
           var selectId = $($newFields).find('select').attr('id');
           $(this).parent('span').before($newFields);
           $('#'+selectId).val(selectedVal);
+          that.addSelectLib();
           $(this).val('');
           $(this).trigger('change');
         }
