@@ -163,6 +163,8 @@ class Analysis < ApplicationRecord
   end
 
   def emissions_from_crop_residue_or_rice_straw_burning
+    return nil unless crop_management_practices && crop_management_practices.include?("residue-burning")
+
     #Emissions from crop residue burning (t CO2-e) = Area (ha) *
     # Crop residue (kg. ha-1yr-1) OR Rice Straw (kg. ha-1yr-1) * EFCrop Residue
     # OR EFRice Straw (kg CO2-e/kg d.m. burned)/100
