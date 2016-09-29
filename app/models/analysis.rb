@@ -47,15 +47,27 @@ class Analysis < ApplicationRecord
   end
 
   # Emissions Equations
-  def stable_soil_carbon_content
+  def emissions_from_soil_management
     #Stable soil carbon content (t CO2e) =
     # (Area * Cropland_SOCref*FLU*FMG*FI) /20 * 44/12
-    fmg = geo_location.send(TILLAGES.select{|t| t[:slug] == tillage}.first[:method])
-    fi = correct_fi_value || 1.0 #TODO: fix the correct_fi_value
-    (area * geo_location.soc_ref * geo_location.flu * fmg * fi) / 20 * 44/12
+    fmg = fmg_value
+    fi = fi_value
+    ((area * geo_location.soc_ref * geo_location.flu ) - ( area * geo_location.soc_ref * geo_location.flu * fmg * fi)) / 20 * 44/12
   end
 
-  def correct_fi_value
+  def emissions_from_soil_management_changed old_fmg, old_fi
+    #Stable soil carbon content (t CO2e) =
+    # (Area * Cropland_SOCref*FLU*FMG*FI) /20 * 44/12
+    fmg = fmg_value
+    fi = fi_value
+    ((area * geo_location.soc_ref * geo_location.flu * old_fmg * old_fi) - ( area * geo_location.soc_ref * geo_location.flu * fmg * fi)) / 20 * 44/12
+  end
+
+  def fmg_value
+    geo_location.send(TILLAGES.select{|t| t[:slug] == tillage}.first[:method])
+  end
+
+  def fi_value
     # FI high with manure = Manure
     return geo_location.fi_high_w_manure if manures.any?
 
@@ -64,6 +76,8 @@ class Analysis < ApplicationRecord
     return 1.00 if fi_medium?
 
     return geo_location.fi_high_wo_manure if fi_high_wo_manure?
+
+    1.0
   end
 
   def fi_low?
