@@ -273,4 +273,11 @@ class Analysis < ApplicationRecord
   def converted_yield
     converted_yield ||= yield_unit == "ton" ? self.yield : self.yield*0.001
   end
+
+  def display_crop
+    txt = []
+    txt << rice_type if rice?
+    txt << crop
+    txt.map(&:capitalize).join(" ")
+  end
 end
