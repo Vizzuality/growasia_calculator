@@ -280,4 +280,8 @@ class Analysis < ApplicationRecord
     txt << crop
     txt.map(&:capitalize).join(" ")
   end
+
+  def has_fuel? fuel, fuel_type=nil
+    send("#{fuel_type ? "#{fuel_type}_" : ""}fuels").where(addition_type: fuel).any?
+  end
 end

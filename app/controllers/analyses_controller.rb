@@ -1,16 +1,11 @@
 class AnalysesController < ApplicationController
   before_action :set_analysis, only: [:show]
+  before_action :build_nested, only: [:new, :show]
 
   def new
     @geo_locations = GeoLocation.select(:country).
       distinct.order(:country)
     @analysis = Analysis.new
-    @analysis.nutrient_managements.build
-    Analysis::FUEL_TYPES.each do |fuel|
-      @analysis.transportation_fuels.build(addition_type: fuel[:slug])
-      @analysis.irrigation_fuels.build(addition_type: fuel[:slug])
-      @analysis.fuels.build(addition_type: fuel[:slug])
-    end
   end
 
   def create
@@ -43,5 +38,22 @@ class AnalysesController < ApplicationController
         irrigation_fuels_attributes: [ :id, :amount, :category, :addition_type, :area, :unit ],
         nutrient_managements_attributes: [ :id, :amount, :category, :addition_type, :area ],
         crop_management_practices: [])
+    end
+
+    def build_nested
+      if @analysis.new_record? || !@analysis.nutrient_managements.any?
+        @analysis.nutrient_managements.build
+      end
+      Analysis::FUEL_TYPES.each do |fuel|
+        if @analysis.new_record? || !@analysis.has_fuel?(fuel[:slug], :transportation)
+          @analysis.transportation_fuels.build(addition_type: fuel[:slug])
+        end
+        if @analysis.new_record? || !@analysis.has_fuel?(fuel[:slug], :irrigation)
+          @analysis.irrigation_fuels.build(addition_type: fuel[:slug])
+        end
+        if @analysis.new_record? || !@analysis.has_fuel?(fuel[:slug])
+          @analysis.fuels.build(addition_type: fuel[:slug])
+        end
+      end
     end
 end
