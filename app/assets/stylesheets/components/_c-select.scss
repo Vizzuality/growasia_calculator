@@ -92,7 +92,8 @@
 	}
 
 	.select2-results__option[aria-selected=true] {
-    display: none;
+		background: rgba($color-1, .2);
+    color: rgba($black, .8);
 	}
 
   .select2-results__option--highlighted[aria-selected] {
@@ -103,9 +104,7 @@
   // SINGLE
 	.select2-selection--single {
     height: auto;
-    border-width: 1px 1px 3px 1px;
-    border-style: solid;
-    border-color: transparent transparent rgba(black, .1) transparent;
+    border: 1px solid transparent;
     position: relative;
     padding: 0 48px 0 16px;
     background: transparent;
@@ -114,10 +113,10 @@
       content: ' ';
       display: block;
       position: absolute;
-      top: 20px;
+      top: 22px;
       right: 16px;
-      width: 10px;
-      height: 10px;
+      width: 6px;
+      height: 6px;
       transform: rotate(45deg);
       border-width: 2px;
       border-color: transparent rgba($black, .5) rgba($black, .5) transparent;

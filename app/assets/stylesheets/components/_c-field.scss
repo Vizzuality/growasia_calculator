@@ -46,6 +46,10 @@
     .select2-container {
       color: $white;
       background-color: rgba($white, .1);
+
+      &:focus {
+        border-color: rgba($white, .4);
+      }
     }
   }
 
@@ -129,4 +133,3 @@
     }
   }
 }
-

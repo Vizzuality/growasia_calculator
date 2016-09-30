@@ -63,6 +63,8 @@
       this.model.on('change:stepindex', this.changeStepIndex.bind(this));
 
       // Dom events
+      this.$document.on('keydown.slider', this.onKeyDownHandler.bind(this));
+      this.$document.on('keyup.slider', this.onKeyUpHandler.bind(this));
       this.$window.on('resize.slider', this.changeIndex.bind(this));
     },
 
@@ -201,6 +203,20 @@
           }
         break;
       }
+    },
+
+    onKeyDownHandler: function(e) {
+      switch(e.keyCode){
+        case 9:
+          // Prevent tab functionallity
+          // We should override this functionality
+          e && e.preventDefault();
+        break;
+      }
+    },
+
+    onKeyUpHandler: function(e) {
+      // Let's handle the different key events from here
     },
 
 

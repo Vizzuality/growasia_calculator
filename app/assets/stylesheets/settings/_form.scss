@@ -8,16 +8,17 @@ input[type="number"],
 textarea {
   display: block;
   width: 100%;
-  border: 1px solid transparent;
-  background: rgba($black, .05);
-  padding: 8px 10px;
-  margin: 0;
-  font-size: 32px;
-  border-radius: 0px;
-  outline: none;
-  line-height: normal;
   position: relative;
   top: 2px;
+  margin: 0;
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: normal;
+  background: rgba($black, .05);
+  border-radius: 0px;
+  outline: none;
 
   // ALIGN
   &.-left {
@@ -31,7 +32,7 @@ textarea {
   &.-disabled { opacity: 0.5; }
 
   &:focus {
-    border-color: darken(rgba($black, .4),10%);
+    border-color: rgba($black, .4);
   }
 }
 
