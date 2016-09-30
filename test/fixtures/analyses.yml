@@ -4,10 +4,10 @@ one:
   geo_location_id: 1
   area: 
   yield: 
-  is_shaded: false
+  agroforestry_practices: false
 
 two:
   geo_location_id: 1
   area: 
   yield: 
-  is_shaded: false
+  agroforestry_practices: false
