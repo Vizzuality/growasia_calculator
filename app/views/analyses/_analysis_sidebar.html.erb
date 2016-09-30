@@ -2,12 +2,12 @@
   <div class="input-group -header">
     <p class="text -sidebar-resume -light">Find out here how alternative practices could reduce your emissions</p>
   </div>
-  <%= form_for [:api, :v1, @analysis], :html => { :id => "analysis-sidebar-form" } do |f| %>
+  <%= form_for [:api, :v1, analysis], :html => { :id => "analysis-sidebar-form" } do |f| %>
     <div class="input-group -first">
       <div>
         <div class="c-field -narrow -full -light">
           <label class="text -label" for="">Tillage</label>
-          <%= f.select:tillage, select_options(Analysis::TILLAGES, @analysis.tillage), {} %>
+          <%= f.select:tillage, select_options(Analysis::TILLAGES, analysis.tillage), {} %>
         </div>
       </div>
       <%= f.fields_for :fertilizers do |builder| %>
@@ -53,12 +53,14 @@
       </div>
     </div>
     <div class="input-group -third">
-      <div>
-        <div class="c-field -narrow -full -light">
-          <label class="text -label" for="">Agroforestry practices?</label>
-          <%= f.select :agroforestry_practices, options_for_select([["Yes", true], ["No", false]], @analysis.agroforestry_practices) %>
+      <% unless analysis.rice? %>
+        <div>
+          <div class="c-field -narrow -full -light">
+            <label class="text -label" for="">Agroforestry practices?</label>
+            <%= f.select :agroforestry_practices, options_for_select([["Yes", true], ["No", false]], analysis.agroforestry_practices) %>
+          </div>
         </div>
-      </div>
+      <% end %>
       <div>
         <div class="c-field -narrow -light -full">
           <label class="text -label" for="">Lime</label>
@@ -79,6 +81,15 @@
           </div>
         <% end %>
       </div>
+      <% if analysis.rice? %>
+        <div>
+          <div class="c-field -narrow -full -light">
+            <label class="text -label" for="">Irrigation regime</label>
+            <%= f.select :irrigation_regime, select_options(Analysis::IRRIGATION_REGIMES, analysis.irrigation_regime),
+              {}, class: '-js-required' %>
+          </div>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>
