@@ -39,9 +39,9 @@ class AnalysesController < ApplicationController
         fertilizers_attributes: [ :id, :amount, :category, :addition_type, :area ],
         manures_attributes: [ :id, :amount, :category, :addition_type, :area ],
         fuels_attributes: [ :id, :amount, :category, :addition_type, :area, :unit ],
+        transportation_fuels_attributes: [ :id, :amount, :category, :addition_type, :area, :unit ],
+        irrigation_fuels_attributes: [ :id, :amount, :category, :addition_type, :area, :unit ],
         nutrient_managements_attributes: [ :id, :amount, :category, :addition_type, :area ],
-        transportation_fuels_attributes: [ :id, :amount, :category, :addition_type, :area ],
-        irrigation_fuels_attributes: [ :id, :amount, :category, :addition_type, :area ],
         crop_management_practices: [])
     end
 end
