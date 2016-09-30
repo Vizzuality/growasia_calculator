@@ -35,8 +35,8 @@
       var analysis = this.model.get('analysis');
       var analysisCompare = this.modelCompare.get('analysis');
 
-      var total = (!!analysis) ? d3.format('.3s')(analysis[this.model.get('type')]) : null;
-      var totalCompare = (!!analysisCompare) ? d3.format('.3s')(analysisCompare[this.modelCompare.get('type')]) : null;
+      var total = (!!analysis) ? this.formatNumbers(analysis[this.model.get('type')]) : null;
+      var totalCompare = (!!analysisCompare) ? this.formatNumbers(analysisCompare[this.modelCompare.get('type')]) : null;
 
       this.$el.html(this.template({
         total: total,
@@ -44,6 +44,13 @@
       }));
     },
 
+    formatNumbers: function (v) {
+      if (v > 1000 || v < -1000) {
+        return d3.format('.3s')(v);
+      } else {
+        return d3.round(v, 3);
+      }
+    }
   });
 
 })(this.App);
