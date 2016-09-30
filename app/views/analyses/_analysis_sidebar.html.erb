@@ -76,7 +76,7 @@
       <div>
         <%= f.fields_for :transportation_fuels do |builder| %>
           <div class="c-field -narrow -light -full">
-            <label class="text -label" for=""><%= builder.object.fuel_name %></label>
+            <label class="text -label" for=""><%= builder.object.fuel_name %> for transportation</label>
             <%= builder.number_field :amount, min: 0  %><%= builder.object.fuel_unit_name %>
           </div>
         <% end %>
@@ -84,7 +84,7 @@
       <div>
         <%= f.fields_for :irrigation_fuels do |builder| %>
           <div class="c-field -narrow -light -full">
-            <label class="text -label" for=""><%= builder.object.fuel_name %></label>
+            <label class="text -label" for=""><%= builder.object.fuel_name %> for irrigation</label>
             <%= builder.number_field :amount, min: 0  %><%= builder.object.fuel_unit_name %>
           </div>
         <% end %>
@@ -92,7 +92,7 @@
       <div>
         <%= f.fields_for :fuels do |builder| %>
           <div class="c-field -narrow -light -full">
-            <label class="text -label" for=""><%= builder.object.fuel_name %></label>
+            <label class="text -label" for=""><%= builder.object.fuel_name %> for other purposes</label>
             <%= builder.number_field :amount, min: 0  %><%= builder.object.fuel_unit_name %>
           </div>
         <% end %>
