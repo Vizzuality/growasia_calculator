@@ -6,12 +6,12 @@
 
   position: absolute;
   top: 0;
-  bottom: 0;
+  bottom: 100px;
   left: 0;
   z-index: 20;
   width: rem(88px);
-  // TODO: test it the analysis page and home
-  max-height: calc(100% - 105px);
+
+  min-height: rem(550px);
 }
 
 .l-slide {
