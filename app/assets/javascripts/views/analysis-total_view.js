@@ -35,9 +35,12 @@
       var analysis = this.model.get('analysis');
       var analysisCompare = this.modelCompare.get('analysis');
 
+      var total = (!!analysis) ? d3.format('.3s')(analysis[this.model.get('type')]) : null;
+      var totalCompare = (!!analysisCompare) ? d3.format('.3s')(analysisCompare[this.modelCompare.get('type')]) : null;
+
       this.$el.html(this.template({
-        total: (analysis.total) ? d3.format('.3s')(analysis.total) : null,
-        totalCompare: (!!analysisCompare) ? d3.format('.3s')(analysisCompare.total) : null,
+        total: total,
+        totalCompare: totalCompare
       }));
     },
 

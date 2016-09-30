@@ -26,10 +26,12 @@
     show: function(params) {
 
       var analysisModel = new App.Model.Analysis({
-        id: params.id
+        id: params.id,
+        type: 'total'
       });
       var analysisCompareModel = new App.Model.Analysis({
-        id: params.id
+        id: params.id,
+        type: 'total'
       });
 
       var analysisActionsView = new App.View.AnalysisActions({
@@ -53,6 +55,12 @@
         model: analysisModel,
         modelCompare: analysisCompareModel
       });
+
+      var analysisToggleView = new App.View.AnalysisToggle({
+        el: '#analysisToggleView',
+        model: analysisModel,
+        modelCompare: analysisCompareModel
+      })
 
       var shareModalView = new App.View.Share({});
       var saveModalView = new App.View.Save({});

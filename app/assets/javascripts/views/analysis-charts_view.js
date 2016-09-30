@@ -34,7 +34,7 @@
         options: {
           data: {
             json: {
-              'Current practices': _.pluck(emissions_by_source, 'total')
+              'Current practices': _.pluck(emissions_by_source, this.model.get('type'))
             },
             labels: {
               format: function (v, id, i, j) {
@@ -92,14 +92,16 @@
     },
 
     update: function() {
-      var emissions_by_source = this.modelCompare.get('analysis').emissions_by_source;
+      if (this.modelCompare.get('analysis')) {
+        var emissions_by_source = this.modelCompare.get('analysis').emissions_by_source;
 
-      this.chart1.chart.load({
-        json: {
-          'Potential future': _.pluck(emissions_by_source, 'total')
-        },
-        categories: _.pluck(emissions_by_source, 'name')
-      })
+        this.chart1.chart.load({
+          json: {
+            'Potential future': _.pluck(emissions_by_source, this.modelCompare.get('type'))
+          },
+          categories: _.pluck(emissions_by_source, 'name')
+        })
+      }
     }
 
   });

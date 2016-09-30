@@ -1,0 +1,40 @@
+.c-analysis-toggle {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%,0);
+
+  ul {
+    position: relative;
+    display: flex;
+    min-width: rem(200px);
+    z-index: 2;
+    border: 1px solid rgba($black, .2);
+    border-radius: 30px;
+
+    li {
+      width: 50%;
+      font-size: rem(11px);
+      text-transform: uppercase;
+      text-align: center;
+      padding: rem(8px) 0;
+      cursor: pointer;
+
+      &.-active {
+        color: $white;
+      }
+    }
+  }
+
+  .slide {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    border: 3px solid $white;
+    border-radius: 30px;
+    background: rgba($black, .8);
+  }
+}

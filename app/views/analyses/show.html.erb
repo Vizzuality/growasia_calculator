@@ -40,6 +40,13 @@
       <div class="grid-col">
         <div id="chart-1" class="c-graph">
           <div class="title text -summary-big">Emission Sources</div>
+          <div id="analysisToggleView" class="c-analysis-toggle">
+            <ul>
+              <li data-type="total" class="js-toggle-item -active">Total</li>
+              <li data-type="total_per_yield" class="js-toggle-item ">Per yield</li>
+            </ul>
+            <div class="slide js-toggle-slider"></div>
+          </div>
           <div class="chart"></div>
         </div>
       </div>
@@ -80,5 +87,3 @@
 <section id="analysisSidebarView" class="l-analysis-sidebar">
   <%= render 'analysis_sidebar' %>
 </section>
-
-
