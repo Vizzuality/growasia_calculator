@@ -80,7 +80,7 @@
                 {value: 0}
               ]
             }
-          },
+          }
           legend: {
             position: 'inset',
             inset: {
