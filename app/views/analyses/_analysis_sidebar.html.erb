@@ -7,7 +7,7 @@
       <div>
         <div class="c-field -narrow -full -light">
           <label class="text -label" for="">Tillage</label>
-          <%= f.select:tillage, select_options(Analysis::TILLAGES), {} %>
+          <%= f.select:tillage, select_options(Analysis::TILLAGES, @analysis.tillage), {} %>
         </div>
       </div>
       <%= f.fields_for :fertilizers do |builder| %>
@@ -56,7 +56,7 @@
       <div>
         <div class="c-field -narrow -full -light">
           <label class="text -label" for="">Agroforestry practices?</label>
-          <%= f.select :agroforestry_practices, options_for_select([["Yes", true], ["No", false]]) %>
+          <%= f.select :agroforestry_practices, options_for_select([["Yes", true], ["No", false]], @analysis.agroforestry_practices) %>
         </div>
       </div>
       <div>
