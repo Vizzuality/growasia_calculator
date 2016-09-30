@@ -17,7 +17,7 @@ class Addition < ApplicationRecord
   end
 
   def fuel_unit_name
-    fuel = Analysis::FUEL_UNITS.select{|t| t[:slug] == addition_type}.first
+    fuel = Analysis::FUEL_UNITS.select{|t| t[:slug] == unit}.first
     fuel && fuel[:title] or "n/a"
   end
 end
