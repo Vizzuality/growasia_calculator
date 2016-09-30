@@ -21,6 +21,8 @@
       new App.View.Selectors({el: '#mapSelectors'});
 
       this.addSelectLib();
+      this.removeFields();
+      this.selectFields();
     },
 
     show: function(params) {
@@ -75,6 +77,34 @@
       $('select').select2({
         theme: "default",
         minimumResultsForSearch: -1
+      });
+    },
+
+    selectFields: function() {
+      var that = this;
+      $(document).on('change', '.select_fields', function(event) {
+        event.preventDefault();
+        var selectedVal = $(this).val();
+        if(!!selectedVal) {
+          var regexp, time;
+          time = new Date().getTime();
+          regexp = new RegExp($(this).data('id'), 'g');
+          var $newFields = $(this).data('fields').replace(regexp, time)
+          var selectId = $($newFields).find('select').attr('id');
+          $(this).parent('span').before($newFields);
+          $('#'+selectId).val(selectedVal);
+          that.addSelectLib();
+          $(this).val('');
+          $(this).trigger('change');
+        }
+      });
+    },
+
+    removeFields: function() {
+      $(document).on('click', '.remove_fields', function(event) {
+        $(this).prev('input[type=hidden]').val('1');
+        $(this).parent('span').hide();
+        return event.preventDefault();
       });
     }
 

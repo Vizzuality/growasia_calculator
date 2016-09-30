@@ -45,5 +45,13 @@ module AnalysesHelper
     end
   end
 
-
+  def select_to_add_fields(name, f, association, options)
+    new_object = f.object.send(association).klass.new
+    id = new_object.object_id
+    fields = f.fields_for(association, new_object, child_index: id) do |builder|
+      render(association.to_s.singularize + "_fields", f: builder)
+    end
+    select_tag("#{id}_#{association.to_s}", options, include_blank: name,
+               class: "select_fields", data: {id: id, fields: fields.gsub("\n", "")})
+  end
 end
