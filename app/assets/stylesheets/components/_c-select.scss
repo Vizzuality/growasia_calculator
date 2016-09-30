@@ -104,9 +104,7 @@
   // SINGLE
 	.select2-selection--single {
     height: auto;
-    border-width: 1px 1px 3px 1px;
-    border-style: solid;
-    border-color: transparent transparent rgba(black, .1) transparent;
+    border: 1px solid transparent;
     position: relative;
     padding: 0 48px 0 16px;
     background: transparent;

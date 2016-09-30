@@ -70,6 +70,7 @@
     height: calc(100% - 20px);
     // More usable?
     cursor: pointer;
+    user-select: none;
 
     button {
       display: flex;
@@ -79,7 +80,6 @@
       width: 50px;
       height: 50px;
       cursor: pointer;
-      user-select: none;
 
       appearance: none;
       background: none;
