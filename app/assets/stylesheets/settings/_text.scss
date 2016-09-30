@@ -57,11 +57,12 @@
   }
 
   &.-guidance {
-    display: inline-block;
+    display: block !important;
     font-size: rem(16px);
     line-height: 0.5;
     letter-spacing: rem(.5px);
     opacity: 0.6;
+    margin-bottom: rem(20px);
   }
 
   //Summary text
