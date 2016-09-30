@@ -5,6 +5,10 @@
     top: 32px;
     left: 50%;
     transform: translatex(-50%);
+
+    .home_index & {
+      display: none;
+    }
   }
 
   .text-wrap {
@@ -14,10 +18,18 @@
     height: rem(88px);
     transform: rotate(-90deg);
     transform-origin: left top;
+
+    .home_index & {
+      display: none;
+    }
   }
 
   .-title {
     margin-top: rem(29px);
+
+    .home_index & {
+      display: none;
+    }
   }
 
   .logo {
@@ -41,10 +53,22 @@
         fill: $white;
       }
     }
+
+    .home_index & {
+      display: none;
+    }
   }
 
   .c-social {
-    margin-bottom: rem(88px);
+    // margin-bottom: rem(88px);
+
+    .home_index & {
+      color: $white;
+
+      svg {
+        fill: $white;
+      }
+    }
   }
 
   &.-dark {
