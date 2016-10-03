@@ -80,58 +80,93 @@ class Analysis < ApplicationRecord
     1.0
   end
 
+  # Assumed that manures have been testd before reaching this point see fi_value
+  # method
   def fi_low?
-    # FI Low: None OR crop rot WITH burning of residues AND (NO cover crop
-    # OR green manure OR improved fallow OR n-fixing OR synthetic)
-    (
-      (
-        !additions.where(category: [Category::FERTILIZER, Category::MANURE]).any? &&
-        (!crop_management_practices || crop_management_practices.empty?)
-      ) ||
-      (crop_management_practices && crop_management_practices.include?("crop-rot"))
-    ) &&
-    crop_management_practices && crop_management_practices.include?("residue-burning") &&
-    (
-      (
-        !crop_management_practices.include?("cover-crop") ||
-        crop_management_practices.include?("green-manure") ||
-        crop_management_practices.include?("improved-fallow") ||
-        crop_management_practices.include?("n-fix") ||
-        fertilizers.any?
-      ) && !manures.any?
-    )
+    # FI Low: NO synthetic or Manure and only residue-burning
+    !fertilizers.any? &&
+    crop_management_practices.present? && crop_management_practices == ["residue-burning"]
   end
 
+  def residue_burning?
+    crop_management_practices.present? &&
+      crop_management_practices.include?("residue-burning")
+  end
+
+  def n_fix?
+    crop_management_practices.present? &&
+      crop_management_practices.include?("n-fix")
+  end
+
+  # Assumed that manures have been tested before reaching this point, as
+  # there can't be any manures;
   def fi_medium?
-    # FI medium = Synthetic OR n-fixing AND No Burning AND (
-    # NO cover crop && NO  Green Manure && NO Improved Fallow )
-    (
-      !manures.any? &&
-      (
-        fertilizers.any? ||
-        (crop_management_practices && crop_management_practices.include?("n-fix"))
+    # FI medium =
+    #   WITH synthetic fertilizers or nitrogen fixing crops AND
+    #   residue burning
+    #   AND no other practice
+    #   NO Manure
+      ( crop_management_practices.present? &&
+        (fertilizers.any? || n_fix?) &&
+        residue_burning? &&
+        crop_management_practices.size == (n_fix? ? 2 : 1)
       )
-    ) &&
-    (["residue-burning", "cover-crop", "green-manure", "improved-fallow"] -
-     crop_management_practices).size == 4
+
+    #
+    #   WITH or WITHOUT synthetic fertilizers
+    #   WITH or WITHOUT n-fixing
+    #   NO manure
+    #   NO burning of residue
+    #   NO other crop management practice
+    #
+      (
+       !crop_management_practices.present? ||
+       (crop_management_practices.size == 1 && n_fix?)
+      ) ||
+    #
+    #   OR
+    #
+    #   WITH or WITHOUT synthetic fertilizers
+    #   WITH or WITHOUT n-fixing
+    #   WITH burning of residue AT least one of the other crop_management_practices
+    #   NO manure
+    #
+      ( crop_management_practices.present? &&
+        (residue_burning? &&
+           (
+             (n_fix? && crop_management_practices.size > 2) ||
+              crop_management_practices.size > 1
+           )
+        )
+      ) ||
+    #   OR
+    #
+    #   NO synthetic fertilizers
+    #   NO n-fixing
+    #   NO burning of residues
+    #   AT least one of the additional crop_management_practices
+    #   NO manure
+      ( !fertilizers.any? &&
+        crop_management_practices.present? &&
+        !n_fix? &&
+        !residue_burning? &&
+        crop_management_practices.size > 0
+      )
   end
 
+  # Assumed that manures have been tested before reaching this point, as
+  # there can't be any manures;
   def fi_high_wo_manure?
-    # FI high without manure = synthetic or crop rotation or n-fixing AND
-    # NO burning of residues AND WITH cover crop/green manure/improved fallow
-    (
-      !manures.any? &&
-      (
-        fertilizers.any? ||
-        (crop_management_practices && crop_management_practices.include?("n-fix"))
-      )
-    ) &&
-    (crop_management_practices && !crop_management_practices.include?("residue-burning")) &&
-    (
-      crop_management_practices.include?("cover-crop") ||
-      crop_management_practices.include?("green-manure") ||
-      crop_management_practices.include?("improved-fallow")
-    )
+    #
+    # WITH either (one+ syntehtic fertilizers) OR n-fixing
+    # NO burning of residues
+    # NO manure
+    # AT least one of the additional crop_management_practices
+
+    (fertilizers.size > 1 || n_fix?) &&
+      (crop_management_practices.present? &&
+       !residue_burning? &&
+      (crop_management_practices.size > (n_fix? ? 1 : 0)))
   end
 
   #Area (ha) * Amount of Fertilizer Applied (kg ha-1 yr-1) * %Nfertilizer type *
