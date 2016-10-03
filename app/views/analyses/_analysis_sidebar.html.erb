@@ -15,6 +15,11 @@
           <div class="c-field -narrow -light">
             <label class="text -label" for=""><%= builder.object.fertilizer_name %></label>
             <%= builder.number_field :amount, min: 0 %>
+            <span class="btn-social reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
+              <svg class="c-icon -small">
+                <use xlink:href="#icon-reset"></use>
+              </svg>
+            </span>
           </div>
         </div>
       <% end %>
@@ -23,6 +28,11 @@
           <div class="c-field -narrow -light">
             <label class="text -label" for=""><%= builder.object.manure_name %></label>
             <%= builder.number_field :amount, min: 0 %>
+            <span class="btn-social reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
+              <svg class="c-icon -small">
+                <use xlink:href="#icon-reset"></use>
+              </svg>
+            </span>
           </div>
         </div>
       <% end %>
@@ -30,6 +40,11 @@
         <div class="c-field -narrow -light">
           <label class="text -label" for="">Agrochemicals amount</label>
           <%= f.number_field :agrochemical_amount, min: 0 %>
+          <span class="btn-social reset-analysis is-hidden" data-previous-value="<%= analysis.agrochemical_amount %>">
+            <svg class="c-icon -small">
+              <use xlink:href="#icon-reset"></use>
+            </svg>
+          </span>
         </div>
       </div>
     </div>
@@ -65,12 +80,22 @@
         <div class="c-field -narrow -light -full">
           <label class="text -label" for="">Lime</label>
           <%= f.number_field :lime_amount, min: 0 %>
+          <span class="btn-social reset-analysis is-hidden" data-previous-value="<%= analysis.lime_amount %>">
+            <svg class="c-icon -small">
+              <use xlink:href="#icon-reset"></use>
+            </svg>
+          </span>
         </div>
       </div>
       <div>
         <div class="c-field -narrow -light -full">
           <label class="text -label" for="">Dolomite</label>
           <%= f.number_field :dolomite_amount, min: 0 %>
+          <span class="btn-social reset-analysis is-hidden" data-previous-value="<%= analysis.dolomite_amount %>">
+            <svg class="c-icon -small">
+              <use xlink:href="#icon-reset"></use>
+            </svg>
+          </span>
         </div>
       </div>
       <div>
@@ -83,6 +108,11 @@
             </label>
             <%= builder.number_field :amount, min: 0  %>
             <%= builder.select :unit, select_options(Analysis::FUEL_UNITS, builder.object.unit) %>
+            <span class="btn-social reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
+              <svg class="c-icon -small">
+                <use xlink:href="#icon-reset"></use>
+              </svg>
+            </span>
           </div>
         <% end %>
       </div>
@@ -96,6 +126,11 @@
             </label>
             <%= builder.number_field :amount, min: 0  %>
             <%= builder.select :unit, select_options(Analysis::FUEL_UNITS, builder.object.unit) %>
+            <span class="btn-social reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
+              <svg class="c-icon -small">
+                <use xlink:href="#icon-reset"></use>
+              </svg>
+            </span>
           </div>
         <% end %>
       </div>
@@ -109,6 +144,11 @@
             </label>
             <%= builder.number_field :amount, min: 0  %>
             <%= builder.select :unit, select_options(Analysis::FUEL_UNITS, builder.object.unit) %>
+            <span class="btn-social reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
+              <svg class="c-icon -small">
+                <use xlink:href="#icon-reset"></use>
+              </svg>
+            </span>
           </div>
         <% end %>
       </div>
