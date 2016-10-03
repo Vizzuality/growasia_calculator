@@ -118,7 +118,9 @@
       });
 
       $(document).on('click', '.reset-analysis', function(event) {
-        $(this).prev('input').val($(this).data('previous-value'));
+        var $input = $(this).prev('input');
+        $input.val($(this).data('previous-value'));
+        $input.trigger('change');
         $(this).addClass('is-hidden');
       });
     }
