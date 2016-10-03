@@ -9,8 +9,8 @@ namespace :import do
     csv = CSV.parse(csv_text, :headers => true)
     csv.each do |row|
       GeoLocation.create(
-        country: row[0],
-        state: row[1],
+        country: row[0].strip,
+        state: row[1].strip,
         soc_ref: row[2],
         flu: row[3],
         fmg_full: row[4],
