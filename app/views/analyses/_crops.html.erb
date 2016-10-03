@@ -28,7 +28,7 @@
           </span>
           <span class="c-field -little">
             <%= builder.number_field :amount, class: '-right -js-numeric', autocomplete: 'off', min: '0' %>
-            <span class="unit">kg per ha and yr</span>
+            <span class="unit">kg/ha/year</span>
           </span>
           of
         </div>
@@ -41,7 +41,7 @@
           and
           <span class="c-field -little">
             <%= builder.number_field :amount, class: '-right -js-numeric', autocomplete: 'off', min: '0' %>
-            <span class="unit">kg per ha and yr</span>
+            <span class="unit">kg/ha/year</span>
           </span>
           of
           <span class="c-field -medium">
@@ -50,8 +50,10 @@
         </span>
       <% end %>
     </span>
+
     <span>
       <%= select_to_add_fields "Select a synthetic one", f, :fertilizers, select_options(Analysis::FERTILIZER_TYPES) %>
+       <span>or</span>
       <%= select_to_add_fields "Select a manure", f, :manures, select_options(Analysis::MANURE_TYPES) %>
     </span>
   </div>

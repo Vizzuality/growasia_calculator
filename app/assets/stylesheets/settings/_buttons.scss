@@ -9,11 +9,19 @@
   font-weight: 400;
   text-transform: uppercase;
   cursor: pointer;
+  transition: .2s ease-in;
 
   &.-light {
     color: $white;
     border-color: rgba($white, .4);
     fill: $white;
+
+    &:hover {
+      color: $color-6;
+      font-weight: 700;
+      background-color: $white;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    }
   }
 
   &.-dark {
