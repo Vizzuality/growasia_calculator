@@ -53,6 +53,8 @@
       <% end %>
     </span>
 
+    <div id="options-container"></div>
+
     <span>
       <span class="c-field -medium">
         <%= select_to_add_fields "Add a synthetic one", f, :fertilizers, select_options(Analysis::FERTILIZER_TYPES) %>
@@ -62,8 +64,6 @@
         <%= select_to_add_fields "Add a manure", f, :manures, select_options(Analysis::MANURE_TYPES) %>
       </span>
     </span>
-
-    <div class="options-container"></div>
   </div>
 </div>
 
