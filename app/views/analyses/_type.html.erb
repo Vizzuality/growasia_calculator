@@ -7,6 +7,7 @@
         <%= f.select :crop, select_options(Analysis::CROPS), {}, class: '-js-required' %>
       </span>
     </span>
+
     <span>
       on
       <span class="c-field -little">
@@ -14,14 +15,13 @@
       </span>
       hectares of land
     </span>
+
     <span>
       and expect a yield of
-    </span>
-    <span>
       <span class="c-field -little">
         <%= f.number_field :yield, class: '-right -js-required -js-numeric', autocomplete: 'off', min: '0' %>
       </span>
-      <span class="c-field -medium">
+      <span class="c-field -small">
         <%= f.select :yield_unit, select_options(Analysis::YIELD_UNITS), {}, class: '-js-required' %>
       </span>
     </span>

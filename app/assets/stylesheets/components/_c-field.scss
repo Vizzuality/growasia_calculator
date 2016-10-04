@@ -26,9 +26,39 @@
   &.-hidden { display: none;}
 
   // SIZES
-  &.-little { max-width: 160px; }
-  &.-medium { max-width: 350px; }
-  &.-huge { max-width: 500px;}
+  //
+  &.-extra-small {
+    width: 100px;
+
+    input {
+      width: 100%;
+    }
+  }
+
+  &.-little {
+    width: 160px;
+
+    input {
+      width: 100%;
+    }
+  }
+
+  &.-medium {
+    width: 300px;
+
+    input {
+      width: 100%;
+    }
+  }
+
+  &.-huge {
+    width: 500px;
+
+    input {
+      width: 100%;
+    }
+  }
+
   &.-all { width: 100%;}
 
   // PADDING
@@ -95,17 +125,15 @@
 
   // UNITS
   .unit {
+    display: block;
     position: absolute;
-    font-size: 12px;
-    top: 100%;
-    transform: translate(0,2px);
-    font-weight: 500;
     right: 0;
+    bottom: 0;
+    padding: 2px 5px;
+    font-size: 12px;
+    font-weight: 500;
     line-height: 1;
     white-space: nowrap;
-    display: block;
-    background: rgba($black,.08);
-    padding: 2px 5px;
   }
 
   // SELECT2
@@ -168,7 +196,7 @@
     }
   }
 
-  .btn-reset{
+  .btn-reset {
     position: absolute;
     bottom: rem(10px);
     right: rem(-20px);

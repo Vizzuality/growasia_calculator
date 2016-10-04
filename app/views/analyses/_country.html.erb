@@ -19,7 +19,7 @@
   </div>
 
   <div id="mapSelectors" class="c-btn-container -j-center -a-center">
-    <span class="c-field -all -medium">
+    <span class="c-field -medium">
       <%= select_tag :country,
         options_from_collection_for_select(@geo_locations, :country, :country),
         include_blank: true,
@@ -27,7 +27,7 @@
         'data-placeholder': ''
       %>
     </span>
-    <span id="region-field" class="c-field -all -medium -hidden">
+    <span id="region-field" class="c-field -medium -hidden">
       <%= f.select :geo_location_id, [], {}, class: '-js-required, theme-1' %>
     </span>
   </div>
