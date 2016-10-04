@@ -146,7 +146,7 @@
       if (layer.feature.properties.admin) {
         this.model.set({country: layer.feature.properties.admin})
       } else {
-        this.model.set({region: layer.feature.properties.id_1})
+        this.model.set({region: layer.feature.properties.slug})
       }
     },
 
@@ -182,10 +182,10 @@
 
       _.each(this.map._layers, function(layer){
 
-        if (layer.feature && layer.feature.properties.id_1 === region_id) {
+        if (layer.feature && layer.feature.properties.slug === region_id) {
           layer.feature.properties.selected = true;
 
-          layer.setStyle({fillColor: '#2a5a3a'});
+          layer.setStyle({fillColor: '#2a5a3a', fillOpacity: 1});
           this.unSelectPrevious();
 
           this.selectedLayer = layer;
