@@ -145,4 +145,14 @@
       }
     }
   }
+
+  .btn-reset{
+    position: absolute;
+    bottom: rem(10px);
+    right: rem(-20px);
+
+    svg {
+      fill: $white;
+    }
+  }
 }
