@@ -51,6 +51,13 @@
         border-color: rgba($white, .4);
       }
     }
+
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+      color: $white;
+    }
+    .select2-container--default .select2-selection--single:after {
+      border-color: transparent rgba($white, .5) rgba($white, .5) transparent;
+    }
   }
 
   // ERRORS
@@ -66,6 +73,10 @@
     input[type="number"],
     textarea {
       border-color: rgba(red, .8);
+    }
+
+    .select2-container--default .select2-selection--single {
+      border-color: transparent transparent rgba(red, .8) transparent;
     }
   }
 
@@ -101,6 +112,8 @@
   .select2-container {
     width: 100% !important;
   }
+
+
   // TODO: Style custom number fields
   //
   &.-full {

@@ -1,4 +1,11 @@
 $(function() {
-  $("#analysis_geo_location_id").html("<%= escape_javascript(options_from_collection_for_select(@geo_locations, :id, :state)) %>");
+
+  $("#analysis_geo_location_id").html("<%= escape_javascript(options_from_collection_for_select(@geo_locations, :slug, :state)) %>");
   $("#analysis_geo_location_id").trigger("change");
+
+  $(".c-input-field").removeClass("is-hidden");
+  $(".region-text").removeClass('is-hidden');
+
+  $(".country-text").addClass('is-hidden');
+
 });

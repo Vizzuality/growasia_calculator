@@ -284,4 +284,9 @@ class Analysis < ApplicationRecord
   def has_fuel? fuel, fuel_type=nil
     send("#{fuel_type ? "#{fuel_type}_" : ""}fuels").where(addition_type: fuel).any?
   end
+
+  def geo_location_id= slug
+    loc = GeoLocation.where(slug: slug).first
+    write_attribute(:geo_location_id, loc.id) if loc
+  end
 end

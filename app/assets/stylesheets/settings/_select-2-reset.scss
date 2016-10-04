@@ -1,24 +1,7 @@
-.c-field {
 
-	&.-light {
-		.select2-container--default .select2-selection--single .select2-selection__rendered {
-			color: $white;
-		}
-		.select2-container--default .select2-selection--single:after {
-			border-color: transparent rgba($white, .5) rgba($white, .5) transparent;
-		}
-	}
 
-	&.-error {
-		.select2-container--default .select2-selection--single {
-			border-color: transparent transparent rgba(red, .8) transparent;
-		}
-	}
-}
 
-// TO-DO: this file needs to be refactored
 .select2-container {
-	// min-width: 200px;
   font-size: rem(18px);
   background: rgba($black, .04);
   text-align: left;
@@ -337,15 +320,15 @@
 	}
 }
 
-.select2-container--open {
-	.select2-dropdown--below {
-		background: $color-3;
-	}
+// .select2-container--open {
+// 	.select2-dropdown--below {
+// 		background: $color-3;
+// 	}
 
-	.select2-dropdown--above {
-		background: $color-3;
-	}
-}
+// 	.select2-dropdown--above {
+// 		background: $color-3;
+// 	}
+// }
 
 
 .select2-dropdown-open .select2-choice {
