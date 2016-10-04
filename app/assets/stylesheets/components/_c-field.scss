@@ -38,7 +38,13 @@
     }
   }
 
-  &.-huge { max-width: 500px;}
+  &.-huge {
+    width: 500px;
+
+    input {
+      width: 100%;
+    }
+  }
 
   &.-all { width: 100%;}
 

@@ -87,13 +87,16 @@
       $(document).on('change', '.select_fields', function(event) {
         event.preventDefault();
         var selectedVal = $(this).val();
+
         if(!!selectedVal) {
           var regexp, time;
           time = new Date().getTime();
           regexp = new RegExp($(this).data('id'), 'g');
+
           var $newFields = $(this).data('fields').replace(regexp, time)
           var selectId = $($newFields).find('select').attr('id');
-          $(this).parent('span').before($newFields);
+
+          $('.options-container').append($newFields);
           $('#'+selectId).val(selectedVal);
           that.addSelectLib();
           $(this).val('');
