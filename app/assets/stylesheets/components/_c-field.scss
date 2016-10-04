@@ -26,8 +26,21 @@
   &.-hidden { display: none;}
 
   // SIZES
+  //
+  &.-extra-small {
+    width: 100px;
+
+    input {
+      width: 100%;
+    }
+  }
+
   &.-little {
-    max-width: 160px;
+    width: 160px;
+
+    input {
+      width: 100%;
+    }
   }
 
   &.-medium {
@@ -112,17 +125,15 @@
 
   // UNITS
   .unit {
+    display: block;
     position: absolute;
-    font-size: 12px;
-    top: 100%;
-    transform: translate(0,2px);
-    font-weight: 500;
     right: 0;
+    bottom: 0;
+    padding: 2px 5px;
+    font-size: 12px;
+    font-weight: 500;
     line-height: 1;
     white-space: nowrap;
-    display: block;
-    background: rgba($black,.08);
-    padding: 2px 5px;
   }
 
   // SELECT2
