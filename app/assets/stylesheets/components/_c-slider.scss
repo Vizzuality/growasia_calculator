@@ -148,7 +148,7 @@
   left: 50%;
   transform: translate(-50%,-50%);
   transition: all .25s linear;
-  max-width: 500px;
+  max-width: 800px;
 
   // STATES
   &.-active {
@@ -164,7 +164,7 @@
     max-width: 600px;
   }
   &.-huge {
-    max-width: 700px;
+    width: 800px;
   }
 
   // COLORS

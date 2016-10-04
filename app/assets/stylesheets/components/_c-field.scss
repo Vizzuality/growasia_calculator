@@ -51,6 +51,13 @@
         border-color: rgba($white, .4);
       }
     }
+
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+      color: $white;
+    }
+    .select2-container--default .select2-selection--single:after {
+      border-color: transparent rgba($white, .5) rgba($white, .5) transparent;
+    }
   }
 
   // ERRORS
@@ -66,6 +73,10 @@
     input[type="number"],
     textarea {
       border-color: rgba(red, .8);
+    }
+
+    .select2-container--default .select2-selection--single {
+      border-color: transparent transparent rgba(red, .8) transparent;
     }
   }
 
@@ -101,16 +112,40 @@
   .select2-container {
     width: 100% !important;
   }
+
+
   // TODO: Style custom number fields
-  //
   &.-full {
     width: 100%;
+  }
+
+  &.-double {
+    width: 100%;
+
+    label {
+      display: block;
+    }
+
+    input,
+    .dropdown-wrapper,
+    .select2-container {
+      display: inline-block;
+      width: 49% !important;
+
+      &:first-child {
+        margin-right: 2%;
+      }
+    }
   }
 
   &.-narrow {
     select,
     input,
-    .select2-selection__rendered {
+    .select2-selection,
+    .dropdown-wrapper,
+    .select2-selection__rendered,
+    .select2-container,
+    .select2-container {
       max-height: rem(40px) !important;
       line-height: rem(40px) !important;
       font-size: rem(18px);
@@ -130,6 +165,17 @@
         width: 5px;
         height: 5px;
       }
+    }
+  }
+
+  .btn-reset{
+    position: absolute;
+    bottom: rem(10px);
+    right: rem(-20px);
+    cursor: pointer;
+
+    svg {
+      fill: $white;
     }
   }
 }

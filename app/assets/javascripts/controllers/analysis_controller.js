@@ -70,6 +70,8 @@
       // Fetch the analysis before render the graphs
       analysisModel.fetch();
 
+      this.enableResets();
+
       this.addSelectLib();
     },
 
@@ -105,6 +107,21 @@
         $(this).prev('input[type=hidden]').val('1');
         $(this).parent('span').hide();
         return event.preventDefault();
+      });
+    },
+
+    enableResets: function() {
+      $(document).on('change', 'input', function(event) {
+        if($(this).next('.reset-analysis').hasClass('is-hidden')) {
+          $(this).next('.reset-analysis').removeClass('is-hidden');
+        }
+      });
+
+      $(document).on('click', '.reset-analysis', function(event) {
+        var $input = $(this).prev('input');
+        $input.val($(this).data('previous-value'));
+        $input.trigger('change');
+        $(this).addClass('is-hidden');
       });
     }
 
