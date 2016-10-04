@@ -26,9 +26,20 @@
   &.-hidden { display: none;}
 
   // SIZES
-  &.-little { max-width: 160px; }
-  &.-medium { max-width: 350px; }
+  &.-little {
+    max-width: 160px;
+  }
+
+  &.-medium {
+    width: 300px;
+
+    input {
+      width: 100%;
+    }
+  }
+
   &.-huge { max-width: 500px;}
+
   &.-all { width: 100%;}
 
   // PADDING
@@ -168,7 +179,7 @@
     }
   }
 
-  .btn-reset{
+  .btn-reset {
     position: absolute;
     bottom: rem(10px);
     right: rem(-20px);
