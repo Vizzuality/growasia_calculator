@@ -115,15 +115,37 @@
 
 
   // TODO: Style custom number fields
-  //
   &.-full {
     width: 100%;
+  }
+
+  &.-double {
+    width: 100%;
+
+    label {
+      display: block;
+    }
+
+    input,
+    .dropdown-wrapper,
+    .select2-container {
+      display: inline-block;
+      width: 49% !important;
+
+      &:first-child {
+        margin-right: 2%;
+      }
+    }
   }
 
   &.-narrow {
     select,
     input,
-    .select2-selection__rendered {
+    .select2-selection,
+    .dropdown-wrapper,
+    .select2-selection__rendered,
+    .select2-container,
+    .select2-container {
       max-height: rem(40px) !important;
       line-height: rem(40px) !important;
       font-size: rem(18px);
@@ -150,6 +172,7 @@
     position: absolute;
     bottom: rem(10px);
     right: rem(-20px);
+    cursor: pointer;
 
     svg {
       fill: $white;

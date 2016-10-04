@@ -37,7 +37,7 @@
         </div>
       <% end %>
       <div>
-        <div class="c-field -narrow -light -full">
+        <div class="c-field -narrow -light -double">
           <label class="text -label" for="">Agrochemicals amount</label>
           <%= f.number_field :agrochemical_amount, min: 0 %>
           <span class="btn-reset reset-analysis is-hidden" data-previous-value="<%= analysis.agrochemical_amount %>">
@@ -98,60 +98,59 @@
           </span>
         </div>
       </div>
-      <div>
-        <%= f.fields_for :transportation_fuels do |builder| %>
-          <%= builder.hidden_field :category, value: Category::TRANSPORTATION_FUEL %>
-          <%= builder.hidden_field :addition_type, value: builder.object.addition_type %>
-          <div class="c-field -narrow -light -full">
-            <label class="text -label" for="">
-              <%= builder.object.fuel_name %> for transportation
-            </label>
-            <%= builder.number_field :amount, min: 0  %>
-            <%= builder.select :unit, select_options(Analysis::FUEL_UNITS, builder.object.unit) %>
-            <span class="btn-reset reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
-              <svg class="c-icon -small">
-                <use xlink:href="#icon-reset"></use>
-              </svg>
-            </span>
-          </div>
-        <% end %>
-      </div>
-      <div>
-        <%= f.fields_for :irrigation_fuels do |builder| %>
-          <%= builder.hidden_field :category, value: Category::IRRIGATION_FUEL %>
-          <%= builder.hidden_field :addition_type, value: builder.object.addition_type %>
-          <div class="c-field -narrow -light -full">
-            <label class="text -label" for="">
-              <%= builder.object.fuel_name %> for irrigation
-            </label>
-            <%= builder.number_field :amount, min: 0  %>
-            <%= builder.select :unit, select_options(Analysis::FUEL_UNITS, builder.object.unit) %>
-            <span class="btn-reset reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
-              <svg class="c-icon -small">
-                <use xlink:href="#icon-reset"></use>
-              </svg>
-            </span>
-          </div>
-        <% end %>
-      </div>
-      <div>
-        <%= f.fields_for :fuels do |builder| %>
-          <%= builder.hidden_field :category, value: Category::FUEL %>
-          <%= builder.hidden_field :addition_type, value: builder.object.addition_type %>
-          <div class="c-field -narrow -light -full">
-            <label class="text -label" for="">
-              <%= builder.object.fuel_name %> for other purposes
-            </label>
-            <%= builder.number_field :amount, min: 0  %>
-            <%= builder.select :unit, select_options(Analysis::FUEL_UNITS, builder.object.unit) %>
-            <span class="btn-reset reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
-              <svg class="c-icon -small">
-                <use xlink:href="#icon-reset"></use>
-              </svg>
-            </span>
-          </div>
-        <% end %>
-      </div>
+
+      <%= f.fields_for :transportation_fuels do |builder| %>
+        <%= builder.hidden_field :category, value: Category::TRANSPORTATION_FUEL %>
+        <%= builder.hidden_field :addition_type, value: builder.object.addition_type %>
+        <div class="c-field -narrow -light -double">
+          <label class="text -label" for="">
+            <%= builder.object.fuel_name %> for transportation
+          </label>
+          <%= builder.number_field :amount, min: 0  %>
+          <%= builder.select :unit, select_options(Analysis::FUEL_UNITS, builder.object.unit) %>
+          <span class="btn-reset reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
+            <svg class="c-icon -small">
+              <use xlink:href="#icon-reset"></use>
+            </svg>
+          </span>
+        </div>
+      <% end %>
+
+
+      <%= f.fields_for :irrigation_fuels do |builder| %>
+        <%= builder.hidden_field :category, value: Category::IRRIGATION_FUEL %>
+        <%= builder.hidden_field :addition_type, value: builder.object.addition_type %>
+        <div class="c-field -narrow -light -double">
+          <label class="text -label" for="">
+            <%= builder.object.fuel_name %> for irrigation
+          </label>
+          <%= builder.number_field :amount, min: 0  %>
+          <%= builder.select :unit, select_options(Analysis::FUEL_UNITS, builder.object.unit) %>
+          <span class="btn-reset reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
+            <svg class="c-icon -small">
+              <use xlink:href="#icon-reset"></use>
+            </svg>
+          </span>
+        </div>
+      <% end %>
+
+      <%= f.fields_for :fuels do |builder| %>
+        <%= builder.hidden_field :category, value: Category::FUEL %>
+        <%= builder.hidden_field :addition_type, value: builder.object.addition_type %>
+        <div class="c-field -narrow -light -double">
+          <label class="text -label" for="">
+            <%= builder.object.fuel_name %> for other purposes
+          </label>
+          <%= builder.number_field :amount, min: 0  %>
+          <%= builder.select :unit, select_options(Analysis::FUEL_UNITS, builder.object.unit) %>
+          <span class="btn-reset reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
+            <svg class="c-icon -small">
+              <use xlink:href="#icon-reset"></use>
+            </svg>
+          </span>
+        </div>
+      <% end %>
+
       <% if analysis.rice? %>
         <div>
           <div class="c-field -narrow -full -light">
