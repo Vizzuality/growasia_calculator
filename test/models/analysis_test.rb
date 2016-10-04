@@ -6,6 +6,7 @@ class AnalysisTest < ActiveSupport::TestCase
     analysis = Analysis.new({
       crop: "rice",
       area: 100,
+      yield: 100,
       rice_type: "paddy",
       irrigation_regime: "one-aeration",
       flooding: "not-flooded-more",
@@ -50,7 +51,8 @@ class AnalysisTest < ActiveSupport::TestCase
     analysis = Analysis.new({
       crop: "corn",
       area: 100,
-      geo_location_id: gl.id,
+      yield: 100,
+      geo_location: gl,
       crop_management_practices: ["residue-burning"],
       tillage: "minimal",
       fertilizers: [Addition.new({
@@ -59,7 +61,7 @@ class AnalysisTest < ActiveSupport::TestCase
         addition_type: "ammonia"
       })]
     })
-    analysis.save
+    analysis.save!
 
     assert_equal 1.00, analysis.fi_value
     assert_equal false, analysis.fi_low?
@@ -83,7 +85,8 @@ class AnalysisTest < ActiveSupport::TestCase
     analysis = Analysis.new({
       crop: "corn",
       area: 100,
-      geo_location_id: gl.id,
+      yield: 100,
+      geo_location: gl,
       crop_management_practices: ["green-manure"],
       fertilizers: [Addition.new({
         category: Category::FERTILIZER,
@@ -119,7 +122,8 @@ class AnalysisTest < ActiveSupport::TestCase
     analysis = Analysis.new({
       crop: "vegetables",
       area: 500,
-      geo_location_id: gl.id,
+      yield: 100,
+      geo_location: gl,
       crop_management_practices: ["residue-burning"],
       fertilizers: [],
       manures: [],
