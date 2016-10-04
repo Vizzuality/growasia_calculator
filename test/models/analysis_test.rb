@@ -67,7 +67,7 @@ class AnalysisTest < ActiveSupport::TestCase
     assert_equal -109.9824, analysis.emissions_from_soil_management
   end
 
-  test "should calculate fi_value and return high wo manure" do
+  test "should calculate fi_value and return high w manure" do
     gl = GeoLocation.create({
       country: "Indonesia",
       state: "Lampung",
@@ -97,11 +97,10 @@ class AnalysisTest < ActiveSupport::TestCase
       })]
     })
     analysis.save
-    # TODO: FIXME
-    #assert_equal gl.fi_high_wo_manure, analysis.fi_value
-    #assert_equal false, analysis.fi_low?
-    #assert_equal false, analysis.fi_medium?
-    #assert_equal true, analysis.fi_high_wo_manure?
+    assert_equal gl.fi_high_w_manure, analysis.fi_value
+    assert_equal false, analysis.fi_low?
+    assert_equal false, analysis.fi_medium?
+    assert_equal false, analysis.fi_high_wo_manure?
   end
 
   test "should calculate fi_value and return low" do
@@ -144,14 +143,14 @@ class AnalysisTest < ActiveSupport::TestCase
       amount: 2000,
       addition_type: "ammonia"
     })
+    analysis.manures = []
     analysis.save
 
     assert_equal 1.0, analysis.fi_value
     assert_equal true, analysis.fi_medium?
     assert_equal false, analysis.fi_low?
     assert_equal false, analysis.fi_high_wo_manure?
-    assert_equal 1.15, analysis.fmg_value.to_f
-    assert_equal -708.499, analysis.emissions_from_soil_management_changed(old_fmg, old_fi).to_f
-
+    assert_equal 1.09, analysis.fmg_value.to_f
+    assert_equal -495.9493, analysis.emissions_from_soil_management_changed(old_fmg, old_fi).to_f
   end
 end
