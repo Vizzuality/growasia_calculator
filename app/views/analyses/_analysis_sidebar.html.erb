@@ -12,33 +12,23 @@
       </div>
       <div class="c-field -narrow -light -double">
         <label class="text -label" for="">
-          Synthetic fertilizers
+          Synthetic fertilizers <%= icon_to_add_more(f, :fertilizers) %>
         </label>
-        <%= f.fields_for :fertilizers do |builder| %>
-          <%= builder.hidden_field :category, value: Category::FERTILIZER %>
-          <%= builder.number_field :amount, min: 0 %>
-          <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES, builder.object.addition_type) %>
-          <span class="btn-reset reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
-            <svg class="c-icon -small">
-              <use xlink:href="#icon-reset"></use>
-            </svg>
-          </span>
-        <% end %>
+        <div class="fields-container">
+          <%= f.fields_for :fertilizers do |builder| %>
+            <%= render 'fertilizer_sidebar_fields', f: builder %>
+          <% end %>
+        </div>
       </div>
       <div class="c-field -narrow -light -double">
         <label class="text -label" for="">
-          Manures
+          Manures <%= icon_to_add_more(f, :manures) %>
         </label>
-        <%= f.fields_for :manures do |builder| %>
-          <%= builder.hidden_field :category, value: Category::MANURE %>
-          <%= builder.number_field :amount, min: 0 %>
-          <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES, builder.object.addition_type) %>
-          <span class="btn-reset reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
-            <svg class="c-icon -small">
-              <use xlink:href="#icon-reset"></use>
-            </svg>
-          </span>
-        <% end %>
+        <div class="fields-container">
+          <%= f.fields_for :manures do |builder| %>
+            <%= render 'manure_sidebar_fields', f: builder %>
+          <% end %>
+        </div>
       </div>
       <div>
         <div class="c-field -narrow -light -full">
