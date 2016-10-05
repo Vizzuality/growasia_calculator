@@ -34,10 +34,12 @@
         <div class="c-field -narrow -light -full">
           <label class="text -label" for="">Agrochemicals amount</label>
           <%= f.number_field :agrochemical_amount, min: 0, class: "-js-is-resetable" %>
-          <span class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= analysis.agrochemical_amount %>">
-            <svg class="c-icon -small">
-              <use xlink:href="#icon-reset"></use>
-            </svg>
+          <span class="options-wrapper">
+            <span class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= analysis.agrochemical_amount %>">
+              <svg class="c-icon -small">
+                <use xlink:href="#icon-reset"></use>
+              </svg>
+            </span>
           </span>
         </div>
       </div>
@@ -74,10 +76,12 @@
         <div class="c-field -narrow -light -full">
           <label class="text -label" for="">Lime</label>
           <%= f.number_field :lime_amount, min: 0, class: "-js-is-resetable" %>
-          <span class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= analysis.lime_amount %>">
-            <svg class="c-icon -small">
-              <use xlink:href="#icon-reset"></use>
-            </svg>
+          <span class="options-wrapper">
+            <span class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= analysis.lime_amount %>">
+              <svg class="c-icon -small">
+                <use xlink:href="#icon-reset"></use>
+              </svg>
+            </span>
           </span>
         </div>
       </div>
@@ -85,10 +89,12 @@
         <div class="c-field -narrow -light -full">
           <label class="text -label" for="">Dolomite</label>
           <%= f.number_field :dolomite_amount, min: 0, class: "-js-is-resetable" %>
-          <span class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= analysis.dolomite_amount %>">
-            <svg class="c-icon -small">
-              <use xlink:href="#icon-reset"></use>
-            </svg>
+          <span class="options-wrapper">
+            <span class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= analysis.dolomite_amount %>">
+              <svg class="c-icon -small">
+                <use xlink:href="#icon-reset"></use>
+              </svg>
+            </span>
           </span>
         </div>
       </div>
@@ -102,10 +108,12 @@
           </label>
           <%= builder.number_field :amount, min: 0, class: "-js-is-resetable"  %>
           <%= builder.select :unit, select_options(Analysis::FUEL_UNITS, builder.object.unit) %>
-          <span class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
-            <svg class="c-icon -small">
-              <use xlink:href="#icon-reset"></use>
-            </svg>
+          <span class="options-wrapper">
+            <span class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
+              <svg class="c-icon -small">
+                <use xlink:href="#icon-reset"></use>
+              </svg>
+            </span>
           </span>
         </div>
       <% end %>
@@ -120,10 +128,12 @@
           </label>
           <%= builder.number_field :amount, min: 0, class: "-js-is-resetable"  %>
           <%= builder.select :unit, select_options(Analysis::FUEL_UNITS, builder.object.unit) %>
-          <span class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
-            <svg class="c-icon -small">
-              <use xlink:href="#icon-reset"></use>
-            </svg>
+          <span class="options-wrapper">
+            <span class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
+              <svg class="c-icon -small">
+                <use xlink:href="#icon-reset"></use>
+              </svg>
+            </span>
           </span>
         </div>
       <% end %>
@@ -137,10 +147,12 @@
           </label>
           <%= builder.number_field :amount, min: 0, class: "-js-is-resetable"  %>
           <%= builder.select :unit, select_options(Analysis::FUEL_UNITS, builder.object.unit) %>
-          <span class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
-            <svg class="c-icon -small">
-              <use xlink:href="#icon-reset"></use>
-            </svg>
+          <span class="options-wrapper">
+            <span class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
+              <svg class="c-icon -small">
+                <use xlink:href="#icon-reset"></use>
+              </svg>
+            </span>
           </span>
         </div>
       <% end %>

@@ -73,15 +73,15 @@
     onEnableReset: function(e) {
       e && e.preventDefault();
       var $target = $(e.currentTarget);
-      if($target.nextAll('.-js-reset-analysis').hasClass('is-hidden')) {
-        $target.nextAll('.-js-reset-analysis').removeClass('is-hidden');
+      if($target.nextAll('.options-wrapper').find('.-js-reset-analysis').hasClass('is-hidden')) {
+        $target.nextAll('.options-wrapper').find('.-js-reset-analysis').removeClass('is-hidden');
       }
     },
 
     onResetFields: function(e) {
       e && e.preventDefault();
       var $target = $(e.currentTarget);
-      var $input = $target.prevAll('input');
+      var $input = $target.parent().prevAll('input');
       $input.val($target.data('previous-value'));
       $input.trigger('change');
       $target.addClass('is-hidden');

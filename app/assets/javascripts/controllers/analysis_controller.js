@@ -107,6 +107,7 @@
 
     removeFields: function() {
       $(document).on('click', '.-js-remove-fields', function(event) {
+        event && event.preventDefault();
         $(this).prev('input[type=hidden]').val('1');
         $(this).parents('.-js-input-wrapper').hide();
         return event.preventDefault();
