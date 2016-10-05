@@ -61,6 +61,6 @@ module AnalysesHelper
     fields = f.fields_for(association, new_object, child_index: id) do |builder|
       render(association.to_s.singularize + "_sidebar_fields", f: builder)
     end
-    link_to(image_tag("add.svg"), "#", class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
+    link_to(image_tag("add.svg", size: "18x18"), "#", class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
 end
