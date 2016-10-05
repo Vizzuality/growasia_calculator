@@ -7,36 +7,36 @@ class Analysis < ApplicationRecord
   has_many :fertilizers, -> { where category: Category::FERTILIZER },
     class_name: 'Addition'
   accepts_nested_attributes_for :fertilizers, allow_destroy: true,
-    reject_if: proc { |a| a['amount'].blank? }
+    reject_if: proc { |a| a['amount'].blank? || a['amount'].to_f <= 0.0 }
 
   has_many :manures, -> { where category: Category::MANURE },
     class_name: 'Addition'
   accepts_nested_attributes_for :manures, allow_destroy: true,
-    reject_if: proc { |a| a['amount'].blank? }
+    reject_if: proc { |a| a['amount'].blank? || a['amount'].to_f <= 0.0 }
 
 
   has_many :fuels, -> { where category: Category::FUEL },
     class_name: 'Addition'
   accepts_nested_attributes_for :fuels, allow_destroy: true,
-    reject_if: proc { |a| a['amount'].blank? }
+    reject_if: proc { |a| a['amount'].blank? || a['amount'].to_f <= 0.0 }
 
 
   has_many :nutrient_managements, -> { where category: Category::NUTRIENT_MANAGEMENT },
     class_name: 'Addition'
   accepts_nested_attributes_for :nutrient_managements, allow_destroy: true,
-    reject_if: proc { |a| a['amount'].blank? }
+    reject_if: proc { |a| a['amount'].blank? || a['amount'].to_f <= 0.0 }
 
 
   has_many :transportation_fuels, -> { where category: Category::TRANSPORTATION_FUEL },
     class_name: 'Addition'
   accepts_nested_attributes_for :transportation_fuels, allow_destroy: true,
-    reject_if: proc { |a| a['amount'].blank? }
+    reject_if: proc { |a| a['amount'].blank? || a['amount'].to_f <= 0.0 }
 
 
   has_many :irrigation_fuels, -> { where category: Category::IRRIGATION_FUEL },
     class_name: 'Addition'
   accepts_nested_attributes_for :irrigation_fuels, allow_destroy: true,
-    reject_if: proc { |a| a['amount'].blank? }
+    reject_if: proc { |a| a['amount'].blank? || a['amount'].to_f <= 0.0 }
 
 
   validates :area, :yield, :crop, :geo_location_id, presence: true
@@ -69,7 +69,7 @@ class Analysis < ApplicationRecord
 
   def fi_value
     # FI high with manure = Manure
-    return geo_location.fi_high_w_manure if manures.any? && manures.inject(0){|sum,t| sum += t.amount} > 0.0
+    return geo_location.fi_high_w_manure if manures.any?
 
     return geo_location.fi_low if fi_low?
 
