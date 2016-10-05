@@ -7,7 +7,10 @@
   App.View.AnalysisSidebar = Backbone.View.extend({
 
     events: {
-      'change input,select' : 'onChangeInput'
+      'change input,select' : 'onChangeInput',
+      'click .-js-add-fields': 'onAddFields',
+      'change input.-js-is-resetable': 'onEnableReset',
+      'click .-js-reset-analysis': 'onResetFields'
     },
 
     initialize: function(settings) {
@@ -25,6 +28,13 @@
 
     cache: function() {
       this.$form = this.$el.find('#analysis-sidebar-form');
+    },
+
+    addSelectLib: function() {
+      $('select').select2({
+        theme: "default",
+        minimumResultsForSearch: -1
+      });
     },
 
     /*
@@ -45,8 +55,37 @@
           console.log(arguments);
         }
       });
-    }
+    },
 
+    onAddFields: function(e) {
+      e && e.preventDefault();
+      var $target = $(e.currentTarget);
+      var regexp, time;
+      time = new Date().getTime();
+      regexp = new RegExp($target.data('id'), 'g');
+
+      var $newFields = $target.data('fields').replace(regexp, time)
+      $target.parent('label').next('.fields-container').append($newFields);
+
+      this.addSelectLib();
+    },
+
+    onEnableReset: function(e) {
+      e && e.preventDefault();
+      var $target = $(e.currentTarget);
+      if($target.nextAll('.-js-reset-analysis').hasClass('is-hidden')) {
+        $target.nextAll('.-js-reset-analysis').removeClass('is-hidden');
+      }
+    },
+
+    onResetFields: function(e) {
+      e && e.preventDefault();
+      var $target = $(e.currentTarget);
+      var $input = $target.prevAll('input');
+      $input.val($target.data('previous-value'));
+      $input.trigger('change');
+      $target.addClass('is-hidden');
+    }
 
   });
 

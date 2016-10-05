@@ -33,7 +33,7 @@
       <div>
         <div class="c-field -narrow -light -full">
           <label class="text -label" for="">Agrochemicals amount</label>
-          <%= f.number_field :agrochemical_amount, min: 0 %>
+          <%= f.number_field :agrochemical_amount, min: 0, class: "-js-is-resetable" %>
           <span class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= analysis.agrochemical_amount %>">
             <svg class="c-icon -small">
               <use xlink:href="#icon-reset"></use>
@@ -73,7 +73,7 @@
       <div>
         <div class="c-field -narrow -light -full">
           <label class="text -label" for="">Lime</label>
-          <%= f.number_field :lime_amount, min: 0 %>
+          <%= f.number_field :lime_amount, min: 0, class: "-js-is-resetable" %>
           <span class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= analysis.lime_amount %>">
             <svg class="c-icon -small">
               <use xlink:href="#icon-reset"></use>
@@ -84,7 +84,7 @@
       <div>
         <div class="c-field -narrow -light -full">
           <label class="text -label" for="">Dolomite</label>
-          <%= f.number_field :dolomite_amount, min: 0 %>
+          <%= f.number_field :dolomite_amount, min: 0, class: "-js-is-resetable" %>
           <span class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= analysis.dolomite_amount %>">
             <svg class="c-icon -small">
               <use xlink:href="#icon-reset"></use>
@@ -100,7 +100,7 @@
           <label class="text -label" for="">
             <%= builder.object.fuel_name %> for transportation
           </label>
-          <%= builder.number_field :amount, min: 0  %>
+          <%= builder.number_field :amount, min: 0, class: "-js-is-resetable"  %>
           <%= builder.select :unit, select_options(Analysis::FUEL_UNITS, builder.object.unit) %>
           <span class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
             <svg class="c-icon -small">
@@ -118,7 +118,7 @@
           <label class="text -label" for="">
             <%= builder.object.fuel_name %> for irrigation
           </label>
-          <%= builder.number_field :amount, min: 0  %>
+          <%= builder.number_field :amount, min: 0, class: "-js-is-resetable"  %>
           <%= builder.select :unit, select_options(Analysis::FUEL_UNITS, builder.object.unit) %>
           <span class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
             <svg class="c-icon -small">
@@ -135,7 +135,7 @@
           <label class="text -label" for="">
             <%= builder.object.fuel_name %> for other purposes
           </label>
-          <%= builder.number_field :amount, min: 0  %>
+          <%= builder.number_field :amount, min: 0, class: "-js-is-resetable"  %>
           <%= builder.select :unit, select_options(Analysis::FUEL_UNITS, builder.object.unit) %>
           <span class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
             <svg class="c-icon -small">

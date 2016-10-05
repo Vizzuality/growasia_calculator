@@ -1,6 +1,6 @@
 <span class="-js-input-wrapper">
   <%= f.hidden_field :category, value: Category::MANURE %>
-  <%= f.number_field :amount, value: f.object.amount || 0, min: 0 %>
+  <%= f.number_field :amount, value: f.object.amount || 0, min: 0, class: "-js-is-resetable" %>
   <%= f.select :addition_type, select_options(Analysis::MANURE_TYPES, f.object.addition_type) %>
   <span class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= f.object.amount %>">
     <svg class="c-icon -small">
@@ -8,5 +8,5 @@
     </svg>
   </span>
   <%= f.hidden_field :_destroy %>
-  <%= link_to image_tag("delete.svg", size: "18x18"), "#", class: "-js-remove_fields" %>
+  <%= link_to image_tag("delete.svg", size: "18x18"), "#", class: "-js-remove-fields" %>
 </span>
