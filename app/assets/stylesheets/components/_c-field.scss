@@ -196,10 +196,15 @@
     }
   }
 
-  .btn-reset {
+  .options-wrapper {
     position: absolute;
-    bottom: rem(10px);
+    top: rem(30px);
+    bottom: 0;
     right: rem(-20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
 
     svg {
