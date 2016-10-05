@@ -1,4 +1,4 @@
-<span class="-js-input-wrapper">
+<span class="-js-input-wrapper input-wrapper">
   <%= f.hidden_field :category, value: Category::MANURE %>
   <%= f.number_field :amount, value: f.object.amount || 0, min: 0, class: "-js-is-resetable" %>
   <%= f.select :addition_type, select_options(Analysis::MANURE_TYPES, f.object.addition_type) %>

@@ -5,7 +5,6 @@
   display: inline-block;
   position: relative;
   padding: 0;
-  height: rem(96px);
   transition: .2s ease-in;
 
   &.-default {
@@ -21,6 +20,10 @@
       transform: none;
       margin: 0 0 3px;
     }
+  }
+
+  &.-fixed-height {
+    height: rem(96px);
   }
 
   // STATES
@@ -199,8 +202,9 @@
   }
 
   .options-wrapper {
+    height: 40px;
     position: absolute;
-    top: rem(30px);
+    top: rem(-10px);
     bottom: 0;
     right: rem(-20px);
     display: flex;
@@ -217,5 +221,9 @@
   &.-disabled {
     overflow: hidden;
     height: 0 !important;
+  }
+
+  .input-wrapper {
+    position: relative;
   }
 }
