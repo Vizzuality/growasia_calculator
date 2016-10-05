@@ -2,9 +2,11 @@
  * Field
  */
 .c-field {
+  display: inline-block;
   position: relative;
   padding: 0;
-  display: inline-block;
+  height: rem(96px);
+  transition: .2s ease-in;
 
   &.-default {
     padding: 0;
@@ -210,5 +212,10 @@
     svg {
       fill: $white;
     }
+  }
+
+  &.-disabled {
+    overflow: hidden;
+    height: 0 !important;
   }
 }

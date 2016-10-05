@@ -25,6 +25,7 @@
       'change #country' : 'onChangeCountry',
       'change #analysis_geo_location_id' : 'onChangeRegion',
       'change .js-required-checkbox' : 'onChangeRequiredCheckbox',
+      'change .-js-next-step-switcher' : 'onChangeNextStepSwitcher',
     },
 
     initialize: function(settings) {
@@ -316,6 +317,13 @@
 
     submitForm: function() {
       this.$form.submit();
+    },
+
+    onChangeNextStepSwitcher: function(e) {
+      var inputId = $(e.currentTarget).attr('id');
+      var $hiddenInputToBeShown = $('#' + inputId + 'Amount');
+
+      $hiddenInputToBeShown.removeClass('-disabled');
     }
 
   });
