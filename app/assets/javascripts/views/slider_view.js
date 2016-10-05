@@ -145,6 +145,7 @@
           $('#region-field').siblings('.select2-container').removeClass('-error');
           $('#region-field').removeClass('-error');
         }
+
       } else {
         $("#state-selection").addClass("hidden");
       }

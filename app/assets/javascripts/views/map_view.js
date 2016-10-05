@@ -101,7 +101,6 @@
      */
     //STYLES
     getStyles: function(feature) {
-      // debugger
       var style = this.model.get('country') ? {
         fillColor: this.getColor(feature.properties),
         weight: 2,

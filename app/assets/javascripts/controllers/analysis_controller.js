@@ -76,14 +76,19 @@
     },
 
     addSelectLib: function() {
-      $('select').select2({
+
+      var $selectors = $('select');
+
+      $selectors.select2({
         theme: "default",
         minimumResultsForSearch: -1
       });
 
-      if ($('select').hasClass('-js-required')) {
-        $('select').siblings('.select2-container').addClass('-js-required');
-      }
+      $.each($selectors, function(i, input) {
+        if ($(input).hasClass('-js-required')) {
+          $(input).siblings('.select2-container').addClass('-js-required');
+        }
+      }.bind(this))
     },
 
     selectFields: function() {
