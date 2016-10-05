@@ -133,13 +133,13 @@
 
     enableResets: function() {
       $(document).on('change', 'input', function(event) {
-        if($(this).next('.reset-analysis').hasClass('is-hidden')) {
-          $(this).next('.reset-analysis').removeClass('is-hidden');
+        if($(this).nextAll('.reset-analysis').hasClass('is-hidden')) {
+          $(this).nextAll('.reset-analysis').removeClass('is-hidden');
         }
       });
 
       $(document).on('click', '.reset-analysis', function(event) {
-        var $input = $(this).prev('input');
+        var $input = $(this).prevAll('input');
         $input.val($(this).data('previous-value'));
         $input.trigger('change');
         $(this).addClass('is-hidden');
