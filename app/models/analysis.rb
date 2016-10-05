@@ -69,7 +69,7 @@ class Analysis < ApplicationRecord
 
   def fi_value
     # FI high with manure = Manure
-    return geo_location.fi_high_w_manure if manures.any?
+    return geo_location.fi_high_w_manure if manures.any? && manures.inject(0){|sum,t| sum += t.amount} > 0.0
 
     return geo_location.fi_low if fi_low?
 
