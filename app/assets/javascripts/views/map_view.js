@@ -35,7 +35,7 @@
       },
       Myanmar: {
         url: '../myanmar.geojson',
-        center: [12, 100],
+        center: [18, 100],
         zoom: 5
       },
       Indonesia: {
@@ -101,12 +101,13 @@
      */
     //STYLES
     getStyles: function(feature) {
-      var style = this.mode === 'regions' ? {
+      // debugger
+      var style = this.model.get('country') ? {
         fillColor: this.getColor(feature.properties),
         weight: 2,
-        opacity: 0.8,
+        opacity: 0.7,
         color: '#fafb00',
-        fillOpacity: 0.8
+        fillOpacity: this.getOpacity(feature.properties)
       } : {
         fillColor: this.getColor(feature.properties),
         weight: 2,
@@ -123,12 +124,14 @@
     },
 
     getOpacity: function(d) {
-      //As sources are different, names are different.
-      //This will be fixed once we'will get the correct data
-      return d.selected ?  1 :
-             this.countries.includes(d.admin) ? 0.8 :
-             this.countries.includes(d.ADMIN) ? 0.8 :
-             0.3;
+      if (this.model.get('country')) {
+        return d.selected ?  1 :
+               0.7;
+      } else {
+        return d.selected ?  1 :
+               this.countries.includes(d.admin) ? 0.8 :
+               0.3;
+      }
     },
 
     //EVENTS
