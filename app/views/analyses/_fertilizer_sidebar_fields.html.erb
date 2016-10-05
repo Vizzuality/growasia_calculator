@@ -3,12 +3,18 @@
   <%= f.number_field :amount, value: f.object.amount || 0, min: 0, class: "-js-is-resetable" %>
   <%= f.select :addition_type, select_options(Analysis::FERTILIZER_TYPES, f.object.addition_type) %>
   <span class="options-wrapper">
-    <span class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= f.object.amount %>">
+    <button class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= f.object.amount %>">
       <svg class="c-icon -small">
         <use xlink:href="#icon-reset"></use>
       </svg>
+    </button>
+    <span>
+      <%= f.hidden_field :_destroy %>
+      <button class="-js-remove_fields">
+        <svg class="c-icon -small">
+          <use xlink:href="#icon-delete"></use>
+        </svg>
+      </button>
     </span>
-    <%= f.hidden_field :_destroy %>
-    <%= link_to image_tag("delete.svg", size: "18x18"), "#", class: "-js-remove-fields" %>
   </span>
 </span>
