@@ -1,4 +1,4 @@
-<div>
+<span>
   <%= f.hidden_field :category, value: Category::MANURE %>
   <%= f.number_field :amount, value: f.object.amount || 0, min: 0 %>
   <%= f.select :addition_type, select_options(Analysis::MANURE_TYPES, f.object.addition_type) %>
@@ -7,4 +7,6 @@
       <use xlink:href="#icon-reset"></use>
     </svg>
   </span>
-</div>
+  <%= f.hidden_field :_destroy %>
+  <%= link_to image_tag('delete.svg'), '#', class: "remove_fields" %>
+</span>

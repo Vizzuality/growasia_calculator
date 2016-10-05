@@ -73,6 +73,7 @@
       this.enableResets();
 
       this.addFields();
+      this.removeFields();
 
       this.addSelectLib();
     },
