@@ -1,0 +1,10 @@
+<div>
+  <%= f.hidden_field :category, value: Category::MANURE %>
+  <%= f.number_field :amount, value: f.object.amount || 0, min: 0 %>
+  <%= f.select :addition_type, select_options(Analysis::MANURE_TYPES, f.object.addition_type) %>
+  <span class="btn-reset reset-analysis is-hidden" data-previous-value="<%= f.object.amount %>">
+    <svg class="c-icon -small">
+      <use xlink:href="#icon-reset"></use>
+    </svg>
+  </span>
+</div>

@@ -72,6 +72,8 @@
 
       this.enableResets();
 
+      this.addFields();
+
       this.addSelectLib();
     },
 
@@ -110,6 +112,21 @@
         $(this).prev('input[type=hidden]').val('1');
         $(this).parent('span').hide();
         return event.preventDefault();
+      });
+    },
+
+    addFields: function() {
+      var that = this;
+      $(document).on('click', '.add_fields', function(event) {
+        event.preventDefault();
+        var regexp, time;
+        time = new Date().getTime();
+        regexp = new RegExp($(this).data('id'), 'g');
+
+        var $newFields = $(this).data('fields').replace(regexp, time)
+
+        $(this).parent('label').next('.fields-container').append($newFields);
+        that.addSelectLib();
       });
     },
 
