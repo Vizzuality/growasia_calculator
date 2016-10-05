@@ -10,32 +10,36 @@
           <%= f.select:tillage, select_options(Analysis::TILLAGES, analysis.tillage), {} %>
         </div>
       </div>
-      <%= f.fields_for :fertilizers do |builder| %>
-        <div>
-          <div class="c-field -narrow -light -full">
-            <label class="text -label" for=""><%= builder.object.fertilizer_name %></label>
-            <%= builder.number_field :amount, min: 0 %>
-            <span class="btn-reset reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
-              <svg class="c-icon -small">
-                <use xlink:href="#icon-reset"></use>
-              </svg>
-            </span>
-          </div>
-        </div>
-      <% end %>
-      <%= f.fields_for :manures do |builder| %>
-        <div>
-          <div class="c-field -narrow -light -full">
-            <label class="text -label" for=""><%= builder.object.manure_name %></label>
-            <%= builder.number_field :amount, min: 0 %>
-            <span class="btn-reset reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
-              <svg class="c-icon -small">
-                <use xlink:href="#icon-reset"></use>
-              </svg>
-            </span>
-          </div>
-        </div>
-      <% end %>
+      <div class="c-field -narrow -light -double">
+        <label class="text -label" for="">
+          Synthetic fertilizers
+        </label>
+        <%= f.fields_for :fertilizers do |builder| %>
+          <%= builder.hidden_field :category, value: Category::FERTILIZER %>
+          <%= builder.number_field :amount, min: 0 %>
+          <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES, builder.object.addition_type) %>
+          <span class="btn-reset reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
+            <svg class="c-icon -small">
+              <use xlink:href="#icon-reset"></use>
+            </svg>
+          </span>
+        <% end %>
+      </div>
+      <div class="c-field -narrow -light -double">
+        <label class="text -label" for="">
+          Manures
+        </label>
+        <%= f.fields_for :manures do |builder| %>
+          <%= builder.hidden_field :category, value: Category::MANURE %>
+          <%= builder.number_field :amount, min: 0 %>
+          <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES, builder.object.addition_type) %>
+          <span class="btn-reset reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
+            <svg class="c-icon -small">
+              <use xlink:href="#icon-reset"></use>
+            </svg>
+          </span>
+        <% end %>
+      </div>
       <div>
         <div class="c-field -narrow -light -full">
           <label class="text -label" for="">Agrochemicals amount</label>

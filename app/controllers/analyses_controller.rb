@@ -42,9 +42,12 @@ class AnalysesController < ApplicationController
     end
 
     def build_nested
-      if @analysis.new_record? || !@analysis.nutrient_managements.any?
-        @analysis.nutrient_managements.build
+      [:nutrient_managements, :fertilizers, :manures].each do |method|
+        if @analysis.new_record? || !@analysis.send(method).any?
+          @analysis.send(method).build
+        end
       end
+
       Analysis::FUEL_TYPES.each do |fuel|
         if @analysis.new_record? || !@analysis.has_fuel?(fuel[:slug], :transportation)
           @analysis.transportation_fuels.build(addition_type: fuel[:slug])
