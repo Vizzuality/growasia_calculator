@@ -29,7 +29,7 @@
         zoom: 5
       },
       Philippines: {
-        url: '../philipines.geojson',
+        url: '../philippines.geojson',
         center: [10, 125],
         zoom: 5
       },
