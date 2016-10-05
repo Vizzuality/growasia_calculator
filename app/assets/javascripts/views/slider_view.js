@@ -26,6 +26,7 @@
       'change #analysis_geo_location_id' : 'onChangeRegion',
       'change .js-required-checkbox' : 'onChangeRequiredCheckbox',
       'change .-js-next-step-switcher' : 'onChangeNextStepSwitcher',
+      'change .-js-select-fields': 'onSelectFields'
     },
 
     initialize: function(settings) {
@@ -230,6 +231,34 @@
       // Let's handle the different key events from here
     },
 
+    onSelectFields: function(e) {
+      e && e.preventDefault();
+      var $target = $(e.target);
+      var selectedVal = $target.val();
+
+      if(!!selectedVal) {
+        var regexp, time;
+        time = new Date().getTime();
+        regexp = new RegExp($target.data('id'), 'g');
+
+        var $newFields = $target.data('fields').replace(regexp, time)
+        var selectId = $($newFields).find('select').attr('id');
+
+        $('#options-container').append($newFields);
+        $('#'+selectId).val(selectedVal);
+        this.addSelectLib();
+        $target.val('');
+        $target.trigger('change');
+      }
+    },
+
+    onChangeNextStepSwitcher: function(e) {
+      var inputId = $(e.currentTarget).attr('id');
+      var $hiddenInputToBeShown = $('#' + inputId + 'Amount');
+
+      $hiddenInputToBeShown.removeClass('-disabled');
+    },
+
 
     // HELPERS
     getStyle: function(i) {
@@ -260,6 +289,13 @@
           x: -this.$el.width() + ((i * constant) + constant) + constantOpened
         }
       }
+    },
+
+    addSelectLib: function() {
+      $('select').select2({
+        theme: "default",
+        minimumResultsForSearch: -1
+      });
     },
 
     // TODO: I would like to change this...
@@ -317,13 +353,6 @@
 
     submitForm: function() {
       this.$form.submit();
-    },
-
-    onChangeNextStepSwitcher: function(e) {
-      var inputId = $(e.currentTarget).attr('id');
-      var $hiddenInputToBeShown = $('#' + inputId + 'Amount');
-
-      $hiddenInputToBeShown.removeClass('-disabled');
     }
 
   });

@@ -92,26 +92,6 @@
     },
 
     selectFields: function() {
-      var that = this;
-      $(document).on('change', '.-js-select-fields', function(event) {
-        event.preventDefault();
-        var selectedVal = $(this).val();
-
-        if(!!selectedVal) {
-          var regexp, time;
-          time = new Date().getTime();
-          regexp = new RegExp($(this).data('id'), 'g');
-
-          var $newFields = $(this).data('fields').replace(regexp, time)
-          var selectId = $($newFields).find('select').attr('id');
-
-          $('#options-container').append($newFields);
-          $('#'+selectId).val(selectedVal);
-          that.addSelectLib();
-          $(this).val('');
-          $(this).trigger('change');
-        }
-      });
     },
 
     removeFields: function() {
