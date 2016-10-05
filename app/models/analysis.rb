@@ -39,7 +39,7 @@ class Analysis < ApplicationRecord
     reject_if: proc { |a| a['amount'].blank? }
 
 
-  validates :area, :yield, :crop, presence: true
+  validates :area, :yield, :crop, :geo_location_id, presence: true
 
 
   def rice?
