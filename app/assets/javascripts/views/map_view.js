@@ -15,7 +15,7 @@
     geometries: {
       all: {
         url: '../asia.geo.json',
-        center: [12.24, 105],
+        center: [12.24, 110],
         zoom: 4
       },
       Cambodia: {
@@ -29,18 +29,18 @@
         zoom: 5
       },
       Philippines: {
-        url: '../philipines.geojson',
+        url: '../philippines.geojson',
         center: [10, 125],
         zoom: 5
       },
       Myanmar: {
         url: '../myanmar.geojson',
-        center: [12, 100],
+        center: [18, 100],
         zoom: 5
       },
       Indonesia: {
         url: '../indonesia.geojson',
-        center: [0, 108],
+        center: [0, 120],
         zoom: 4
       }
     },
@@ -101,12 +101,13 @@
      */
     //STYLES
     getStyles: function(feature) {
-      var style = this.mode === 'regions' ? {
+      // debugger
+      var style = this.model.get('country') ? {
         fillColor: this.getColor(feature.properties),
         weight: 2,
-        opacity: 0.8,
+        opacity: 0.7,
         color: '#fafb00',
-        fillOpacity: 0.8
+        fillOpacity: this.getOpacity(feature.properties)
       } : {
         fillColor: this.getColor(feature.properties),
         weight: 2,
@@ -123,12 +124,14 @@
     },
 
     getOpacity: function(d) {
-      //As sources are different, names are different.
-      //This will be fixed once we'will get the correct data
-      return d.selected ?  1 :
-             this.countries.includes(d.admin) ? 0.8 :
-             this.countries.includes(d.ADMIN) ? 0.8 :
-             0.3;
+      if (this.model.get('country')) {
+        return d.selected ?  1 :
+               0.7;
+      } else {
+        return d.selected ?  1 :
+               this.countries.includes(d.admin) ? 0.8 :
+               0.3;
+      }
     },
 
     //EVENTS
@@ -146,7 +149,7 @@
       if (layer.feature.properties.admin) {
         this.model.set({country: layer.feature.properties.admin})
       } else {
-        this.model.set({region: layer.feature.properties.id_1})
+        this.model.set({region: layer.feature.properties.slug})
       }
     },
 
@@ -182,10 +185,10 @@
 
       _.each(this.map._layers, function(layer){
 
-        if (layer.feature && layer.feature.properties.id_1 === region_id) {
+        if (layer.feature && layer.feature.properties.slug === region_id) {
           layer.feature.properties.selected = true;
 
-          layer.setStyle({fillColor: '#2a5a3a'});
+          layer.setStyle({fillColor: '#2a5a3a', fillOpacity: 1});
           this.unSelectPrevious();
 
           this.selectedLayer = layer;
