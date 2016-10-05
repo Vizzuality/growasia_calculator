@@ -83,12 +83,6 @@
         theme: "default",
         minimumResultsForSearch: -1
       });
-
-      $.each($selectors, function(i, input) {
-        if ($(input).hasClass('-js-required')) {
-          $(input).siblings('.select2-container').addClass('-js-required');
-        }
-      }.bind(this))
     },
 
     selectFields: function() {
