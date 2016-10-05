@@ -15,7 +15,7 @@
     geometries: {
       all: {
         url: '../asia.geo.json',
-        center: [12.24, 105],
+        center: [12.24, 110],
         zoom: 4
       },
       Cambodia: {
@@ -40,7 +40,7 @@
       },
       Indonesia: {
         url: '../indonesia.geojson',
-        center: [0, 108],
+        center: [0, 120],
         zoom: 4
       }
     },

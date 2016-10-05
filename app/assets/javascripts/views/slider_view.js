@@ -130,12 +130,21 @@
     // UI EVENTS
     onChangeCountry: function(e) {
       var value = $(e.currentTarget).val();
+
       if (!!value) {
         $.get('/geo_locations/states_for/'+value);
         // It's not my best code...
         this.$countryLabel.addClass("-hidden");
         this.$regionField.removeClass("-hidden");
         this.$regionLabel.removeClass("-hidden");
+
+        if ($(e.currentTarget).siblings('.select2-container').hasClass('-error')) {
+          $(e.currentTarget).siblings('.select2-container').removeClass('-error');
+          $(e.currentTarget).parents('.c-field').removeClass('-error');
+          $(e.currentTarget).removeClass('-error');
+          $('#region-field').siblings('.select2-container').removeClass('-error');
+          $('#region-field').removeClass('-error');
+        }
       } else {
         $("#state-selection").addClass("hidden");
       }

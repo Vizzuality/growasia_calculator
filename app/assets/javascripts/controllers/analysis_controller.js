@@ -80,6 +80,10 @@
         theme: "default",
         minimumResultsForSearch: -1
       });
+
+      if ($('select').hasClass('-js-required')) {
+        $('select').siblings('.select2-container').addClass('-js-required');
+      }
     },
 
     selectFields: function() {
