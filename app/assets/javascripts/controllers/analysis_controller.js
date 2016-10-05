@@ -87,7 +87,7 @@
 
     selectFields: function() {
       var that = this;
-      $(document).on('change', '.select_fields', function(event) {
+      $(document).on('change', '.-js-select_fields', function(event) {
         event.preventDefault();
         var selectedVal = $(this).val();
 
@@ -109,16 +109,16 @@
     },
 
     removeFields: function() {
-      $(document).on('click', '.remove_fields', function(event) {
+      $(document).on('click', '.-js-remove_fields', function(event) {
         $(this).prev('input[type=hidden]').val('1');
-        $(this).parent('span').hide();
+        $(this).parents('.-js-input-wrapper').hide();
         return event.preventDefault();
       });
     },
 
     addFields: function() {
       var that = this;
-      $(document).on('click', '.add_fields', function(event) {
+      $(document).on('click', '.-js-add_fields', function(event) {
         event.preventDefault();
         var regexp, time;
         time = new Date().getTime();
@@ -133,12 +133,12 @@
 
     enableResets: function() {
       $(document).on('change', 'input', function(event) {
-        if($(this).nextAll('.reset-analysis').hasClass('is-hidden')) {
-          $(this).nextAll('.reset-analysis').removeClass('is-hidden');
+        if($(this).nextAll('.-js-reset-analysis').hasClass('is-hidden')) {
+          $(this).nextAll('.-js-reset-analysis').removeClass('is-hidden');
         }
       });
 
-      $(document).on('click', '.reset-analysis', function(event) {
+      $(document).on('click', '.-js-reset-analysis', function(event) {
         var $input = $(this).prevAll('input');
         $input.val($(this).data('previous-value'));
         $input.trigger('change');

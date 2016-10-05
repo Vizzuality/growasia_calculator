@@ -42,8 +42,12 @@ class AnalysesController < ApplicationController
     end
 
     def build_nested
-      [:nutrient_managements, :fertilizers, :manures].each do |method|
-        if @analysis.new_record? || !@analysis.send(method).any?
+      if @analysis.new_record? || !@analysis.nutrient_managements.any?
+        @analysis.nutrient_managements.build
+      end
+
+      [:fertilizers, :manures].each do |method|
+        if !@analysis.new_record? && !@analysis.send(method).any?
           @analysis.send(method).build
         end
       end

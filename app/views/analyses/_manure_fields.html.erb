@@ -1,4 +1,4 @@
-<span>
+<span class="-js-input-wrapper">
   <%= f.hidden_field :category, value: Category::MANURE %>
   <span class="c-field -little">
     <%= f.number_field :amount, class: '-right -js-numeric', autocomplete: 'off', min: '0' %>
@@ -9,5 +9,5 @@
     <%= f.select :addition_type, select_options(Analysis::MANURE_TYPES) %>
   </span>
   <%= f.hidden_field :_destroy %>
-  <%= link_to image_tag('delete.svg'), '#', class: "remove_fields" %>
+  <%= link_to image_tag('delete.svg'), '#', class: "-js-remove_fields" %>
 </span>

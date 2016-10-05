@@ -52,7 +52,7 @@ module AnalysesHelper
       render(association.to_s.singularize + "_fields", f: builder)
     end
     select_tag("#{id}_#{association.to_s}", options, include_blank: name,
-               class: "select_fields", data: {id: id, fields: fields.gsub("\n", "")})
+               class: "-js-select_fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
 
   def icon_to_add_more(f, association)
@@ -61,6 +61,6 @@ module AnalysesHelper
     fields = f.fields_for(association, new_object, child_index: id) do |builder|
       render(association.to_s.singularize + "_sidebar_fields", f: builder)
     end
-    link_to(image_tag("add.svg", size: "18x18"), "#", class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
+    link_to(image_tag("add.svg", size: "18x18"), "#", class: "-js-add_fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
 end
