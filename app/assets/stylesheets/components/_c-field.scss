@@ -202,8 +202,8 @@
   }
 
   .options-wrapper {
-    height: 40px;
     position: absolute;
+    height: 40px;
     top: rem(-10px);
     bottom: 0;
     right: rem(-20px);
@@ -215,6 +215,34 @@
 
     svg {
       fill: $white;
+    }
+
+    .btn-reset {
+      position: relative;
+    }
+
+    .reset-tooltip {
+      position: absolute;
+      left: -10px;
+      top: -5px;
+      transform: translate(-100%, -25%);
+      width: 170px;
+      padding: 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      background-color: $black;
+      color: $white;
+      letter-spacing: -0.4px;
+      text-align: left;
+
+      &:after {
+        content: "";
+        @include equi-triangle (5px, $black, right);
+        position: absolute;
+        right: -5px;
+        top: 50%;
+        transform: translatey(-50%);
+      }
     }
   }
 
