@@ -158,7 +158,7 @@
     letter-spacing: 0.7px;
     opacity: .7;
     text-transform: none;
-    margin-bottom: 8px;
+    margin-bottom: rem(8px);
   }
 
   &.-analysis-total {
@@ -172,8 +172,17 @@
   }
 
   &.-analysis-units {
-    font-size: 16px;
+    font-size: rem(16px);
     font-weight: 500;
+  }
+
+  &.-units-highlighted {
+    max-width: rem(100px);
+    color: $black;
+    opacity: .3;
+    font-size: rem(22px);
+    font-weight: 700;
+    line-height: rem(20px);
   }
 
 
@@ -190,5 +199,13 @@
 
   &.-light {
     color: $white;
+  }
+
+  &.-highlighted {
+    color: $color-2;
+  }
+
+  &.-bold {
+    font-weight: 700;
   }
 }

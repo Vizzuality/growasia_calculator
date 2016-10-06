@@ -1,18 +1,28 @@
-<div class="text -analysis-total">
-  {{#if totalCompare}}
-    Introducing alternative practices would result in:
-  {{else}}
-    Your current estimated emission are:
-  {{/if}}
-</div>
-<div class="total">
+{{#if totalCompare}}
+  <div class="main-figures">
+    <div>
+      <span class="title text -summary-small">Current practices</span>
+      <p class="value text -summary-big">{{total}}</p>
+    </div>
+    <div>
+      <span class="title text -summary-small">Potential future</span>
+      <p class="value text -summary-big">{{totalCompare}}</p>
+    </div>
+  </div>
+  <p class="text -analysis-total -bold">Introducing alternative practices would result in:</p>
+  <div class="susbtraction">
+    <p class="value text -figure-extra-big -highlighted">{{substraction}}</p>
+    <span class="text -units-highlighted -medium">t of CO<sub>2</sub>e per year</span>
+  </div>
+{{else}}
+  <p class="text -analysis-total">Your current estimated emission are:</p>
+  <div class="total">
   <div class="value-box">
     <span class="value text -figure-extra-big">{{total}}</span>
-    {{#if totalCompare}}
-    <span class="value text -figure-extra-big">{{totalCompare}}</span>
-    {{/if}}
   </div>
   <div class="value-unit">
     <span class="text -analysis-units">t of CO<sub>2</sub>e per year</span>
   </div>
 </div>
+{{/if}}
+

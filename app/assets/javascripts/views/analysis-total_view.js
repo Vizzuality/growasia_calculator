@@ -36,11 +36,15 @@
       var analysisCompare = this.modelCompare.get('analysis');
 
       var total = (!!analysis) ? this.formatNumbers(analysis[this.model.get('type')]) : null;
+
       var totalCompare = (!!analysisCompare) ? this.formatNumbers(analysisCompare[this.modelCompare.get('type')]) : null;
+
+      var substraction = (totalCompare - total).toFixed(2);
 
       this.$el.html(this.template({
         total: total,
-        totalCompare: totalCompare
+        totalCompare: totalCompare,
+        substraction: substraction
       }));
     },
 

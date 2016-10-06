@@ -1,54 +1,28 @@
-// ANALYSIS TOTAL
-// <div class="c-analysis-total">
-//   <div class="description">Your current estimated emission are:</div>
-//   <div class="total">
-//     <div class="value-box">
-//       <span class="value">144</span>
-//       <span class="info"><svg><use xlink:href="#icon-help"></use></svg></span>
-//     </div>
-//   </div>
-// </div>
-
 .c-analysis-total {
+  text-align: center;
 
-  // Description
-  .description {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
+  .main-figures {
+    display: flex;
+    justify-content: center;
+    margin-bottom: rem(10px);
+
+    > div {
+      margin-left: rem(30px);
+    }
   }
 
-  // Total value
-  .total {
-    text-align: center;
+  .susbtraction {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
 
-    .value-box {
+    .value {
+      margin-right: rem(4px);
+    }
+
+    .-units-highlighted {
       position: relative;
-      display: inline-block;
-      margin: 0 auto;
-
-      .value {
-        margin: 0 0 0 rem(100px);
-        &:first-child {
-          margin: 0;
-        }
-      }
-
-      .info {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: rem(24px);
-        height: rem(24px);
-        transform: translate(50%,0%);
-        cursor: pointer;
-
-        svg {
-          width: 100%;
-          height: 100%;
-          fill: rgba($font-color-2, 0.3);
-        }
-      }
+      top: -22px;
     }
   }
 }
