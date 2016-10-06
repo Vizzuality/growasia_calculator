@@ -52,7 +52,8 @@ class Analysis < ApplicationRecord
     # (Area * Cropland_SOCref*FLU*FMG*FI) /20 * 44/12
     fmg = fmg_value
     fi = fi_value
-    ((area * geo_location.soc_ref * geo_location.flu ) - ( area * geo_location.soc_ref * geo_location.flu * fmg * fi)) / 20 * 44/12
+    flu = flu_value
+    ((area * geo_location.soc_ref * flu ) - ( area * geo_location.soc_ref * flu * fmg * fi)) / 20 * 44/12
   end
 
   def emissions_from_soil_management_changed old_fmg, old_fi
@@ -60,7 +61,19 @@ class Analysis < ApplicationRecord
     # (Area * Cropland_SOCref*FLU*FMG*FI) /20 * 44/12
     fmg = fmg_value
     fi = fi_value
-    ((area * geo_location.soc_ref * geo_location.flu * old_fmg * old_fi) - ( area * geo_location.soc_ref * geo_location.flu * fmg * fi)) / 20 * 44/12
+    flu = flu_value
+    ((area * geo_location.soc_ref * flu * old_fmg * old_fi) - ( area * geo_location.soc_ref * flu * fmg * fi)) / 20 * 44/12
+  end
+
+  def flu_value
+    case crop
+    when "coffee", "tea", "cacao"
+      1.0
+    when "paddy-rice"
+      1.10
+    else
+      geo_location.flu
+    end
   end
 
   def fmg_value
