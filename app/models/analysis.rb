@@ -42,7 +42,8 @@ class Analysis < ApplicationRecord
   validates :area, :yield, :crop, :geo_location_id, presence: true
 
 
-  # Emissions Equations
+  ### Soil Management
+
   def emissions_from_soil_management
     #Stable soil carbon content (t CO2e) =
     # (Area * Cropland_SOCref*FLU*FMG*FI) /20 * 44/12
@@ -60,6 +61,8 @@ class Analysis < ApplicationRecord
     flu = flu_value
     ((area * geo_location.soc_ref * flu * old_fmg * old_fi) - ( area * geo_location.soc_ref * flu * fmg * fi)) / 20 * 44/12
   end
+
+  ## Helper methods
 
   def flu_value
     case crop
@@ -90,15 +93,6 @@ class Analysis < ApplicationRecord
     1.0
   end
 
-  # Assumed that manures have been testd before reaching this point see fi_value
-  # method
-  def fi_low?
-    return false if ["coffee", "tea", "cacao", "paddy-rice"].include?(crop)
-    # FI Low: NO synthetic or Manure and only residue-burning
-    !fertilizers.any? &&
-    crop_management_practices.present? && crop_management_practices == ["residue-burning"]
-  end
-
   def residue_burning?
     crop_management_practices.present? &&
       crop_management_practices.include?("residue-burning")
@@ -109,9 +103,22 @@ class Analysis < ApplicationRecord
       crop_management_practices.include?("n-fix")
   end
 
+  # Assumed that manures have been testd before reaching this point see fi_value
+  # method
+  def fi_low?
+    return false if perennial_or_paddy?
+    # FI Low: NO synthetic or Manure and only residue-burning
+    !fertilizers.any? &&
+    crop_management_practices.present? && crop_management_practices == ["residue-burning"]
+  end
+
   # Assumed that manures have been tested before reaching this point, as
   # there can't be any manures;
   def fi_medium?
+    # WITHOUT synthetic fertilizers and WITHOUT manures
+    # for perennial or paddy-rice
+    return true if perennial_or_paddy? && !fertilizers.any?
+
     # FI medium =
     #   WITH synthetic fertilizers or nitrogen fixing crops AND
     #   residue burning
@@ -168,6 +175,9 @@ class Analysis < ApplicationRecord
   # Assumed that manures have been tested before reaching this point, as
   # there can't be any manures;
   def fi_high_wo_manure?
+    # WITH synthetic fertilizers application and WITHOUT manures
+    # for perennial or paddy-rice
+    return true if perennial_or_paddy? && fertilizers.any?
     #
     # WITH either (one+ syntehtic fertilizers) OR n-fixing
     # NO burning of residues

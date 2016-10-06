@@ -4,7 +4,7 @@ class AnalysisTest < ActiveSupport::TestCase
 
   test "should calculate emissions_from_rice_cultivation" do
     analysis = Analysis.new({
-      crop: "rice",
+      crop: Analysis::PADDY_RICE,
       area: 100,
       yield: 100,
       rice_type: "paddy",
@@ -49,7 +49,7 @@ class AnalysisTest < ActiveSupport::TestCase
       flu: 0.48
     })
     analysis = Analysis.new({
-      crop: "corn",
+      crop: Analysis::CORN,
       area: 100,
       yield: 100,
       geo_location: gl,
@@ -83,7 +83,7 @@ class AnalysisTest < ActiveSupport::TestCase
       flu: 0.48
     })
     analysis = Analysis.new({
-      crop: "corn",
+      crop: Analysis::CORN,
       area: 100,
       yield: 100,
       geo_location: gl,
@@ -120,7 +120,7 @@ class AnalysisTest < ActiveSupport::TestCase
       flu: 0.58
     })
     analysis = Analysis.new({
-      crop: "vegetables",
+      crop: Analysis::VEGETABLES,
       area: 500,
       yield: 100,
       geo_location: gl,
@@ -173,7 +173,7 @@ class AnalysisTest < ActiveSupport::TestCase
       flu: dummy_flu
     })
     analysis = Analysis.new({
-      crop: "vegetables",
+      crop: Analysis::VEGETABLES,
       area: 500,
       yield: 100,
       geo_location: gl
@@ -182,12 +182,12 @@ class AnalysisTest < ActiveSupport::TestCase
 
     assert_equal dummy_flu, analysis.flu_value
 
-    analysis.crop = "paddy-rice"
+    analysis.crop = Analysis::PADDY_RICE
     analysis.save
 
     assert_equal 1.10, analysis.flu_value
 
-    analysis.crop = "coffee"
+    analysis.crop = Analysis::COFFEE
     analysis.save
 
     assert_equal 1.0, analysis.flu_value
