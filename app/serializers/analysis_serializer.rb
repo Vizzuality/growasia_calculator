@@ -54,7 +54,7 @@ class AnalysisSerializer < ActiveModel::Serializer
         total: val.to_f,
         total_per_yield: (val/per_yield).to_f
       }
-    else
+    elsif !object.perennial?
       val = object.emissions_from_crop_residue_decomposition
       emissions_by_source << {
         slug: "residue-decomposition",
@@ -65,14 +65,16 @@ class AnalysisSerializer < ActiveModel::Serializer
     end
     total += val
 
-    val = object.emissions_from_crop_residue_or_rice_straw_burning
-    emissions_by_source << {
-      slug: "residue-burning",
-      name: "#{object.rice? ? "Rice straw" : "Crop residue"} burning",
-      total: val.to_f,
-      total_per_yield: (val/per_yield).to_f
-    }
-    total += val
+    if !object.perennial?
+      val = object.emissions_from_crop_residue_or_rice_straw_burning
+      emissions_by_source << {
+        slug: "residue-burning",
+        name: "#{object.rice? ? "Rice straw" : "Crop residue"} burning",
+        total: val.to_f,
+        total_per_yield: (val/per_yield).to_f
+      }
+      total += val
+    end
 
     val = object.emissions_from_fertilizers_application
     emissions_by_source << {
