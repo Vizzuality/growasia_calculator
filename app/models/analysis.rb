@@ -77,6 +77,7 @@ class Analysis < ApplicationRecord
   end
 
   def fmg_value
+    return 1.0 if ["coffee", "tea", "cacao", "paddy-rice"].include?(crop)
     geo_location.send(TILLAGES.select{|t| t[:slug] == tillage}.first[:method])
   end
 
