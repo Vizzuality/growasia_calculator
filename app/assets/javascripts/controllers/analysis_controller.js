@@ -20,12 +20,17 @@
 
       new App.View.Selectors({el: '#mapSelectors'});
 
+      var infoModalView = new App.View.ModalInfo({});
+
       this.addSelectLib();
       this.removeFields();
       this.selectFields();
     },
 
     show: function(params) {
+      new App.View.Header({
+        el: '#headerView'
+      });
 
       var analysisModel = new App.Model.Analysis({
         id: params.id,
@@ -66,6 +71,7 @@
 
       var shareModalView = new App.View.Share({});
       var saveModalView = new App.View.Save({});
+      var infoModalView = new App.View.ModalInfo({});
 
       // Fetch the analysis before render the graphs
       analysisModel.fetch();
