@@ -233,7 +233,7 @@ class Analysis < ApplicationRecord
   end
 
   def emissions_from_crop_residue_or_rice_straw_burning
-    return 0.0 unless crop_management_practices.present? && crop_management_practices.include?("residue-burning")
+    return 0.0 unless paddy_rice? || (crop_management_practices.present? && crop_management_practices.include?("residue-burning"))
 
     #Emissions from crop residue burning (t CO2-e) = Area (ha) *
     # Crop residue (kg. ha-1yr-1) OR Rice Straw (kg. ha-1yr-1) * EFCrop Residue
@@ -242,8 +242,11 @@ class Analysis < ApplicationRecord
     # EFRice Straw = 1.5 (kg CO2-e/kg d.m. burned)
     r = CROPS.select{|t| t[:slug] == crop}.first
 
-    crop_residue = r[:final_default_residue_amount] ||
-      converted_yield*r[:rpr]*(1-r[:moisture_content])
+    crop_residue = if paddy_rice?
+                     r[:final_default_residue_amount] || converted_yield*r[:rpr]*(1-r[:moisture_content])
+                   else
+                     rice_straw_burned
+                   end
     ef = rice? ? 1.5 : 1.6
     area * crop_residue * ef / 1000
   end
