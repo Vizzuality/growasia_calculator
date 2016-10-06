@@ -42,10 +42,6 @@ class Analysis < ApplicationRecord
   validates :area, :yield, :crop, :geo_location_id, presence: true
 
 
-  def rice?
-    crop == "rice"
-  end
-
   # Emissions Equations
   def emissions_from_soil_management
     #Stable soil carbon content (t CO2e) =
@@ -67,9 +63,9 @@ class Analysis < ApplicationRecord
 
   def flu_value
     case crop
-    when "coffee", "tea", "cacao"
+    when COFFEE, TEA, CACAO
       1.0
-    when "paddy-rice"
+    when PADDY_RICE
       1.10
     else
       geo_location.flu
@@ -77,7 +73,7 @@ class Analysis < ApplicationRecord
   end
 
   def fmg_value
-    return 1.0 if ["coffee", "tea", "cacao", "paddy-rice"].include?(crop)
+    return 1.0 if perennial_or_paddy?
     geo_location.send(TILLAGES.select{|t| t[:slug] == tillage}.first[:method])
   end
 
@@ -97,6 +93,7 @@ class Analysis < ApplicationRecord
   # Assumed that manures have been testd before reaching this point see fi_value
   # method
   def fi_low?
+    return false if ["coffee", "tea", "cacao", "paddy-rice"].include?(crop)
     # FI Low: NO synthetic or Manure and only residue-burning
     !fertilizers.any? &&
     crop_management_practices.present? && crop_management_practices == ["residue-burning"]

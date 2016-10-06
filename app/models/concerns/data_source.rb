@@ -1,26 +1,38 @@
 module DataSource
   extend ActiveSupport::Concern
 
+  PADDY_RICE = "paddy-rice"
+  UPLAND_RICE = "upland-rice"
+  COFFEE = "coffee"
+  TEA = "tea"
+  CACAO = "cacao"
+  CORN = "corn"
+  POTATOES = "potatoes"
+  VEGETABLES = "vegetables"
+
   CROPS = [
-    {slug: "cocoa", title: "Cocoa", residue_amount: 25_000, rpr: nil,
+    {slug: CACAO, title: "Cacao", residue_amount: 25_000, rpr: nil,
       moisture_content: nil, final_default_residue_amount: 25_000,
       n_ag: nil, r_bg: nil, n_bg: nil, c_monoculture: 11, c_agroforestry: 6},
-    {slug: "coffee", title: "Coffee", residue_amount: nil, rpr: 21,
+    {slug: COFFEE, title: "Coffee", residue_amount: nil, rpr: 21,
       moisture_content: 0.15, final_default_residue_amount: nil,
       n_ag: nil, r_bg: nil, n_bg: nil, c_monoculture: 18, c_agroforestry: 6},
-    {slug: "tea", title: "Tea", residue_amount: nil, rpr: 21,
+    {slug: TEA, title: "Tea", residue_amount: nil, rpr: 21,
       moisture_content: 0.15, final_default_residue_amount: nil,
       n_ag: nil, r_bg: nil, n_bg: nil, c_monoculture: 50.9, c_agroforestry: 2.6},
-    {slug: "corn", title: "Corn", residue_amount: nil, rpr: 2,
+    {slug: CORN, title: "Corn", residue_amount: nil, rpr: 2,
       moisture_content: 0.15, final_default_residue_amount: nil,
       n_ag: 0.006, r_bg: 0.22, n_bg: 0.007, c_monoculture: 5.0, c_agroforestry: 2.6},
-    {slug: "potatoes", title: "Potatoes", residue_amount: nil, rpr: 0.3,
+    {slug: POTATOES, title: "Potatoes", residue_amount: nil, rpr: 0.3,
       moisture_content: 0.15, final_default_residue_amount: nil,
       n_ag: 0.019, r_bg: 0.20, n_bg: 0.014, c_monoculture: 5.0, c_agroforestry: 2.6},
-    {slug: "vegetables", title: "Vegetables/horticulture", residue_amount: nil, rpr: 1.53,
+    {slug: VEGETABLES, title: "Vegetables/horticulture", residue_amount: nil, rpr: 1.53,
       moisture_content: 0.15, final_default_residue_amount: nil,
       n_ag: 0.008, r_bg: 0.19, n_bg: 0.008, c_monoculture: 5.0, c_agroforestry: 2.6},
-    {slug: "rice", title: "Rice", residue_amount: nil, rpr: 1.757,
+    {slug: UPLAND_RICE, title: "Upland Rice", residue_amount: nil, rpr: 1.757,
+      moisture_content: 0.127, final_default_residue_amount: nil,
+      n_ag: 0.007, r_bg: 0.16, n_bg: nil, c_monoculture: nil, c_agroforestry: nil},
+    {slug: PADDY_RICE, title: "Paddy Rice", residue_amount: nil, rpr: 1.757,
       moisture_content: 0.127, final_default_residue_amount: nil,
       n_ag: 0.007, r_bg: 0.16, n_bg: nil, c_monoculture: nil, c_agroforestry: nil}
   ]
@@ -117,5 +129,21 @@ module DataSource
     {slug: "farm-yard", title: "Farm yard manure", conversion_factor: 0.14},
     {slug: "green-manure", title: "Green manure", conversion_factor: 0.5}
   ]
+
+  def paddy_rice?
+    PADDY_RICE == crop
+  end
+
+  def other_crop?
+    !paddy_rice?
+  end
+
+  def perennial_or_paddy?
+    paddy_rice? || [COFFEE, CACAO, TEA].include?(crop)
+  end
+
+  def rice?
+    [UPLAND_RICE, PADDY_RICE].include?(crop)
+  end
 end
 
