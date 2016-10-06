@@ -80,7 +80,7 @@
       var modelCrop = this.model.get('crop');
       var crop = 'other';
 
-      if(['coffee', 'tea', 'cacao'].indexOf(modelCrop) > 0) {
+      if(['coffee', 'tea', 'cacao'].indexOf(modelCrop) >= 0) {
         crop = 'perennial';
       } else if (modelCrop === 'paddy-rice') {
         crop = 'paddy-rice';
