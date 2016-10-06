@@ -142,10 +142,6 @@ module DataSource
     [UPLAND_RICE, PADDY_RICE].include?(crop)
   end
 
-  def other_crop?
-    !paddy_rice?
-  end
-
   def perennial?
     [COFFEE, CACAO, TEA].include?(crop)
   end
