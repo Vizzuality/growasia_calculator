@@ -8,6 +8,7 @@ module ApplicationHelper
   end
 
   def select_options data_source, selected=nil
-    options_for_select(data_source.map{|t| [t[:title], t[:slug]]}, selected)
+    options_for_select(data_source.sort{|a,b| a[:title] <=> b[:title]}.
+                       map{|t| [t[:title], t[:slug]]}, selected)
   end
 end
