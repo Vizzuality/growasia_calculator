@@ -19,6 +19,28 @@
   pointer-events: none;
 }
 
+@mixin equi-triangle ($width, $color, $direction) {
+  width: 0;
+  height: 0;
+  @if $direction == 'top' {
+    border-left: $width solid transparent;
+    border-right: $width solid transparent;
+    border-bottom: $width solid $color;
+  } @else if $direction == 'bottom' {
+    border-left: $width solid transparent;
+    border-right: $width solid transparent;
+    border-top: $width solid $color;
+  } @else if $direction == 'left' {
+    border-top: $width solid transparent;
+    border-bottom: $width solid transparent;
+    border-right: $width solid $color;
+  } @if $direction == 'right' {
+    border-top: $width solid transparent;
+    border-bottom: $width solid transparent;
+    border-left: $width solid $color;
+  }
+}
+
 
 %clearfix {
   &:before, &:after {

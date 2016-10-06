@@ -34,13 +34,17 @@
         <div class="c-field -narrow -light -full">
           <label class="text -label" for="">Agrochemicals amount</label>
           <%= f.number_field :agrochemical_amount, min: 0, class: "-js-is-resetable" %>
-          <span class="options-wrapper">
-            <span class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= analysis.agrochemical_amount %>">
+          <div class="options-wrapper">
+            <button class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= analysis.agrochemical_amount %>">
               <svg class="c-icon -small">
                 <use xlink:href="#icon-reset"></use>
               </svg>
-            </span>
-          </span>
+              <span class="reset-tooltip -js-reset-tooltip is-hidden">
+                <p>Revert to original value: </p>
+                <p><%= analysis.agrochemical_amount || 0 %></p>
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -81,6 +85,10 @@
               <svg class="c-icon -small">
                 <use xlink:href="#icon-reset"></use>
               </svg>
+              <span class="reset-tooltip -js-reset-tooltip is-hidden">
+                <p>Revert to original value: </p>
+                <p><%= analysis.lime_amount || 0 %></p>
+              </span>
             </span>
           </span>
         </div>
@@ -94,6 +102,10 @@
               <svg class="c-icon -small">
                 <use xlink:href="#icon-reset"></use>
               </svg>
+              <span class="reset-tooltip -js-reset-tooltip is-hidden">
+                <p>Revert to original value: </p>
+                <p><%= analysis.dolomite_amount || 0 %></p>
+              </span>
             </span>
           </span>
         </div>
@@ -113,6 +125,10 @@
               <svg class="c-icon -small">
                 <use xlink:href="#icon-reset"></use>
               </svg>
+              <span class="reset-tooltip -js-reset-tooltip is-hidden">
+                <p>Revert to original value: </p>
+                <p><%= builder.object.amount || 0 %></p>
+              </span>
             </span>
           </span>
         </div>
@@ -133,6 +149,10 @@
               <svg class="c-icon -small">
                 <use xlink:href="#icon-reset"></use>
               </svg>
+              <span class="reset-tooltip -js-reset-tooltip is-hidden">
+                <p>Revert to original value: </p>
+                <p><%= builder.object.amount  || 0 %></p>
+              </span>
             </span>
           </span>
         </div>
@@ -148,11 +168,15 @@
           <%= builder.number_field :amount, min: 0, class: "-js-is-resetable"  %>
           <%= builder.select :unit, select_options(Analysis::FUEL_UNITS, builder.object.unit) %>
           <span class="options-wrapper">
-            <span class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
+            <button class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
               <svg class="c-icon -small">
                 <use xlink:href="#icon-reset"></use>
               </svg>
-            </span>
+              <span class="reset-tooltip -js-reset-tooltip is-hidden">
+                <p>Revert to original value: </p>
+                <p><%= builder.object.amount || 0 %></p>
+              </span>
+            </button>
           </span>
         </div>
       <% end %>

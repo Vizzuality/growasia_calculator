@@ -10,7 +10,9 @@
       'change input,select' : 'onChangeInput',
       'click .-js-add-fields': 'onAddFields',
       'change input.-js-is-resetable': 'onEnableReset',
-      'click .-js-reset-analysis': 'onResetFields'
+      'click .-js-reset-analysis': 'onResetFields',
+      'mouseover .-js-reset-analysis': 'tooltipLastValue',
+      'mouseout .-js-reset-analysis': 'tooltipLastValue'
     },
 
     initialize: function(settings) {
@@ -42,6 +44,7 @@
     */
     onChangeInput: function(e) {
       e && e.preventDefault();
+
       $.ajax({
         url: '/api/v1/analyses/' + this.modelCompare.get('id'),
         method: 'POST',
@@ -72,7 +75,9 @@
 
     onEnableReset: function(e) {
       e && e.preventDefault();
+
       var $target = $(e.currentTarget);
+
       if($target.nextAll('.options-wrapper').find('.-js-reset-analysis').hasClass('is-hidden')) {
         $target.nextAll('.options-wrapper').find('.-js-reset-analysis').removeClass('is-hidden');
       }
@@ -85,6 +90,10 @@
       $input.val($target.data('previous-value'));
       $input.trigger('change');
       $target.addClass('is-hidden');
+    },
+
+    tooltipLastValue: function(e) {
+     $(e.currentTarget).find('.-js-reset-tooltip').toggleClass('is-hidden');
     }
 
   });
