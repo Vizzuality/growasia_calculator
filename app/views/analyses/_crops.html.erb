@@ -1,4 +1,4 @@
-<div class="c-slider-step js-slider-step">
+<div class="c-slider-step js-slider-step" data-crop="other">
   <!-- <h1>Tillage</h1> -->
   <div class="slider-step-container">
     <span class="text -guidance">Describe how you manage your crops</span>
@@ -111,19 +111,12 @@
 </div>
 
 
-<div class="c-slider-step js-slider-step" data-crop="rice">
+<div class="c-slider-step js-slider-step" data-crop="paddy-rice">
   <!-- <h1>Type of Rice and Irrigiation Regime</h1> -->
   <div class="slider-step-container">
     <span class="text -guidance">Provide more details about your rice irrigation practices</span>
     <span>
-      I grow
-      <span class="c-field -little">
-        <%= f.select :rice_type,
-          options_for_select(["paddy", "upland"]), {}, class: '-js-required' %>
-      </span>
-    </span>
-    <span>
-      rice and the irrigation regime
+      My irrigation regime
     </span>
     <span>
       can be described as
@@ -134,7 +127,7 @@
   </div>
 </div>
 
-<div class="c-slider-step js-slider-step" data-crop="rice">
+<div class="c-slider-step js-slider-step" data-crop="paddy-rice">
   <!-- <h1>Flooding before cultivation</h1> -->
   <div class="slider-step-container">
     <span class="text -guidance">Tell us about the specifics of your rice cultivation</span>

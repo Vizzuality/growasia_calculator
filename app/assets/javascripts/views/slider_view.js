@@ -14,7 +14,7 @@
 
         direction: null,
 
-        crop: 'cocoa'
+        crop: 'cacao'
       }
     })),
 
@@ -76,7 +76,15 @@
       var index = this.model.get('index');
       var newStepIndex = 0;
       var time = (e && e.type === 'resize') ? 0 : 500;
-      var crop = (this.model.get('crop') === 'rice') ? 'rice' : 'other';
+
+      var modelCrop = this.model.get('crop');
+      var crop = 'other';
+
+      if(['coffee', 'tea', 'cacao'].indexOf(modelCrop) > 0) {
+        crop = 'perennial';
+      } else if (modelCrop === 'paddy-rice') {
+        crop = 'paddy-rice';
+      }
 
       _.each(this.$sliderItems, function(el, i) {
         var $el = $(el);

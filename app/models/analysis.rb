@@ -318,26 +318,17 @@ class Analysis < ApplicationRecord
     practice = FLOODING_PRACTICES.select{|t| t[:slug] == flooding}.first
     nutrient_mgt = RICE_NUTRIENT_MANAGEMENT.select{|t| t[:slug] == nutrient_managements.first.addition_type}.first
 
-    water_scaling_factor = rice_type == "upland" ? 0 : regime[:scaling_factor]
-
     pre_cult_scaling_factor = practice[:scaling_factor]
 
     conversion_factor = (1+nutrient_managements.first.amount/1000*nutrient_mgt[:conversion_factor])**0.59
 
-    ef_rice = 1.30 * water_scaling_factor * pre_cult_scaling_factor * conversion_factor
+    ef_rice = 1.30 * regime[:scaling_factor] * pre_cult_scaling_factor * conversion_factor
 
     (ef_rice * cultivation_time * annual_cultivation_cycles * area * (10**-6)) * 25
   end
 
   def converted_yield
     converted_yield ||= yield_unit == "ton" ? self.yield : self.yield*0.001
-  end
-
-  def display_crop
-    txt = []
-    txt << rice_type if rice?
-    txt << crop
-    txt.map(&:capitalize).join(" ")
   end
 
   def has_fuel? fuel, fuel_type=nil
@@ -347,5 +338,9 @@ class Analysis < ApplicationRecord
   def geo_location_id= slug
     loc = GeoLocation.where(slug: slug).first
     write_attribute(:geo_location_id, loc.id) if loc
+  end
+
+  def display_crop
+    crop.gsub("-", " ").titleize
   end
 end
