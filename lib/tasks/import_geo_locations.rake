@@ -18,7 +18,8 @@ namespace :import do
         fmg_no_till: row[6],
         fi_low: row[7],
         fi_high_wo_manure: row[8],
-        fi_high_w_manure: row[9]
+        fi_high_w_manure: row[9],
+        slug: "#{row[0].strip.gsub(" ", "-").downcase}-#{row[1].strip.gsub(" ", "-").gsub(/[^0-9A-Za-z]/, '').downcase}"
       )
     end
     puts "#{GeoLocation.count} geo locations created"
