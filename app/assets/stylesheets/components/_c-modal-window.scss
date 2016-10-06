@@ -21,6 +21,7 @@
   right: 0;
   bottom: 0;
   z-index: 1000;
+  background-color: rgba($black, .3);
 }
 
 .modal-wrapper {
@@ -39,8 +40,8 @@
 }
 
 .modal-container {
-  padding: 30px; //Margen para el scroll de windows
-  text-align: center;
+  padding: 15px; //Margen para el scroll de windows
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3), 0 7px 9px 0 rgba(0, 0, 0, 0.2);
 
   @media screen and (min-width: $screen-m) {
     padding: 60px;
@@ -51,7 +52,7 @@
     bottom: 100px;
     left: 100px;
     right: 100px;
-    padding: 80px;
+    padding: 50px 45px;
   }
 
   .fade-out {
@@ -65,13 +66,14 @@
     background-image: linear-gradient(to bottom, transparent, $white);
   }
 
-  h3 {
-    margin-bottom: 30px;
-  }
-
   .close {
     margin-top: 30px;
     color: $color-3;
+    opacity: .2;
+  }
+
+  .-plain-text {
+    margin-bottom: 40px;
   }
 }
 
