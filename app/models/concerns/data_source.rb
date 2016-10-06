@@ -134,6 +134,10 @@ module DataSource
     PADDY_RICE == crop
   end
 
+  def upland_rice?
+    UPLAND_RICE == crop
+  end
+
   def other_crop?
     !paddy_rice?
   end

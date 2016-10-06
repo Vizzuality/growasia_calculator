@@ -292,7 +292,7 @@ class Analysis < ApplicationRecord
   end
 
   def emissions_from_rice_cultivation
-    return 0.0 unless rice?
+    return 0.0 unless paddy_rice?
     # (EFrice * Number of Cultivation Days * Annual Number of Cultivation Cycles * Area * 10-6) * 25
     # EFrice = 1.30 * Water Regime Scaling Factor * Scaling Factor for
     # Pre-Cultivation Flooding *Scaling Factor for Organic Amendment

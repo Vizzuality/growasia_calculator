@@ -24,31 +24,29 @@ class AnalysisSerializer < ActiveModel::Serializer
 
     # for stacked bars
     emissions_by_source = []
-    if !object.rice?
-      val = if instance_options[:analysis_params] && (old_fmg != object.fmg_value || old_fi != object.fi_value)
-              object.emissions_from_soil_management_changed(old_fmg, old_fi)
-            else
-              object.emissions_from_soil_management
-            end
-      emissions_by_source << {
-        slug: "soil-mgmt",
-        name: "Soil management",
-        total: val.to_f,
-        total_per_yield: (val/per_yield).to_f
-      }
-      total += val
+    val = if instance_options[:analysis_params] && (old_fmg != object.fmg_value || old_fi != object.fi_value)
+            object.emissions_from_soil_management_changed(old_fmg, old_fi)
+          else
+            object.emissions_from_soil_management
+          end
+    emissions_by_source << {
+      slug: "soil-mgmt",
+      name: "Soil management",
+      total: val.to_f,
+      total_per_yield: (val/per_yield).to_f
+    }
+    total += val
 
-      val = object.changes_in_carbon_content
-      emissions_by_source << {
-        slug: "agroforestry",
-        name: "Agroforestry removals",
-        total: val.to_f*-1.0,
-        total_per_yield: (val/per_yield).to_f * -1.0
-      }
-      total -= val
-    end
+    val = object.changes_in_carbon_content
+    emissions_by_source << {
+      slug: "agroforestry",
+      name: "Agroforestry removals",
+      total: val.to_f*-1.0,
+      total_per_yield: (val/per_yield).to_f * -1.0
+    }
+    total -= val
 
-    if object.rice?
+    if object.paddy_rice?
       val = object.emissions_from_rice_cultivation
       emissions_by_source << {
         slug: "rice-irrigation",
@@ -60,7 +58,7 @@ class AnalysisSerializer < ActiveModel::Serializer
       val = object.emissions_from_crop_residue_decomposition
       emissions_by_source << {
         slug: "residue-decomposition",
-        name: "Crop residue decomposition",
+        name: object.upland_rice? ? "Rice straw decomposition" : "Crop residue decomposition",
         total: val.to_f,
         total_per_yield: (val/per_yield).to_f
       }
