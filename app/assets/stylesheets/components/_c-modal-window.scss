@@ -1,0 +1,89 @@
+.c-modal-window {
+  display: block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(34, 34, 34, 0.1);
+  z-index: 1000;
+  cursor: pointer;
+
+  &.is-hidden {
+    display: none;
+  }
+}
+
+.modal-background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+}
+
+.modal-wrapper {
+  @extend %center;
+  box-sizing: border-box;
+  z-index: 1001;
+  width: 90%;
+  max-width: 920px;
+  border: solid 1px rgba(34, 34, 34, 0.1);
+  background-color: $white;
+
+  @media screen and (min-width: $screen-l) {
+    width: 75%;
+    height: auto;
+  }
+}
+
+.modal-container {
+  padding: 30px; //Margen para el scroll de windows
+  text-align: center;
+
+  @media screen and (min-width: $screen-m) {
+    padding: 60px;
+  }
+
+  @media screen and (min-width: $screen-l) {
+    top: 100px;
+    bottom: 100px;
+    left: 100px;
+    right: 100px;
+    padding: 80px;
+  }
+
+  .fade-out {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 10px;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background-image: linear-gradient(to bottom, transparent, $white);
+  }
+
+  h3 {
+    margin-bottom: 30px;
+  }
+
+  .close {
+    margin-top: 30px;
+    color: $color-3;
+  }
+}
+
+.btn-close-modal {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1;
+
+  cursor: pointer;
+  font-weight: bold;
+  color: #000;
+  font-size: 32px;
+  line-height: .5em;
+}

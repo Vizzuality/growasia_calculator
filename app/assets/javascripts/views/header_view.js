@@ -6,6 +6,10 @@
 
   App.View.Header = Backbone.View.extend({
 
+    events: {
+      'click .-js-info-btn': 'openInfowindow'
+    },
+
     model: new (Backbone.Model.extend({
       defaults: {
         sliderIndex: 0
@@ -45,6 +49,10 @@
         x: constant * index
       })
 
+    },
+
+    openInfowindow: function() {
+      this.modal = new App.Helper.Modal;
     }
 
   });
