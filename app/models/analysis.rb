@@ -243,9 +243,9 @@ class Analysis < ApplicationRecord
     r = CROPS.select{|t| t[:slug] == crop}.first
 
     crop_residue = if paddy_rice?
-                     r[:final_default_residue_amount] || converted_yield*r[:rpr]*(1-r[:moisture_content])
-                   else
                      rice_straw_burned
+                   else
+                     r[:final_default_residue_amount] || converted_yield*r[:rpr]*(1-r[:moisture_content])
                    end
     ef = rice? ? 1.5 : 1.6
     area * crop_residue * ef / 1000
