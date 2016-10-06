@@ -219,8 +219,8 @@ class Analysis < ApplicationRecord
     # IF Crop Residue Burning is selected, then emissions from crop residue
     # decomposition = 0. All crop residue is assumed to be burned for cocoa,
     # coffee, and tea.
-    return 0 if crop_management_practices && crop_management_practices.include?("residue-burning") ||
-      ["cocoa", "coffee", "tea"].include?(crop)
+    return 0 if crop_management_practices.present? && crop_management_practices.include?("residue-burning") ||
+      perennial?
 
     r = CROPS.select{|t| t[:slug] == crop}.first
     crop_residue = r[:final_default_residue_amount] ||
@@ -233,7 +233,7 @@ class Analysis < ApplicationRecord
   end
 
   def emissions_from_crop_residue_or_rice_straw_burning
-    return 0.0 unless crop_management_practices && crop_management_practices.include?("residue-burning")
+    return 0.0 unless crop_management_practices.present? && crop_management_practices.include?("residue-burning")
 
     #Emissions from crop residue burning (t CO2-e) = Area (ha) *
     # Crop residue (kg. ha-1yr-1) OR Rice Straw (kg. ha-1yr-1) * EFCrop Residue
