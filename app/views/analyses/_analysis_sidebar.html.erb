@@ -32,32 +32,64 @@
           <% end %>
         </div>
       </div>
-      <div>
-        <div class="c-field -narrow -light -full">
-          <label class="text -label" for="">Agrochemicals amount</label>
-          <%= f.number_field :agrochemical_amount, min: 0, class: "-js-is-resetable" %>
-          <div class="options-wrapper">
-            <button class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= analysis.agrochemical_amount %>">
-              <svg class="c-icon -small">
-                <use xlink:href="#icon-reset"></use>
-              </svg>
-              <span class="reset-tooltip -js-reset-tooltip is-hidden">
-                <p>Revert to original value: </p>
-                <p><%= analysis.agrochemical_amount || 0 %></p>
-              </span>
-            </button>
+      <% if analysis.paddy_rice? %>
+        <div>
+          <div class="c-field -narrow -full -light">
+            <label class="text -label" for="">Irrigation regime</label>
+            <%= f.select :irrigation_regime, select_options(Analysis::IRRIGATION_REGIMES, analysis.irrigation_regime),
+              {}, class: '-js-required' %>
           </div>
         </div>
-      </div>
+        <div>
+          <div class="c-field -narrow -full -light">
+            <label class="text -label" for="">Before cultivation</label>
+            <%= f.select :irrigation_regime, select_options(Analysis::FLOODING_PRACTICES, analysis.irrigation_regime),
+              {}, class: '-js-required' %>
+          </div>
+        </div>
+        <div>
+          <div class="c-field -narrow -full -light">
+            <label class="text -label" for="">Cultivation takes</label>
+            <%= f.number_field :cultivation_time, min: 0, class: "-js-is-resetable" %>
+            <div class="options-wrapper">
+              <button class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= analysis.cultivation_time %>">
+                <svg class="c-icon -small">
+                  <use xlink:href="#icon-reset"></use>
+                </svg>
+                <span class="reset-tooltip -js-reset-tooltip is-hidden">
+                  <p>Revert to original value: </p>
+                  <p><%= analysis.cultivation_time || 0 %></p>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="c-field -narrow -full -light">
+            <label class="text -label" for="">Annual cultivation cycles</label>
+            <%= f.number_field :annual_cultivation_cycles, min: 0, class: "-js-is-resetable" %>
+            <div class="options-wrapper">
+              <button class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= analysis.annual_cultivation_cycles %>">
+                <svg class="c-icon -small">
+                  <use xlink:href="#icon-reset"></use>
+                </svg>
+                <span class="reset-tooltip -js-reset-tooltip is-hidden">
+                  <p>Revert to original value: </p>
+                  <p><%= analysis.annual_cultivation_cycles || 0 %></p>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
-    <% if !analysis.perennial_or_paddy? %>
-      <div class="input-group -second">
+    <div class="input-group -second">
+      <% if !analysis.perennial_or_paddy? %>
         <div>
           <label class="text -label" for="">Crop management practices</label>
           <% Analysis::CROP_MANAGEMENT_PRACTICES.each do |practice| %>
             <div class="c-checkbox-box -small -light">
               <div class="custom-checkbox">
-
                 <%= f.check_box :crop_management_practices, { multiple: true }, practice[:slug], nil %>
                 <label for="analysis_crop_management_practices_<%= practice[:slug] %>">
                   <span>
@@ -68,16 +100,6 @@
               </div>
             </div>
           <% end %>
-        </div>
-      </div>
-    <% end %>
-    <div class="input-group -third">
-      <% unless analysis.paddy_rice? %>
-        <div>
-          <div class="c-field -narrow -full -light">
-            <label class="text -label" for="">Agroforestry practices?</label>
-            <%= f.select :agroforestry_practices, options_for_select([["Yes", true], ["No", false]], analysis.agroforestry_practices) %>
-          </div>
         </div>
       <% end %>
       <div>
@@ -114,6 +136,77 @@
           </span>
         </div>
       </div>
+      <div>
+        <div class="c-field -narrow -light -full">
+          <label class="text -label" for="">Agrochemicals amount</label>
+          <%= f.number_field :agrochemical_amount, min: 0, class: "-js-is-resetable" %>
+          <span class="options-wrapper">
+            <button class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= analysis.agrochemical_amount %>">
+              <svg class="c-icon -small">
+                <use xlink:href="#icon-reset"></use>
+              </svg>
+              <span class="reset-tooltip -js-reset-tooltip is-hidden">
+                <p>Revert to original value: </p>
+                <p><%= analysis.agrochemical_amount || 0 %></p>
+              </span>
+            </button>
+          </span>
+        </div>
+      </div>
+      <% if analysis.paddy_rice? %>
+        <div>
+          <div class="c-field -narrow -light -double">
+            <label class="text -label" for="">
+              You incorporate
+            </label>
+            <span class="input-wrapper">
+              <%= f.fields_for :nutrient_managements do |builder| %>
+                <%= builder.hidden_field :category, value: Category::NUTRIENT_MANAGEMENT %>
+                <%= builder.number_field :amount, value: builder.object.amount || 0, min: 0, class: "-js-is-resetable" %>
+                <%= builder.select :addition_type, select_options(Analysis::RICE_NUTRIENT_MANAGEMENT, builder.object.addition_type) %>
+                <span class="options-wrapper">
+                  <button class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
+                    <svg class="c-icon -small">
+                      <use xlink:href="#icon-reset"></use>
+                    </svg>
+                    <span class="reset-tooltip -js-reset-tooltip is-hidden">
+                      <p>Revert to original value: </p>
+                      <p><%= builder.object.amount || 0 %></p>
+                    </span>
+                  </button>
+                </span>
+              <% end %>
+            </span>
+          </div>
+        </div>
+        <div>
+          <div class="c-field -narrow -full -light">
+            <label class="text -label" for="">Rice straw burned</label>
+            <%= f.number_field :rice_straw_burned, value: f.object.rice_straw_burned || 0, min: 0, class: "-js-is-resetable" %>
+            <span class="options-wrapper">
+              <button class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= analysis.rice_straw_burned %>">
+                <svg class="c-icon -small">
+                  <use xlink:href="#icon-reset"></use>
+                </svg>
+                <span class="reset-tooltip -js-reset-tooltip is-hidden">
+                  <p>Revert to original value: </p>
+                  <p><%= analysis.rice_straw_burned || 0 %></p>
+                </span>
+              </button>
+            </span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="input-group -third">
+      <% unless analysis.paddy_rice? %>
+        <div>
+          <div class="c-field -narrow -full -light">
+            <label class="text -label" for="">Agroforestry practices?</label>
+            <%= f.select :agroforestry_practices, options_for_select([["Yes", true], ["No", false]], analysis.agroforestry_practices) %>
+          </div>
+        </div>
+      <% end %>
 
       <%= f.fields_for :transportation_fuels do |builder| %>
         <%= builder.hidden_field :category, value: Category::TRANSPORTATION_FUEL %>
@@ -184,17 +277,7 @@
           </span>
         </div>
       <% end %>
-
-      <% if analysis.paddy_rice? %>
-        <div>
-          <div class="c-field -narrow -full -light">
-            <label class="text -label" for="">Irrigation regime</label>
-            <%= f.select :irrigation_regime, select_options(Analysis::IRRIGATION_REGIMES, analysis.irrigation_regime),
-              {}, class: '-js-required' %>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
+    </div>
+  <% end%>
 </div>
 
