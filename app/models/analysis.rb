@@ -7,36 +7,35 @@ class Analysis < ApplicationRecord
   has_many :fertilizers, -> { where category: Category::FERTILIZER },
     class_name: 'Addition'
   accepts_nested_attributes_for :fertilizers, allow_destroy: true,
-    reject_if: proc { |a| a['amount'].blank? || a['amount'].to_f <= 0.0 }
+    reject_if: :new_record_and_blank_amount?
 
   has_many :manures, -> { where category: Category::MANURE },
     class_name: 'Addition'
   accepts_nested_attributes_for :manures, allow_destroy: true,
-    reject_if: proc { |a| a['amount'].blank? || a['amount'].to_f <= 0.0 }
+    reject_if: :new_record_and_blank_amount?
 
 
   has_many :fuels, -> { where category: Category::FUEL },
     class_name: 'Addition'
   accepts_nested_attributes_for :fuels, allow_destroy: true,
-    reject_if: proc { |a| a['amount'].blank? || a['amount'].to_f <= 0.0 }
-
+    reject_if: :new_record_and_blank_amount?
 
   has_many :nutrient_managements, -> { where category: Category::NUTRIENT_MANAGEMENT },
     class_name: 'Addition'
   accepts_nested_attributes_for :nutrient_managements, allow_destroy: true,
-    reject_if: proc { |a| a['amount'].blank? || a['amount'].to_f <= 0.0 }
+    reject_if: :new_record_and_blank_amount?
 
 
   has_many :transportation_fuels, -> { where category: Category::TRANSPORTATION_FUEL },
     class_name: 'Addition'
   accepts_nested_attributes_for :transportation_fuels, allow_destroy: true,
-    reject_if: proc { |a| a['amount'].blank? || a['amount'].to_f <= 0.0 }
+    reject_if: :new_record_and_blank_amount?
 
 
   has_many :irrigation_fuels, -> { where category: Category::IRRIGATION_FUEL },
     class_name: 'Addition'
   accepts_nested_attributes_for :irrigation_fuels, allow_destroy: true,
-    reject_if: proc { |a| a['amount'].blank? || a['amount'].to_f <= 0.0 }
+    reject_if: :new_record_and_blank_amount?
 
 
   validates :area, :yield, :crop, :geo_location_id, presence: true
@@ -342,5 +341,9 @@ class Analysis < ApplicationRecord
 
   def display_crop
     crop.gsub("-", " ").titleize
+  end
+
+  def new_record_and_blank_amount?(attributes)
+    !(attributes['amount'].present? && attributes['amount'].to_f > 0.0) && (new_record? || !attributes['id'])
   end
 end

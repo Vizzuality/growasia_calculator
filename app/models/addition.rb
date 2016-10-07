@@ -20,4 +20,5 @@ class Addition < ApplicationRecord
     fuel = Analysis::FUEL_UNITS.select{|t| t[:slug] == unit}.first
     fuel && fuel[:title] or "n/a"
   end
+
 end
