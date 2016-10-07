@@ -40,8 +40,9 @@
 
     listeners: function() {
       App.Events.on('Info:toggle', this.toggle.bind(this));
-      App.Events.on('Slider:index', this.setStep.bind(this));
+      App.Events.on('Slider:changeStep', this.setStep.bind(this));
 
+      this.model.on('change:index', this.setModalContent.bind(this));
       this.model.on('change:step', this.setModalContent.bind(this));
     },
 
@@ -49,14 +50,18 @@
       this.$el.html(this.template());
     },
 
-    setStep: function(step) {
-      this.model.set({'step': step});
+    setStep: function(sliderModel) {
+      this.model.set({
+        index: sliderModel.index,
+        step: sliderModel.stepindex
+      });
     },
 
     setModalContent: function() {
       var stepObj = {};
-      stepObj['step' + (this.model.get('step'))] = true;
-
+      stepObj['index-' + (this.model.get('index'))] = true;
+      stepObj['step-' + (this.model.get('step'))] = true;
+      console.log(stepObj)
       this.$('.c-info').html(this.templateContent( stepObj ));
     }
 

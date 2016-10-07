@@ -122,6 +122,8 @@
         App.Events.trigger('Slider:index', this.model.get('index'));
 
       }.bind(this));
+
+      App.Events.trigger('Slider:step', this.model.get('stepindex'));
     },
 
     changeStepIndex: function() {
@@ -222,6 +224,8 @@
           }
         break;
       }
+
+      App.Events.trigger('Slider:changeStep', this.model.attributes);
     },
 
     onKeyDownHandler: function(e) {
