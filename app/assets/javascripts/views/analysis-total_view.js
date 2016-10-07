@@ -40,7 +40,7 @@
 
       var totalCompare = (!!analysisCompare && analysisCompare.total !== analysis.total) ? this.formatNumbers(analysisCompare[this.modelCompare.get('type')]) : null;
 
-      var subtraction = (!!analysis) &&  (!!analysisCompare) ? this.formatNumbers( analysisCompare[this.modelCompare.get('type')] - analysis[this.model.get('type')] ) : null;
+      var subtraction = (!!analysis) && (!!analysisCompare) ? this.formatNumbers( analysisCompare[this.modelCompare.get('type')] - analysis[this.model.get('type')] ) : null;
 
       var subtractionClass = subtraction < 0 ? '-good' : '-wrong'
 
