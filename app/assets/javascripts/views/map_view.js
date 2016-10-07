@@ -25,17 +25,17 @@
       },
       Vietnam: {
         url: '../vietnam.geojson',
-        center: [12.24, 105],
+        center: [16, 106],
         zoom: 5
       },
       Philippines: {
         url: '../philippines.geojson',
-        center: [10, 125],
+        center: [12, 123],
         zoom: 5
       },
       Myanmar: {
         url: '../myanmar.geojson',
-        center: [18, 100],
+        center: [20, 97],
         zoom: 5
       },
       Indonesia: {
