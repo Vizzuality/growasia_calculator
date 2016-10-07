@@ -37,11 +37,18 @@
       var analysisCompare = this.modelCompare.get('analysis');
 
       var total = (!!analysis) ? this.formatNumbers(analysis[this.model.get('type')]) : null;
-      var totalCompare = (!!analysisCompare) ? this.formatNumbers(analysisCompare[this.modelCompare.get('type')]) : null;
+
+      var totalCompare = (!!analysisCompare && analysisCompare.total !== analysis.total) ? this.formatNumbers(analysisCompare[this.modelCompare.get('type')]) : null;
+
+      var subtraction = (!!analysis) && (!!analysisCompare) ? this.formatNumbers( analysisCompare[this.modelCompare.get('type')] - analysis[this.model.get('type')] ) : null;
+
+      var subtractionClass = subtraction < 0 ? '-good' : '-wrong'
 
       this.$el.html(this.template({
         total: total,
-        totalCompare: totalCompare
+        totalCompare: totalCompare,
+        subtraction: subtraction,
+        subtractionClass: subtractionClass
       }));
     },
 

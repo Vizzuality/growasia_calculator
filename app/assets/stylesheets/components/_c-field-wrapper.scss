@@ -1,0 +1,10 @@
+.c-field-wrapper {
+  display: flex !important;
+  justify-content: space-between;
+  width: 90%;
+  margin: 0 auto;
+
+  @media screen and (min-width: $screen-m) {
+    width: 600px;
+  }
+}

@@ -18,9 +18,7 @@
   <!-- <h1>Additional crop management</h1> -->
   <div class="slider-step-container">
     <span class="text -guidance">Please tell us about your use of fertilizers</span>
-    <span>
-      What fertilizers do you apply?
-    </span>
+    <span>What fertilizers do you apply?</span>
     <% if f.object.fertilizers.any? %>
       <span>
         <%= f.fields_for :fertilizers do |builder| %>
@@ -59,12 +57,12 @@
 
     <div id="options-container"></div>
 
-    <span>
-      <span class="c-field -medium">
+    <span class="c-field-wrapper">
+      <span class="c-field -hald-width">
         <%= select_to_add_fields "Add a synthetic one", f, :fertilizers, select_options(Analysis::FERTILIZER_TYPES) %>
       </span>
       <span>or</span>
-      <span class="c-field -medium">
+      <span class="c-field -hald-width">
         <%= select_to_add_fields "Add a manure", f, :manures, select_options(Analysis::MANURE_TYPES) %>
       </span>
     </span>
