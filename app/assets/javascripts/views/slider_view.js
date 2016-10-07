@@ -14,6 +14,8 @@
 
         direction: null,
 
+        stepContentType: 'geo-location',
+
         crop: 'cacao'
       }
     })),
@@ -115,6 +117,7 @@
           // Set the model
           this.model.set('stepslength', this.$stepsItems.length, { silent: true });
           this.model.set('stepindex', newStepIndex, { silent: true });
+
           this.model.trigger('change:stepindex');
         }
 
@@ -131,6 +134,10 @@
         .eq(this.model.get('index'))
           .find('.js-slider-step')
           .toggleClass('-active', false);
+
+      this.model.set('stepContentType', this.$stepsItems
+                     .eq(this.model.get('stepindex'))
+                     .data('content'));
 
       this.$stepsItems
         .eq(this.model.get('stepindex'))
