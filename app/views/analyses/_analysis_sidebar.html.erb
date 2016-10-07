@@ -4,12 +4,14 @@
   </div>
   <%= form_for [:api, :v1, analysis], :html => { :id => "analysis-sidebar-form" } do |f| %>
     <div class="input-group -first">
-      <div>
-        <div class="c-field -narrow -full -light">
-          <label class="text -label" for="">Tillage</label>
-          <%= f.select:tillage, select_options(Analysis::TILLAGES, analysis.tillage), {} %>
+      <% if !analysis.perennial_or_paddy? %>
+        <div>
+          <div class="c-field -narrow -full -light">
+            <label class="text -label" for="">Tillage</label>
+            <%= f.select:tillage, select_options(Analysis::TILLAGES, analysis.tillage), {} %>
+          </div>
         </div>
-      </div>
+      <% end %>
       <div class="c-field -narrow -light -double">
         <label class="text -label" for="">
           Synthetic fertilizers <%= icon_to_add_more(f, :fertilizers) %>
@@ -48,27 +50,29 @@
         </div>
       </div>
     </div>
-    <div class="input-group -second">
-      <div>
-        <label class="text -label" for="">Crop management practices</label>
-        <% Analysis::CROP_MANAGEMENT_PRACTICES.each do |practice| %>
-          <div class="c-checkbox-box -small -light">
-            <div class="custom-checkbox">
+    <% if !analysis.perennial_or_paddy? %>
+      <div class="input-group -second">
+        <div>
+          <label class="text -label" for="">Crop management practices</label>
+          <% Analysis::CROP_MANAGEMENT_PRACTICES.each do |practice| %>
+            <div class="c-checkbox-box -small -light">
+              <div class="custom-checkbox">
 
-              <%= f.check_box :crop_management_practices, { multiple: true }, practice[:slug], nil %>
-              <label for="analysis_crop_management_practices_<%= practice[:slug] %>">
-                <span>
-                  <svg class="c-icon -small"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-check"></use></svg>
-                </span>
-                <%= practice[:title] %>
-              </label>
+                <%= f.check_box :crop_management_practices, { multiple: true }, practice[:slug], nil %>
+                <label for="analysis_crop_management_practices_<%= practice[:slug] %>">
+                  <span>
+                    <svg class="c-icon -small"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-check"></use></svg>
+                  </span>
+                  <%= practice[:title] %>
+                </label>
+              </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
-    </div>
+    <% end %>
     <div class="input-group -third">
-      <% unless analysis.rice? %>
+      <% unless analysis.paddy_rice? %>
         <div>
           <div class="c-field -narrow -full -light">
             <label class="text -label" for="">Agroforestry practices?</label>
@@ -181,7 +185,7 @@
         </div>
       <% end %>
 
-      <% if analysis.rice? %>
+      <% if analysis.paddy_rice? %>
         <div>
           <div class="c-field -narrow -full -light">
             <label class="text -label" for="">Irrigation regime</label>

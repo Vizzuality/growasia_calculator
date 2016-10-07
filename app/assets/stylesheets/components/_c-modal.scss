@@ -123,7 +123,7 @@
   }
 
   // MODAL WRAPPER
-  .modal-wrapper{
+  .modal-wrapper {
     overflow-x: hidden;
     overflow-y: auto;
     height: 100%;
@@ -132,6 +132,7 @@
     top: 0;
     left: 0;
     padding: rem(40px);
+
     @media (min-width: $screen-m){
       max-height: rem(450px);
     }
@@ -143,6 +144,24 @@
 
       font-size: rem(15px);
       color: $font-color-2;
+    }
+  }
+
+  &.-info {
+    max-width: rem(688px);
+    max-height: rem(688px);
+    width: 80%;
+    height: 80%;
+
+    .modal-wrapper {
+
+      p {
+        margin-bottom: rem(35px);
+      }
+
+      @media (min-width: $screen-m){
+        max-height: 100%;
+      }
     }
   }
 }

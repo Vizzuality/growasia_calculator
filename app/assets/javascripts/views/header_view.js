@@ -12,6 +12,10 @@
       }
     })),
 
+    events: {
+      'click .js-btn-action' : 'onClickAction'
+    },
+
     defaults: {
     },
 
@@ -45,6 +49,15 @@
         x: constant * index
       })
 
+    },
+
+    /*
+    * UI EVENTS
+    */
+    onClickAction: function(e) {
+      e && e.preventDefault();
+      var action = $(e.currentTarget).data('action');
+      App.Events.trigger(action);
     }
 
   });

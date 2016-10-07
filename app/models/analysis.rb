@@ -42,17 +42,15 @@ class Analysis < ApplicationRecord
   validates :area, :yield, :crop, :geo_location_id, presence: true
 
 
-  def rice?
-    crop == "rice"
-  end
+  ### Soil Management
 
-  # Emissions Equations
   def emissions_from_soil_management
     #Stable soil carbon content (t CO2e) =
     # (Area * Cropland_SOCref*FLU*FMG*FI) /20 * 44/12
     fmg = fmg_value
     fi = fi_value
-    ((area * geo_location.soc_ref * geo_location.flu ) - ( area * geo_location.soc_ref * geo_location.flu * fmg * fi)) / 20 * 44/12
+    flu = flu_value
+    ((area * geo_location.soc_ref * flu ) - ( area * geo_location.soc_ref * flu * fmg * fi)) / 20 * 44/12
   end
 
   def emissions_from_soil_management_changed old_fmg, old_fi
@@ -60,10 +58,25 @@ class Analysis < ApplicationRecord
     # (Area * Cropland_SOCref*FLU*FMG*FI) /20 * 44/12
     fmg = fmg_value
     fi = fi_value
-    ((area * geo_location.soc_ref * geo_location.flu * old_fmg * old_fi) - ( area * geo_location.soc_ref * geo_location.flu * fmg * fi)) / 20 * 44/12
+    flu = flu_value
+    ((area * geo_location.soc_ref * flu * old_fmg * old_fi) - ( area * geo_location.soc_ref * flu * fmg * fi)) / 20 * 44/12
+  end
+
+  ## Helper methods
+
+  def flu_value
+    case crop
+    when COFFEE, TEA, CACAO
+      1.0
+    when PADDY_RICE
+      1.10
+    else
+      geo_location.flu
+    end
   end
 
   def fmg_value
+    return 1.0 if perennial_or_paddy?
     geo_location.send(TILLAGES.select{|t| t[:slug] == tillage}.first[:method])
   end
 
@@ -80,14 +93,6 @@ class Analysis < ApplicationRecord
     1.0
   end
 
-  # Assumed that manures have been testd before reaching this point see fi_value
-  # method
-  def fi_low?
-    # FI Low: NO synthetic or Manure and only residue-burning
-    !fertilizers.any? &&
-    crop_management_practices.present? && crop_management_practices == ["residue-burning"]
-  end
-
   def residue_burning?
     crop_management_practices.present? &&
       crop_management_practices.include?("residue-burning")
@@ -98,9 +103,22 @@ class Analysis < ApplicationRecord
       crop_management_practices.include?("n-fix")
   end
 
+  # Assumed that manures have been testd before reaching this point see fi_value
+  # method
+  def fi_low?
+    return false if perennial_or_paddy?
+    # FI Low: NO synthetic or Manure and only residue-burning
+    !fertilizers.any? &&
+    crop_management_practices.present? && crop_management_practices == ["residue-burning"]
+  end
+
   # Assumed that manures have been tested before reaching this point, as
   # there can't be any manures;
   def fi_medium?
+    # WITHOUT synthetic fertilizers and WITHOUT manures
+    # for perennial or paddy-rice
+    return true if perennial_or_paddy? && !fertilizers.any?
+
     # FI medium =
     #   WITH synthetic fertilizers or nitrogen fixing crops AND
     #   residue burning
@@ -157,6 +175,9 @@ class Analysis < ApplicationRecord
   # Assumed that manures have been tested before reaching this point, as
   # there can't be any manures;
   def fi_high_wo_manure?
+    # WITH synthetic fertilizers application and WITHOUT manures
+    # for perennial or paddy-rice
+    return true if perennial_or_paddy? && fertilizers.any?
     #
     # WITH either (one+ syntehtic fertilizers) OR n-fixing
     # NO burning of residues
@@ -198,8 +219,8 @@ class Analysis < ApplicationRecord
     # IF Crop Residue Burning is selected, then emissions from crop residue
     # decomposition = 0. All crop residue is assumed to be burned for cocoa,
     # coffee, and tea.
-    return 0 if crop_management_practices && crop_management_practices.include?("residue-burning") ||
-      ["cocoa", "coffee", "tea"].include?(crop)
+    return 0 if crop_management_practices.present? && crop_management_practices.include?("residue-burning") ||
+      perennial?
 
     r = CROPS.select{|t| t[:slug] == crop}.first
     crop_residue = r[:final_default_residue_amount] ||
@@ -212,7 +233,7 @@ class Analysis < ApplicationRecord
   end
 
   def emissions_from_crop_residue_or_rice_straw_burning
-    return 0.0 unless crop_management_practices && crop_management_practices.include?("residue-burning")
+    return 0.0 unless paddy_rice? || (crop_management_practices.present? && crop_management_practices.include?("residue-burning"))
 
     #Emissions from crop residue burning (t CO2-e) = Area (ha) *
     # Crop residue (kg. ha-1yr-1) OR Rice Straw (kg. ha-1yr-1) * EFCrop Residue
@@ -221,8 +242,11 @@ class Analysis < ApplicationRecord
     # EFRice Straw = 1.5 (kg CO2-e/kg d.m. burned)
     r = CROPS.select{|t| t[:slug] == crop}.first
 
-    crop_residue = r[:final_default_residue_amount] ||
-      converted_yield*r[:rpr]*(1-r[:moisture_content])
+    crop_residue = if paddy_rice?
+                     rice_straw_burned
+                   else
+                     r[:final_default_residue_amount] || converted_yield*r[:rpr]*(1-r[:moisture_content])
+                   end
     ef = rice? ? 1.5 : 1.6
     area * crop_residue * ef / 1000
   end
@@ -273,7 +297,7 @@ class Analysis < ApplicationRecord
   end
 
   def changes_in_carbon_content
-    return 0.0 if rice? || !agroforestry_practices?
+    return 0.0 if paddy_rice? || !agroforestry_practices?
     #(Area (ha) * Ccrop type Monoculture (t C ha-1)) + (Area (ha) *
     # Ccrop type Agroforestry (t C ha-1 yr-1)) *44/12
     r = CROPS.select{|t| t[:slug] == crop}.first
@@ -281,7 +305,7 @@ class Analysis < ApplicationRecord
   end
 
   def emissions_from_rice_cultivation
-    return 0.0 unless rice?
+    return 0.0 unless paddy_rice?
     # (EFrice * Number of Cultivation Days * Annual Number of Cultivation Cycles * Area * 10-6) * 25
     # EFrice = 1.30 * Water Regime Scaling Factor * Scaling Factor for
     # Pre-Cultivation Flooding *Scaling Factor for Organic Amendment
@@ -294,26 +318,17 @@ class Analysis < ApplicationRecord
     practice = FLOODING_PRACTICES.select{|t| t[:slug] == flooding}.first
     nutrient_mgt = RICE_NUTRIENT_MANAGEMENT.select{|t| t[:slug] == nutrient_managements.first.addition_type}.first
 
-    water_scaling_factor = rice_type == "upland" ? 0 : regime[:scaling_factor]
-
     pre_cult_scaling_factor = practice[:scaling_factor]
 
     conversion_factor = (1+nutrient_managements.first.amount/1000*nutrient_mgt[:conversion_factor])**0.59
 
-    ef_rice = 1.30 * water_scaling_factor * pre_cult_scaling_factor * conversion_factor
+    ef_rice = 1.30 * regime[:scaling_factor] * pre_cult_scaling_factor * conversion_factor
 
     (ef_rice * cultivation_time * annual_cultivation_cycles * area * (10**-6)) * 25
   end
 
   def converted_yield
     converted_yield ||= yield_unit == "ton" ? self.yield : self.yield*0.001
-  end
-
-  def display_crop
-    txt = []
-    txt << rice_type if rice?
-    txt << crop
-    txt.map(&:capitalize).join(" ")
   end
 
   def has_fuel? fuel, fuel_type=nil
@@ -323,5 +338,9 @@ class Analysis < ApplicationRecord
   def geo_location_id= slug
     loc = GeoLocation.where(slug: slug).first
     write_attribute(:geo_location_id, loc.id) if loc
+  end
+
+  def display_crop
+    crop.gsub("-", " ").titleize
   end
 end

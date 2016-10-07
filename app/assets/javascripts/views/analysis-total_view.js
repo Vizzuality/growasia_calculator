@@ -12,6 +12,7 @@
       if (!this.el) {
         return;
       }
+
       this.model = settings.model;
       this.modelCompare = settings.modelCompare;
 

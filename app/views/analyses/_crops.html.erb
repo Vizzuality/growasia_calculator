@@ -1,4 +1,4 @@
-<div class="c-slider-step js-slider-step">
+<div class="c-slider-step js-slider-step" data-crop="other">
   <!-- <h1>Tillage</h1> -->
   <div class="slider-step-container">
     <span class="text -guidance">Describe how you manage your crops</span>
@@ -18,49 +18,51 @@
   <!-- <h1>Additional crop management</h1> -->
   <div class="slider-step-container">
     <span class="text -guidance">Please tell us about your use of fertilizers</span>
-    <span>
-      What fertilizers do you apply?
-    </span>
-    <span>
-      <%= f.fields_for :fertilizers do |builder| %>
-        <div>
-          <%= builder.hidden_field :category, value: Category::FERTILIZER %>
-          <span class="c-field -huge">
-            <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES) %>
+    <span>What fertilizers do you apply?</span>
+    <% if f.object.fertilizers.any? %>
+      <span>
+        <%= f.fields_for :fertilizers do |builder| %>
+          <div>
+            <%= builder.hidden_field :category, value: Category::FERTILIZER %>
+            <span class="c-field -huge">
+              <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES) %>
+            </span>
+            <span class="c-field -huge">
+              <%= builder.number_field :amount, class: '-right -js-numeric', autocomplete: 'off', min: '0' %>
+              <span class="unit">kg/ha/year</span>
+            </span>
+            of
+          </div>
+        <% end %>
+      </span>
+    <% end %>
+    <% if f.object.manures.any? %>
+      <span>
+        <%= f.fields_for :manures do |builder| %>
+          <%= builder.hidden_field :category, value: Category::MANURE %>
+          <span>
+            and
+            <span class="c-field -medium">
+              <%= builder.number_field :amount, class: '-right -js-numeric', autocomplete: 'off', min: '0' %>
+              <span class="unit">kg/ha/year</span>
+            </span>
+            of
+            <span class="c-field -medium">
+              <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES) %>
+            </span>
           </span>
-          <span class="c-field -huge">
-            <%= builder.number_field :amount, class: '-right -js-numeric', autocomplete: 'off', min: '0' %>
-            <span class="unit">kg/ha/year</span>
-          </span>
-          of
-        </div>
-      <% end %>
-    </span>
-    <span>
-      <%= f.fields_for :manures do |builder| %>
-        <%= builder.hidden_field :category, value: Category::MANURE %>
-        <span>
-          and
-          <span class="c-field -medium">
-            <%= builder.number_field :amount, class: '-right -js-numeric', autocomplete: 'off', min: '0' %>
-            <span class="unit">kg/ha/year</span>
-          </span>
-          of
-          <span class="c-field -medium">
-            <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES) %>
-          </span>
-        </span>
-      <% end %>
-    </span>
+        <% end %>
+      </span>
+    <% end %>
 
     <div id="options-container"></div>
 
-    <span>
-      <span class="c-field -medium">
+    <span class="c-field-wrapper">
+      <span class="c-field -hald-width">
         <%= select_to_add_fields "Add a synthetic one", f, :fertilizers, select_options(Analysis::FERTILIZER_TYPES) %>
       </span>
       <span>or</span>
-      <span class="c-field -medium">
+      <span class="c-field -hald-width">
         <%= select_to_add_fields "Add a manure", f, :manures, select_options(Analysis::MANURE_TYPES) %>
       </span>
     </span>
@@ -71,7 +73,7 @@
 <div class="c-slider-step js-slider-step -huge" data-crop="other">
   <!-- <h1>Additional crop management</h1> -->
   <div class="slider-step-container">
-    <span class="text -guidance">Provide some details about any additional nutrient management practices</span>
+    <span class="text -guidance">Please tell us if you apply any additional nutrient management practices.</span>
     <span>
       <div>
         <p class="text -questions">Additional crop management practices include:</p>
@@ -93,10 +95,10 @@
 </div>
 
 
-<div class="c-slider-step js-slider-step" data-crop="other">
+<div class="c-slider-step js-slider-step" data-crop="other,perennial">
   <!-- <h1>Shade trees</h1> -->
   <div class="slider-step-container">
-    <span class="text -guidance">Provide some details about your agroforestry practices</span>
+    <span class="text -guidance">Please tell us if you apply any agroforestry practices.</span>
     <span>
       <div class="text -questions">
         Does the cropland currently include windbreaks, alley cropping, or any type of
@@ -111,19 +113,12 @@
 </div>
 
 
-<div class="c-slider-step js-slider-step" data-crop="rice">
+<div class="c-slider-step js-slider-step" data-crop="paddy-rice">
   <!-- <h1>Type of Rice and Irrigiation Regime</h1> -->
   <div class="slider-step-container">
-    <span class="text -guidance">Provide more details about your rice irrigation practices</span>
+    <span class="text -guidance">Please tell us about your rice irrigation practices.</span>
     <span>
-      I grow
-      <span class="c-field -little">
-        <%= f.select :rice_type,
-          options_for_select(["paddy", "upland"]), {}, class: '-js-required' %>
-      </span>
-    </span>
-    <span>
-      rice and the irrigation regime
+      My irrigation regime
     </span>
     <span>
       can be described as
@@ -134,7 +129,7 @@
   </div>
 </div>
 
-<div class="c-slider-step js-slider-step" data-crop="rice">
+<div class="c-slider-step js-slider-step" data-crop="paddy-rice">
   <!-- <h1>Flooding before cultivation</h1> -->
   <div class="slider-step-container">
     <span class="text -guidance">Tell us about the specifics of your rice cultivation</span>

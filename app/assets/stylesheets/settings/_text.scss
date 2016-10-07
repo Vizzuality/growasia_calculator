@@ -185,6 +185,27 @@
     line-height: rem(20px);
   }
 
+  &.-help-title {
+    opacity: 0.8;
+    font-size: rem(16px);
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  &.-plain-text {
+    opacity: 0.8;
+    font-size: rem(16px);
+    line-height: 1.5;
+  }
+
+  &.-note {
+    opacity: .3;
+
+    a {
+      text-decoration: underline;
+    }
+  }
+
 
   /*
    * COLORS

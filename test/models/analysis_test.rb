@@ -4,7 +4,7 @@ class AnalysisTest < ActiveSupport::TestCase
 
   test "should calculate emissions_from_rice_cultivation" do
     analysis = Analysis.new({
-      crop: "rice",
+      crop: Analysis::PADDY_RICE,
       area: 100,
       yield: 100,
       rice_type: "paddy",
@@ -49,7 +49,7 @@ class AnalysisTest < ActiveSupport::TestCase
       flu: 0.48
     })
     analysis = Analysis.new({
-      crop: "corn",
+      crop: Analysis::CORN,
       area: 100,
       yield: 100,
       geo_location: gl,
@@ -83,7 +83,7 @@ class AnalysisTest < ActiveSupport::TestCase
       flu: 0.48
     })
     analysis = Analysis.new({
-      crop: "corn",
+      crop: Analysis::CORN,
       area: 100,
       yield: 100,
       geo_location: gl,
@@ -120,7 +120,7 @@ class AnalysisTest < ActiveSupport::TestCase
       flu: 0.58
     })
     analysis = Analysis.new({
-      crop: "vegetables",
+      crop: Analysis::VEGETABLES,
       area: 500,
       yield: 100,
       geo_location: gl,
@@ -156,5 +156,40 @@ class AnalysisTest < ActiveSupport::TestCase
     assert_equal false, analysis.fi_high_wo_manure?
     assert_equal 1.09, analysis.fmg_value.to_f
     assert_equal -495.9493, analysis.emissions_from_soil_management_changed(old_fmg, old_fi).to_f
+  end
+
+  test "should calculate flu_value and return correctly" do
+    dummy_flu = 0.58
+    gl = GeoLocation.create({
+      country: "Myanmar",
+      state: "Magway",
+      fi_high_wo_manure: 1.04,
+      fi_high_w_manure: 1.37,
+      fi_low: 0.95,
+      soc_ref: 66.63,
+      fmg_reduced: 1.09,
+      fmg_no_till: 1.17,
+      fmg_full: 1.0,
+      flu: dummy_flu
+    })
+    analysis = Analysis.new({
+      crop: Analysis::VEGETABLES,
+      area: 500,
+      yield: 100,
+      geo_location: gl
+    })
+    analysis.save
+
+    assert_equal dummy_flu, analysis.flu_value
+
+    analysis.crop = Analysis::PADDY_RICE
+    analysis.save
+
+    assert_equal 1.10, analysis.flu_value
+
+    analysis.crop = Analysis::COFFEE
+    analysis.save
+
+    assert_equal 1.0, analysis.flu_value
   end
 end
