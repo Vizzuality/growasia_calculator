@@ -23,14 +23,18 @@
 
   <div class="c-social">
     <div class="btn-social">
-      <svg class="c-icon -small">
-        <use xlink:href="#icon-twitter"></use>
-      </svg>
+      <%= link_to "https://twitter.com/Grow_Asia" do %>
+        <svg class="c-icon -small">
+          <use xlink:href="#icon-twitter"></use>
+        </svg>
+      <% end %>
     </div>
     <div class="btn-social -mail">
-      <svg class="c-icon -small">
-        <use xlink:href="#icon-mail"></use>
-      </svg>
+      <%= mail_to "info@growasia.org", subject: "Grow Asia Counter" do %>
+        <svg class="c-icon -small">
+          <use xlink:href="#icon-mail"></use>
+        </svg>
+      <% end %>
     </div>
   </div>
 
