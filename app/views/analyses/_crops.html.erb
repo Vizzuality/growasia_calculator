@@ -55,12 +55,12 @@
 
     <div id="options-container"></div>
 
-    <span>
-      <span class="c-field -medium">
+    <span class="c-field-wrapper">
+      <span class="c-field -hald-width">
         <%= select_to_add_fields "Add a synthetic one", f, :fertilizers, select_options(Analysis::FERTILIZER_TYPES) %>
       </span>
       <span>or</span>
-      <span class="c-field -medium">
+      <span class="c-field -hald-width">
         <%= select_to_add_fields "Add a manure", f, :manures, select_options(Analysis::MANURE_TYPES) %>
       </span>
     </span>

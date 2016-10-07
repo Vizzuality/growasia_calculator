@@ -64,6 +64,11 @@
     }
   }
 
+  &.-hald-width {
+    width: 45%;
+    max-width: 300px;
+  }
+
   &.-all { width: 100%;}
 
   // PADDING
