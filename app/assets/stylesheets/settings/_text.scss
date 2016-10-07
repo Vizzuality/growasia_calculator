@@ -222,8 +222,12 @@
     color: $white;
   }
 
-  &.-highlighted {
+  &.-good {
     color: $color-2;
+  }
+
+  &.-wrong {
+    color: $color-7;
   }
 
   &.-bold {

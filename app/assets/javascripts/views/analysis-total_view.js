@@ -40,12 +40,15 @@
 
       var totalCompare = (!!analysisCompare && analysisCompare.total !== analysis.total) ? this.formatNumbers(analysisCompare[this.modelCompare.get('type')]) : null;
 
-      var substraction = (totalCompare - total).toFixed(2);
+      var subtraction = (!!analysis) &&  (!!analysisCompare) ? this.formatNumbers( analysisCompare[this.modelCompare.get('type')] - analysis[this.model.get('type')] ) : null;
+
+      var subtractionClass = subtraction < 0 ? '-good' : '-wrong'
 
       this.$el.html(this.template({
         total: total,
         totalCompare: totalCompare,
-        substraction: substraction
+        subtraction: subtraction,
+        subtractionClass: subtractionClass
       }));
     },
 
