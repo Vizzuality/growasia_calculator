@@ -51,4 +51,13 @@
   .js-toggle-slider {
     transform: translatex(50%);
   }
+
+  .-is-printable {
+    display: block !important;
+  }
+
+  .-is-no-printable {
+    display: none !important;
+  }
+
 }

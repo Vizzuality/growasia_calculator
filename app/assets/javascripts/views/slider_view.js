@@ -14,6 +14,8 @@
 
         direction: null,
 
+        stepContentType: 'geo-location',
+
         crop: 'cacao'
       }
     })),
@@ -115,6 +117,7 @@
           // Set the model
           this.model.set('stepslength', this.$stepsItems.length, { silent: true });
           this.model.set('stepindex', newStepIndex, { silent: true });
+
           this.model.trigger('change:stepindex');
         }
 
@@ -122,6 +125,8 @@
         App.Events.trigger('Slider:index', this.model.get('index'));
 
       }.bind(this));
+
+      App.Events.trigger('Slider:step', this.model.get('stepindex'));
     },
 
     changeStepIndex: function() {
@@ -130,11 +135,14 @@
           .find('.js-slider-step')
           .toggleClass('-active', false);
 
+      this.model.set('stepContentType', this.$stepsItems
+                     .eq(this.model.get('stepindex'))
+                     .data('content'));
+
       this.$stepsItems
         .eq(this.model.get('stepindex'))
         .toggleClass('-active', true);
     },
-
 
 
     // UI EVENTS
@@ -223,6 +231,8 @@
           }
         break;
       }
+
+      App.Events.trigger('Slider:changeStep', this.model.attributes);
     },
 
     onKeyDownHandler: function(e) {
