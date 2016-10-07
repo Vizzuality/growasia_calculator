@@ -21,37 +21,41 @@
     <span>
       What fertilizers do you apply?
     </span>
-    <span>
-      <%= f.fields_for :fertilizers do |builder| %>
-        <div>
-          <%= builder.hidden_field :category, value: Category::FERTILIZER %>
-          <span class="c-field -huge">
-            <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES) %>
+    <% if f.object.fertilizers.any? %>
+      <span>
+        <%= f.fields_for :fertilizers do |builder| %>
+          <div>
+            <%= builder.hidden_field :category, value: Category::FERTILIZER %>
+            <span class="c-field -huge">
+              <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES) %>
+            </span>
+            <span class="c-field -huge">
+              <%= builder.number_field :amount, class: '-right -js-numeric', autocomplete: 'off', min: '0' %>
+              <span class="unit">kg/ha/year</span>
+            </span>
+            of
+          </div>
+        <% end %>
+      </span>
+    <% end %>
+    <% if f.object.manures.any? %>
+      <span>
+        <%= f.fields_for :manures do |builder| %>
+          <%= builder.hidden_field :category, value: Category::MANURE %>
+          <span>
+            and
+            <span class="c-field -medium">
+              <%= builder.number_field :amount, class: '-right -js-numeric', autocomplete: 'off', min: '0' %>
+              <span class="unit">kg/ha/year</span>
+            </span>
+            of
+            <span class="c-field -medium">
+              <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES) %>
+            </span>
           </span>
-          <span class="c-field -huge">
-            <%= builder.number_field :amount, class: '-right -js-numeric', autocomplete: 'off', min: '0' %>
-            <span class="unit">kg/ha/year</span>
-          </span>
-          of
-        </div>
-      <% end %>
-    </span>
-    <span>
-      <%= f.fields_for :manures do |builder| %>
-        <%= builder.hidden_field :category, value: Category::MANURE %>
-        <span>
-          and
-          <span class="c-field -medium">
-            <%= builder.number_field :amount, class: '-right -js-numeric', autocomplete: 'off', min: '0' %>
-            <span class="unit">kg/ha/year</span>
-          </span>
-          of
-          <span class="c-field -medium">
-            <%= builder.select :addition_type, select_options(Analysis::MANURE_TYPES) %>
-          </span>
-        </span>
-      <% end %>
-    </span>
+        <% end %>
+      </span>
+    <% end %>
 
     <div id="options-container"></div>
 
