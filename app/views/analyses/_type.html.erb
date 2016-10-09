@@ -1,29 +1,33 @@
 <div class="c-slider-step js-slider-step -active" data-content="agricultural-activity">
   <div class="slider-step-container">
     <span class="text -guidance">Describe your agricultural activity</span>
-    <span>
-      Currently, I’m growing
-      <span class="c-field -medium">
+
+    <div class="c-field-wrapper -big">
+      <span class="c-text">
+        Currently, I’m growing
+      </span>
+      <span class="c-field -two-elements">
         <%= f.select :crop, select_options(Analysis::CROPS), {}, class: '-js-required' %>
       </span>
-    </span>
+    </div>
 
-    <span>
-      on
+    <div class="c-field-wrapper -medium">
+      <span class="c-text">on</span>
       <span class="c-field -little">
         <%= f.number_field :area, class: '-right -js-required -js-numeric', autocomplete: 'off', min: '0' %>
       </span>
-      hectares of land
-    </span>
+      <span class="c-text">hectares of land</span>
+    </div>
 
-    <span>
-      and expect a yield of
+    <div class="c-field-wrapper -big">
+      <span class="c-text">and expect a yield of</span>
       <span class="c-field -little">
         <%= f.number_field :yield, class: '-right -js-required -js-numeric', autocomplete: 'off', min: '0' %>
       </span>
       <span class="c-field -small">
         <%= f.select :yield_unit, select_options(Analysis::YIELD_UNITS), {}, class: '-js-required' %>
       </span>
-    </span>
+    </div>
+
   </div>
 </div>
