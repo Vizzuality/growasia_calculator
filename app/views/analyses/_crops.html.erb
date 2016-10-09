@@ -17,7 +17,9 @@
 <div class="c-slider-step js-slider-step" data-content="fertilizers">
   <div class="slider-step-container">
     <span class="text -guidance">Please tell us about your use of fertilizers</span>
+
     <span>What fertilizers do you apply?</span>
+
     <% if f.object.fertilizers.any? %>
       <span>
         <%= f.fields_for :fertilizers do |builder| %>
@@ -35,6 +37,7 @@
         <% end %>
       </span>
     <% end %>
+
     <% if f.object.manures.any? %>
       <span>
         <%= f.fields_for :manures do |builder| %>
@@ -56,12 +59,12 @@
 
     <div id="options-container"></div>
 
-    <span class="c-field-wrapper">
-      <span class="c-field -hald-width">
+    <span class="c-field-wrapper -medium -space-between">
+      <span class="c-field -half-width">
         <%= select_to_add_fields "Add a synthetic one", f, :fertilizers, select_options(Analysis::FERTILIZER_TYPES) %>
       </span>
       <span>or</span>
-      <span class="c-field -hald-width">
+      <span class="c-field -half-width">
         <%= select_to_add_fields "Add a manure", f, :manures, select_options(Analysis::MANURE_TYPES) %>
       </span>
     </span>
