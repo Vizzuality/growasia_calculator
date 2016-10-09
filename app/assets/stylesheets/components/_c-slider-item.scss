@@ -1,0 +1,32 @@
+.c-slider-item {
+  // GRID
+  .c-slider-step {
+    .slider-step-container {
+      > * {
+        display: block;
+      }
+    }
+  }
+
+  // STATES
+  &.-initial {
+    transform: translate(0,0);
+  }
+
+  &.-inline {
+    .c-slider-step {
+      .slider-step-container {
+        > * {
+          display: inline;
+        }
+      }
+    }
+  }
+
+  // COLORS
+  &.-color1 { background: $color-1;}
+  &.-color2 { background: $color-2;}
+  &.-color3 { background: $color-3;}
+  &.-color4 { background: $color-4;}
+  &.-color5 { background: $color-5;}
+}

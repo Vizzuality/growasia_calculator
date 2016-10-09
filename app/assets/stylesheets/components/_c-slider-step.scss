@@ -1,4 +1,12 @@
 .c-slider-step {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  transition: all .25s linear;
+  max-width: 800px;
   text-align: center;
 
   .slider-step-container {
@@ -12,7 +20,7 @@
     }
 
     > * {
-      display: block;
+      // display: block;
       font-weight: 100;
     }
   }
@@ -28,4 +36,27 @@
       margin: 25px 0 0;
     }
   }
+
+    // STATES
+  &.-active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  // SIZES
+  &.-full-size {
+    max-width: none;
+  }
+  &.-medium {
+    max-width: 600px;
+  }
+  &.-huge {
+    width: 800px;
+  }
+
+  // COLORS
+  &.-light {
+    color: $white;
+  }
 }
+
