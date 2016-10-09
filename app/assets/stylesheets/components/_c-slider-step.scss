@@ -45,13 +45,17 @@
 
   // SIZES
   &.-full-size {
+    width: 80%;
     max-width: none;
   }
+
   &.-medium {
     max-width: 600px;
   }
+
   &.-huge {
-    width: 800px;
+    width: 80%;
+    max-width: rem(800px)
   }
 
   // COLORS
