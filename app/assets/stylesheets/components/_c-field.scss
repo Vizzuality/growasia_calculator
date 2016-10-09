@@ -253,6 +253,7 @@
   }
 
   &.-disabled {
+    display: none;
     overflow: hidden;
     height: 0 !important;
   }

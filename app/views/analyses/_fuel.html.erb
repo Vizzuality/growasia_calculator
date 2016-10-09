@@ -2,13 +2,12 @@
   <!-- <h1>Fuel and purposes</h1> -->
   <div class="slider-step-container -light">
     <span class="text -guidance -light">Please tell us if you use fossil fuels as part of your work.</span>
-    <span>
-      My fuel usage for transportation is:
-    </span>
-    <div>
-      <%= f.fields_for :transportation_fuels do |builder| %>
-        <%= builder.hidden_field :category, value: Category::TRANSPORTATION_FUEL %>
 
+    <span>My fuel usage for transportation is:</span>
+
+    <%= f.fields_for :transportation_fuels do |builder| %>
+      <%= builder.hidden_field :category, value: Category::TRANSPORTATION_FUEL %>
+      <div class="c-field-wrapper -big">
         <div>
           <div class="c-field -little -light">
             <%= builder.number_field :amount, value: 0, class: '-right -js-numeric', autocomplete: 'off', min: '0' %>
@@ -23,9 +22,8 @@
             of <%= builder.object.addition_type %>
           </div>
         </div>
-
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
 </div>
 
@@ -33,26 +31,25 @@
   <!-- <h1>Fuel and purposes</h1> -->
   <div class="slider-step-container -light">
     <span class="text -guidance -light">Please tell us if you use fossil fuels as part of your work.</span>
-    <span>
-      My fuel usage for irrigation is
-    </span>
-    <span>
-      <%= f.fields_for :irrigation_fuels do |builder| %>
-        <div>
-          <div class="c-field -little -light">
-            <%= builder.hidden_field :category, value: Category::IRRIGATION_FUEL %>
-            <%= builder.number_field :amount, value: 0, class: '-right -js-numeric', autocomplete: 'off', min: '0' %>
-          </div>
-          <div class="c-field -little -light">
-            <%= builder.select :unit, select_options(Analysis::FUEL_UNITS) %>
-          </div>
-          <div class="c-field -light">
-            <%= builder.hidden_field :addition_type, value: builder.object.addition_type %>
-           of <%= builder.object.addition_type %>
-          </div>
+
+    <span>My fuel usage for irrigation is</span>
+
+    <%= f.fields_for :irrigation_fuels do |builder| %>
+      <div class="c-field-wrapper -big">
+        <div class="c-field -little -light">
+          <%= builder.hidden_field :category, value: Category::IRRIGATION_FUEL %>
+          <%= builder.number_field :amount, value: 0, class: '-right -js-numeric', autocomplete: 'off', min: '0' %>
         </div>
-      <% end %>
-    </span>
+        <div class="c-field -little -light">
+          <%= builder.select :unit, select_options(Analysis::FUEL_UNITS) %>
+        </div>
+        <div class="c-field -light">
+          <%= builder.hidden_field :addition_type, value: builder.object.addition_type %>
+         of <%= builder.object.addition_type %>
+        </div>
+      </div>
+    <% end %>
+
   </div>
 </div>
 
@@ -60,25 +57,24 @@
   <!-- <h1>Fuel and purposes</h1> -->
   <div class="slider-step-container -light">
     <span class="text -guidance -light">Please tell us if you use fossil fuels as part of your work.</span>
-    <span>
-      My fuel usage for other purposes is
-    </span>
-    <span>
-      <%= f.fields_for :fuels do |builder| %>
-        <div>
-          <div class="c-field -little -light">
-            <%= builder.hidden_field :category, value: Category::FUEL %>
-            <%= builder.number_field :amount, value: 0, class: '-right -js-numeric', autocomplete: 'off', min: '0' %>
-          </div>
-          <div class="c-field -little -light">
-            <%= builder.select :unit, select_options(Analysis::FUEL_UNITS) %>
-          </div>
-          <div class="c-field -light">
-            <%= builder.hidden_field :addition_type, value: builder.object.addition_type %>
-            of <%= builder.object.addition_type %>
-          </div>
+
+    <span> My fuel usage for other purposes is</span>
+
+    <%= f.fields_for :fuels do |builder| %>
+      <div class="c-field-wrapper -big">
+        <div class="c-field -little -light">
+          <%= builder.hidden_field :category, value: Category::FUEL %>
+          <%= builder.number_field :amount, value: 0, class: '-right -js-numeric', autocomplete: 'off', min: '0' %>
         </div>
-      <% end %>
-    </span>
+        <div class="c-field -little -light">
+          <%= builder.select :unit, select_options(Analysis::FUEL_UNITS) %>
+        </div>
+        <div class="c-field -light">
+          <%= builder.hidden_field :addition_type, value: builder.object.addition_type %>
+          of <%= builder.object.addition_type %>
+        </div>
+      </div>
+    <% end %>
+
   </div>
 </div>
