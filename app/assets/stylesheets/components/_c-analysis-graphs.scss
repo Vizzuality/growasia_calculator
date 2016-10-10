@@ -15,4 +15,13 @@
       margin: 0;
     }
   }
+
+  .chart {
+    max-height: rem(250px) !important;
+
+
+    @media screen and (min-width: $screen-m) {
+      max-height: rem(320px) !important;
+    }
+  }
 }

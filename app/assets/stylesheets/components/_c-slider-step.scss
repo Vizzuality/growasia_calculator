@@ -38,11 +38,19 @@
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
+    max-width: 80%;
+    margin: 0 auto;
+
+    @media screen and (min-width: $screen-xl) {
+      max-width: none;
+    }
 
     > * {
       width: 47.5%;
       margin: 25px 0 0;
     }
+
+
   }
 
     // STATES

@@ -105,7 +105,7 @@
         Does the cropland currently include windbreaks, alley cropping, or any type of
         additional silviculture?
       </div>
-      <span class="c-field">
+      <span class="c-field -little">
         <%= f.select :agroforestry_practices,
           options_for_select([["Yes", true], ["No", false]], f.object.agroforestry_practices) %>
       </span>
@@ -117,15 +117,15 @@
 <div class="c-slider-step js-slider-step" data-crop="paddy-rice" data-content="irrigation">
   <div class="slider-step-container">
     <span class="text -guidance">Please tell us about your rice irrigation practices.</span>
-    <span>
-      My irrigation regime
-    </span>
-    <span>
-      can be described as
+
+    <span>My irrigation regime can be described as</span>
+    <div class="c-field-wrapper -big">
       <div class="c-field -huge">
         <%= f.select :irrigation_regime, select_options(Analysis::IRRIGATION_REGIMES), {}, class: '-js-required' %>
       </div>
-    </span>
+    </div>
+
+
   </div>
 </div>
 

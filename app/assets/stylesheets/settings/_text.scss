@@ -85,9 +85,13 @@
   //Total emissions text
   &.-figure-extra-big {
     color: $black;
-    font-size: rem(72px);
+    font-size: rem(50px);
     font-weight: 700;
     opacity: .8;
+
+    @media screen and (min-width: $screen-xl) {
+      font-size: rem(72px);
+    }
   }
 
   &.-figure-big {

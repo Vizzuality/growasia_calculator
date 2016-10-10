@@ -1,6 +1,10 @@
 .c-btn-container {
   display: flex;
 
+  width: 80%;
+  max-width: rem(800px);
+  margin: 0 auto;
+
   > * {
     margin: 0 rem(15px) 0 0;
     &:last-child {

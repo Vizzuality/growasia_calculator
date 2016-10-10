@@ -60,3 +60,10 @@
 .c-field + .c-field {
   margin-left: rem(10px);
 }
+
+.c-analysis-sidebar {
+  .c-field,
+  .c-text {
+    margin-left: 0;
+  }
+}
