@@ -51,6 +51,11 @@
     }
   }
 
+  .options-container {
+    max-height: rem(300px);
+    overflow: auto;
+  }
+
     // STATES
   &.-active {
     opacity: 1;
