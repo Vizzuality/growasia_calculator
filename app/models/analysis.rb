@@ -315,13 +315,20 @@ class Analysis < ApplicationRecord
     # Conversion factor: rice_nutrient_management[:conversion_factor]
     regime = IRRIGATION_REGIMES.select{|t| t[:slug] == irrigation_regime}.first
     practice = FLOODING_PRACTICES.select{|t| t[:slug] == flooding}.first
-    nutrient_mgt = RICE_NUTRIENT_MANAGEMENT.select{|t| t[:slug] == nutrient_managements.first.addition_type}.first
+
+    scaling_factor_for_org = if nutrient_managements.first
+                          nutrient_mgt = RICE_NUTRIENT_MANAGEMENT.
+                            select{|t| t[:slug] == nutrient_managements.first.addition_type}.first
+                          straw_factor = ["straw-less", "straw-more"].include?(nutrient_mgt[:slug]) ? 0.873 : 1
+                          (1+nutrient_managements.first.amount/1000*straw_factor*nutrient_mgt[:conversion_factor])**0.59
+                        else
+                          1
+                        end
 
     pre_cult_scaling_factor = practice[:scaling_factor]
 
-    conversion_factor = (1+nutrient_managements.first.amount/1000*nutrient_mgt[:conversion_factor])**0.59
 
-    ef_rice = 1.30 * regime[:scaling_factor] * pre_cult_scaling_factor * conversion_factor
+    ef_rice = 1.30 * regime[:scaling_factor] * pre_cult_scaling_factor * scaling_factor_for_org
 
     (ef_rice * cultivation_time * annual_cultivation_cycles * area * (10**-6)) * 25
   end

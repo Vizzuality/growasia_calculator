@@ -21,4 +21,8 @@ class Addition < ApplicationRecord
     fuel && fuel[:title] or "n/a"
   end
 
+  def nutrient_mgmt_name
+    nutrient = Analysis::RICE_NUTRIENT_MANAGEMENT.select{|t| t[:slug] = addition_type}.first
+    nutrient && nutrient[:title] or "n/a"
+  end
 end

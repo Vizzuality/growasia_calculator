@@ -34,14 +34,39 @@
         </div>
       </div>
     <% end %>
-    <% if analysis.agrochemical_amount.present? && analysis.agrochemical_amount > 0.0%>
-      <div class="c-field -narrow -light -full">
-        <%= analysis.agrochemical_amount %> kg./ha/year of agrochemicals
+    <% unless analysis.paddy_rice? %>
+      <div class="c-field -narrow -full -light">
+        Agroforestry practices <%= "not " unless analysis.agroforestry_practices? %>applied
+      </div>
+    <% end %>
+    <% if analysis.paddy_rice? %>
+      <% if analysis.irrigation_regime %>
+        <div class="c-field -narrow -full -light">
+          <label class="text -label" for="">Irrigation regime</label>
+          <%= Analysis::IRRIGATION_REGIMES.select{|t| t[:slug] == analysis.irrigation_regime}.first[:title] %>
+        </div>
+      <% end %>
+      <% if analysis.flooding %>
+        <div class="c-field -narrow -full -light">
+          <label class="text -label" for="">Before cultivation</label>
+          <%= Analysis::FLOODING_PRACTICES.select{|t| t[:slug] == analysis.flooding}.first[:title] %>
+        </div>
+      <% end %>
+      <div class="c-field -narrow -full -light">
+        <label class="text -label" for="">
+          Cultivation takes <%= analysis.cultivation_time %> days
+        </label>
+      </div>
+      <div class="c-field -narrow -full -light">
+        <label class="text -label" for="">
+          <%= analysis.annual_cultivation_cycles %>
+          Annual cultivation cycles
+        </label>
       </div>
     <% end %>
   </div>
-  <% if analysis.crop_management_practices.present? %>
-    <div class="input-group -second">
+  <div class="input-group -second">
+    <% if analysis.crop_management_practices.present? %>
       <div>
         <label class="text -label" for="">Crop management practices</label>
         <% analysis.crop_management_practices.each do |practice| %>
@@ -51,13 +76,6 @@
             </li>
           </ul>
         <% end %>
-      </div>
-    </div>
-  <% end %>
-  <div class="input-group -third">
-    <% unless analysis.paddy_rice? %>
-      <div class="c-field -narrow -full -light">
-        Agroforestry practices <%= "not " unless analysis.agroforestry_practices? %>applied
       </div>
     <% end %>
     <% if analysis.lime_amount.present? && analysis.lime_amount > 0.0 %>
@@ -70,7 +88,33 @@
         <%= analysis.dolomite_amount %> kg./ha/year of Dolomite applied
       </div>
     <% end %>
-
+    <% if analysis.agrochemical_amount.present? && analysis.agrochemical_amount > 0.0%>
+      <div class="c-field -narrow -light -full">
+        <%= analysis.agrochemical_amount %> kg./ha/year of agrochemicals
+      </div>
+    <% end %>
+    <% if analysis.paddy_rice? %>
+      <% if analysis.nutrient_managements.where("amount > 0.0").any? %>
+        <div class="c-field -narrow -light -double">
+          <label class="text -label" for="">
+            You incorporate
+          </label>
+          <span class="input-wrapper">
+            <ul>
+              <% analysis.nutrient_managements.each do |nut| %>
+                <li><%= nut.amount %> kg/ha/year of <%= nut.nutrient_mgmt_name %></li>
+              <% end %>
+            </ul>
+          </span>
+        </div>
+      <% end %>
+      <div class="c-field -narrow -full -light">
+        <label class="text -label" for="">Rice straw burned</label>
+        <%= analysis.rice_straw_burned %>
+      </div>
+    <% end %>
+  </div>
+  <div class="input-group -third">
     <% if analysis.transportation_fuels.where("amount > 0.0").any? %>
       <div class="c-field -narrow -light -full">
         <label class="text -label" for="">
@@ -114,15 +158,6 @@
             <% end %>
           <% end %>
         </ul>
-      </div>
-    <% end %>
-
-    <% if analysis.paddy_rice? && analysis.irrigation_regime.present? %>
-      <div>
-        <div class="c-field -narrow -full -light">
-          <label class="text -label" for="">Irrigation regime</label>
-          <%= Analysis::IRRIGATION_REGIMES.select{|t| t[:slug] == analysis.irrigation_regime}.first[:title] %>
-        </div>
       </div>
     <% end %>
   </div>

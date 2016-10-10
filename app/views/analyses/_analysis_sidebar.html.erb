@@ -32,6 +32,12 @@
           <% end %>
         </div>
       </div>
+      <% unless analysis.paddy_rice? %>
+        <div class="c-field -narrow -full -light">
+          <label class="text -label" for="">Agroforestry practices?</label>
+          <%= f.select :agroforestry_practices, options_for_select([["Yes", true], ["No", false]], analysis.agroforestry_practices) %>
+        </div>
+      <% end %>
       <% if analysis.paddy_rice? %>
         <div>
           <div class="c-field -narrow -full -light">
@@ -43,13 +49,13 @@
         <div>
           <div class="c-field -narrow -full -light">
             <label class="text -label" for="">Before cultivation</label>
-            <%= f.select :irrigation_regime, select_options(Analysis::FLOODING_PRACTICES, analysis.irrigation_regime),
+            <%= f.select :flooding, select_options(Analysis::FLOODING_PRACTICES, analysis.flooding),
               {}, class: '-js-required' %>
           </div>
         </div>
         <div>
           <div class="c-field -narrow -full -light">
-            <label class="text -label" for="">Cultivation takes</label>
+            <label class="text -label" for="">Days of cultivation</label>
             <%= f.number_field :cultivation_time, min: 0, class: "-js-is-resetable" %>
             <div class="options-wrapper">
               <button class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= analysis.cultivation_time %>">
@@ -199,14 +205,6 @@
       <% end %>
     </div>
     <div class="input-group -third">
-      <% unless analysis.paddy_rice? %>
-        <div>
-          <div class="c-field -narrow -full -light">
-            <label class="text -label" for="">Agroforestry practices?</label>
-            <%= f.select :agroforestry_practices, options_for_select([["Yes", true], ["No", false]], analysis.agroforestry_practices) %>
-          </div>
-        </div>
-      <% end %>
 
       <%= f.fields_for :transportation_fuels do |builder| %>
         <%= builder.hidden_field :category, value: Category::TRANSPORTATION_FUEL %>

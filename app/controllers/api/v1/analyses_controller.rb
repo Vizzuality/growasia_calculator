@@ -20,7 +20,7 @@ class Api::V1::AnalysesController < ApiController
       params.require(:analysis).permit(:geo_location_id, :area, :yield,
         :yield_unit, :agroforestry_practices, :crop, :tillage, :agrochemical_amount,
         :rice_type, :irrigation_regime, :flooding, :cultivation_time,
-        :lime_amount, :dolomite_amount, :annual_cultivation_cycles,
+        :lime_amount, :dolomite_amount, :annual_cultivation_cycles, :rice_straw_burned,
         fertilizers_attributes: [ :id, :amount, :category, :addition_type, :area ],
         manures_attributes: [ :id, :amount, :category, :addition_type, :area ],
         fuels_attributes: [ :id, :amount, :category, :addition_type, :area, :unit ],
