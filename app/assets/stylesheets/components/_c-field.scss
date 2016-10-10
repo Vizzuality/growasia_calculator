@@ -9,8 +9,8 @@
 
   input {
     @include placeholder() {
-      color: $black;
-      opacity: .3;
+      color: $white;
+      opacity: .5;
     }
   }
 
@@ -191,13 +191,12 @@
 
   &.-narrow {
     select,
-    input,
     .select2-selection,
     .dropdown-wrapper,
     .select2-selection__rendered,
     .select2-container,
     .select2-container {
-      max-height: rem(40px) !important;
+      height: rem(40px) !important;
       line-height: rem(40px) !important;
       font-size: rem(18px);
     }
@@ -216,6 +215,10 @@
         width: 5px;
         height: 5px;
       }
+    }
+
+    input {
+      font-size: rem(18px);
     }
   }
 
@@ -272,5 +275,12 @@
 
   .input-wrapper {
     position: relative;
+  }
+
+  .add-fields {
+    img {
+      position: relative;
+      top: 5px;
+    }
   }
 }
