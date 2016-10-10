@@ -274,7 +274,13 @@
       var inputId = $(e.currentTarget).attr('id');
       var $hiddenInputToBeShown = $('#' + inputId + 'Amount');
 
-      $hiddenInputToBeShown.removeClass('-disabled');
+      $hiddenInputToBeShown.toggleClass('-disabled');
+      $hiddenInputToBeShown.find('input').toggleClass('-js-required');
+
+      if ($hiddenInputToBeShown.hasClass('-disabled')) {
+        //reset value;
+        $hiddenInputToBeShown.find('input').val('');
+      }
     },
 
 

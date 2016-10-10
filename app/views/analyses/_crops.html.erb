@@ -3,9 +3,7 @@
     <span class="text -guidance">Describe how you manage your crops</span>
 
     <span>
-      <div>
-        My crop management includes
-      </div>
+      <div> My crop management includes</div>
       <div class="c-field -huge">
         <%= f.select:tillage, select_options(Analysis::TILLAGES), {}, class: "-js-required" %>
       </div>
@@ -29,7 +27,7 @@
               <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES) %>
             </span>
             <span class="c-field -huge">
-              <%= builder.number_field :amount, class: '-right -js-numeric',
+              <%= builder.number_field :amount, class: '-right -js-required',
                 autocomplete: 'off', min: '0', placeholder: 0.0 %>
               <span class="unit">kg/ha/year</span>
             </span>
@@ -46,7 +44,7 @@
           <span>
             and
             <span class="c-field -medium">
-              <%= builder.number_field :amount, class: '-right -js-numeric',
+              <%= builder.number_field :amount, class: '-right -js-required',
                 autocomplete: 'off', min: '0', placeholder: 0.0 %>
               <span class="unit">kg/ha/year</span>
             </span>
