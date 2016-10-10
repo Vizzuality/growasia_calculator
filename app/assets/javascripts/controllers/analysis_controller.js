@@ -87,7 +87,25 @@
 
       $selectors.select2({
         theme: "default",
-        minimumResultsForSearch: -1
+        minimumResultsForSearch: -1,
+      });
+
+      $.each($selectors, function() {
+        var classList = this.className.split(/\s+/);
+        for (var i = 0; i < classList.length; i++) {
+          if (classList[i].includes('theme')) {
+            $(this).next('.select2-container').addClass(classList[i]);
+          }
+        }
+      });
+
+      $('.select2-container').on('click', function(e){
+        var classList = e.currentTarget.className.split(/\s+/);
+        for (var i = 0; i < classList.length; i++) {
+          if (classList[i].includes('theme')) {
+            $('.select2-dropdown').addClass(classList[i]);
+          }
+        }
       });
     },
 
