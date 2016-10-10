@@ -6,7 +6,7 @@
 
     model: new (Backbone.Model.extend({
       defaults: {
-        index: 0,
+        index: 3,
         length: 5,
 
         stepindex: null,
