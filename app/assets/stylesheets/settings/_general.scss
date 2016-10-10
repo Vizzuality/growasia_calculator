@@ -19,13 +19,19 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+html {
+  overflow-x: hidden;
+}
+
+body, html {
+  &.-fixed {
+    overflow: hidden;
+  }
+}
 li {
   list-style: none;
 }
 
-html {
-  overflow-x: hidden;
-}
 
 a, li {
   /* Avoid important here because we do want underline styles for some links */
