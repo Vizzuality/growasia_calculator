@@ -359,20 +359,181 @@
   }
 
   &:hover {
-    color: $color-1;
-  }
-}
-
-.select2-container--default .select2-results__option--highlighted[aria-selected] {
-  background-color: $color-1 !important;
+    background-color: $color-1;
 
     &:after {
-    background-color: $black;
-    opacity: .14;
+      opacity: .1;
+    }
+  }
+
+  .-theme-1 & {
+    background-color: $color-1 !important;
+    border-top: 1px solid $color-1;
+    border-bottom: 1px solid $color-1;
+    color: $white;
+
+    &:after {
+      background-color: $black;
+    }
+
+    &:hover {
+      background-color: $color-1;
+
+      &:after {
+        opacity: .04;
+      }
+    }
+  }
+
+  .-theme-2 & {
+    background-color: $color-2 !important;
+    border-top: 1px solid $color-2;
+    border-bottom: 1px solid $color-2;
+    color: $black;
+
+    &:after {
+      background-color: $black;
+    }
+
+    &:hover {
+      background-color: $color-2 !important;
+
+      &:after {
+        opacity: .04;
+      }
+    }
+  }
+
+  .-theme-3 & {
+    background-color: $color-3 !important;
+    border-top: 1px solid $color-3;
+    border-bottom: 1px solid $color-3;
+    color: $white;
+
+    &:after {
+      background-color: $black;
+    }
+
+    &:hover {
+      background-color: $color-3 !important;
+
+      &:after {
+        opacity: .04;
+      }
+    }
+  }
+
+  .-theme-4 & {
+    background-color: $color-4 !important;
+    border-top: 1px solid $color-4;
+    border-bottom: 1px solid $color-4;
+    color: $black;
+
+    &:after {
+      background-color: $white;
+    }
+
+    &:hover {
+      background-color: $color-4 !important;
+
+      &:after {
+        opacity: .04;
+      }
+    }
+  }
+
+  .-theme-5 & {
+    background-color: $color-5 !important;
+    border-top: 1px solid $color-5;
+    border-bottom: 1px solid $color-5;
+    color: $black;
+
+    &:after {
+      background-color: $white;
+    }
+
+    &:hover {
+      background-color: $color-5 !important;
+
+      &:after {
+        opacity: .04;
+      }
+    }
   }
 }
 
-//Scrollbar 
-.select2-container--default .select2-results > .select2-results__options::-webkit-scrollbar-track {
-  background-color: $color-1;
+.-theme-1 {
+  .select2-results__option--highlighted {
+    background-color: $color-1 !important;
+
+    &:after {
+      background-color: $black;
+      opacity: .14 !important;
+    }
+  }
+
+  .select2-results__options::-webkit-scrollbar-track {
+    background-color: $color-1 !important;
+  }
 }
+
+.-theme-2 {
+  .select2-results__option--highlighted {
+    background-color: $color-2 !important;
+
+    &:after {
+      background-color: $black;
+      opacity: .14 !important;
+    }
+  }
+
+  .select2-results__options::-webkit-scrollbar-track {
+    background-color: $color-2 !important;
+  }
+}
+
+.-theme-3 {
+  .select2-results__option--highlighted {
+    background-color: $color-3 !important;
+
+    &:after {
+      background-color: $black;
+      opacity: .14 !important;
+    }
+  }
+
+  .select2-results__options::-webkit-scrollbar-track {
+    background-color: $color-3 !important;
+  }
+}
+
+.-theme-4 {
+  .select2-results__option--highlighted {
+    background-color: $color-4 !important;
+
+    &:after {
+      background-color: $white;
+      opacity: .14 !important;
+    }
+  }
+
+  .select2-results__options::-webkit-scrollbar-track {
+    background-color: $color-4 !important;
+  }
+}
+
+.-theme-5 {
+  .select2-results__option--highlighted {
+    background-color: $color-5 !important;
+
+    &:after {
+      background-color: $white;
+      opacity: .14 !important;
+    }
+  }
+
+  .select2-results__options::-webkit-scrollbar-track {
+    background-color: $color-5 !important;
+  }
+}
+
