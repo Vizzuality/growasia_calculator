@@ -105,8 +105,10 @@
     removeFields: function() {
       $(document).on('click', '.-js-remove-fields', function(event) {
         event && event.preventDefault();
+
         $(this).prev('input[type=hidden]').val('1');
-        $(this).parents('.-js-input-wrapper').hide();
+        //I change this from hide to remove because that wrapper should be display flex and hide give it a display block. Please, review that this change doesn't crash anything.
+        $(this).parents('.-js-input-wrapper').remove();
         return event.preventDefault();
       });
     }

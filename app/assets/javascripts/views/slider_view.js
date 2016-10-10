@@ -262,7 +262,7 @@
         var $newFields = $target.data('fields').replace(regexp, time)
         var selectId = $($newFields).find('select').attr('id');
 
-        $('#options-container').append($newFields);
+        $('#options-container').prepend($newFields);
         $('#'+selectId).val(selectedVal);
         this.addSelectLib();
         $target.val('');
