@@ -1,87 +1,89 @@
 <section class="l-analysis-main">
-  <header class="c-analysis-header">
-    <div>
-      <ul class="list">
-        <li class="list-item">
-          <span class="title text -summary-small">Country</span>
-          <span class="value text -summary-big"><%= @analysis.geo_location.country %></span>
-        </li>
-        <li class="list-item">
-          <span class="title text -summary-small">Region</span>
-          <span class="value text -summary-big"><%= @analysis.geo_location.state %></span>
-        </li>
-      </ul>
-      <ul class="list">
-        <li class="list-item">
-          <span class="title text -summary-small">Crop</span>
-          <span class="value text -summary-big"><%= @analysis.display_crop %></span>
-        </li>
-        <li class="list-item">
-          <span class="title text -summary-small">Area</span>
-          <span class="value text -summary-big"><%= @analysis.area %> <em>ha</em></span>
-        </li>
-        <li class="list-item">
-          <span class="title text -summary-small">Annual Production</span>
-          <span class="value text -summary-big"><%= @analysis.converted_yield %> <em>t per ha</em></span>
-        </li>
-      </ul>
+  <div class="wrapper">
+
+    <header class="c-analysis-header">
+      <div>
+        <ul class="list">
+          <li class="list-item">
+            <span class="title text -summary-small">Country</span>
+            <span class="value text -summary-big"><%= @analysis.geo_location.country %></span>
+          </li>
+          <li class="list-item">
+            <span class="title text -summary-small">Region</span>
+            <span class="value text -summary-big"><%= @analysis.geo_location.state %></span>
+          </li>
+        </ul>
+        <ul class="list">
+          <li class="list-item">
+            <span class="title text -summary-small">Crop</span>
+            <span class="value text -summary-big"><%= @analysis.display_crop %></span>
+          </li>
+          <li class="list-item">
+            <span class="title text -summary-small">Area</span>
+            <span class="value text -summary-big"><%= @analysis.area %> <em>ha</em></span>
+          </li>
+          <li class="list-item">
+            <span class="title text -summary-small">Annual Production</span>
+            <span class="value text -summary-big"><%= @analysis.converted_yield %> <em>t per ha</em></span>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <hr>
+
+    <div id="analysisTotalView" class="c-analysis-total">
     </div>
-  </header>
 
-  <hr>
+    <hr>
 
-  <div id="analysisTotalView" class="c-analysis-total">
-  </div>
-
-  <hr>
-
-  <div id="analysisChartsView" class="c-analysis-graphs">
-    <div class="grid">
-      <div class="grid-col">
-        <div id="chart-1" class="c-graph">
-          <div class="title text -summary-big">Emission Sources</div>
-          <div id="analysisToggleView" class="c-analysis-toggle">
-            <ul>
-              <li data-type="total" class="js-toggle-item -active">Total</li>
-              <li data-type="total_per_yield" class="js-toggle-item ">Per yield</li>
-            </ul>
-            <div class="slide js-toggle-slider"></div>
+    <div id="analysisChartsView" class="c-analysis-graphs">
+      <div class="grid">
+        <div class="grid-col">
+          <div id="chart-1" class="c-graph">
+            <div class="title text -summary-big">Emission Sources</div>
+            <div id="analysisToggleView" class="c-analysis-toggle">
+              <ul>
+                <li data-type="total" class="js-toggle-item -active">Total</li>
+                <li data-type="total_per_yield" class="js-toggle-item ">Per yield</li>
+              </ul>
+              <div class="slide js-toggle-slider"></div>
+            </div>
+            <div class="chart"></div>
           </div>
-          <div class="chart"></div>
         </div>
       </div>
     </div>
+
+    <hr>
+
+    <div id="analysisActions" class="c-analysis-actions">
+      <ul class="c-btn-container -j-center -a-center">
+        <li>
+          <button type="button" name="button" class="btn -dark -with-icon js-btn-action" data-action="Save:toggle">
+            <svg class="c-icon -small"><use xlink:href="#icon-save"></use></svg>
+            <span>Bookmark</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" name="button" class="btn -dark -with-icon js-btn-action" data-action="Print:toggle">
+            <svg class="c-icon -small"><use xlink:href="#icon-print"></use></svg>
+            <span>Print</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" name="button" class="btn -dark -with-icon js-btn-action" data-action="Share:toggle">
+            <svg class="c-icon -small"><use xlink:href="#icon-share"></use></svg>
+            <span>Share</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="l-analysis-advise">
+      <a href="#"><p class="text -link -medium">Learn more about our methodology</p></a>
+    </div>
   </div>
-
-  <hr>
-
-  <div id="analysisActions" class="c-analysis-actions">
-    <ul class="c-btn-container -j-center -a-center">
-      <li>
-        <button type="button" name="button" class="btn -dark -with-icon js-btn-action" data-action="Save:toggle">
-          <svg class="c-icon -small"><use xlink:href="#icon-save"></use></svg>
-          <span>Bookmark</span>
-        </button>
-      </li>
-      <li>
-        <button type="button" name="button" class="btn -dark -with-icon js-btn-action" data-action="Print:toggle">
-          <svg class="c-icon -small"><use xlink:href="#icon-print"></use></svg>
-          <span>Print</span>
-        </button>
-      </li>
-      <li>
-        <button type="button" name="button" class="btn -dark -with-icon js-btn-action" data-action="Share:toggle">
-          <svg class="c-icon -small"><use xlink:href="#icon-share"></use></svg>
-          <span>Share</span>
-        </button>
-      </li>
-    </ul>
-  </div>
-
-  <div class="l-analysis-advise">
-    <a href="#"><p class="text -link -medium">Learn more about our methodology</p></a>
-  </div>
-
 </section>
 
 <section id="analysisSidebarView" class="l-analysis-sidebar">

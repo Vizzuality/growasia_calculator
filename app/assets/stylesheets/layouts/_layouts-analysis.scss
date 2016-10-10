@@ -1,8 +1,5 @@
 .l-analysis-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: absolute;
+  position: fixed;
   left: rem(88px);
   top: 0;
   bottom: 0;
@@ -10,8 +7,14 @@
   height: 100vh;
   overflow: auto;
 
-  @media screen and (min-width: $screen-xl) {
-    min-height: rem(850px);
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @media screen and (min-width: $screen-xl) {
+      min-height: rem(850px);
+    }
   }
 }
 
@@ -24,6 +27,10 @@
   height: 100vh;
   overflow: auto;
   background-color: $color-5;
+
+  * > {
+    padding-right: rem(10px);
+  }
 }
 
 .l-analysis-advise {
