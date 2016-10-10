@@ -15,33 +15,39 @@
     geometries: {
       all: {
         url: '../asia.geo.json',
-        center: [12.24, 110],
-        zoom: 4
+        center: [10, 110],
+        zoom: 4,
+        bounds: [[28, 85],[ -10, 140]]
       },
       Cambodia: {
         url: '../cambodia.geojson',
         center: [12.24, 105],
-        zoom: 7
+        zoom: 7,
+        bounds: [[15, 101],[10, 108]]
       },
       Vietnam: {
         url: '../vietnam.geojson',
         center: [16, 106],
-        zoom: 5
+        zoom: 5,
+        bounds: [[23, 101],[8, 109]]
       },
       Philippines: {
         url: '../philippines.geojson',
         center: [12, 123],
-        zoom: 5
+        zoom: 5,
+        bounds: [[19, 117],[5, 127]]
       },
       Myanmar: {
         url: '../myanmar.geojson',
         center: [20, 97],
-        zoom: 5
+        zoom: 5,
+        bounds: [[28, 91],[10, 102]]
       },
       Indonesia: {
         url: '../indonesia.geojson',
         center: [0, 120],
-        zoom: 4
+        zoom: 4,
+        bounds: [[6, 94],[-9, 141]]
       }
     },
 
@@ -81,19 +87,21 @@
     },
 
     createMap: function() {
-      var mapOptions = {
+      this.mapOptions = {
         zoom: this.currentGeom.zoom || 4,
+        bounds: this.currentGeom.bounds || [[29.53, 139.74],[-10.74, 80.24]],
         center: this.currentGeom.center || [12.24, 105], //ASIA [12.24, 99.11]
         scrollWheelZoom: false,
         dragging: false,
         zoomControl: false,
         tileLayer: {
           continuousWorld: false,
-          noWrap: true,
+          noWrap: true
         }
       };
 
-      this.map = new L.Map(this.el, mapOptions);
+      this.map = new L.Map(this.el, this.mapOptions);
+      // this.map.fitBounds(this.mapOptions.bounds);
     },
 
     /*
@@ -198,10 +206,10 @@
     },
 
     setSelectedCountry: function() {
-
       this.removeLayer();
       this.currentGeom = this.getCurrentGeom(this.model.get('country'));
-      this.map.setView(this.currentGeom.center, this.currentGeom.zoom);
+
+      this.map.fitBounds(this.currentGeom.bounds);
 
       this.getLayer();
 

@@ -6,7 +6,7 @@
     <div>
       <p class="text -questions">Do you apply agrochemicals? (including pesticides, or herbicides)</p>
       <div>
-        <div class="c-field -extra-small -light">
+        <div class="c-field -little -light">
           <select name="agrochemicalRice" id="agrochemicalRice" class="-js-next-step-switcher">
             <option value="No">No</option>
             <option value="Yes">Yes</option>
@@ -15,7 +15,8 @@
       </div>
 
       <span id="agrochemicalRiceAmount" class="c-field -medium -light -disabled -fixed-height">
-        <%= f.number_field :agrochemical_amount, class: '-right  -js-numeric', autocomplete: 'off', min: '0' %>
+        <%= f.number_field :agrochemical_amount, class: '-right  -js-numeric',
+          autocomplete: 'off', min: '0', placeholder: 0.0 %>
         <span class="unit">kg/ha/year</span>
       </span>
     </div>

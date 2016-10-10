@@ -1,6 +1,7 @@
 <div class="c-slider-step js-slider-step" data-crop="other" data-guidance="crop-management">
   <div class="slider-step-container">
     <span class="text -guidance">Describe how you manage your crops</span>
+
     <span>
       <div>
         My crop management includes
@@ -16,7 +17,9 @@
 <div class="c-slider-step js-slider-step" data-guidance="fertilizers">
   <div class="slider-step-container">
     <span class="text -guidance">Please tell us about your use of fertilizers</span>
+
     <span>What fertilizers do you apply?</span>
+
     <% if f.object.fertilizers.any? %>
       <span>
         <%= f.fields_for :fertilizers do |builder| %>
@@ -26,7 +29,8 @@
               <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES) %>
             </span>
             <span class="c-field -huge">
-              <%= builder.number_field :amount, class: '-right -js-numeric', autocomplete: 'off', min: '0' %>
+              <%= builder.number_field :amount, class: '-right -js-numeric',
+                autocomplete: 'off', min: '0', placeholder: 0.0 %>
               <span class="unit">kg/ha/year</span>
             </span>
             of
@@ -34,6 +38,7 @@
         <% end %>
       </span>
     <% end %>
+
     <% if f.object.manures.any? %>
       <span>
         <%= f.fields_for :manures do |builder| %>
@@ -41,7 +46,8 @@
           <span>
             and
             <span class="c-field -medium">
-              <%= builder.number_field :amount, class: '-right -js-numeric', autocomplete: 'off', min: '0' %>
+              <%= builder.number_field :amount, class: '-right -js-numeric',
+                autocomplete: 'off', min: '0', placeholder: 0.0 %>
               <span class="unit">kg/ha/year</span>
             </span>
             of
@@ -55,12 +61,12 @@
 
     <div id="options-container"></div>
 
-    <span class="c-field-wrapper">
-      <span class="c-field -hald-width">
+    <span class="c-field-wrapper -medium -space-between">
+      <span class="c-field -half-width">
         <%= select_to_add_fields "Add a synthetic one", f, :fertilizers, select_options(Analysis::FERTILIZER_TYPES) %>
       </span>
       <span>or</span>
-      <span class="c-field -hald-width">
+      <span class="c-field -half-width">
         <%= select_to_add_fields "Add a manure", f, :manures, select_options(Analysis::MANURE_TYPES) %>
       </span>
     </span>
@@ -95,13 +101,13 @@
 <div class="c-slider-step js-slider-step" data-crop="other,perennial" data-guidance="agroforestry">
   <!-- <h1>Shade trees</h1> -->
   <div class="slider-step-container">
-    <span class="text -guidance">Please tell us if you apply any agroforestry practices.</span>
+    <span class="text -guidance">Please tell us if you apply any agroforestry practices</span>
     <span>
       <div class="text -questions">
         Does the cropland currently include windbreaks, alley cropping, or any type of
         additional silviculture?
       </div>
-      <span class="c-field">
+      <span class="c-field -little">
         <%= f.select :agroforestry_practices,
           options_for_select([["Yes", true], ["No", false]], f.object.agroforestry_practices) %>
       </span>
@@ -113,15 +119,15 @@
 <div class="c-slider-step js-slider-step" data-crop="paddy-rice" data-guidance="irrigation">
   <div class="slider-step-container">
     <span class="text -guidance">Please tell us about your rice irrigation practices.</span>
-    <span>
-      My irrigation regime
-    </span>
-    <span>
-      can be described as
+
+    <span>My irrigation regime can be described as</span>
+    <div class="c-field-wrapper -big">
       <div class="c-field -huge">
         <%= f.select :irrigation_regime, select_options(Analysis::IRRIGATION_REGIMES), {}, class: '-js-required' %>
       </div>
-    </span>
+    </div>
+
+
   </div>
 </div>
 
@@ -140,14 +146,16 @@
     <span>
       and cultivation takes
       <span class="c-field -little">
-        <%= f.number_field :cultivation_time, value: 120, class: '-right -js-required -js-numeric', autocomplete: 'off', min: '0' %>
+        <%= f.number_field :cultivation_time, value: 120, class: '-right -js-required -js-numeric',
+          autocomplete: 'off', min: '0' %>
       </span>
       days.
     </span>
     <span>
       I do
       <span class="c-field -little">
-        <%= f.number_field :annual_cultivation_cycles, class: '-right -js-required -js-numeric', autocomplete: 'off', min: '0' %>
+        <%= f.number_field :annual_cultivation_cycles, class: '-right -js-required -js-numeric',
+          autocomplete: 'off', min: '0', placeholder: 0 %>
       </span>
       annual cultivation cycles.
     </span>

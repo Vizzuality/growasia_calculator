@@ -1,0 +1,69 @@
+.c-text,
+.c-field {
+
+  &.-extra-small {
+    width: 100px;
+
+    input {
+      width: 100%;
+    }
+  }
+
+  &.-three-element {
+    width: 30%;
+    min-width: rem(100px);
+
+    input {
+      width: 100%;
+    }
+
+    @media screen and (min-width: $screen-m) {
+      width: 160px
+    }
+  }
+
+  &.-two-elements {
+    width: 48%;
+    min-width: rem(200px);
+
+    input {
+      width: 100%;
+    }
+
+    @media screen and (min-width: $screen-m) {
+      width: rem(250px);
+    }
+  }
+
+  &.-huge {
+    width: 500px;
+
+    input {
+      width: 100%;
+    }
+  }
+
+  &.-half-width {
+    width: 45%;
+    max-width: 300px;
+  }
+}
+
+.c-text + .c-field {
+  margin-left: rem(10px);
+}
+
+.c-field + .c-text {
+  margin-left: rem(10px);
+}
+
+.c-field + .c-field {
+  margin-left: rem(10px);
+}
+
+.c-analysis-sidebar {
+  .c-field,
+  .c-text {
+    margin-left: 0;
+  }
+}

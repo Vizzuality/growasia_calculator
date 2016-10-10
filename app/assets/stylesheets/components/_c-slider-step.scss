@@ -1,18 +1,34 @@
 .c-slider-step {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  transition: all .25s linear;
+  width: 70%;
   text-align: center;
+
+  @media screen and (min-width: $screen-m) {
+    max-width: 800px;
+  }
 
   .slider-step-container {
     font-size: rem(32px);
-    line-height: rem(96px);
+    line-height: rem(40px);
     letter-spacing: rem(.5px);
     color: rgba(0,0,0,.8);
+
+    @media screen and (min-width: $screen-m) {
+      line-height: rem(96px);
+    }
 
     &.-light {
       color: rgba(255,255,255,1);
     }
 
     > * {
-      display: block;
+      // display: block;
       font-weight: 100;
     }
   }
@@ -22,10 +38,45 @@
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
+    max-width: 80%;
+    margin: 0 auto;
+
+    @media screen and (min-width: $screen-xl) {
+      max-width: none;
+    }
 
     > * {
       width: 47.5%;
       margin: 25px 0 0;
     }
+
+
+  }
+
+    // STATES
+  &.-active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  // SIZES
+  &.-full-size {
+    width: 75%;
+    max-width: rem(800px);
+  }
+
+  &.-medium {
+    max-width: 600px;
+  }
+
+  &.-huge {
+    width: 75%;
+    max-width: rem(900px)
+  }
+
+  // COLORS
+  &.-light {
+    color: $white;
   }
 }
+
