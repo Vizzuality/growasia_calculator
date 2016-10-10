@@ -108,6 +108,7 @@
 
         $(this).prev('input[type=hidden]').val('1');
         $(this).parents('.-js-input-wrapper').addClass('is-hidden');
+        $(this).parents('.-js-input-wrapper').find('input').removeClass('-js-required');
         return event.preventDefault();
       });
     }
