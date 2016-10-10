@@ -72,6 +72,7 @@
       var shareModalView = new App.View.Share({});
       var saveModalView = new App.View.Save({});
       var infoModalView = new App.View.ModalInfo({});
+      infoModalView.setGuidance({guidanceType: 'analysis-results'});
 
       // Fetch the analysis before render the graphs
       analysisModel.fetch();

@@ -1,10 +1,26 @@
 .c-field-wrapper {
   display: flex !important;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
   width: 90%;
   margin: 0 auto;
 
+  &.-space-between {
+    justify-content: space-between;
+  }
+
   @media screen and (min-width: $screen-m) {
-    width: 600px;
+
+    &.-big {
+      width: 100%;
+    }
+
+    &.-medium {
+      width: 80%;
+    }
+
+    &.-small {
+      width: 70%;
+    }
   }
 }

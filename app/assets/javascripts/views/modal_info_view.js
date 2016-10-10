@@ -39,7 +39,7 @@
 
     listeners: function() {
       App.Events.on('Info:toggle', this.toggle.bind(this));
-      App.Events.on('Slider:changeStep', this.setStep.bind(this));
+      App.Events.on('Slider:changeStep', this.setGuidance.bind(this));
 
       this.model.on('change:guidanceTemplateName', this.setModalContent.bind(this));
     },
@@ -48,9 +48,9 @@
       this.$el.html(this.template());
     },
 
-    setStep: function(sliderModel) {
+    setGuidance: function(sliderModel) {
       this.model.set({
-        guidanceTemplateName: sliderModel.stepContentType
+        guidanceTemplateName: sliderModel.guidanceType
       });
     },
 
