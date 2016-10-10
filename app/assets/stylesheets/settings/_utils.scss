@@ -68,6 +68,13 @@
   // }
 }
 
+@mixin placeholder() {
+  &::-webkit-input-placeholder {@content}
+  &:-moz-placeholder {@content}
+  &::-moz-placeholder {@content}
+  &:-ms-input-placeholder {@content}
+}
+
 %center {
   position: absolute;
   top: 50%;
