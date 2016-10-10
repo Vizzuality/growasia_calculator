@@ -319,7 +319,8 @@ class Analysis < ApplicationRecord
     scaling_factor_for_org = if nutrient_managements.first
                           nutrient_mgt = RICE_NUTRIENT_MANAGEMENT.
                             select{|t| t[:slug] == nutrient_managements.first.addition_type}.first
-                          (1+nutrient_managements.first.amount/1000*nutrient_mgt[:conversion_factor])**0.59
+                          straw_factor = ["straw-less", "straw-more"].include?(nutrient_mgt[:slug]) ? 0.873 : 1
+                          (1+nutrient_managements.first.amount/1000*straw_factor*nutrient_mgt[:conversion_factor])**0.59
                         else
                           1
                         end
