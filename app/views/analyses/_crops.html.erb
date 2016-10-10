@@ -29,7 +29,8 @@
               <%= builder.select :addition_type, select_options(Analysis::FERTILIZER_TYPES) %>
             </span>
             <span class="c-field -huge">
-              <%= builder.number_field :amount, class: '-right -js-numeric', autocomplete: 'off', min: '0' %>
+              <%= builder.number_field :amount, class: '-right -js-numeric',
+                autocomplete: 'off', min: '0', placeholder: 0.0 %>
               <span class="unit">kg/ha/year</span>
             </span>
             of
@@ -45,7 +46,8 @@
           <span>
             and
             <span class="c-field -medium">
-              <%= builder.number_field :amount, class: '-right -js-numeric', autocomplete: 'off', min: '0' %>
+              <%= builder.number_field :amount, class: '-right -js-numeric',
+                autocomplete: 'off', min: '0', placeholder: 0.0 %>
               <span class="unit">kg/ha/year</span>
             </span>
             of
@@ -144,14 +146,16 @@
     <span>
       and cultivation takes
       <span class="c-field -little">
-        <%= f.number_field :cultivation_time, value: 120, class: '-right -js-required -js-numeric', autocomplete: 'off', min: '0' %>
+        <%= f.number_field :cultivation_time, value: 120, class: '-right -js-required -js-numeric',
+          autocomplete: 'off', min: '0' %>
       </span>
       days.
     </span>
     <span>
       I do
       <span class="c-field -little">
-        <%= f.number_field :annual_cultivation_cycles, class: '-right -js-required -js-numeric', autocomplete: 'off', min: '0' %>
+        <%= f.number_field :annual_cultivation_cycles, class: '-right -js-required -js-numeric',
+          autocomplete: 'off', min: '0', placeholder: 0 %>
       </span>
       annual cultivation cycles.
     </span>
