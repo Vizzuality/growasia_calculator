@@ -5,6 +5,14 @@
     top: 32px;
     left: 50%;
     transform: translatex(-50%);
+
+    .home_index & {
+      color: $white;
+
+      svg {
+        fill: $white;
+      }
+    }
   }
 
   .text-wrap {
