@@ -155,13 +155,32 @@
     height: 80%;
 
     .modal-wrapper {
+      @media (min-width: $screen-m){
+        max-height: 100%;
+      }
 
       p {
         margin-bottom: rem(35px);
       }
 
-      @media (min-width: $screen-m){
-        max-height: 100%;
+      ul {
+        list-style: none;
+        padding-left: 40px;
+        margin: 0;
+        margin-bottom: 40px;
+
+        li {
+          margin-bottom: 10px;
+
+          &:before {
+            content: "·";
+          }
+        }
+
+        a {
+          color: $black;
+          text-decoration: underline;
+        }
       }
     }
   }

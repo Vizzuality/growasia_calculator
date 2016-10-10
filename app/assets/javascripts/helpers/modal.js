@@ -36,6 +36,8 @@
       this.$contentWrapper = this.$el.find('.modal-wrapper');
       this.$backdrop =       this.$el.find('.modal-backdrop');
       this.$close =          this.$el.find('.modal-close');
+      this.$html = $('html');
+      this.$body = $('body');
     },
 
 
@@ -50,6 +52,8 @@
       (hidden) ? this.unsetBindings() : this.setBindings();
       // Toggle states
       this.$el.toggleClass('-active', !hidden);
+      this.$html.toggleClass('-fixed', !hidden);
+      this.$body.toggleClass('-fixed', !hidden);
     },
 
 
