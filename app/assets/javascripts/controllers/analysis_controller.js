@@ -107,8 +107,7 @@
         event && event.preventDefault();
 
         $(this).prev('input[type=hidden]').val('1');
-        //I change this from hide to remove because that wrapper should be display flex and hide give it a display block. Please, review that this change doesn't crash anything.
-        $(this).parents('.-js-input-wrapper').remove();
+        $(this).parents('.-js-input-wrapper').addClass('is-hidden');
         return event.preventDefault();
       });
     }
