@@ -59,7 +59,13 @@
       }
     }
 
+    span {
+      float: right;
+      display: inline-block;
+    }
+
     svg {
+      float: left;
       display: inline-block;
     }
   }
