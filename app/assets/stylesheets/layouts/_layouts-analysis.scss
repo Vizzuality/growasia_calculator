@@ -7,13 +7,12 @@
   top: 0;
   bottom: 0;
   right: rem(336px);
-  height: 100%;
+  height: 100vh;
   overflow: auto;
 
   @media screen and (min-width: $screen-xl) {
     min-height: rem(850px);
   }
-
 }
 
 .l-analysis-sidebar {
