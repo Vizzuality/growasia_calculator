@@ -14,7 +14,7 @@
 
         direction: null,
 
-        stepContentType: 'geo-location',
+        guidanceType: 'geo-location',
 
         crop: 'cacao'
       }
@@ -135,9 +135,9 @@
           .find('.js-slider-step')
           .toggleClass('-active', false);
 
-      this.model.set('stepContentType', this.$stepsItems
+      this.model.set('guidanceType', this.$stepsItems
                      .eq(this.model.get('stepindex'))
-                     .data('content'));
+                     .data('guidance'));
 
       this.$stepsItems
         .eq(this.model.get('stepindex'))
