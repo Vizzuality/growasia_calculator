@@ -3,7 +3,12 @@
     size: A4 landscape;
   }
 
+  -webkit-print-color-adjust: exact;
+  color-adjust: exact;
+
   body {
+
+    // -moz-transform:rotate(-90deg);
 
     transform: scale(.95);
 
