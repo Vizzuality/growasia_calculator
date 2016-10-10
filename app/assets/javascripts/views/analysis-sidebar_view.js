@@ -86,7 +86,7 @@
     onResetFields: function(e) {
       e && e.preventDefault();
       var $target = $(e.currentTarget);
-      var $input = $target.parent().prevAll('input');
+      var $input = $target.parent().prevAll('.-js-is-resetable');
       $input.val($target.data('previous-value'));
       $input.trigger('change');
       $target.addClass('is-hidden');
