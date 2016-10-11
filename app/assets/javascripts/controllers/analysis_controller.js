@@ -41,7 +41,8 @@
       });
 
       var analysisActionsView = new App.View.AnalysisActions({
-        el: '#analysisActions'
+        el: '#analysisActions',
+        model: analysisModel
       });
 
       var analysisSidebarView = new App.View.AnalysisSidebar({

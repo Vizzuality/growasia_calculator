@@ -89,5 +89,16 @@
   <%= render 'analysis_sidebar', analysis: @analysis %>
 </section>
 <section class="l-analysis-sidebar -is-printable">
-  <%= render 'printable_inputs', analysis: @analysis %>
+  <div class="c-analysis-sidebar -is-printable">
+    <div class="input-group -header">
+      <p class="text -sidebar-resume">Your currenct practices</p>
+    </div>
+    <%= render 'printable_inputs', analysis: @analysis %>
+    <hr />
+    <div id="future-practices-header" class="input-group -header -hidden">
+      <p class="text -sidebar-resume">Future practices</p>
+    </div>
+    <div id="print-changed">
+    </div>
+  </div>
 </section>

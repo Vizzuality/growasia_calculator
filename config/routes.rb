@@ -5,7 +5,11 @@ Rails.application.routes.draw do
       resources :analyses, only: [:show, :update]
     end
   end
-  resources :analyses, only: [:show, :new, :create]
+  resources :analyses, only: [:show, :new, :create] do
+    member do
+      patch 'print'
+    end
+  end
 
   get "/geo_locations/states_for/:country", to: "geo_locations#states_for"
   root "home#index"

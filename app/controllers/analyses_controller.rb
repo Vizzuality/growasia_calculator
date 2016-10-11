@@ -1,5 +1,5 @@
 class AnalysesController < ApplicationController
-  before_action :set_analysis, only: [:show]
+  before_action :set_analysis, only: [:show, :print]
   before_action :build_nested, only: [:show]
 
   def new
@@ -18,6 +18,13 @@ class AnalysesController < ApplicationController
   # GET /analyses/1
   # GET /analyses/1.json
   def show
+  end
+
+  def print
+    @analysis.assign_attributes(analysis_params)
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

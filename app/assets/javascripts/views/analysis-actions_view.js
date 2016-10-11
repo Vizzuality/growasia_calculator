@@ -17,6 +17,8 @@
         return;
       }
 
+      this.model = settings.model;
+
       var opts = settings && settings.options ? settings.options : {};
       this.options = _.extend(this.defaults, opts);
 
@@ -30,7 +32,14 @@
     },
 
     setPrint: function() {
-      window.print();
+
+      $.ajax({
+        url: '/analyses/' + this.model.get('id') + '/print',
+        method: 'POST',
+        data: $("#analysis-sidebar-form").serialize(),
+        dataType: 'jsonp'
+      });
+      //window.print();
     },
 
     /*
