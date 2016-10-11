@@ -85,7 +85,9 @@
   </div>
 </section>
 
-<section id="analysisSidebarView" class="l-analysis-sidebar">
+<section id="analysisSidebarView" class="l-analysis-sidebar -is-not-printable">
   <%= render 'analysis_sidebar', analysis: @analysis %>
+</section>
+<section class="l-analysis-sidebar -is-printable">
   <%= render 'printable_inputs', analysis: @analysis %>
 </section>
