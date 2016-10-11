@@ -21,15 +21,19 @@
   }
 
   .btn {
-    & + .-link {
+    & + .-fake-link  {
       margin-top: rem(24px);
     }
   }
 
   .-link {
     display: block;
-    width: rem(190px);
+    // width: rem(190px);
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .-fake-link {
+    margin-bottom: 3px;
   }
 }
