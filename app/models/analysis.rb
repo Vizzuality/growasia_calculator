@@ -353,4 +353,17 @@ class Analysis < ApplicationRecord
   def new_record_and_blank_amount?(attributes)
     !(attributes["amount"].present? && attributes["amount"].to_f > 0.0) && (new_record? || !attributes["id"])
   end
+
+  def second_group?
+    paddy_rice? || crop_management_practices.present? ||
+      (lime_amount.present? && lime_amount > 0.0) ||
+      (dolomite_amount.present? && dolomite_amount > 0.0) ||
+      (agrochemical_amount.present? && agrochemical_amount > 0.0)
+  end
+
+  def third_group?
+    additions.where(category: [Category::FUEL, Category::TRANSPORTATION_FUEL,
+                               Category::IRRIGATION_FUEL]).
+                               where("amount > 0.0").any?
+  end
 end
