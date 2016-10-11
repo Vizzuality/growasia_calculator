@@ -5,6 +5,7 @@
 
   body {
 
+
     .l-header,
     .c-analysis-actions {
       display: none;
@@ -84,7 +85,10 @@
   }
 
   .c-analysis-sidebar {
+    background-color: transparent !important;
+
     .input-group {
+      background-color: transparent !important;
       margin-bottom: 20px !important;
 
       > div {
