@@ -1,18 +1,9 @@
 @media print {
   @page {
-    size: A4 landscape;
+    size: A4 portrait;
   }
 
-  -webkit-print-color-adjust: exact;
-  color-adjust: exact;
-
   body {
-
-    // -moz-transform:rotate(-90deg);
-
-    transform: scale(.90);
-    -webkit-transform: scale(.90);
-    -moz-transform: scale(.90);
 
     .l-header,
     .c-analysis-actions {
@@ -20,7 +11,7 @@
     }
 
     .l-analysis-main {
-      position: relative;
+      position: relative !important;
       width: 78%;
       overflow: visible;
       left: auto;
@@ -28,7 +19,13 @@
       bottom: auto;
       right: auto;
       padding: 0 rem(40px);
+      height: auto;
     }
+  }
+
+  .l-analysis-main .wrapper {
+    display: block !important;
+    height: auto !important;
   }
 
   .-figure-extra-big {
@@ -36,7 +33,8 @@
   }
 
   .l-analysis-sidebar {
-    width: 23% !important;
+    position: relative !important;
+    width: 100% !important;
     // height: auto !important;
     overflow: visible !important;
     // position: relative !important;
@@ -47,9 +45,9 @@
   }
 
   .c-graph {
-    -webkit-transform: scale(.8);
-    -moz-transform: scale(.8);
-    transform: scale(.8);
+    transform: scale(.8) translatex(-15%);
+    -webkit-transform: scale(0.8) translatex(-15%);
+    -moz-transform: scale(0.8) translatex(-15%);
   }
 
   .js-toggle-item {
@@ -73,8 +71,12 @@
     display: none !important;
   }
 
-  label,
-  .text.-label {
+  label {
     line-height: 1.2em;
   }
+
+  hr {
+    margin: 30px 0 !important;
+  }
+
 }
