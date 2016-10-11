@@ -126,7 +126,13 @@
   &.-link {
     font-size: rem(11px);
     letter-spacing: rem(.5px);
+    opacity: .8;
     text-decoration: underline;
+  }
+
+  &.-fake-link {
+    font-size: rem(11px);
+    letter-spacing: rem(.5px);
     opacity: .8;
   }
 
@@ -236,5 +242,9 @@
 
   &.-bold {
     font-weight: 700;
+  }
+
+  &.-in-line {
+    display: inline-block !important;
   }
 }
