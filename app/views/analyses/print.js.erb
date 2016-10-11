@@ -1,5 +1,11 @@
 $(function() {
-  $("#print-changed").html("<%= escape_javascript(render('printable_inputs', analysis: @analysis)) %>");
+
+  if($('.subtraction').length > 0) {
+    $('#future-practices').show();
+    $('#print-changed').html("<%= escape_javascript(render('printable_inputs', analysis: @analysis)) %>");
+  } else {
+    $('#future-practices').hide();
+  }
   window.print();
 
 });
