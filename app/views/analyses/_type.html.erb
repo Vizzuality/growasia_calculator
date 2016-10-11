@@ -7,7 +7,7 @@
         Currently, I’m growing
       </span>
       <span class="c-field -two-elements">
-        <%= f.select :crop, select_options(Analysis::CROPS), {}, class: '-js-required' %>
+        <%= f.select :crop, select_options(Analysis::CROPS), {}, class: '-js-required -theme-2' %>
       </span>
     </div>
 
@@ -27,7 +27,7 @@
           autocomplete: 'off', min: '0' %>
       </span>
       <span class="c-field -small">
-        <%= f.select :yield_unit, select_options(Analysis::YIELD_UNITS), {}, class: '-js-required' %>
+        <%= f.select :yield_unit, select_options(Analysis::YIELD_UNITS), {}, class: '-js-required, -theme-2' %>
       </span>
     </div>
 

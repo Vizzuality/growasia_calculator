@@ -83,20 +83,31 @@
     },
 
     addSelectLib: function() {
-
       var $selectors = $('select');
 
       $selectors.select2({
         theme: "default",
-        minimumResultsForSearch: -1
+        minimumResultsForSearch: -1,
       });
 
-      // $.each($selectors, function(i, input) {
-      //   if ($(input).hasClass('-js-required')) {
-      //     $(input).siblings('.select2-container').addClass('-js-required');
-      //   }
-      // }.bind(this))
+      $.each($selectors, function() {
+        var classList = this.className.split(/\s+/);
+        for (var i = 0; i < classList.length; i++) {
+          if (classList[i].includes('theme')) {
+            $(this).next('.select2-container').addClass(classList[i]);
+          }
+        }
+      });
 
+      //Only for select in sidebar
+      $('.analyses_show .select2-container').on('click', function(e) {
+        var classList = e.currentTarget.className.split(/\s+/);
+        for (var i = 0; i < classList.length; i++) {
+          if (classList[i].includes('theme')) {
+            $('.select2-dropdown').addClass(classList[i]);
+          }
+        }
+      });
     },
 
     selectFields: function() {

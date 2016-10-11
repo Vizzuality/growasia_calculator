@@ -2,7 +2,7 @@
   <%= f.hidden_field :category, value: Category::MANURE %>
   <%= f.number_field :amount, value: f.object.amount, min: 0, class: "-js-is-resetable",
     placeholder: 0.0 %>
-  <%= f.select :addition_type, select_options(Analysis::MANURE_TYPES, f.object.addition_type) %>
+  <%= f.select :addition_type, select_options(Analysis::MANURE_TYPES, f.object.addition_type), {}, class: "-theme-3" %>
   <span class="options-wrapper">
     <button class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= f.object.amount %>">
       <svg class="c-icon -small">
