@@ -127,6 +127,20 @@
       }.bind(this));
 
       App.Events.trigger('Slider:step', this.model.get('stepindex'));
+
+      this.setBodyClass();
+    },
+
+    setBodyClass: function() {
+      var classList = document.body.className.split(/\s+/);
+      for (var i = 0; i < classList.length; i++) {
+        if (classList[i].includes('theme')) {
+          $('body').removeClass(classList[i]);
+        }
+      };
+
+      var index = this.model.get('index');
+      $('body').addClass('-theme-' + (index + 1) );
     },
 
     changeStepIndex: function() {

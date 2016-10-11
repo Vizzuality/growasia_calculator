@@ -52,7 +52,7 @@ module AnalysesHelper
       render(association.to_s.singularize + "_fields", f: builder)
     end
     select_tag("#{id}_#{association.to_s}", options, include_blank: name,
-               class: "-js-select-fields", data: {id: id, fields: fields.gsub("\n", "")})
+               class: "-js-select-fields -theme-3", data: {id: id, fields: fields.gsub("\n", "")})
   end
 
   def icon_to_add_more(f, association)

@@ -15,7 +15,7 @@
           </div>
 
           <div class="c-field -little -light">
-            <%= builder.select :unit, select_options(Analysis::FUEL_UNITS) %>
+            <%= builder.select :unit, select_options(Analysis::FUEL_UNITS), {}, class: '-theme-5' %>
           </div>
 
           <div class="c-field -light">
@@ -43,7 +43,7 @@
             min: '0', placeholder: 0.0 %>
         </div>
         <div class="c-field -little -light">
-          <%= builder.select :unit, select_options(Analysis::FUEL_UNITS) %>
+          <%= builder.select :unit, select_options(Analysis::FUEL_UNITS), {}, class: '-theme-5' %>
         </div>
         <div class="c-field -light">
           <%= builder.hidden_field :addition_type, value: builder.object.addition_type %>
@@ -70,7 +70,7 @@
             min: '0', placeholder: 0.0 %>
         </div>
         <div class="c-field -little -light">
-          <%= builder.select :unit, select_options(Analysis::FUEL_UNITS) %>
+          <%= builder.select :unit, select_options(Analysis::FUEL_UNITS), {}, class: '-theme-5' %>
         </div>
         <div class="c-field -light">
           <%= builder.hidden_field :addition_type, value: builder.object.addition_type %>

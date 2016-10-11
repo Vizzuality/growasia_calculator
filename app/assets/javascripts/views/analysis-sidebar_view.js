@@ -37,6 +37,15 @@
         theme: "default",
         minimumResultsForSearch: -1
       });
+
+      $('.select2-container').on('click', function(e) {
+        var classList = e.currentTarget.className.split(/\s+/);
+        for (var i = 0; i < classList.length; i++) {
+          if (classList[i].includes('theme')) {
+            $('.select2-dropdown').addClass(classList[i]);
+          }
+        }
+      });
     },
 
     /*
