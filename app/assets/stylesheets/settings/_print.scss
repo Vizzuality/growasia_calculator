@@ -3,11 +3,16 @@
     size: A4 landscape;
   }
 
+  -webkit-print-color-adjust: exact;
+  color-adjust: exact;
+
   body {
 
-    transform: scale(.95);
-    -webkit-transform: scale(.95);
-    -moz-transform: scale(.95);
+    // -moz-transform:rotate(-90deg);
+
+    transform: scale(.90);
+    -webkit-transform: scale(.90);
+    -moz-transform: scale(.90);
 
     .l-header,
     .c-analysis-actions {
@@ -42,9 +47,9 @@
   }
 
   .c-graph {
+    -webkit-transform: scale(.8);
+    -moz-transform: scale(.8);
     transform: scale(.8);
-    -webkit-transform: scale(0.8);
-    -moz-transform: scale(0.8);
   }
 
   .js-toggle-item {
@@ -68,8 +73,8 @@
     display: none !important;
   }
 
-  label {
+  label,
+  .text.-label {
     line-height: 1.2em;
   }
-
 }

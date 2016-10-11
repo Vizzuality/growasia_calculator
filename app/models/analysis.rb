@@ -351,6 +351,6 @@ class Analysis < ApplicationRecord
   end
 
   def new_record_and_blank_amount?(attributes)
-    !(attributes['amount'].present? && attributes['amount'].to_f > 0.0) && (new_record? || !attributes['id'])
+    !(attributes["amount"].present? && attributes["amount"].to_f > 0.0) && (new_record? || !attributes["id"])
   end
 end
