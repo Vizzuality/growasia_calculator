@@ -10,9 +10,9 @@
 
     // -moz-transform:rotate(-90deg);
 
-    transform: scale(.95);
-    -webkit-transform: scale(.95);
-    -moz-transform: scale(.95);
+    transform: scale(.90);
+    -webkit-transform: scale(.90);
+    -moz-transform: scale(.90);
 
     .l-header,
     .c-analysis-actions {
@@ -47,14 +47,9 @@
   }
 
   .c-graph {
+    -webkit-transform: scale(.8);
+    -moz-transform: scale(.8);
     transform: scale(.8);
-    -webkit-transform: scale(1);
-    -moz-transform: scale(1);
-
-    svg {
-      -webkit-transform: scale(.5) translatex(-50%);
-      -moz-transform: scale(.5) translatex(-50%);
-    }
   }
 
   .js-toggle-item {
