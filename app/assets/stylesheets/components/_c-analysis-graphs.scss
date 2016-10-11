@@ -23,5 +23,9 @@
     @media screen and (min-width: $screen-m) {
       max-height: rem(320px) !important;
     }
+
+    @media screen and (min-width: $screen-xl) {
+      max-height: rem(350px) !important;
+    }
   }
 }
