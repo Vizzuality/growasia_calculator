@@ -1,31 +1,40 @@
 .c-share {
   text-align: center;
   line-height: 1.5;
-  
+
   .share-input {
     margin: rem(30px) 0 0;
     display: flex;
+    justify-content: center;
+    align-items: stretch;
+
 
     button {
       display: block;
       border: 1px solid rgba($font-color-2, .3);
       border-radius: 0;
-      height: rem(54px);
-      line-height: rem(54px);
+      // height: rem(54px);
+      // line-height: rem(54px);
       width: rem(100px);
       text-transform: uppercase;
+      height: 51px;
     }
 
     input {
+      position: relative;
+      top: -2px;
       display: block;
+      margin-top: 2px;
       font-family: inherit;
       font-size: rem(22px);
       width: calc(100% - 100px);
       min-width: 0;
-      height: rem(54px);
+      // height: rem(54px);
       border: 1px solid rgba($font-color-2, .3);
       border-radius: 0;
       margin: 0;
+      margin-top: 2px;
+      height: 51px;
     }
   }
 
