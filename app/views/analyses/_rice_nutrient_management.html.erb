@@ -4,17 +4,17 @@
     <span>
       We incorporate
     </span>
-    <span>
+    <span class="c-field-wrapper">
       <%= f.fields_for :nutrient_managements do |builder| %>
         <%= builder.hidden_field :category, value: Category::NUTRIENT_MANAGEMENT %>
-        <span class="c-field -little -light">
+        <span class="c-field -two-elements -light">
           <%= builder.number_field :amount, class: '-right -js-required -js-numeric',
             autocomplete: 'off', min: '0', placeholder: 0.0 %>
           <span class="unit">kg/ha/year</span>
         </span>
-        of
-        <span class="c-field -little -light">
-          <%= builder.select :addition_type, select_options(Analysis::RICE_NUTRIENT_MANAGEMENT) %>
+        <span class="c-text">of</span>
+        <span class="c-field -two-elements -light">
+          <%= builder.select :addition_type, select_options(Analysis::RICE_NUTRIENT_MANAGEMENT), {}, class: '-theme-4' %>
         </span>
       <% end %>
     </span>
@@ -27,8 +27,8 @@
     <div>
       <p class="text -questions">Do you burn your rice straw?</p>
       <div>
-        <div class="c-field -extra-small -light">
-          <select name="riceStrawBurning" id="riceStrawBurning" class="-js-next-step-switcher">
+        <div class="c-field -little -light">
+          <select name="riceStrawBurning" id="riceStrawBurning" class="-js-next-step-switcher -theme-4">
             <option value="No">No</option>
             <option value="Yes">Yes</option>
           </select>

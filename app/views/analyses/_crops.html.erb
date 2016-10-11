@@ -5,7 +5,7 @@
     <span>
       <div> My crop management includes</div>
       <div class="c-field -huge">
-        <%= f.select:tillage, select_options(Analysis::TILLAGES), {}, class: "-js-required" %>
+        <%= f.select:tillage, select_options(Analysis::TILLAGES), {}, class: "-js-required -theme-3" %>
       </div>
     </span>
   </div>
@@ -61,10 +61,12 @@
 
     <span class="c-field-wrapper -medium -space-between">
       <span class="c-field -half-width">
+        <!-- Add class -theme-3 here -->
         <%= select_to_add_fields "Add a synthetic one", f, :fertilizers, select_options(Analysis::FERTILIZER_TYPES) %>
       </span>
       <span>or</span>
       <span class="c-field -half-width">
+        <!-- Add class -theme-3 here -->
         <%= select_to_add_fields "Add a manure", f, :manures, select_options(Analysis::MANURE_TYPES) %>
       </span>
     </span>
@@ -107,7 +109,7 @@
       </div>
       <span class="c-field -little">
         <%= f.select :agroforestry_practices,
-          options_for_select([["Yes", true], ["No", false]], f.object.agroforestry_practices) %>
+          options_for_select([["Yes", true], ["No", false]], f.object.agroforestry_practices), {}, class: '-theme-3' %>
       </span>
     </span>
   </div>
@@ -121,7 +123,7 @@
     <span>My irrigation regime can be described as</span>
     <div class="c-field-wrapper -big">
       <div class="c-field -huge">
-        <%= f.select :irrigation_regime, select_options(Analysis::IRRIGATION_REGIMES), {}, class: '-js-required' %>
+        <%= f.select :irrigation_regime, select_options(Analysis::IRRIGATION_REGIMES), {}, class: '-js-required -theme-3' %>
       </div>
     </div>
 
@@ -138,7 +140,7 @@
     </span>
     <span>
       <span class="c-field -huge">
-        <%= f.select :flooding, select_options(Analysis::FLOODING_PRACTICES), {}, class: '-js-required' %>
+        <%= f.select :flooding, select_options(Analysis::FLOODING_PRACTICES), {}, class: '-js-required -theme-3' %>
       </span>
     </span>
     <span>

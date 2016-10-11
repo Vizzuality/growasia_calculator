@@ -3,12 +3,12 @@
     <p class="text -sidebar-resume -light">Find out here how alternative practices could reduce your emissions</p>
   </div>
   <%= form_for [:api, :v1, analysis], :html => { :id => "analysis-sidebar-form" } do |f| %>
-    <div class="input-group -first">
+    <div class="input-group -first -theme-3">
       <% if !analysis.perennial_or_paddy? %>
         <div>
           <div class="c-field -narrow -full -light">
             <label class="text -label" for="">Tillage</label>
-            <%= f.select:tillage, select_options(Analysis::TILLAGES, analysis.tillage), {} %>
+            <%= f.select:tillage, select_options(Analysis::TILLAGES, analysis.tillage), {}, class: "-theme-3" %>
           </div>
         </div>
       <% end %>
@@ -35,7 +35,7 @@
       <% unless analysis.paddy_rice? %>
         <div class="c-field -narrow -full -light">
           <label class="text -label" for="">Agroforestry practices?</label>
-          <%= f.select :agroforestry_practices, options_for_select([["Yes", true], ["No", false]], analysis.agroforestry_practices) %>
+          <%= f.select :agroforestry_practices, options_for_select([["Yes", true], ["No", false]], analysis.agroforestry_practices), {}, class: "-theme-3" %>
         </div>
       <% end %>
       <% if analysis.paddy_rice? %>
@@ -43,14 +43,14 @@
           <div class="c-field -narrow -full -light">
             <label class="text -label" for="">Irrigation regime</label>
             <%= f.select :irrigation_regime, select_options(Analysis::IRRIGATION_REGIMES, analysis.irrigation_regime),
-              {}, class: '-js-required' %>
+              {}, class: '-js-required -theme-3' %>
           </div>
         </div>
         <div>
           <div class="c-field -narrow -full -light">
             <label class="text -label" for="">Before cultivation</label>
             <%= f.select :flooding, select_options(Analysis::FLOODING_PRACTICES, analysis.flooding),
-              {}, class: '-js-required' %>
+              {}, class: '-js-required -theme-3' %>
           </div>
         </div>
         <div>
@@ -89,7 +89,7 @@
         </div>
       <% end %>
     </div>
-    <div class="input-group -second">
+    <div class="input-group -second -theme-4">
       <% if !analysis.perennial_or_paddy? %>
         <div>
           <label class="text -label" for="">Crop management practices</label>
@@ -169,7 +169,7 @@
               <%= f.fields_for :nutrient_managements do |builder| %>
                 <%= builder.hidden_field :category, value: Category::NUTRIENT_MANAGEMENT %>
                 <%= builder.number_field :amount, value: builder.object.amount || 0, min: 0, class: "-js-is-resetable" %>
-                <%= builder.select :addition_type, select_options(Analysis::RICE_NUTRIENT_MANAGEMENT, builder.object.addition_type) %>
+                <%= builder.select :addition_type, select_options(Analysis::RICE_NUTRIENT_MANAGEMENT, builder.object.addition_type), {}, class: "-theme-4" %>
                 <span class="options-wrapper">
                   <button class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
                     <svg class="c-icon -small">
@@ -204,7 +204,7 @@
         </div>
       <% end %>
     </div>
-    <div class="input-group -third">
+    <div class="input-group -third -theme-5">
 
       <%= f.fields_for :transportation_fuels do |builder| %>
         <%= builder.hidden_field :category, value: Category::TRANSPORTATION_FUEL %>
@@ -214,7 +214,7 @@
             <%= builder.object.fuel_name %> for transportation
           </label>
           <%= builder.number_field :amount, min: 0, class: "-js-is-resetable"  %>
-          <%= builder.select :unit, select_options(Analysis::FUEL_UNITS, builder.object.unit) %>
+          <%= builder.select :unit, select_options(Analysis::FUEL_UNITS, builder.object.unit), {}, class: "-theme-5" %>
           <span class="options-wrapper">
             <span class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
               <svg class="c-icon -small">
@@ -238,7 +238,7 @@
             <%= builder.object.fuel_name %> for irrigation
           </label>
           <%= builder.number_field :amount, min: 0, class: "-js-is-resetable"  %>
-          <%= builder.select :unit, select_options(Analysis::FUEL_UNITS, builder.object.unit) %>
+          <%= builder.select :unit, select_options(Analysis::FUEL_UNITS, builder.object.unit), {}, class: "-theme-5" %>
           <span class="options-wrapper">
             <span class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
               <svg class="c-icon -small">
@@ -261,7 +261,7 @@
             <%= builder.object.fuel_name %> for other purposes
           </label>
           <%= builder.number_field :amount, min: 0, class: "-js-is-resetable"  %>
-          <%= builder.select :unit, select_options(Analysis::FUEL_UNITS, builder.object.unit) %>
+          <%= builder.select :unit, select_options(Analysis::FUEL_UNITS, builder.object.unit), {}, class: "-theme-5" %>
           <span class="options-wrapper">
             <button class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= builder.object.amount %>">
               <svg class="c-icon -small">
