@@ -48,8 +48,13 @@
 
   .c-graph {
     transform: scale(.8);
-    -webkit-transform: scale(0.8);
-    -moz-transform: scale(0.8);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+
+    svg {
+      -webkit-transform: scale(.5) translatex(-50%);
+      -moz-transform: scale(.5) translatex(-50%);
+    }
   }
 
   .js-toggle-item {
@@ -73,8 +78,8 @@
     display: none !important;
   }
 
-  label {
+  label,
+  .text.-label {
     line-height: 1.2em;
   }
-
 }
