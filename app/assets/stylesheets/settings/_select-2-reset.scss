@@ -385,6 +385,15 @@
   background-color: transparent;
 }
 
+.analyses_show {
+  .select2-results__option,
+  .select2-results__option[aria-selected=true] {
+    line-height: 1.2em;
+    height: auto !important;
+    padding: rem(16px) rem(20px) !important;
+  }
+}
+
 .-theme-1 {
   .select2-results__option,
   .select2-results__option[aria-selected=true] {

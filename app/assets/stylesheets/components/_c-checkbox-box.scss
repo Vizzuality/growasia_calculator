@@ -47,6 +47,10 @@
     background: rgba($black, .05);
     border: 1px solid transparent;
     transform: translate(0,-50%);
+
+    .analyses_show & {
+      background: rgba($white, .05);
+    }
   }
 
   svg {
