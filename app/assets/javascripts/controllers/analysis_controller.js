@@ -105,8 +105,10 @@
     removeFields: function() {
       $(document).on('click', '.-js-remove-fields', function(event) {
         event && event.preventDefault();
+
         $(this).prev('input[type=hidden]').val('1');
-        $(this).parents('.-js-input-wrapper').hide();
+        $(this).parents('.-js-input-wrapper').addClass('is-hidden');
+        $(this).parents('.-js-input-wrapper').find('input').removeClass('-js-required');
         return event.preventDefault();
       });
     }

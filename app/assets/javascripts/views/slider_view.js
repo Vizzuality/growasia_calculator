@@ -262,7 +262,7 @@
         var $newFields = $target.data('fields').replace(regexp, time)
         var selectId = $($newFields).find('select').attr('id');
 
-        $('#options-container').append($newFields);
+        $('#options-container').prepend($newFields);
         $('#'+selectId).val(selectedVal);
         this.addSelectLib();
         $target.val('');
@@ -274,7 +274,13 @@
       var inputId = $(e.currentTarget).attr('id');
       var $hiddenInputToBeShown = $('#' + inputId + 'Amount');
 
-      $hiddenInputToBeShown.removeClass('-disabled');
+      $hiddenInputToBeShown.toggleClass('-disabled');
+      $hiddenInputToBeShown.find('input').toggleClass('-js-required');
+
+      if ($hiddenInputToBeShown.hasClass('-disabled')) {
+        //reset value;
+        $hiddenInputToBeShown.find('input').val('');
+      }
     },
 
 

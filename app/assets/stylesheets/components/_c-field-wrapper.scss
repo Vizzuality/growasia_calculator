@@ -9,6 +9,10 @@
     justify-content: space-between;
   }
 
+  &.is-hidden {
+    display: none !important;
+  }
+
   @media screen and (min-width: $screen-m) {
 
     &.-big {
