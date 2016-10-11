@@ -59,6 +59,10 @@
     }
   }
 
+  .text.-figure-extra-big {
+    font-size: 50px !important;
+  }
+
   .js-toggle-slider {
     transform: translatex(50%);
   }
@@ -76,7 +80,18 @@
   }
 
   hr {
-    margin: 30px 0 !important;
+    margin: 20px 0 !important;
+  }
+
+  .c-analysis-sidebar {
+    .input-group {
+      margin-bottom: 20px !important;
+
+      > div {
+        width: 33% !important;
+        float: left !important;
+      }
+    }
   }
 
 }
