@@ -1,0 +1,5 @@
+$(function() {
+  $("#print-changed").html("<%= escape_javascript(render('printable_inputs', analysis: @analysis)) %>");
+  window.print();
+
+});
