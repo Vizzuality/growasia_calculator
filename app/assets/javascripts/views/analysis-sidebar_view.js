@@ -9,6 +9,7 @@
     events: {
       'change input,select' : 'onChangeInput',
       'click .-js-add-fields': 'onAddFields',
+      'click .-js-remove-fields': 'onRemoveFields',
       'change input.-js-is-resetable': 'onEnableReset',
       'click .-js-reset-analysis': 'onResetFields',
       'mouseover .-js-reset-analysis': 'tooltipLastValue',
@@ -89,6 +90,19 @@
       $target.parent('label').next('.fields-container').append($newFields);
 
       this.addSelectLib();
+    },
+
+    onRemoveFields: function(e) {
+      e && e.preventDefault();
+
+      var $target = $(e.currentTarget);
+
+      $target.prev('input[type=hidden]').val('1');
+      $target.parents('.-js-input-wrapper').addClass('is-hidden');
+
+      $target.parents('.-js-input-wrapper').find('.-js-is-resetable').val(0);
+      // fire form submission to update analysis
+      $target.parents('.-js-input-wrapper').find('.-js-is-resetable').trigger('change');
     },
 
     onEnableReset: function(e) {

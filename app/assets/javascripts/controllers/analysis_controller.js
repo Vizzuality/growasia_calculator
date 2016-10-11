@@ -23,7 +23,6 @@
       var infoModalView = new App.View.ModalInfo({});
 
       this.addSelectLib();
-      this.removeFields();
       this.selectFields();
     },
 
@@ -77,8 +76,6 @@
       // Fetch the analysis before render the graphs
       analysisModel.fetch();
 
-      this.removeFields();
-
       this.addSelectLib();
     },
 
@@ -107,20 +104,6 @@
             $('.select2-dropdown').addClass(classList[i]);
           }
         }
-      });
-    },
-
-    selectFields: function() {
-    },
-
-    removeFields: function() {
-      $(document).on('click', '.-js-remove-fields', function(event) {
-        event && event.preventDefault();
-
-        $(this).prev('input[type=hidden]').val('1');
-        $(this).parents('.-js-input-wrapper').addClass('is-hidden');
-        $(this).parents('.-js-input-wrapper').find('input').removeClass('-js-required');
-        return event.preventDefault();
       });
     }
 

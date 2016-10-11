@@ -28,7 +28,8 @@
       'change #analysis_geo_location_id' : 'onChangeRegion',
       'change .js-required-checkbox' : 'onChangeRequiredCheckbox',
       'change .-js-next-step-switcher' : 'onChangeNextStepSwitcher',
-      'change .-js-select-fields': 'onSelectFields'
+      'change .-js-select-fields': 'onSelectFields',
+      'click .-js-remove-fields': 'onRemoveFields'
     },
 
     initialize: function(settings) {
@@ -282,6 +283,16 @@
         $target.val('');
         $target.trigger('change');
       }
+    },
+
+    onRemoveFields: function(e) {
+      e && e.preventDefault();
+
+      var $target = $(e.currentTarget);
+
+      $target.prev('input[type=hidden]').val('1');
+      $target.parents('.-js-input-wrapper').addClass('is-hidden');
+      $target.parents('.-js-input-wrapper').find('input').removeClass('-js-required');
     },
 
     onChangeNextStepSwitcher: function(e) {
