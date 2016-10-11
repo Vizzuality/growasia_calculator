@@ -36,7 +36,8 @@
   .l-analysis-sidebar {
     position: relative !important;
     width: 100% !important;
-    // height: auto !important;
+    background-color: transparent !important;
+    height: auto !important;
     overflow: visible !important;
     // position: relative !important;
   }
@@ -86,10 +87,12 @@
 
   .c-analysis-sidebar {
     background-color: transparent !important;
+    color: $black !important;
 
     .input-group {
       background-color: transparent !important;
       margin-bottom: 20px !important;
+      color: $black !important;
 
       > div {
         width: 33% !important;
