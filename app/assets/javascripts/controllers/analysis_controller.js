@@ -23,7 +23,7 @@
       var infoModalView = new App.View.ModalInfo({});
 
       this.addSelectLib();
-      this.selectFields();
+      // this.selectFields();
     },
 
     show: function(params) {

@@ -112,6 +112,7 @@
         <div class="c-field -narrow -light -full">
           <label class="text -label" for="">Lime</label>
           <%= f.number_field :lime_amount, min: 0, class: "-js-is-resetable" %>
+          <span class="unit">kg/ha/year</span>
           <span class="options-wrapper">
             <span class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= analysis.lime_amount %>">
               <svg class="c-icon -small">
@@ -129,6 +130,7 @@
         <div class="c-field -narrow -light -full">
           <label class="text -label" for="">Dolomite</label>
           <%= f.number_field :dolomite_amount, min: 0, class: "-js-is-resetable" %>
+          <span class="unit">kg/ha/year</span>
           <span class="options-wrapper">
             <span class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= analysis.dolomite_amount %>">
               <svg class="c-icon -small">
@@ -146,6 +148,7 @@
         <div class="c-field -narrow -light -full">
           <label class="text -label" for="">Agrochemicals amount</label>
           <%= f.number_field :agrochemical_amount, min: 0, class: "-js-is-resetable" %>
+          <span class="unit">kg/ha/year</span>
           <span class="options-wrapper">
             <button class="btn-reset -js-reset-analysis is-hidden" data-previous-value="<%= analysis.agrochemical_amount %>">
               <svg class="c-icon -small">
@@ -183,6 +186,7 @@
                 </span>
               <% end %>
             </span>
+            <span class="unit">kg/ha/year</span>
           </div>
         </div>
         <div>
@@ -200,6 +204,7 @@
                 </span>
               </button>
             </span>
+            <span class="unit">kg/ha/year</span>
           </div>
         </div>
       <% end %>

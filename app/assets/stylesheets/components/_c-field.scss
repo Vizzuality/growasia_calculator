@@ -187,6 +187,11 @@
         margin-right: 2%;
       }
     }
+
+    .unit {
+      bottom: -17px;
+      right: 50%;
+    }
   }
 
   &.-narrow {
@@ -219,6 +224,10 @@
 
     input {
       font-size: rem(18px);
+    }
+
+    .unit {
+      bottom: -17px;
     }
   }
 
