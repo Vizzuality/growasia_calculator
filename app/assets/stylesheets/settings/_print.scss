@@ -47,7 +47,7 @@
   .c-graph {
     transform: scale(.7) translatex(-25%);
     -webkit-transform: scale(0.7) translatex(-25%);
-    -moz-transform: scale(0.4) translatex(-60%);
+    -moz-transform: scale(0.5) translatex(-70%);
   }
 
   .js-toggle-item {
@@ -108,6 +108,10 @@
       margin-bottom: 20px !important;
       color: $black !important;
       background-color: transparent !important;
+
+      &:nth-child(2n+1) {
+        clear: both !important;
+      }
 
       > div {
         width: 33% !important;
