@@ -5,7 +5,6 @@
 
   body {
 
-
     .l-header,
     .c-analysis-actions {
       display: none;
@@ -13,7 +12,7 @@
 
     .l-analysis-main {
       position: relative !important;
-      width: 78%;
+      width: 100%;
       overflow: visible;
       left: auto;
       top: auto;
@@ -39,7 +38,6 @@
     background-color: transparent !important;
     height: auto !important;
     overflow: visible !important;
-    // position: relative !important;
   }
 
   .c-analysis-toggle ul {
@@ -49,7 +47,7 @@
   .c-graph {
     transform: scale(.7) translatex(-25%);
     -webkit-transform: scale(0.7) translatex(-25%);
-    -moz-transform: scale(0.7) translatex(-25%);
+    -moz-transform: scale(0.4) translatex(-60%);
   }
 
   .js-toggle-item {
@@ -58,7 +56,13 @@
     &.-active {
       display: block !important;
       transform: translatex(50%);
+      -moz-transform: translatex(50%);
+      -webkit-transform: translatex(50%);
     }
+  }
+
+  .text {
+    opacity: 1 !important;
   }
 
   .text.-figure-extra-big {
@@ -86,8 +90,9 @@
   }
 
   .c-analysis-sidebar {
+    padding-left: 54px;
 
-    span {
+    p {
       display: inline-block;
       margin-left: 15px;
       margin-bottom: 3px;
@@ -99,9 +104,10 @@
     color: $black !important;
 
     .input-group {
-      background-color: transparent !important;
+      padding: 0 !important;
       margin-bottom: 20px !important;
       color: $black !important;
+      background-color: transparent !important;
 
       > div {
         width: 33% !important;
