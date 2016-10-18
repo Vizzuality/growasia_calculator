@@ -114,7 +114,7 @@
       <% if fuel.amount.present? %>
         <p>
           <span class="text -print-figure"><%= fuel.amount %></span>
-          <span class="text -print-units">K <%= fuel.fuel_unit_name %></span>
+          <span class="text -print-units"><%= fuel.fuel_unit_name %></span>
           <span class="text -print-product">of <%= fuel.fuel_name %> for transportation</span>
         </p>
       <% end %>
@@ -127,7 +127,7 @@
       <% if fuel.amount.present? %>
         <p>
           <span class="text -print-figure"><%= fuel.amount %></span>
-          <span class="text -print-units">K <%= fuel.fuel_unit_name %></span>
+          <span class="text -print-units"><%= fuel.fuel_unit_name %></span>
           <span class="text -print-product">of <%= fuel.fuel_name %> for irrigation</span>
         </p>
       <% end %>
@@ -139,7 +139,7 @@
       <% if fuel.amount.present? %>
         <p>
           <span class="text -print-figure"><%= fuel.amount %></span>
-          <span class="text -print-units">K <%= fuel.fuel_unit_name %></span>
+          <span class="text -print-units"><%= fuel.fuel_unit_name %></span>
           <span class="text -print-product">of <%= fuel.fuel_name %> for other purposes</span>
         </p>
       <% end %>
