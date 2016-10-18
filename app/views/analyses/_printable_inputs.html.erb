@@ -12,7 +12,7 @@
     <% analysis.fertilizers.each do |fert| %>
       <p>
         <span class="text -print-figure"><%= fert.amount %></span>
-        <span class="text -print-units">kg./ha/year</span>
+        <span class="text -print-units">kg/ha/year</span>
         <span class="text -print-product">of <%= fert.fertilizer_name %></span>
       </p>
     <% end %>
@@ -22,7 +22,7 @@
     <% analysis.manures.each do |manure| %>
       <p>
         <span class="text -print-figure"><%= manure.amount %></span>
-        <span class="text -print-units">kg./ha/year</span>
+        <span class="text -print-units">kg/ha/year</span>
         <span class="text -print-product">of <%= manure.manure_name %></span>
       </p>
     <% end %>
@@ -67,7 +67,7 @@
   <% if analysis.lime_amount.present? && analysis.lime_amount > 0.0 %>
     <p>
       <span class="text -print-figure"><%= analysis.lime_amount %></span>
-      <span class="text -print-units">kg./ha/year</span>
+      <span class="text -print-units">kg/ha/year</span>
       <span class="text -print-product">of Lime applied</span>
     </p>
   <% end %>
@@ -75,7 +75,7 @@
   <% if analysis.dolomite_amount.present? && analysis.dolomite_amount > 0.0 %>
     <p>
       <span class="text -print-figure"><%= analysis.dolomite_amount %></span>
-      <span class="text -print-units">kg./ha/year</span>
+      <span class="text -print-units">kg/ha/year</span>
       <span class="text -print-product">of Dolomite applied</span>
     </p>
   <% end %>
@@ -83,7 +83,7 @@
   <% if analysis.agrochemical_amount.present? && analysis.agrochemical_amount > 0.0%>
     <p>
       <span class="text -print-figure"><%= analysis.agrochemical_amount %></span>
-      <span class="text -print-units">kg./ha/year</span>
+      <span class="text -print-units">kg/ha/year</span>
       <span class="text -print-product">of pesticides and/or herbicides</span>
     </p>
   <% end %>
@@ -95,7 +95,7 @@
         You incorporate
         <% analysis.nutrient_managements.each do |nut| %>
           <span class="text -print-figure"><%= nut.amount %></span>
-          <span class="text -print-units">kg./ha/year</span>
+          <span class="text -print-units">kg/ha/year</span>
           <span class="text -print-product">of <%= nut.nutrient_mgmt_name %></span>
         <% end %>
       </p>
@@ -112,7 +112,7 @@
       <% if fuel.amount.present? %>
         <p>
           <span class="text -print-figure"><%= fuel.amount %></span>
-          <span class="text -print-units">k<%= fuel.fuel_unit_name %></span>
+          <span class="text -print-units"><%= fuel.fuel_unit_name %></span>
           <span class="text -print-product">of <%= fuel.fuel_name %> for transportation</span>
         </p>
       <% end %>
@@ -125,7 +125,7 @@
       <% if fuel.amount.present? %>
         <p>
           <span class="text -print-figure"><%= fuel.amount %></span>
-          <span class="text -print-units">k<%= fuel.fuel_unit_name %></span>
+          <span class="text -print-units"><%= fuel.fuel_unit_name %></span>
           <span class="text -print-product">of <%= fuel.fuel_name %> for irrigation</span>
         </p>
       <% end %>
@@ -137,7 +137,7 @@
       <% if fuel.amount.present? %>
         <p>
           <span class="text -print-figure"><%= fuel.amount %></span>
-          <span class="text -print-units">k<%= fuel.fuel_unit_name %></span>
+          <span class="text -print-units"><%= fuel.fuel_unit_name %></span>
           <span class="text -print-product">of <%= fuel.fuel_name %> for other purposes</span>
         </p>
       <% end %>
