@@ -41,11 +41,29 @@
     overflow: visible !important;
   }
 
+  .c-analysis-header .list {
+    float: left !important;
+
+    &:first-child {
+      margin-right: 1cm;
+    }
+  }
+
   .c-analysis-toggle ul {
     border: none  !important;
   }
 
   .c-graph {
+
+    svg {
+      width: 100% !important;
+    }
+  }
+
+  .c3-legend-item {
+    transform: translatey(-35px);
+    -moz-transform: translatey(-35px);
+    -webkit-transform: translatey(-35px);
   }
 
   .c3-text {
@@ -102,7 +120,6 @@
       margin-bottom: 3px;
       width: 45%;
     }
-
 
     background-color: transparent !important;
     color: $black !important;

@@ -49,6 +49,9 @@
             type: 'bar',
             order: null
           },
+          size: {
+            width: this.$el.find('.chart').width()
+          },
           bar: {
             width: {
               ratio: 0.75 // this makes bar width 50% of length between ticks
