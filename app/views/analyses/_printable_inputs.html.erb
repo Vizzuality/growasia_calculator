@@ -1,4 +1,7 @@
 <div clas="c-analysis-sidebar">
+  <p class="text -print-figure">
+    Annual production of <%= analysis.converted_yield %> t per ha
+  </p>
   <% if !analysis.perennial_or_paddy? %>
     <p class="text -print-figure">
       Tillage:<%= Analysis::TILLAGES.select{|t| t[:slug] == analysis.tillage}.first[:title] %>
@@ -81,7 +84,7 @@
     <p>
       <span class="text -print-figure"><%= analysis.agrochemical_amount %></span>
       <span class="text -print-units">kg./ha/year</span>
-      <span class="text -print-product">of agrochemicals</span>
+      <span class="text -print-product">of pesticides and/or herbicides</span>
     </p>
   <% end %>
 

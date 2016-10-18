@@ -4,6 +4,12 @@
   </div>
   <%= form_for [:api, :v1, analysis], :html => { :id => "analysis-sidebar-form" } do |f| %>
     <div class="input-group -first -theme-3">
+      <div class="c-field -narrow -full -light">
+        <label class="text -label">Annual Production</label>
+        <%= f.number_field :yield, value: analysis.converted_yield,  min: 0, class: "-js-is-resetable" %>
+        <%= f.hidden_field :yield_unit, value: "ton" %>
+        <span class="unit">t per ha</span>
+      </div>
       <% if !analysis.perennial_or_paddy? %>
         <div>
           <div class="c-field -narrow -full -light">
@@ -146,7 +152,7 @@
       </div>
       <div>
         <div class="c-field -narrow -light -full">
-          <label class="text -label" for="">Agrochemicals amount</label>
+          <label class="text -label" for="">Pesticides and/or herbicides amount</label>
           <%= f.number_field :agrochemical_amount, min: 0, class: "-js-is-resetable" %>
           <span class="unit">kg/ha/year</span>
           <span class="options-wrapper">

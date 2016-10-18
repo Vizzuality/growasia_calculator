@@ -61,13 +61,16 @@ class AnalysesController < ApplicationController
 
       Analysis::FUEL_TYPES.each do |fuel|
         if @analysis.new_record? || !@analysis.has_fuel?(fuel[:slug], :transportation)
-          @analysis.transportation_fuels.build(addition_type: fuel[:slug])
+          @analysis.transportation_fuels.build(addition_type: fuel[:slug],
+                                               unit: "liters")
         end
         if @analysis.new_record? || !@analysis.has_fuel?(fuel[:slug], :irrigation)
-          @analysis.irrigation_fuels.build(addition_type: fuel[:slug])
+          @analysis.irrigation_fuels.build(addition_type: fuel[:slug],
+                                           unit: "liters")
         end
         if @analysis.new_record? || !@analysis.has_fuel?(fuel[:slug])
-          @analysis.fuels.build(addition_type: fuel[:slug])
+          @analysis.fuels.build(addition_type: fuel[:slug],
+                                unit: "liters")
         end
       end
     end
