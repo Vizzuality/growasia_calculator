@@ -1,4 +1,7 @@
 <div clas="c-analysis-sidebar">
+  <p class="text -print-figure">
+    Annual production of <%= analysis.converted_yield %> t per ha
+  </p>
   <% if !analysis.perennial_or_paddy? %>
     <p class="text -print-figure">
       Tillage:<%= Analysis::TILLAGES.select{|t| t[:slug] == analysis.tillage}.first[:title] %>
