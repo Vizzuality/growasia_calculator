@@ -33,12 +33,6 @@
 @import "settings/form";
 @import "settings/select-2-reset";
 
-@import "settings/print";
-
-/*
- * THANK YOU FOR KEEPING ALPHABETICAL ORDER
- * Beyond this point, modules shouldn't have dependency among them.
- */
 
 /*
  * Layouts
@@ -49,3 +43,6 @@
  * Components
  */
 @import "components/*";
+
+
+@import "settings/print";

@@ -4,6 +4,7 @@
   }
 
   body {
+    width: 18cm !important;
 
     .l-header,
     .c-analysis-actions {
@@ -40,14 +41,40 @@
     overflow: visible !important;
   }
 
+  .c-analysis-header .list {
+    float: left !important;
+
+    &:first-child {
+      margin-right: 1cm;
+    }
+  }
+
   .c-analysis-toggle ul {
     border: none  !important;
   }
 
   .c-graph {
-    transform: scale(.7) translatex(-25%);
-    -webkit-transform: scale(0.7) translatex(-25%);
-    -moz-transform: scale(0.5) translatex(-70%);
+
+    svg {
+      width: 100% !important;
+    }
+  }
+
+  .c3-legend-item {
+    transform: translatey(-35px);
+    -moz-transform: translatey(-35px);
+    -webkit-transform: translatey(-35px);
+  }
+
+  .c3-text {
+    opacity: 1 !important;
+    color: #999;
+  }
+
+  .c3-chart-text {
+    .c3-texts {
+      font-size: 8px !important;
+    }
   }
 
   .js-toggle-item {
@@ -90,6 +117,7 @@
   }
 
   .c-analysis-sidebar {
+    margin-top: 1cm;
     padding-left: 54px;
 
     p {
@@ -98,7 +126,6 @@
       margin-bottom: 3px;
       width: 45%;
     }
-
 
     background-color: transparent !important;
     color: $black !important;

@@ -63,6 +63,12 @@
         modelCompare: analysisCompareModel
       });
 
+      var analysisChartsViewPrint = new App.View.AnalysisCharts({
+        el: '#analysisChartsViewPrint',
+        model: analysisModel,
+        modelCompare: analysisCompareModel
+      });
+
       var analysisToggleView = new App.View.AnalysisToggle({
         el: '#analysisToggleView',
         model: analysisModel,
