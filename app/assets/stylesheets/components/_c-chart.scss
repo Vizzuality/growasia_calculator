@@ -31,4 +31,10 @@
   transform: translatey(-2px);
 }
 
+.c3-axis-x {
+  tspan:nth-child(3) {
+    display: none;
+  }
+}
+
 

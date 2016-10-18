@@ -17,19 +17,22 @@
   }
 
   .chart {
-    max-height: rem(250px) !important;
+    // max-height: rem(250px) !important;
+    // height: rem(250px) !important;
 
-    svg {
-      width: 100% !important;
-    }
+    // svg {
+    //   width: 100% !important;
+    // }
 
-    @media screen and (min-width: $screen-m) {
-      max-height: rem(320px) !important;
-    }
+    // @media screen and (min-width: $screen-m) {
+    //   max-height: rem(320px) !important;
+    //   height: rem(320px) !important;
+    // }
 
-    @media screen and (min-width: $screen-xl) {
-      max-height: rem(350px) !important;
-    }
+    // @media screen and (min-width: $screen-xl) {
+    //   max-height: rem(350px) !important;
+    //   height: rem(340px) !important;
+    // }
   }
 }
 
