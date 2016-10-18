@@ -1,6 +1,8 @@
 <div clas="c-analysis-sidebar">
-  <p class="text -print-figure">
-    Annual production of <%= analysis.converted_yield %> t per ha
+  <p>
+    <span class="text -print-product">Annual production of</span>
+    <span class="text -print-figure"><%= analysis.converted_yield %></span>
+    <span class="text -print-units">t per ha</span>
   </p>
   <% if !analysis.perennial_or_paddy? %>
     <p class="text -print-product">
