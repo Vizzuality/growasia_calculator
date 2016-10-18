@@ -92,8 +92,16 @@
     opacity: 1 !important;
   }
 
+  .text.-summary-big {
+    font-size: 20px !important;
+  }
+
   .text.-figure-extra-big {
-    font-size: 50px !important;
+    font-size: 30px !important;
+  }
+
+  .text.text.-analysis-total {
+    font-size: 18px;
   }
 
   .js-toggle-slider {
@@ -113,11 +121,11 @@
   }
 
   hr {
-    margin: 20px 0 !important;
+    margin: 5mm 0 !important;
   }
 
   .c-analysis-sidebar {
-    margin-top: 1cm;
+    margin-top: 10mm;
     padding-left: 54px;
 
     p {
