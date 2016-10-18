@@ -7,7 +7,6 @@
 .c3 text {
   fill: $black;
   fill-opacity: .8;
-  // font-size: rem(12px);
 }
 
 .c3-legend-background {
@@ -18,8 +17,6 @@
 .c3-legend-item {
   fill-opacity: .8;
   font-family: $font-family-1;
-  // font-size: rem(12px);
-  // line-height: rem(13px);
   font-weight: 400;
   transform: translatey(-20px);
 }
@@ -27,16 +24,11 @@
 .c3-text {
   fill: $black !important;
   opacity: .3 !important;
-  // font-size: rem(11px);
 }
 
 //Force labels to show in the graph area.
-.tick text {
-  transform: translatey(-3px);
-}
-
-.c3-chart-texts .c3-text {
-  // font-size: rem(10px);
+.c3-axis .tick text {
+  transform: translatey(-2px);
 }
 
 
