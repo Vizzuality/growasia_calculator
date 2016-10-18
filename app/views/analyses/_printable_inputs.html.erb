@@ -1,6 +1,6 @@
 <div clas="c-analysis-sidebar">
   <% if !analysis.perennial_or_paddy? %>
-    <p class="text -print-figure">
+    <p class="text -print-product">
       Tillage:<%= Analysis::TILLAGES.select{|t| t[:slug] == analysis.tillage}.first[:title] %>
     </p>
   <% end %>
@@ -53,9 +53,9 @@
   <% end %>
 
   <% if analysis.crop_management_practices.present? %>
-    <p class="text -print-figure">Crop management practices:</p>
+    <p class="text -print-product">Crop management practices:</p>
     <% analysis.crop_management_practices.each do |practice| %>
-      <p class="text -print-figure">
+      <p class="text -print-product">
         <%= Analysis::CROP_MANAGEMENT_PRACTICES.select{|t| t[:slug] == practice}.first[:title] %>
       </p>
     <% end %>

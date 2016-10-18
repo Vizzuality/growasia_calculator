@@ -28,9 +28,10 @@
 
     render: function() {
       var emissions_by_source = this.model.get('analysis').emissions_by_source;
+      var chartDiv = this.$el.find('.c-graph').attr('id');
 
       this.chart1 = new App.View.Chart({
-        el: '#chart-1',
+        el: '#' + chartDiv,
         options: {
           data: {
             json: {

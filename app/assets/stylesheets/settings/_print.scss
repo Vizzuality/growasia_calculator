@@ -4,6 +4,7 @@
   }
 
   body {
+    width: 18cm !important;
 
     .l-header,
     .c-analysis-actions {
@@ -45,9 +46,11 @@
   }
 
   .c-graph {
-    transform: scale(.7) translatex(-25%);
-    -webkit-transform: scale(0.7) translatex(-25%);
-    -moz-transform: scale(0.5) translatex(-70%);
+  }
+
+  .c3-text {
+    opacity: 1 !important;
+    color: #999;
   }
 
   .js-toggle-item {
@@ -90,6 +93,7 @@
   }
 
   .c-analysis-sidebar {
+    margin-top: 1cm;
     padding-left: 54px;
 
     p {

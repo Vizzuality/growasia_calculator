@@ -37,7 +37,7 @@
 
     <hr>
 
-    <div id="analysisChartsView" class="c-analysis-graphs">
+    <div id="analysisChartsView" class="c-analysis-graphs -is-not-printable">
       <div class="grid">
         <div class="grid-col">
           <div id="chart-1" class="c-graph">
@@ -50,6 +50,16 @@
               <div class="slide js-toggle-slider"></div>
             </div>
             <div class="chart"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="analysisChartsViewPrint" class="c-analysis-graphs -is-printable" data-print="true">
+      <div class="grid">
+        <div class="grid-col">
+          <div id="chart-print" class="c-graph">
+            <div class="chart" style="width:160mm;"></div>
           </div>
         </div>
       </div>
