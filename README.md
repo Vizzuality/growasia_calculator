@@ -21,7 +21,8 @@ practices and practices changes in terms of their carbon emissions.
 * Make sure you have the correct ruby version installed
 * Install the project gems: `bundle install`
 
-* Copy the file `config/database_sample.yml` and rename it to only `database.yml`. Change there the configuration for your database. 
+* Copy the file `config/database_sample.yml` and rename it to only `database.yml`.
+Change configuration for your database in that file.
 
 * Create database: `rake db:create`
 * Run migrations: `rake db:migrate`
