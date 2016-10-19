@@ -395,6 +395,14 @@
 }
 
 .-theme-1 {
+
+  input {
+    @include placeholder() {
+      color: $black;
+      opacity: .5;
+    }
+  }
+
   .select2-results__option,
   .select2-results__option[aria-selected=true] {
     background-color: $color-1 !important;
@@ -441,6 +449,13 @@
 
 .-theme-2 {
 
+  input {
+    @include placeholder() {
+      color: $black;
+      opacity: .5;
+    }
+  }
+
   .select2-results__option,
   .select2-results__option[aria-selected=true] {
     background-color: $color-2 !important;
@@ -481,6 +496,13 @@
 }
 
 .-theme-3 {
+
+  input {
+    @include placeholder() {
+      color: $black;
+      opacity: .5;
+    }
+  }
 
   .select2-results__option,
   .select2-results__option[aria-selected=true] {
@@ -551,6 +573,13 @@
 
 .-theme-4 {
 
+  input {
+    @include placeholder() {
+      color: $white;
+      opacity: .5;
+    }
+  }
+
   .select2-results__option,
   .select2-results__option[aria-selected=true] {
     background-color: $color-4 !important;
@@ -592,6 +621,13 @@
 }
 
 .-theme-5 {
+
+  input {
+    @include placeholder() {
+      color: $white;
+      opacity: .5;
+    }
+  }
 
   .select2-results__option,
   .select2-results__option[aria-selected=true] {
