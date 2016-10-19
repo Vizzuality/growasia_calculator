@@ -7,13 +7,6 @@
   padding: 0;
   transition: .2s ease-in;
 
-  input {
-    @include placeholder() {
-      color: $white;
-      opacity: .5;
-    }
-  }
-
   .select2-selection__placeholder {
     color: $black !important;
     opacity: .3;
