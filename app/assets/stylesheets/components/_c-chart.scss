@@ -43,28 +43,6 @@
   }
 }
 
-.chart {
-  max-height: rem(250px) !important;
-
-  svg {
-    width: 100% !important;
-  }
-
-  @media screen and (min-width: $screen-m) {
-    max-height: rem(320px) !important;
-  }
-
-  @media screen and (min-width: $screen-xl) {
-    max-height: rem(350px) !important;
-  }
-}
-
-
-.chart {
-  svg {
-    overflow: visible !important;
-  }
-}
 
 .c3 text {
   fill: $black;
@@ -88,25 +66,13 @@
   opacity: .3 !important;
 }
 
-//Force labels to show in the graph area.
-.c3-axis .tick text {
-  transform: translatey(-2px);
-}
-
-// .c3-axis-x {
-//   tspan:nth-child(3) {
-//     display: none;
-//   }
-// }
-
 .c3-legend-item {
   display: none;
 }
 
-
 #chart-print {
   svg {
-    width: 170mm !important;
+    width: 180mm !important;
     height: 70mm;
   }
 }

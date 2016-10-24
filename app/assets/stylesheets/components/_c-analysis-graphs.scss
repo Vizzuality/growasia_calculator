@@ -13,24 +13,24 @@
     position: relative;
 
     li {
-      &:before {
-        content: "";
+      span {
         display: inline-block;
         width: 10px;
-        height: 10px;
-        margin-right: 10px;
+        margin-right: 5px;
       }
 
       &.-current {
         margin-bottom: rem(3px);
 
-        &:before {
-          background-color: #c1de11;
+        span {
+          border-bottom: 10px solid #c1de11;
         }
       }
 
-      &.-future:before {
-        background-color: #8ac230;
+      &.-future {
+        span {
+          border-bottom: 10px solid #8ac230;
+        }
       }
     }
   }
