@@ -4,7 +4,7 @@
   }
 
   body {
-    width: 18cm !important;
+    width: 240mm !important;
 
     .l-header,
     .c-analysis-actions {
@@ -53,17 +53,22 @@
     border: none  !important;
   }
 
-  .c-graph {
+  #analysisChartsViewPrint {
+    margin-left: -20px;
+    padding-bottom: 2cm;
 
-    svg {
-      width: 100% !important;
+
+    .graph {
+      svg {
+        overflow: visible !important;
+        width: 100% !important;
+      }
     }
   }
 
-  .c3-legend-item {
-    transform: translatey(-35px);
-    -moz-transform: translatey(-35px);
-    -webkit-transform: translatey(-35px);
+
+  .text {
+    opacity: 1 !important;
   }
 
   .c3-text {
@@ -73,7 +78,7 @@
 
   .c3-chart-text {
     .c3-texts {
-      font-size: 8px !important;
+      font-size: 10px !important;
     }
   }
 
@@ -82,14 +87,14 @@
 
     &.-active {
       display: block !important;
-      transform: translatex(50%);
-      -moz-transform: translatex(50%);
-      -webkit-transform: translatex(50%);
+      transform: translatex(45%);
+      -moz-transform: translatex(45%);
+      -webkit-transform: translatex(45%);
     }
   }
 
-  .text {
-    opacity: 1 !important;
+  .c3-axis .tick text {
+    font-size: 10px !important;
   }
 
   .text.-summary-big {
@@ -125,6 +130,8 @@
   }
 
   .c-analysis-sidebar {
+    page-break-after: always !important;
+    // page-break-inside: avoid !important;
     margin-top: 10mm;
     padding-left: 54px;
 
@@ -155,4 +162,7 @@
     }
   }
 
+  #future-practices {
+    page-break-before: always !important;
+  }
 }

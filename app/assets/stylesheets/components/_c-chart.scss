@@ -1,8 +1,48 @@
-.chart {
-  svg {
-    overflow: visible !important;
+.c-graph {
+  width: 100%;
+  position: relative;
+
+  .c3 {
+    line {
+      fill: none;
+      stroke: rgba($font-color-2, .3);
+    }
+
+    path {
+      fill: none;
+      stroke: rgba($font-color-2, .3);
+    }
+
+    g {
+      &.tick {
+        fill: rgba($font-color-2, .3);
+      }
+    }
+
+    // TOOLTIP
+    .c3-tooltip {
+      box-shadow: 0px 1px 6px 0 rgba($font-color-2, .5);
+
+      th {
+        padding: rem(10px) rem(8px) rem(5px);
+        color: rgba($font-color-2, .8);
+        background-color: $font-color-1;
+        font-weight: 500;
+        text-transform: capitalize;
+      }
+
+      tr {
+        border: none;
+      }
+
+      td {
+        padding: rem(5px) rem(10px);
+        border: none;
+      }
+    }
   }
 }
+
 
 .c3 text {
   fill: $black;
@@ -26,15 +66,13 @@
   opacity: .3 !important;
 }
 
-//Force labels to show in the graph area.
-.c3-axis .tick text {
-  transform: translatey(-2px);
+.c3-legend-item {
+  display: none;
 }
 
-.c3-axis-x {
-  tspan:nth-child(3) {
-    display: none;
+#chart-print {
+  svg {
+    width: 180mm !important;
+    height: 70mm;
   }
 }
-
-

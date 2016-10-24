@@ -669,3 +669,13 @@
   }
 }
 
+
+.l-analysis-sidebar {
+  input {
+    @include placeholder() {
+      color: $white !important;
+      opacity: .5;
+    }
+  }
+}
+

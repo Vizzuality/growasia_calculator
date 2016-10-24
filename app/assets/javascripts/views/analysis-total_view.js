@@ -23,9 +23,7 @@
       this.listeners();
     },
 
-    cache: function() {
-
-    },
+    cache: function() {},
 
     listeners: function() {
       this.model.on('change', this.render.bind(this));
@@ -40,14 +38,14 @@
 
       var totalCompare = (!!analysisCompare && analysisCompare.total !== analysis.total) ? this.formatNumbers(analysisCompare[this.modelCompare.get('type')]) : null;
 
-      var subtraction = (!!analysis) && (!!analysisCompare) ? this.formatNumbers( analysisCompare[this.modelCompare.get('type')] - analysis[this.model.get('type')] ) : null;
+      var subtraction = (!!analysis) && (!!analysisCompare) ? analysisCompare[this.modelCompare.get('type')] - analysis[this.model.get('type')] : null;
 
       var subtractionClass = subtraction < 0 ? '-good' : '-wrong'
 
       this.$el.html(this.template({
         total: total,
         totalCompare: totalCompare,
-        subtraction: subtraction,
+        subtraction: this.formatNumbers(subtraction),
         subtractionClass: subtractionClass
       }));
     },
