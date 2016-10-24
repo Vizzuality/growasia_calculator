@@ -157,34 +157,8 @@
     width: 100% !important;
   }
 
-
-  // TODO: Style custom number fields
   &.-full {
     width: 100%;
-  }
-
-  &.-double {
-    width: 100%;
-
-    label {
-      display: block;
-    }
-
-    input,
-    .dropdown-wrapper,
-    .select2-container {
-      display: inline-block;
-      width: 49% !important;
-
-      &:first-child {
-        margin-right: 2%;
-      }
-    }
-
-    .unit {
-      bottom: -17px;
-      right: 50%;
-    }
   }
 
   &.-narrow {
@@ -221,6 +195,30 @@
 
     .unit {
       bottom: -17px;
+    }
+  }
+
+  &.-double {
+    width: 100%;
+
+    label {
+      display: block;
+    }
+
+    input,
+    .dropdown-wrapper,
+    .select2-container {
+      display: inline-block;
+      width: 49% !important;
+
+      &:first-child {
+        margin-right: 2%;
+      }
+    }
+
+    .unit {
+      bottom: -30px;
+      right: 50%;
     }
   }
 
