@@ -137,7 +137,7 @@
 
   .c-analysis-sidebar {
     page-break-after: always !important;
-    page-break-inside: avoid !important;
+    // page-break-inside: avoid !important;
     margin-top: 10mm;
     padding-left: 54px;
 
@@ -168,7 +168,7 @@
     }
   }
 
-  // #future-practices {
-  //   page-break-before: always !important;
-  // }
+  #future-practices {
+    page-break-before: always !important;
+  }
 }
