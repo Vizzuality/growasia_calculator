@@ -4,7 +4,7 @@
   }
 
   body {
-    width: 200mm !important;
+    width: 240mm !important;
 
     .l-header,
     .c-analysis-actions {
@@ -53,13 +53,7 @@
     border: none  !important;
   }
 
-  .c-analysis-graphs {
-    transform: translatex(-5%);
-    -webkit-transform: translatex(-5%);
-    -moz-transform: translatex(-5%);
-  }
-
-  .c-graph {
+  #analysisChartsViewPrint {
     margin-left: -20px;
     padding-bottom: 2cm;
 
@@ -93,9 +87,9 @@
 
     &.-active {
       display: block !important;
-      transform: translatex(50%);
-      -moz-transform: translatex(50%);
-      -webkit-transform: translatex(50%);
+      transform: translatex(45%);
+      -moz-transform: translatex(45%);
+      -webkit-transform: translatex(45%);
     }
   }
 
