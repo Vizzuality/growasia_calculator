@@ -1,34 +1,3 @@
-// ANALYSIS HEADER
-// <header class="c-analysis-header">
-//   <div>
-//     <ul class="list">
-//       <li class="list-item">
-//         <span class="title text -summary-small">Country</span>
-//         <span class="value"><%= @analysis.geo_location.country %></span>
-//       </li>
-//       <li class="list-item">
-//         <span class="title text -summary-small">Region</span>
-//         <span class="value"><%= @analysis.geo_location.state %></span>
-//       </li>
-//     </ul>
-//     <ul class="list">
-//       <li class="list-item">
-//         <span class="title text -summary-small">Crop</span>
-//         <span class="value"><%= @analysis.crop.capitalize %></span>
-//       </li>
-//       <li class="list-item">
-//         <span class="title text -summary-small">Area</span>
-//         <span class="value"><%= @analysis.area %> <em>ha</em></span>
-//       </li>
-//       <li class="list-item">
-//         <span class="title text -summary-small">Annual Production</span>
-//         <span class="value"><%= @analysis.yield %> <em>kg. ha<sup>-1</sup> yr<sup>-1</sup></em></span>
-//       </li>
-//     </ul>
-//   </div>
-// </header>
-
-
 .c-analysis-header {
   display: flex;
   justify-content: center;

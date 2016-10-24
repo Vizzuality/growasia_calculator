@@ -85,12 +85,12 @@
               ]
             }
           },
-          legend: {
-            position: 'inset',
-            inset: {
-              anchor: 'top-right'
-            }
-          }
+          // legend: {
+          //   position: 'inset',
+          //   inset: {
+          //     anchor: 'top-right'
+          //   }
+          // }
         }
       });
     },
