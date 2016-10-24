@@ -34,30 +34,30 @@
     <hr>
 
     <div id="analysisChartsView" class="c-analysis-graphs">
-      <div class="grid">
-        <div class="grid-col">
-          <div id="chart-1" class="c-graph">
-            <div class="title text -summary-big">Emission Sources</div>
-            <div id="analysisToggleView" class="c-analysis-toggle">
-              <ul>
-                <li data-type="total" class="js-toggle-item -active">Total</li>
-                <li data-type="total_per_yield" class="js-toggle-item ">Per yield</li>
-              </ul>
-              <div class="slide js-toggle-slider"></div>
-            </div>
-            <div class="chart -is-not-printable"></div>
+      <div id="chart-1" class="c-graph">
+        <div class="graph-header">
+          <div class="title text -summary-big">Emission Sources</div>
+          <div id="analysisToggleView" class="c-analysis-toggle">
+            <ul>
+              <li data-type="total" class="js-toggle-item -active">Total</li>
+              <li data-type="total_per_yield" class="js-toggle-item ">Per yield</li>
+            </ul>
+            <div class="slide js-toggle-slider"></div>
+          </div>
+          <div class="legend">
+            <ul>
+              <li class="text -graph-legend -current"><span></span> Current practices</li>
+              <li class="text -graph-legend -future"><span></span> Potential future</li>
+            </ul>
           </div>
         </div>
+        <div class="graph -is-not-printable"></div>
       </div>
     </div>
 
     <div id="analysisChartsViewPrint" class="c-analysis-graphs -is-printable" data-print="true">
-      <div class="grid">
-        <div class="grid-col">
-          <div id="chart-print" class="c-graph">
-            <div class="chart" style="width:160mm;"></div>
-          </div>
-        </div>
+      <div id="chart-print" class="c-graph">
+        <div class="graph" style="width:200mm;"></div>
       </div>
     </div>
 

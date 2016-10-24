@@ -50,7 +50,7 @@
             order: null
           },
           size: {
-            width: this.$el.find('.chart').width()
+            width: this.$el.find('.graph').width()
           },
           bar: {
             width: {
@@ -83,12 +83,6 @@
               lines: [
                 {value: 0}
               ]
-            }
-          },
-          legend: {
-            position: 'inset',
-            inset: {
-              anchor: 'top-right'
             }
           }
         }

@@ -4,7 +4,7 @@
   }
 
   body {
-    width: 18cm !important;
+    width: 200mm !important;
 
     .l-header,
     .c-analysis-actions {
@@ -53,17 +53,28 @@
     border: none  !important;
   }
 
-  .c-graph {
+  .c-analysis-graphs {
+    transform: translatex(-5%);
+    -webkit-transform: translatex(-5%);
+    -moz-transform: translatex(-5%);
+  }
 
-    svg {
-      width: 100% !important;
+  .c-graph {
+    margin-left: -20px;
+    padding-bottom: 2cm;
+
+
+    .graph {
+      svg {
+        overflow: visible !important;
+        width: 100% !important;
+      }
     }
   }
 
-  .c3-legend-item {
-    transform: translatey(-35px);
-    -moz-transform: translatey(-35px);
-    -webkit-transform: translatey(-35px);
+
+  .text {
+    opacity: 1 !important;
   }
 
   .c3-text {
@@ -73,7 +84,7 @@
 
   .c3-chart-text {
     .c3-texts {
-      font-size: 8px !important;
+      font-size: 10px !important;
     }
   }
 
@@ -88,8 +99,8 @@
     }
   }
 
-  .text {
-    opacity: 1 !important;
+  .c3-axis .tick text {
+    font-size: 10px !important;
   }
 
   .text.-summary-big {
@@ -125,6 +136,8 @@
   }
 
   .c-analysis-sidebar {
+    page-break-after: always !important;
+    page-break-inside: avoid !important;
     margin-top: 10mm;
     padding-left: 54px;
 
@@ -155,4 +168,7 @@
     }
   }
 
+  // #future-practices {
+  //   page-break-before: always !important;
+  // }
 }
