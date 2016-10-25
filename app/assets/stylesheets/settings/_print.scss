@@ -55,7 +55,7 @@
 
   #analysisChartsViewPrint {
     margin-left: -20px;
-    padding-bottom: 2cm;
+    padding-bottom: 1cm;
 
 
     .graph {
@@ -93,8 +93,9 @@
     }
   }
 
-  .c3-axis .tick text {
-    font-size: 10px !important;
+  .c3-axis .tick text,
+  .c3-axis-y-label {
+    font-size: 12px !important;
   }
 
   .text.-summary-big {
@@ -102,11 +103,11 @@
   }
 
   .text.-figure-extra-big {
-    font-size: 30px !important;
+    font-size: 40px !important;
   }
 
   .text.text.-analysis-total {
-    font-size: 18px;
+    font-size: 22px;
   }
 
   .js-toggle-slider {
