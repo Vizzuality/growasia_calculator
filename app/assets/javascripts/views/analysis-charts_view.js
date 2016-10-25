@@ -62,7 +62,7 @@
               type: 'category',
               categories: _.pluck(emissions_by_source, 'name'),
               tick: {
-                rotate: chartDiv === 'chart-print' && 30
+                rotate: chartDiv === 'chart-print' && 45
               }
             },
             y: {
