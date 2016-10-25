@@ -56,6 +56,9 @@
   #analysisChartsViewPrint {
     margin-left: -20px;
     padding-bottom: 1cm;
+    transform: translatex(-2%);
+    -moz-transform: translatex(-2%);
+    -webkit-transform: translatex(-2%);
 
 
     .graph {
