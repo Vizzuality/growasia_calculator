@@ -42,7 +42,7 @@
                 if (v > 1000 || v < -1000) {
                   return d3.format('.3s')(v);
                 } else {
-                  return d3.round(v, 3);
+                  return d3.round(v, 2);
                 }
               }
             },
@@ -67,7 +67,7 @@
             },
             y: {
               label: {
-                text: 't of CO2e',
+                text: 't of CO₂',
                 position: 'outer-middle'
               },
               tick: {
@@ -75,7 +75,7 @@
                   if (v > 1000 || v < -1000) {
                     return d3.format('.3s')(v);
                   } else {
-                    return d3.round(v, 3);
+                    return d3.round(v, 2);
                   }
                 }
               }
