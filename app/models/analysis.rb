@@ -350,6 +350,18 @@ class Analysis < ApplicationRecord
     crop.gsub("-", " ").titleize
   end
 
+  def any_change?
+    # ignore yield_unit
+    # make sure that yield has changed and is not just converted from kg to tonne
+    changes.reject{|k,v| k == "yield_unit" || (k == "yield" && v[0]*0.001 == v[1])}.present? ||
+      fertilizers.any?{ |a| a.changed? } ||
+      manures.any?{ |a| a.changed? } ||
+      fuels.any?{ |a| a.changed? } ||
+      transportation_fuels.any?{ |a| a.changed? } ||
+      irrigation_fuels.any?{ |a| a.changed? } ||
+      nutrient_managements.any?{ |a| a.changed? }
+  end
+
   def new_record_and_blank_amount?(attributes)
     !(attributes["amount"].present? && attributes["amount"].to_f > 0.0) && (new_record? || !attributes["id"])
   end

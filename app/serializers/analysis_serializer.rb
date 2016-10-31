@@ -134,7 +134,8 @@ class AnalysisSerializer < ActiveModel::Serializer
     {
       total: total.to_f,
       total_per_yield: (total/per_yield).to_f,
-      emissions_by_source: emissions_by_source
+      emissions_by_source: emissions_by_source,
+      analysis_changed: object.any_change?
     }
   end
 end
