@@ -11,7 +11,7 @@
         <div>
           <div class="c-field -little -light">
             <%= builder.number_field :amount, class: '-right -js-numeric',
-              autocomplete: 'off', min: '0', placeholder: 0.0 %>
+              autocomplete: 'off', min: '0', placeholder: 0 %>
           </div>
 
           <div class="c-field -little -light">
@@ -40,7 +40,7 @@
         <div class="c-field -little -light">
           <%= builder.hidden_field :category, value: Category::IRRIGATION_FUEL %>
           <%= builder.number_field :amount, class: '-right -js-numeric', autocomplete: 'off',
-            min: '0', placeholder: 0.0 %>
+            min: '0', placeholder: 0 %>
         </div>
         <div class="c-field -little -light">
           <%= builder.select :unit, select_options(Analysis::FUEL_UNITS, builder.object.unit), {}, class: '-theme-5' %>
@@ -67,7 +67,7 @@
         <div class="c-field -little -light">
           <%= builder.hidden_field :category, value: Category::FUEL %>
           <%= builder.number_field :amount, class: '-right -js-numeric', autocomplete: 'off',
-            min: '0', placeholder: 0.0 %>
+            min: '0', placeholder: 0 %>
         </div>
         <div class="c-field -little -light">
           <%= builder.select :unit, select_options(Analysis::FUEL_UNITS, builder.object.unit), {}, class: '-theme-5' %>
