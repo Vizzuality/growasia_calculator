@@ -63,4 +63,9 @@ module AnalysesHelper
     end
     link_to(image_tag("add.svg", size: "18x18"), "#", class: "-js-add-fields add-fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
+
+  def printable_value value
+    val = value.to_i == value ? value.to_i : value
+    number_with_delimiter(val, delimiter: ",")
+  end
 end
