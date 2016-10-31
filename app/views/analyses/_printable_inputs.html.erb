@@ -10,20 +10,24 @@
     </p>
   <% end %>
 
-  <% unless analysis.fertilizers.select{|t| t.amount && t.amount > 0.0}.empty? %>
+  <% unless analysis.fertilizers.select{|t| t.amount && t.amount > 0}.empty? %>
     <% analysis.fertilizers.each do |fert| %>
       <p>
-        <span class="text -print-figure"><%= fert.amount %></span>
+        <span class="text -print-figure">
+          <%= printable_value(fert.amount) %>
+        </span>
         <span class="text -print-units">kg/ha/year</span>
         <span class="text -print-product">of <%= fert.fertilizer_name %></span>
       </p>
     <% end %>
   <% end %>
 
-  <% unless analysis.manures.select{|t| t.amount && t.amount > 0.0}.empty? %>
+  <% unless analysis.manures.select{|t| t.amount && t.amount > 0}.empty? %>
     <% analysis.manures.each do |manure| %>
       <p>
-        <span class="text -print-figure"><%= manure.amount %></span>
+        <span class="text -print-figure">
+          <%= printable_value(manure.amount) %>
+        </span>
         <span class="text -print-units">kg/ha/year</span>
         <span class="text -print-product">of <%= manure.manure_name %></span>
       </p>
@@ -66,25 +70,31 @@
     <% end %>
   <% end %>
 
-  <% if analysis.lime_amount.present? && analysis.lime_amount > 0.0 %>
+  <% if analysis.lime_amount.present? && analysis.lime_amount > 0 %>
     <p>
-      <span class="text -print-figure"><%= analysis.lime_amount %></span>
+      <span class="text -print-figure">
+        <%= printable_value(analysis.lime_amount) %>
+      </span>
       <span class="text -print-units">kg/ha/year</span>
       <span class="text -print-product">of Lime applied</span>
     </p>
   <% end %>
 
-  <% if analysis.dolomite_amount.present? && analysis.dolomite_amount > 0.0 %>
+  <% if analysis.dolomite_amount.present? && analysis.dolomite_amount > 0 %>
     <p>
-      <span class="text -print-figure"><%= analysis.dolomite_amount %></span>
+      <span class="text -print-figure">
+        <%= printable_value(analysis.dolomite_amount) %>
+      </span>
       <span class="text -print-units">kg/ha/year</span>
       <span class="text -print-product">of Dolomite applied</span>
     </p>
   <% end %>
 
-  <% if analysis.agrochemical_amount.present? && analysis.agrochemical_amount > 0.0%>
+  <% if analysis.agrochemical_amount.present? && analysis.agrochemical_amount > 0%>
     <p>
-      <span class="text -print-figure"><%= analysis.agrochemical_amount %></span>
+      <span class="text -print-figure">
+        <%= printable_value(analysis.agrochemical_amount) %>
+      </span>
       <span class="text -print-units">kg/ha/year</span>
       <span class="text -print-product">of pesticides and/or herbicides</span>
     </p>
@@ -92,11 +102,13 @@
 
   <% if analysis.paddy_rice? %>
 
-    <% unless analysis.nutrient_managements.select{|t| t.amount && t.amount > 0.0}.empty? %>
+    <% unless analysis.nutrient_managements.select{|t| t.amount && t.amount > 0}.empty? %>
       <p>
         You incorporate
         <% analysis.nutrient_managements.each do |nut| %>
-          <span class="text -print-figure"><%= nut.amount %></span>
+          <span class="text -print-figure">
+            <%= printable_value(nut.amount) %>
+          </span>
           <span class="text -print-units">kg/ha/year</span>
           <span class="text -print-product">of <%= nut.nutrient_mgmt_name %></span>
         <% end %>
@@ -105,15 +117,19 @@
 
     <p>
       <span class="text -print-product">Rice straw burned</span>
-      <span class="text -print-figure"><%= analysis.rice_straw_burned %></span>
+      <span class="text -print-figure">
+        <%= printable_value(analysis.rice_straw_burned) %>
+      </span>
     </p>
   <% end %>
 
-  <% unless analysis.transportation_fuels.select{|t| t.amount && t.amount > 0.0}.empty? %>
+  <% unless analysis.transportation_fuels.select{|t| t.amount && t.amount > 0}.empty? %>
     <% analysis.transportation_fuels.each do |fuel| %>
       <% if fuel.amount.present? %>
         <p>
-          <span class="text -print-figure"><%= fuel.amount %></span>
+          <span class="text -print-figure">
+            <%= printable_value fuel.amount %>
+          </span>
           <span class="text -print-units"><%= fuel.fuel_unit_name %></span>
           <span class="text -print-product">of <%= fuel.fuel_name %> for transportation</span>
         </p>
@@ -122,11 +138,13 @@
   <% end %>
 
 
-  <% unless analysis.irrigation_fuels.select{|t| t.amount && t.amount > 0.0}.empty? %>
+  <% unless analysis.irrigation_fuels.select{|t| t.amount && t.amount > 0}.empty? %>
     <% analysis.irrigation_fuels.each do |fuel| %>
       <% if fuel.amount.present? %>
         <p>
-          <span class="text -print-figure"><%= fuel.amount %></span>
+          <span class="text -print-figure">
+            <%= printable_value fuel.amount %>
+          </span>
           <span class="text -print-units"><%= fuel.fuel_unit_name %></span>
           <span class="text -print-product">of <%= fuel.fuel_name %> for irrigation</span>
         </p>
@@ -134,11 +152,13 @@
     <% end %>
   <% end %>
 
-  <% unless analysis.fuels.select{|t| t.amount && t.amount > 0.0}.empty? %>
+  <% unless analysis.fuels.select{|t| t.amount && t.amount > 0}.empty? %>
     <% analysis.fuels.each do |fuel| %>
       <% if fuel.amount.present? %>
         <p>
-          <span class="text -print-figure"><%= fuel.amount %></span>
+          <span class="text -print-figure">
+            <%= printable_value fuel.amount %>
+          </span>
           <span class="text -print-units"><%= fuel.fuel_unit_name %></span>
           <span class="text -print-product">of <%= fuel.fuel_name %> for other purposes</span>
         </p>

@@ -9,7 +9,7 @@
         <%= builder.hidden_field :category, value: Category::NUTRIENT_MANAGEMENT %>
         <span class="c-field -two-elements -light">
           <%= builder.number_field :amount, class: '-right -js-numeric',
-            autocomplete: 'off', min: '0', placeholder: 0.0 %>
+            autocomplete: 'off', min: '0', placeholder: 0 %>
           <span class="unit">kg/ha/year</span>
         </span>
         <span class="c-text">of</span>
@@ -37,7 +37,7 @@
 
       <span id="riceStrawBurningAmount" class="c-field -medium -light -disabled -fixed-height">
         <%= f.number_field :rice_straw_burned, class: '-right  -js-numeric',
-          autocomplete: 'off', min: '0', placeholder: 0.0 %>
+          autocomplete: 'off', min: '0', placeholder: 0 %>
         <span class="unit">kg/ha/year</span>
       </span>
 

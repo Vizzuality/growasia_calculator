@@ -116,7 +116,7 @@ class AnalysisSerializer < ActiveModel::Serializer
     val = object.emissions_from_agrochemical_use
     emissions_by_source << {
       slug: "agrochemical",
-      name: "Agrochemical application",
+      name: "Pesticide and herbicide use",
       total: val.to_f,
       total_per_yield: (val/per_yield).to_f
     }

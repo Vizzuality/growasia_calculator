@@ -42,7 +42,7 @@
                 if (v > 1000 || v < -1000) {
                   return d3.format('.3s')(v);
                 } else {
-                  return d3.round(v, 3);
+                  return d3.round(v, 2);
                 }
               }
             },
@@ -60,11 +60,14 @@
           axis: {
             x: {
               type: 'category',
-              categories: _.pluck(emissions_by_source, 'name')
+              categories: _.pluck(emissions_by_source, 'name'),
+              tick: {
+                rotate: chartDiv === 'chart-print' && 45
+              }
             },
             y: {
               label: {
-                text: 't of CO2e',
+                text: 't of CO₂e',
                 position: 'outer-middle'
               },
               tick: {
@@ -72,7 +75,7 @@
                   if (v > 1000 || v < -1000) {
                     return d3.format('.3s')(v);
                   } else {
-                    return d3.round(v, 3);
+                    return d3.round(v, 2);
                   }
                 }
               }

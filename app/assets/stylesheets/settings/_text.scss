@@ -215,7 +215,7 @@
   }
 
   &.-print-resume {
-    font-size: rem(18px);
+    font-size: rem(24px);
     font-weight: 100;
     font-style: normal;
     font-stretch: normal;
@@ -225,21 +225,21 @@
 
   &.-print-figure {
     color: $black;
-    font-size: rem(14px);
+    font-size: rem(18px);
     font-weight: 500;
     opacity: .8;
   }
 
   &.-print-units {
     color: $black;
-    font-size: rem(14px);
+    font-size: rem(18px);
     font-weight: 300;
     opacity: .8;
   }
 
   &.-print-product {
     color: $black;
-    font-size: rem(14px);
+    font-size: rem(18px);
     font-weight: 300;
     opacity: .8;
   }
