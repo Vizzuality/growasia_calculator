@@ -36,7 +36,7 @@
 
       var total = (!!analysis) ? this.formatNumbers(analysis[this.model.get('type')]) : null;
 
-      var totalCompare = (!!analysisCompare && analysisCompare.total !== analysis.total) ? this.formatNumbers(analysisCompare[this.modelCompare.get('type')]) : null;
+      var totalCompare = (!!analysisCompare) ? this.formatNumbers(analysisCompare[this.modelCompare.get('type')]) : null;
 
       var subtraction = (!!analysis) && (!!analysisCompare) ? analysisCompare[this.modelCompare.get('type')] - analysis[this.model.get('type')] : null;
 
