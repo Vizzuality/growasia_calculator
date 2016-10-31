@@ -217,7 +217,7 @@
     }
 
     .unit {
-      bottom: -30px;
+      // bottom: -30px;
       right: 50%;
     }
   }
@@ -225,7 +225,7 @@
   .options-wrapper {
     position: absolute;
     height: 40px;
-    top: rem(-10px);
+    // top: rem(-10px);
     bottom: 0;
     right: rem(-20px);
     display: flex;
@@ -274,7 +274,9 @@
   }
 
   .input-wrapper {
+    display: block;
     position: relative;
+    margin-bottom: rem(20px);
   }
 
   .add-fields {
