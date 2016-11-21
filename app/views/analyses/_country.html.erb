@@ -23,11 +23,11 @@
       <%= select_tag :country,
         options_from_collection_for_select(@geo_locations, :country, :country),
         include_blank: 'Select country',
-        class: '-js-required, -theme-1', 'data-placeholder': 'Select country'
+        class: '-js-required -theme-1', 'data-placeholder': 'Select country'
       %>
     </span>
     <span id="region-field" class="c-field -medium -hidden">
-      <%= f.select :geo_location_id, [], {}, class: '-js-required, -theme-1' %>
+      <%= f.select :geo_location_id, [], {}, class: '-js-required -theme-1' %>
     </span>
   </div>
 
