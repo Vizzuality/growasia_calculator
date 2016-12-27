@@ -128,7 +128,7 @@
                0.7;
       } else {
         return d.selected ?  1 :
-               this.countries.includes(d.admin) ? 0.8 :
+               this.countries.indexOf(d.admin) > 0 ? 0.8 :
                0.3;
       }
     },
@@ -155,7 +155,7 @@
     highlightFeature: function(e) {
       var layer = e.target;
 
-      if ( this.model.get('country') || this.countries.includes(layer.feature.properties.admin) ) {
+      if ( this.model.get('country') || this.countries.indexOf(layer.feature.properties.admin) > 0 ) {
         layer.setStyle({
             weight: 1,
             fillColor: '#3f8c3f',

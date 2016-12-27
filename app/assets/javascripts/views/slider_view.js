@@ -98,7 +98,7 @@
           var stepsItems = _.reject($el.find('.js-slider-step'), function(step){
             var dataCrop = $(step).data('crop');
             if (dataCrop) {
-              return !dataCrop.includes(crop)
+              return !(dataCrop.indexOf(crop) > 0)
             }
           });
 
@@ -135,7 +135,7 @@
     setBodyClass: function() {
       var classList = document.body.className.split(/\s+/);
       for (var i = 0; i < classList.length; i++) {
-        if (classList[i].includes('theme')) {
+        if (classList[i].indexOf('theme') > 0) {
           $('body').removeClass(classList[i]);
         }
       };
