@@ -98,7 +98,6 @@
           var stepsItems = _.reject($el.find('.js-slider-step'), function(step){
             var dataCrop = $(step).data('crop');
             if (dataCrop) {
-              console.log(!(dataCrop.indexOf(crop) > 0), !dataCrop.includes(crop))
               return !(dataCrop.indexOf(crop) > 0)
             }
           });
