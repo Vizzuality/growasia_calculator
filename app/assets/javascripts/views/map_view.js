@@ -6,12 +6,6 @@
 
   App.View.Map = Backbone.View.extend({
 
-    model: new (Backbone.Model.extend({
-          defaults: {
-            country: 'all'
-          }
-        })),
-
     geometries: {
       all: {
         url: '../asia.geo.json',
@@ -61,9 +55,8 @@
       var opts = settings && settings.options ? settings.options : {};
       this.options = _.extend({}, this.defaults, opts );
 
-      this.currentGeom = this.getCurrentGeom();
-
       this.model =  new App.Model.Map();
+      this.currentGeom = this.getCurrentGeom();
 
       this.createMap();
       this.getLayer();
@@ -83,7 +76,7 @@
     },
 
     getCurrentGeom: function() {
-      return this.geometries[this.model.get('country')];
+      return this.geometries[this.model.get('country')] || this.geometries['all'];
     },
 
     createMap: function() {
@@ -101,7 +94,6 @@
       };
 
       this.map = new L.Map(this.el, this.mapOptions);
-      // this.map.fitBounds(this.mapOptions.bounds);
     },
 
     /*
@@ -171,9 +163,10 @@
         });
       }
 
-      if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-        layer.bringToFront();
-      }
+      // I don't know when we added these lines but it is keeping the map from working on IE.
+      // if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+      //   layer.bringToFront();
+      // }
     },
 
     resetHighlight: function(e) {
