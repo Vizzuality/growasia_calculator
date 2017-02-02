@@ -49,7 +49,7 @@ class Analysis < ApplicationRecord
     fmg = fmg_value
     fi = fi_value
     flu = flu_value
-    ((area * geo_location.soc_ref * flu ) - ( area * geo_location.soc_ref * flu * fmg * fi)) / 20 * 44/12
+    ((area * geo_location.soc_ref * flu * fmg * fi) - ( area * geo_location.soc_ref * flu * fmg * fi)) / 20 * 44/12
   end
 
   def emissions_from_soil_management_changed old_fmg, old_fi
